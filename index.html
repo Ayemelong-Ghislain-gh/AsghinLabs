@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style-main.css">
 </head>
 <body>
@@ -58,36 +59,43 @@
   <div class="section-sub">Click any category to explore our previous projects</div>
 
   <div class="services-vertical">
+
+
     <!-- Web Development -->
-    <div class="service-item">
-      <div class="service-header" data-service="web">
-        <div class="service-icon">🌐</div>
-        <div class="service-title">
-          <h3>Web Development</h3>
-          <p>Modern, scalable, and high-performance websites and web applications</p>
-        </div>
-        <div class="service-arrow">▶</div>
+<div class="service-item">
+  <div class="service-header" data-service="web">
+    <div class="service-icon">🌐</div>
+    <div class="service-title">
+      <h3>Web Development</h3>
+      <p>Modern, scalable, SEO Optimized and high-performance websites and web applications</p>
+    </div>
+    <div class="service-stats">
+      <span>⚡ 10+ Projects</span>
+      <span>🚀 99% Uptime</span>
+    </div>
+    <div class="service-arrow">▶</div>
+  </div>
+  <div class="service-projects-panel" id="panel-web">
+    <div class="projects-grid">
+      <div class="project-preview">
+        <h4>StudentStay</h4>
+        <p>Room rental marketplace for Bamenda, Cameroon, connecting students with affordable housing.</p>
+        <a href="https://studentstay-blush.vercel.app/" target="_blank" class="project-link">View Project →</a>
       </div>
-      <div class="service-projects-panel" id="panel-web">
-        <div class="projects-grid">
-          <div class="project-preview">
-            <h4>NexaStore AI</h4>
-            <p>Full‑stack e‑commerce platform with AI-powered recommendations, real-time inventory, and secure checkout.</p>
-            <a href="#" class="project-link">View Project →</a>
-          </div>
-          <div class="project-preview">
-            <h4>FlowBoard</h4>
-            <p>Productivity suite with Kanban boards, AI task automation, and team collaboration tools.</p>
-            <a href="#" class="project-link">View Project →</a>
-          </div>
-          <div class="project-preview">
-            <h4>E‑commerce Suite</h4>
-            <p>Complete white-label e-commerce solution with analytics dashboard and payment integration.</p>
-            <a href="#" class="project-link">View Project →</a>
-          </div>
-        </div>
+      <div class="project-preview">
+        <h4>Ride Along</h4>
+        <p>Taxi marketplace platform for Cameroon with real-time tracking and secure payments.</p>
+        <a href="https://ridealong-two.vercel.app/" target="_blank" class="project-link">View Project →</a>
+      </div>
+      <div class="project-preview">
+        <h4>ChainVote</h4>
+        <p>Blockchain-based voting DApp with Solidity smart contracts and React/TypeScript frontend.</p>
+        <a href="https://github.com/Ayemelong-Ghislain-gh/ChainVote--Blochain-Based-voting-DApp" target="_blank" class="project-link">View Project →</a>
       </div>
     </div>
+  </div>
+</div>
+
 
     <!-- Graphic Design -->
     <div class="service-item">
@@ -95,30 +103,63 @@
         <div class="service-icon">🎨</div>
         <div class="service-title">
           <h3>Graphic Design</h3>
-          <p>Visual identities that tell stories — branding, UI/UX, illustrations, and 3D design</p>
+          <p>Visual identities that tell stories, branding, UI/UX, illustrations, and 3D design</p>
+        </div>
+        <div class="service-stats">
+          <span>⚡ 30+ Projects</span>
+          <span>🚀 99% Uptime</span>
         </div>
         <div class="service-arrow">▶</div>
       </div>
       <div class="service-projects-panel" id="panel-design">
+        
+        <div class="design-tools-section" style="margin-bottom: 25px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 12px;">
+          <h4 style="margin-bottom: 12px;">🛠️ Design Tools We Use</h4>
+          <div class="tech-tags">
+            <span>🎨 Adobe Photoshop</span>
+            <span>🖌️ Adobe Illustrator</span>
+            <span>📐 Figma</span>
+            <span>🎬 Adobe After Effects</span>
+            <span>🖍️ Canva</span>
+            <span>🔮 Blender</span>
+          </div>
+          <p style="margin-top: 10px; font-size: 0.9rem; color: #888;">We use industry-standard tools to deliver professional results.</p>
+        </div>
         <div class="projects-grid">
           <div class="project-preview">
-            <h4>Brand Genesis</h4>
-            <p>Complete visual identity suite including logo, color palette, typography, and brand guidelines.</p>
-            <a href="#" class="project-link">View Project →</a>
+            <h4>Brand Identity Packages</h4>
+            <p>Complete brand identity design including logos, color palettes, typography, business cards, and brand guidelines.</p>
+            <div class="tech-tags">
+              <span>Logo Design</span>
+              <span>Brand Guidelines</span>
+              <span>Stationery</span>
+            </div>
+            <a href="#" class="project-link">View Portfolio →</a>
           </div>
           <div class="project-preview">
-            <h4>3D Configurator</h4>
-            <p>Interactive WebGL product customizer with real-time rendering and material options.</p>
-            <a href="#" class="project-link">View Project →</a>
+            <h4>Social Media Graphics</h4>
+            <p>Engaging social media posts, stories, banners, and ad creatives for platforms like Instagram, Facebook, and LinkedIn.</p>
+            <div class="tech-tags">
+              <span>Instagram Posts</span>
+              <span>Banners</span>
+              <span>Ad Creatives</span>
+            </div>
+            <a href="#" class="project-link">View Portfolio →</a>
           </div>
           <div class="project-preview">
-            <h4>UI/UX Suite</h4>
-            <p>Mobile app design system with 200+ components, dark mode, and accessibility features.</p>
-            <a href="#" class="project-link">View Project →</a>
+            <h4>UI/UX Design</h4>
+            <p>User-centered interface designs for web and mobile apps with wireframes, prototypes, and design systems.</p>
+            <div class="tech-tags">
+              <span>Wireframing</span>
+              <span>Prototyping</span>
+              <span>Design Systems</span>
+            </div>
+            <a href="#" class="project-link">View Portfolio →</a>
           </div>
         </div>
       </div>
     </div>
+
 
     <!-- Video Editing -->
     <div class="service-item">
@@ -128,24 +169,83 @@
           <h3>Video Editing</h3>
           <p>Cinematic storytelling through motion graphics, visual effects, and professional editing</p>
         </div>
+        <div class="service-stats">
+          <span>⚡ 15+ Projects</span>
+          <span>🎬 4K Capable</span>
+        </div>
         <div class="service-arrow">▶</div>
       </div>
       <div class="service-projects-panel" id="panel-video">
+        
+        <!-- Video Services Overview -->
+        <div class="design-tools-section" style="margin-bottom: 25px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 12px;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+            <div>
+              <span style="font-size: 1.5rem;">🎞️</span>
+              <p style="font-weight: 600; margin: 5px 0 0;">Editing</p>
+              <p style="font-size: 0.8rem; color: #888;">Professional cuts & transitions</p>
+            </div>
+            <div>
+              <span style="font-size: 1.5rem;">🎨</span>
+              <p style="font-weight: 600; margin: 5px 0 0;">Color Grading</p>
+              <p style="font-size: 0.8rem; color: #888;">Cinematic color correction</p>
+            </div>
+            <div>
+              <span style="font-size: 1.5rem;">✨</span>
+              <p style="font-weight: 600; margin: 5px 0 0;">VFX</p>
+              <p style="font-size: 0.8rem; color: #888;">Visual effects & compositing</p>
+            </div>
+            <div>
+              <span style="font-size: 1.5rem;">🎵</span>
+              <p style="font-weight: 600; margin: 5px 0 0;">Audio</p>
+              <p style="font-size: 0.8rem; color: #888;">Sound design & mixing</p>
+            </div>
+          </div>
+        </div>
+        
         <div class="projects-grid">
           <div class="project-preview">
-            <h4>CineReel 2025</h4>
-            <p>Cinematic showreel featuring motion graphics, VFX, and dynamic transitions.</p>
+            <h4>🎞️ Corporate Video Production</h4>
+            <p>Professional corporate videos, brand story films, and company culture documentaries.</p>
+            <div class="tech-tags">
+              <span>Brand Story</span>
+              <span>Corporate</span>
+              <span>Documentary</span>
+            </div>
             <a href="#" class="project-link">Watch Demo →</a>
           </div>
+          
           <div class="project-preview">
-            <h4>Music Visualizer</h4>
-            <p>Audio-reactive generative visuals with real-time beat detection and custom effects.</p>
-            <a href="#" class="project-link">Launch →</a>
+            <h4>🎵 Music Video & Visualizers</h4>
+            <p>Creative music videos, audio-reactive visualizers, and artist promotional content.</p>
+            <div class="tech-tags">
+              <span>Music Video</span>
+              <span>Visual Effects</span>
+              <span>Motion Graphics</span>
+            </div>
+            <a href="#" class="project-link">Watch Demo →</a>
           </div>
+          
           <div class="project-preview">
-            <h4>Motion Reel</h4>
-            <p>Corporate motion graphics package with animated logos, titles, and explainer elements.</p>
-            <a href="#" class="project-link">View Reel →</a>
+            <h4>📱 Social Media Content</h4>
+            <p>Engaging short-form videos, reels, and promotional content optimized for social platforms.</p>
+            <div class="tech-tags">
+              <span>Reels</span>
+              <span>Shorts</span>
+              <span>Ads</span>
+            </div>
+            <a href="#" class="project-link">Watch Demo →</a>
+          </div>
+          
+          <div class="project-preview">
+            <h4>🎯 Motion Graphics & VFX</h4>
+            <p>Animated logos, visual effects, title sequences, and dynamic motion graphics.</p>
+            <div class="tech-tags">
+              <span>VFX</span>
+              <span>Animation</span>
+              <span>Motion Design</span>
+            </div>
+            <a href="#" class="project-link">Watch Demo →</a>
           </div>
         </div>
       </div>
@@ -204,13 +304,17 @@
         💬 Chat on WhatsApp
       </a>
       <div class="social-icons">
-        <span>🐦 X</span> <span>📸 IG</span> <span>💼 LinkedIn</span> <span>🎥 Behance</span>
+        <span><i class="fab fa-youtube"></i> <a href="https://youtube.com/@asghinlabs?si=8H8hlesgpdl-_qF1" target="_blank">YouTube</a></span>
+        <span><i class="fab fa-tiktok"></i> <a href="https://www.tiktok.com/@asghinlabs?_r=1&_t=ZS-980XOFyfzjZ" target="_blank">TikTok</a></span>
+
+        <span><i class="fab fa-linkedin"></i> LinkedIn</span>
+        <span><i class="fab fa-instagram"></i> Instagram</span>
       </div>
     </div>
   </div>
 </section>
 
-<footer>© 2026 AsghinLabs — Building what people actually need. Web · Design · Video</footer>
+<footer>© 2026 AsghinLabs | Building what people actually need. Web · Design · Video</footer>
 
 <!-- Site-wide floating WhatsApp button -->
 <a class="whatsapp-float" href="https://wa.me/237682402876?text=Hi%20AsghinLabs%2C%20I%27d%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>

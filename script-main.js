@@ -63,7 +63,10 @@
       header.classList.remove('active');
       const panelId = header.getAttribute('data-service');
       const panel = document.getElementById(`panel-${panelId}`);
-      if (panel) panel.classList.remove('open');
+      if (panel) {
+        panel.classList.remove('open');
+        panel.style.maxHeight = '';
+      }
     });
   }
 
@@ -77,8 +80,15 @@
       if (!isOpen) {
         header.classList.add('active');
         panel.classList.add('open');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
       }
     });
+  });
+
+  // Recalculate the open panel's height on resize (e.g. text reflows to more lines)
+  window.addEventListener('resize', () => {
+    const openPanel = document.querySelector('.service-projects-panel.open');
+    if (openPanel) openPanel.style.maxHeight = openPanel.scrollHeight + 'px';
   });
 
   // ========== COLOR THEMES & CUBE LOGIC (only runs if a cube is present) ==========
