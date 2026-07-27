@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Portfolio | AsghinLabs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style-main.css">
+  <link rel="stylesheet" href="style-portfolio.css">
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">
+    <img src="images/logo-blue.jpeg" alt="AsghinLabs Logo" id="navLogoImg">
+    <span>ASGHINLABS</span>
+  </a>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#home">Home</a></li>
+    <li><a href="index.html#whatwedo">What We Do</a></li>
+    <li><a href="index.html#founder">Founder</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <h1 id="portfolioHeaderTitle">🎨 Portfolio</h1>
+  <p id="portfolioHeaderSub">Tap a category below, then tap any sample for a closer look.</p>
+</div>
+
+<section style="padding-top:0;">
+  <div class="portfolio-tabs" id="portfolioTabs"></div>
+  <div class="portfolio-gallery" id="portfolioGallery"></div>
+</section>
+
+<footer>© 2026 AsghinLabs — Building what people actually need. Web · Design · Video</footer>
+
+<a class="whatsapp-float" href="https://wa.me/237682402876?text=Hi%20AsghinLabs%2C%20I%27d%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-content">
+    <button class="lightbox-nav" id="lightboxPrev" aria-label="Previous">‹</button>
+    <img id="lightboxImg" src="" alt="">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+    <button class="lightbox-nav" id="lightboxNext" aria-label="Next">›</button>
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+  </div>
+</div>
+
+<script src="script-main.js"></script>
+<script src="portfolio-data.js"></script>
+<script src="portfolio.js"></script>
+</body>
+</html>
