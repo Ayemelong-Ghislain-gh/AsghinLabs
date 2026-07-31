@@ -27,7 +27,7 @@
 
 const PORTFOLIO_ITEMS = {
   logo: [
-    { src: "images/portfolio/logos/asghinlabs.JPEG", title: "AsghinLabs" },
+    { src: "images/portfolio/logos/asghinlabs.jpeg", title: "AsghinLabs" },
     { src: "images/portfolio/logos/DebbiesCloset.JPEG", title: "Debbie's Closet" },
     { src: "images/portfolio/logos/FlassyImport.JPEG", title: "Flassy Import" },
     { src: "images/portfolio/logos/MMLuxe.JPEG", title: "MM Luxe" },
