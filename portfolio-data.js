@@ -28,19 +28,21 @@
 const PORTFOLIO_ITEMS = {
   logo: [
     { src: "images/portfolio/logos/asghinlabs.jpeg", title: "AsghinLabs" },
-    { src: "images/portfolio/logos/DebbiesCloset.JPEG", title: "Debbie's Closet" },
-    { src: "images/portfolio/logos/FlassyImport.JPEG", title: "Flassy Import" },
+    { src: "images/portfolio/logos/DebbiesCloset.jpeg", title: "Debbie's Closet" },
+    { src: "images/portfolio/logos/FlassyImport.jpeg", title: "Flassy Import" },
     { src: "images/portfolio/logos/MMLuxe.JPEG", title: "MM Luxe" },
-    { src: "images/portfolio/logos/WildaluxCosmetics.JPEG", title: "Wildalux Cosmetics" },
-    { src: "images/portfolio/logos/YoungDevAfrica.JPEG", title: "Young Dev Africa" },
+    { src: "images/portfolio/logos/WildaluxCosmetics.jpeg", title: "Wildalux Cosmetics" },
+    { src: "images/portfolio/logos/YoungDevAfrica.jpeg", title: "Young Dev Africa" },
   ],
 
   flyer: [
-    { src: "images/portfolio/flyers/EasyGas.JPEG", title: "Easy Gas" },
-    { src: "images/portfolio/flyers/SupremeLaundry.JPEG", title: "Supreme Laundry" },
-    { src: "images/portfolio/flyers/Tralopro.JPEG", title: "Tralopro" },
-    { src: "images/portfolio/flyers/YokoSuperMarket.JPEG", title: "Yoko Super Market" },
-    { src: "images/portfolio/flyers/YourHealthYourWealth.JPEG", title: "Your Health Your Wealth" },
+    { src: "images/portfolio/flyers/EasyGas.jpeg", title: "Easy Gas" },
+    { src: "images/portfolio/flyers/SupremeLaundry.jpeg", title: "Supreme Laundry" },
+    { src: "images/portfolio/flyers/Tralopro.jpeg", title: "Tralopro" },
+    { src: "images/portfolio/flyers/YokoSuperMarket.jpeg", title: "Yoko Super Market" },
+    { src: "images/portfolio/flyers/YourHealthYourWealth.jpeg", title: "Your Health Your Wealth" },
+    { src: "images/portfolio/flyers/YokoSuperMarket2.jpeg", title: "Yoko Super Market" },
+    { src: "images/portfolio/flyers/HarrietsShopping.jpeg", title: "Harriet's Shopping" },
   ],
 
   brandguidelines: [
@@ -52,7 +54,11 @@ const PORTFOLIO_ITEMS = {
   ],
 
   banner: [
-    { src: "images/portfolio/banners/HarrietsShopping.JPEG", title: "Harriet's Shopping" },
+    { src: "images/portfolio/banners/HarrietsShopping.jpeg", title: "Harriet's Shopping" },
+    { src: "images/portfolio/banners/EasyGas.jpeg", title: "Easy Gas" },
+    { src: "images/portfolio/banners/DoualaSupermarche.jpeg", title: "Douala Super-marche" },
+    { src: "images/portfolio/banners/asghinlabs.jpeg", title: "AsghinLabs" },
+    { src: "images/portfolio/banners/novatechsolutions.jpeg", title: "Novatech Solutions" },
   ],
 
   adcreatives: [
