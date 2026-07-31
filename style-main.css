@@ -389,6 +389,18 @@ h2 {
   gap: 10px;
 }
 
+/* The whole card is now a link (see index.html / founder.html) —
+   this makes the arrow "gap" animation trigger from anywhere on the
+   card, not just when hovering the text itself. */
+.project-preview:hover .project-link {
+  gap: 10px;
+}
+
+.project-preview:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 3px;
+}
+
 .tech-tags {
   display: flex;
   flex-wrap: wrap;
