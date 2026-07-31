@@ -123,7 +123,7 @@
 .carousel-stage {
   position: relative;
   width: 100%;
-  min-height: 340px;
+  min-height: 420px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -133,8 +133,8 @@
 
 .carousel-box {
   position: relative;
-  width: 260px;
-  height: 195px;
+  width: 300px;
+  height: 300px;
   transform-style: preserve-3d;
   transition: transform 0.7s cubic-bezier(0.22, 0.9, 0.3, 1);
 }
@@ -148,7 +148,7 @@
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.04);
   box-shadow: 0 0 25px rgba(0, 212, 255, 0.12);
   cursor: pointer;
   backface-visibility: hidden;
@@ -164,7 +164,9 @@
 .carousel-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 16px;
+  box-sizing: border-box;
   display: block;
   user-select: none;
   -webkit-user-drag: none;
@@ -240,26 +242,32 @@
 
 /* Single-sample view (no ring needed) */
 .carousel-single .carousel-stage {
-  min-height: 280px;
+  min-height: 360px;
 }
 .carousel-single .carousel-item {
   position: relative;
-  width: 280px;
-  height: 210px;
+  width: 340px;
+  height: 340px;
 }
 
 @media (max-width: 640px) {
   .carousel-stage {
-    min-height: 260px;
+    min-height: 300px;
     perspective: 1000px;
   }
   .carousel-box {
-    width: 190px;
-    height: 145px;
+    width: 230px;
+    height: 230px;
+  }
+  .carousel-item img {
+    padding: 10px;
+  }
+  .carousel-single .carousel-stage {
+    min-height: 260px;
   }
   .carousel-single .carousel-item {
-    width: 220px;
-    height: 165px;
+    width: 240px;
+    height: 240px;
   }
   .carousel-btn {
     width: 46px;
