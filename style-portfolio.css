@@ -1,11 +1,40 @@
 /* ========== PORTFOLIO GALLERY (portfolio.html) ========== */
 
+/* ---- Category navigation (tabs on desktop, hamburger dropdown on mobile) ---- */
+
+.portfolio-nav {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.category-toggle {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-light);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.category-toggle:hover {
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+}
+
 .portfolio-tabs {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 14px;
-  margin-bottom: 48px;
 }
 
 .portfolio-tab {
@@ -32,69 +61,41 @@
   box-shadow: 0 0 20px var(--brand-glow);
 }
 
-.portfolio-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 24px;
-  max-width: 1100px;
-  margin: 0 auto;
+@media (max-width: 640px) {
+  .category-toggle {
+    display: flex;
+  }
+  .portfolio-tabs {
+    display: none;
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: column;
+    background: rgba(5, 8, 22, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    padding: 12px;
+    gap: 8px;
+    z-index: 60;
+    width: min(280px, 82vw);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  }
+  .portfolio-tabs.open {
+    display: flex;
+  }
+  .portfolio-tab {
+    width: 100%;
+    text-align: center;
+  }
 }
 
-.portfolio-item {
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  aspect-ratio: 4 / 3;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  cursor: pointer;
-  background: rgba(255, 255, 255, 0.03);
-  transition: all 0.35s ease;
-}
-
-.portfolio-item:hover {
-  transform: translateY(-6px);
-  border-color: var(--brand-primary);
-  box-shadow: 0 0 30px var(--brand-glow);
-}
-
-.portfolio-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.4s ease;
-}
-
-.portfolio-item:hover img {
-  transform: scale(1.06);
-}
-
-.portfolio-item-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  padding: 16px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent 55%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.portfolio-item:hover .portfolio-item-overlay {
-  opacity: 1;
-}
-
-.portfolio-zoom {
-  font-size: 1.1rem;
-}
+/* ---- Empty state ---- */
 
 .portfolio-empty {
-  grid-column: 1 / -1;
   text-align: center;
-  padding: 70px 20px;
+  padding: 90px 20px;
   color: var(--text-muted);
 }
 
@@ -109,7 +110,168 @@
   opacity: 0.7;
 }
 
-/* Lightbox */
+/* ---- 3D carousel ---- */
+
+.carousel-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.carousel-stage {
+  position: relative;
+  width: 100%;
+  min-height: 340px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1400px;
+  touch-action: pan-y;
+}
+
+.carousel-box {
+  position: relative;
+  width: 260px;
+  height: 195px;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.22, 0.9, 0.3, 1);
+}
+
+.carousel-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 0 25px rgba(0, 212, 255, 0.12);
+  cursor: pointer;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.carousel-item:hover {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 35px var(--brand-glow);
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.carousel-zoom-hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 10px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.carousel-item:hover .carousel-zoom-hint {
+  opacity: 1;
+}
+
+.carousel-caption {
+  text-align: center;
+  margin-top: 26px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text-light);
+  min-height: 1.4em;
+}
+
+.carousel-counter {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.carousel-nav {
+  display: flex;
+  justify-content: center;
+  gap: 26px;
+  margin-top: 24px;
+}
+
+.carousel-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.carousel-btn:hover {
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.carousel-btn:active {
+  transform: scale(0.92);
+}
+
+/* Single-sample view (no ring needed) */
+.carousel-single .carousel-stage {
+  min-height: 280px;
+}
+.carousel-single .carousel-item {
+  position: relative;
+  width: 280px;
+  height: 210px;
+}
+
+@media (max-width: 640px) {
+  .carousel-stage {
+    min-height: 260px;
+    perspective: 1000px;
+  }
+  .carousel-box {
+    width: 190px;
+    height: 145px;
+  }
+  .carousel-single .carousel-item {
+    width: 220px;
+    height: 165px;
+  }
+  .carousel-btn {
+    width: 46px;
+    height: 46px;
+    font-size: 1.25rem;
+  }
+  .carousel-nav {
+    gap: 20px;
+  }
+}
+
+/* ---- Lightbox ---- */
 
 .lightbox {
   position: fixed;
@@ -199,10 +361,6 @@
 #lightboxNext { right: 24px; }
 
 @media (max-width: 768px) {
-  .portfolio-gallery {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
-  }
   .lightbox-nav {
     width: 40px;
     height: 40px;
