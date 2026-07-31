@@ -30,7 +30,7 @@ const PORTFOLIO_ITEMS = {
     { src: "images/portfolio/logos/asghinlabs.jpeg", title: "AsghinLabs" },
     { src: "images/portfolio/logos/DebbiesCloset.jpeg", title: "Debbie's Closet" },
     { src: "images/portfolio/logos/FlassyImport.jpeg", title: "Flassy Import" },
-    { src: "images/portfolio/logos/MMLuxe.JPEG", title: "MM Luxe" },
+    { src: "images/portfolio/logos/MMLuxe.jpeg", title: "MM Luxe" },
     { src: "images/portfolio/logos/WildaluxCosmetics.jpeg", title: "Wildalux Cosmetics" },
     { src: "images/portfolio/logos/YoungDevAfrica.jpeg", title: "Young Dev Africa" },
   ],
@@ -54,11 +54,11 @@ const PORTFOLIO_ITEMS = {
   ],
 
   banner: [
-    { src: "images/portfolio/banners/HarrietsShopping.jpeg", title: "Harriet's Shopping" },
-    { src: "images/portfolio/banners/EasyGas.jpeg", title: "Easy Gas" },
-    { src: "images/portfolio/banners/DoualaSupermarche.jpeg", title: "Douala Super-marche" },
-    { src: "images/portfolio/banners/asghinlabs.jpeg", title: "AsghinLabs" },
-    { src: "images/portfolio/banners/novatechsolutions.jpeg", title: "Novatech Solutions" },
+    { src: "images/portfolio/banners/HarrietsShopping.png", title: "Harriet's Shopping" },
+    { src: "images/portfolio/banners/EasyGas.png", title: "Easy Gas" },
+    { src: "images/portfolio/banners/DoualaSupermarche.png", title: "Douala Super-marche" },
+    { src: "images/portfolio/banners/asghinlabs.png", title: "AsghinLabs" },
+    { src: "images/portfolio/banners/novatechsolutions.png", title: "Novatech Solutions" },
   ],
 
   adcreatives: [
