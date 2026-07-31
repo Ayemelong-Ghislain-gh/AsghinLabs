@@ -1,0 +1,143 @@
+/* ========== FOUNDER PORTFOLIO PAGE (founder.html) ========== */
+
+.founder-hero {
+  padding-top: 160px;
+  padding-bottom: 40px;
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.founder-hero img {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--brand-primary);
+  box-shadow: 0 0 35px var(--brand-glow, rgba(0, 212, 255, 0.4));
+  margin-bottom: 24px;
+}
+
+.founder-hero h1 {
+  font-size: 2.6rem;
+  background: linear-gradient(135deg, #fff 30%, var(--brand-primary) 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+}
+
+.founder-hero .role-tag {
+  color: var(--brand-primary);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 22px;
+  display: block;
+}
+
+.founder-hero p.bio {
+  color: var(--text-muted);
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.founder-cta {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.founder-cta a {
+  padding: 12px 26px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: 0.25s;
+}
+
+.founder-cta a.primary {
+  background: var(--brand-primary);
+  color: #050816;
+  border: none;
+}
+
+.founder-cta a:not(.primary):hover {
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+}
+
+.founder-cta a.primary:hover {
+  transform: translateY(-3px);
+}
+
+/* Skills */
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.skill-badge {
+  padding: 10px 22px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-light);
+  transition: 0.25s;
+}
+
+.skill-badge:hover {
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+}
+
+/* Education timeline */
+
+.timeline {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.timeline-item {
+  padding: 24px 28px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid var(--brand-primary);
+  border-radius: 16px;
+}
+
+.timeline-item h4 {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+.timeline-item span {
+  color: var(--brand-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.timeline-item p {
+  color: var(--text-muted);
+  margin-top: 8px;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 700px) {
+  .founder-hero { padding-top: 130px; }
+  .founder-hero h1 { font-size: 2rem; }
+}
