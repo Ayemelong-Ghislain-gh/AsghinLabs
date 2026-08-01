@@ -567,6 +567,19 @@ h2 {
   transform: translateY(-2px);
 }
 
+.founder-contact a.primary {
+  background: var(--brand-primary);
+  color: #050816;
+  border: none;
+  font-weight: 700;
+}
+
+.founder-contact a.primary:hover {
+  color: #050816;
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px var(--brand-glow);
+}
+
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
