@@ -803,17 +803,17 @@ h2 {
 .contact-info a[href*="wa.me"]:hover { background: #25d366; border-color: #25d366; color: #06210f; box-shadow: 0 5px 0 #128c3e, 0 12px 22px rgba(37,211,102,.35); }
 .contact-info a[href^="tel:"]:hover { background: #ffb648; border-color: #ffb648; color: #3a2400; box-shadow: 0 5px 0 #cc8f30, 0 12px 22px rgba(255,182,72,.3); }
 
-/* ---- Social icons: 3D skewed "domino tile" buttons ----
-   Recreates the classic rotate+skew tile effect: a flat white block with
-   two darker pseudo-element "edges" faking a 3D side, sliding further out
-   and filling with the platform's brand color on hover. */
+/* ---- Social icons: 3D "domino tile" buttons ----
+   Smaller and less extreme than a literal recreation of the reference —
+   a gentle tilt + layered depth edge, with a soft brand-glow shadow so it
+   sits comfortably in the site's neon-glass aesthetic instead of looking
+   like a dropped-in flat asset. */
 .social-icons {
-  display: flex;
-  gap: 38px;
-  margin-top: 42px;
-  padding: 18px 10px 34px;
-  flex-wrap: wrap;
-  overflow: visible;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 140px));
+  gap: 26px 30px;
+  margin-top: 38px;
+  padding: 14px 6px 30px;
 }
 
 .social-icons span {
@@ -821,50 +821,53 @@ h2 {
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 10px;
-  width: 176px;
-  height: 58px;
-  padding-left: 18px;
+  gap: 8px;
+  width: 138px;
+  height: 46px;
+  padding-left: 14px;
   background: #ffffff;
-  border-radius: 3px;
+  border-radius: 8px;
   color: #1c2b45;
   font-weight: 600;
-  font-size: 0.85rem;
-  letter-spacing: 0.3px;
-  transform: rotate(-30deg) skew(25deg);
-  box-shadow: -18px 18px 10px rgba(0, 0, 0, 0.4);
-  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease, color 0.4s ease;
+  font-size: 0.76rem;
+  letter-spacing: 0.2px;
+  transform: rotate(-16deg) skew(12deg);
+  box-shadow:
+    -10px 10px 8px rgba(0, 0, 0, 0.32),
+    0 0 16px rgba(0, 212, 255, 0.1);
+  transition: transform 0.35s cubic-bezier(0.22, 0.9, 0.3, 1.2), box-shadow 0.35s ease,
+    background 0.35s ease, color 0.35s ease;
 }
 
 .social-icons span::before {
   content: "";
   position: absolute;
-  top: 8px;
-  left: -16px;
+  top: 6px;
+  left: -12px;
   height: 100%;
-  width: 16px;
-  background: #c7c7c7;
+  width: 12px;
+  background: #cfcfcf;
   transform: skewY(-45deg);
-  transition: background 0.4s ease;
+  transition: background 0.35s ease;
 }
 
 .social-icons span::after {
   content: "";
   position: absolute;
-  bottom: -16px;
-  left: -8px;
-  height: 16px;
+  bottom: -12px;
+  left: -6px;
+  height: 12px;
   width: 100%;
-  background: #c7c7c7;
+  background: #cfcfcf;
   transform: skewX(-45deg);
-  transition: background 0.4s ease;
+  transition: background 0.35s ease;
 }
 
 .social-icons span i {
-  font-size: 26px;
+  font-size: 18px;
   line-height: 1;
   color: #262626;
-  transition: color 0.4s ease;
+  transition: color 0.35s ease;
 }
 
 .social-icons a {
@@ -875,28 +878,39 @@ h2 {
 
 .social-icons span:hover {
   z-index: 5;
-  transform: rotate(-30deg) skew(25deg) translate(18px, -14px);
-  box-shadow: -40px 40px 40px rgba(0, 0, 0, 0.45);
+  transform: rotate(-16deg) skew(12deg) translate(10px, -9px);
   color: #ffffff;
 }
 .social-icons span:hover i {
   color: #ffffff;
 }
 
-/* Per-platform brand fills on hover */
-.social-icons span:has(.fa-youtube):hover { background: #ff0000; }
+/* Per-platform brand fills + matching glow on hover */
+.social-icons span:has(.fa-youtube):hover {
+  background: #ff0000;
+  box-shadow: -22px 22px 20px rgba(0, 0, 0, 0.35), 0 0 22px rgba(255, 0, 0, 0.4);
+}
 .social-icons span:has(.fa-youtube):hover::before { background: #cc0000; }
 .social-icons span:has(.fa-youtube):hover::after { background: #ff4d4d; }
 
-.social-icons span:has(.fa-tiktok):hover { background: #010101; }
+.social-icons span:has(.fa-tiktok):hover {
+  background: #010101;
+  box-shadow: -22px 22px 20px rgba(0, 0, 0, 0.35), 0 0 22px rgba(37, 244, 238, 0.35);
+}
 .social-icons span:has(.fa-tiktok):hover::before { background: #000000; }
 .social-icons span:has(.fa-tiktok):hover::after { background: #25f4ee; }
 
-.social-icons span:has(.fa-linkedin):hover { background: #0a66c2; }
+.social-icons span:has(.fa-linkedin):hover {
+  background: #0a66c2;
+  box-shadow: -22px 22px 20px rgba(0, 0, 0, 0.35), 0 0 22px rgba(10, 102, 194, 0.4);
+}
 .social-icons span:has(.fa-linkedin):hover::before { background: #084d94; }
 .social-icons span:has(.fa-linkedin):hover::after { background: #3f8ed0; }
 
-.social-icons span:has(.fa-instagram):hover { background: #e4405f; }
+.social-icons span:has(.fa-instagram):hover {
+  background: #e4405f;
+  box-shadow: -22px 22px 20px rgba(0, 0, 0, 0.35), 0 0 22px rgba(228, 64, 95, 0.4);
+}
 .social-icons span:has(.fa-instagram):hover::before { background: #c22d49; }
 .social-icons span:has(.fa-instagram):hover::after { background: #eb6d85; }
 
