@@ -145,37 +145,47 @@ nav {
 }
 
 .hamburger {
-  display: none;
+  display: none; /* Keep this if you're showing it only on mobile */
+
   flex-direction: column;
-  justify-content: space-between;
-  width: 30px;
-  height: 21px;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  width: 50px;
+  height: 50px;
+
   cursor: pointer;
-  background: transparent;
   border: none;
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, var(--brand-primary), #4f46e5);
+
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+
   z-index: 1001;
-  transition: transform 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .hamburger:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.05);
 }
 
 .hamburger:active {
-  transform: translateY(1px) scale(0.94);
+  transform: scale(0.95);
 }
 
 .hamburger span {
-  width: 100%;
+  display: block;
+  width: 24px;
   height: 3px;
-  background: white;
-  border-radius: 3px;
+  background: #fff;
+  border-radius: 999px;
   transition: all 0.3s ease;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .hamburger:hover span {
-  background: var(--brand-primary);
+  width: 28px;
 }
 
 @media (max-width: 900px) {
