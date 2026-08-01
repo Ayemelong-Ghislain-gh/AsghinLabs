@@ -55,6 +55,100 @@
     });
   });
 
+  // ========== 3D NAV INDICATOR (magnetic hover pill + active tracking) ==========
+  // Adds a sliding pill behind the hovered / current nav link on desktop.
+  // On mobile the drawer gets its own chip look via CSS instead (see
+  // style-main.css), so this mostly just tracks which link is "current".
+  if (navLinks && navLinks.querySelectorAll('a').length) {
+    const indicator = document.createElement('div');
+    indicator.className = 'nav-indicator';
+    navLinks.appendChild(indicator);
+    const navLinkEls = Array.from(navLinks.querySelectorAll('a'));
+
+    function debounceFn(fn, wait) {
+      let t;
+      return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), wait); };
+    }
+
+    function moveIndicatorTo(link) {
+      if (!link || window.innerWidth <= 900) {
+        indicator.classList.remove('visible');
+        return;
+      }
+      const ulRect = navLinks.getBoundingClientRect();
+      const linkRect = link.getBoundingClientRect();
+      indicator.style.left = (linkRect.left - ulRect.left) + 'px';
+      indicator.style.width = linkRect.width + 'px';
+      indicator.classList.add('visible');
+    }
+
+    function getCurrentLink() {
+      return navLinks.querySelector('a.current');
+    }
+
+    navLinkEls.forEach(link => {
+      link.addEventListener('mouseenter', () => moveIndicatorTo(link));
+    });
+    navLinks.addEventListener('mouseleave', () => moveIndicatorTo(getCurrentLink()));
+
+    // Fallback mapping for pages that don't have their own direct nav
+    // entry (e.g. founder.html links out from "index.html#founder").
+    const noMatchFallbackHash = {
+      'founder.html': '#founder',
+      'portfolio.html': '#whatwedo'
+    };
+
+    function setCurrent(hash) {
+      const currentPage = location.pathname.split('/').pop() || 'index.html';
+      const targetHash = hash || '';
+      let matched = null;
+
+      navLinkEls.forEach(link => {
+        link.classList.remove('current');
+        const href = link.getAttribute('href') || '';
+        const [pagePart, hashPart] = href.split('#');
+        const page = pagePart || currentPage; // '' page part = "this page"
+        const linkHash = hashPart ? '#' + hashPart : '';
+        if (page === currentPage && linkHash === targetHash) matched = link;
+      });
+
+      if (!matched && !targetHash) {
+        const fallbackHash = noMatchFallbackHash[currentPage];
+        if (fallbackHash) {
+          matched = navLinkEls.find(l => (l.getAttribute('href') || '').endsWith(fallbackHash));
+        } else {
+          matched = navLinkEls.find(l => (l.getAttribute('href') || '').includes('#home'));
+        }
+      }
+
+      if (matched) {
+        matched.classList.add('current');
+        moveIndicatorTo(matched);
+      } else {
+        indicator.classList.remove('visible');
+      }
+    }
+
+    setCurrent(location.hash);
+
+    // Scrollspy: on index.html, follow whichever section is in view so the
+    // pill (and mobile "current" chip) track scroll position, not just clicks.
+    const spySectionIds = ['home', 'whatwedo', 'founder', 'contact'];
+    const spySections = spySectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+    if (spySections.length && 'IntersectionObserver' in window) {
+      const spy = new IntersectionObserver((entries) => {
+        const mostVisible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (mostVisible) setCurrent('#' + mostVisible.target.id);
+      }, { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] });
+      spySections.forEach(sec => spy.observe(sec));
+    }
+
+    window.addEventListener('resize', debounceFn(() => moveIndicatorTo(getCurrentLink()), 150));
+  }
+
   // ========== INTERACTIVE SERVICE BUTTONS (What We Do) ==========
   const serviceHeaders = document.querySelectorAll('.service-header');
 
