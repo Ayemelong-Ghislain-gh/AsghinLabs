@@ -743,6 +743,47 @@ h2 {
   gap: 30px;
 }
 
+/* ========== HOW WE WORK (process steps) ========== */
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.process-step {
+  padding: 26px 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.process-step:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-4px);
+}
+
+.process-number {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--brand-primary);
+  margin-bottom: 10px;
+}
+
+.process-step h4 {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+
+.process-step p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -910,19 +951,24 @@ h2 {
 .social-icons span:has(.fa-tiktok):hover::before { background: #000000; }
 .social-icons span:has(.fa-tiktok):hover::after { background: #25f4ee; }
 
-.social-icons span:has(.fa-linkedin):hover {
-  background: #0a66c2;
-  box-shadow: -22px 22px 20px rgba(0, 0, 0, 0.35), 0 0 22px rgba(10, 102, 194, 0.4);
+.social-icons span:has(.fa-facebook-f):hover,
+.social-icons span:has(.fa-facebook):hover {
+  background: #1877F2;
+  box-shadow: -22px 22px 20px rgba(0, 0, 0, 0.35), 0 0 22px rgba(24, 119, 242, 0.4);
 }
-.social-icons span:has(.fa-linkedin):hover::before { background: #084d94; }
-.social-icons span:has(.fa-linkedin):hover::after { background: #3f8ed0; }
+.social-icons span:has(.fa-facebook-f):hover::before,
+.social-icons span:has(.fa-facebook):hover::before { background: #0f5bc4; }
+.social-icons span:has(.fa-facebook-f):hover::after,
+.social-icons span:has(.fa-facebook):hover::after { background: #5b9bf5; }
 
-.social-icons span:has(.fa-instagram):hover {
-  background: #e4405f;
-  box-shadow: -22px 22px 20px rgba(0, 0, 0, 0.35), 0 0 22px rgba(228, 64, 95, 0.4);
+.social-icons span:has(.fa-github):hover {
+  background: #ffffff;
+  color: #0d1117;
+  box-shadow: -22px 22px 20px rgba(0, 0, 0, 0.35), 0 0 22px rgba(255, 255, 255, 0.25);
 }
-.social-icons span:has(.fa-instagram):hover::before { background: #c22d49; }
-.social-icons span:has(.fa-instagram):hover::after { background: #eb6d85; }
+.social-icons span:has(.fa-github):hover i { color: #0d1117; }
+.social-icons span:has(.fa-github):hover::before { background: #b0b0b0; }
+.social-icons span:has(.fa-github):hover::after { background: #d9d9d9; }
 
 /* WhatsApp button (inline, inside Contact section) */
 .whatsapp-btn {
@@ -1001,7 +1047,7 @@ h2 {
   transform: translateY(0);
 }
 
-/* Standalone page header (used on Team page) */
+/* Standalone page header (used on the Portfolio page) */
 .page-header {
   padding: 170px 8% 40px;
   text-align: center;

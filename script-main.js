@@ -46,7 +46,7 @@
     link.addEventListener('click', () => {
       if (navLinks && navLinks.classList.contains('active')) toggleMenu();
       const targetId = link.getAttribute('href');
-      // Only intercept in-page anchors (#section). Links to other pages (e.g. team.html)
+      // Only intercept in-page anchors (#section). Links to other pages (e.g. founder.html)
       // are left alone so the browser navigates normally.
       if (targetId && targetId.startsWith('#') && targetId !== '#') {
         const targetSection = document.querySelector(targetId);
@@ -95,7 +95,7 @@
     // entry (e.g. founder.html links out from "index.html#founder").
     const noMatchFallbackHash = {
       'founder.html': '#founder',
-      'portfolio.html': '#whatwedo'
+      'portfolio.html': '#services'
     };
 
     function setCurrent(hash) {
@@ -133,7 +133,7 @@
 
     // Scrollspy: on index.html, follow whichever section is in view so the
     // pill (and mobile "current" chip) track scroll position, not just clicks.
-    const spySectionIds = ['home', 'whatwedo', 'founder', 'contact'];
+    const spySectionIds = ['home', 'services', 'projects', 'about', 'why', 'howwework', 'founder', 'contact'];
     const spySections = spySectionIds.map(id => document.getElementById(id)).filter(Boolean);
 
     if (spySections.length && 'IntersectionObserver' in window) {
@@ -187,7 +187,7 @@
 
   // ========== COLOR THEMES & CUBE LOGIC (only runs if a cube is present) ==========
   const cube = document.getElementById('magicCube');
-  if (!cube) return; // Team page and other pages without a hero cube stop here.
+  if (!cube) return; // Founder and other pages without a hero cube stop here.
 
   const logos = ["images/logo-blue.jpeg", "images/logo-green.jpeg", "images/logo-violet.jpeg"];
   const themeMap = {

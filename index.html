@@ -3,11 +3,18 @@
   
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>AsghinLabs | 3D Creative Studio - Web · Design · Video</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>AsghinLabs — Digital Solutions, Software, AI & Automation</title>
+    <meta name="description" content="AsghinLabs builds websites, software, AI-powered solutions and automation systems for businesses and organizations.">
+    <link rel="icon" href="images/logo-blue.jpeg" type="image/jpeg">
+    <meta property="og:title" content="AsghinLabs — Digital Solutions, Software, AI & Automation">
+    <meta property="og:description" content="AsghinLabs builds websites, software, AI-powered solutions and automation systems for businesses and organizations.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/logo-blue.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style-main.css">
     
     <!-- Google tag (gtag.js) -->
@@ -34,21 +41,21 @@
   </button>
   <ul class="nav-links" id="navLinks">
     <li><a href="#home">Home</a></li>
-    <li><a href="#whatwedo">What We Do</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#founder">Founder</a></li>
-    <li><a href="team.html">Team</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
 <section id="home" class="hero">
   <div class="hero-content">
-    <span class="tag">✦ One Problem ✦ One Solution ✦</span>
-    <h1>Building<br>What People<br>Actually Need.</h1>
-    <p>"We build. We innovate. We grow. We inspire." Web development · Graphic design · Video editing crafted with purpose.</p>
+    <span class="tag">✦ Web ✦ Software ✦ AI & Automation ✦</span>
+    <h1>We Build Digital<br>Solutions That<br>Move Ideas Forward.</h1>
+    <p>AsghinLabs builds websites, software, AI-powered solutions, and automation systems that help businesses and organizations work smarter and grow.</p>
     <div class="buttons">
-      <button class="btn-primary" onclick="document.getElementById('whatwedo').scrollIntoView({behavior:'smooth'})">Explore Services</button>
-      <button class="btn-secondary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Join Community</button>
+      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Start a Project</button>
+      <button class="btn-secondary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">View Our Work</button>
     </div>
   </div>
   <div class="hero-3d">
@@ -64,9 +71,9 @@
 </section>
 
 <!-- WHAT WE DO SECTION - INTERACTIVE BUTTONS -->
-<section id="whatwedo">
+<section id="services">
   <h2>⚡ What We Do</h2>
-  <div class="section-sub">Click any category to explore our previous projects</div>
+  <div class="section-sub">Web, software, and AI solutions — plus the design and video work we started with. Click any category to explore our previous projects</div>
 
   <div class="services-vertical">
 
@@ -77,7 +84,7 @@
     <div class="service-icon">🌐</div>
     <div class="service-title">
       <h3>Web Development</h3>
-      <p>Modern, scalable, SEO Optimized and high-performance websites and web applications</p>
+      <p>Modern, responsive websites and web applications designed around your business needs.</p>
     </div>
     <div class="service-stats">
       <span>⚡ 10+ Projects</span>
@@ -87,21 +94,78 @@
   </div>
   <div class="service-projects-panel" id="panel-web">
     <div class="projects-grid">
-      <a href="https://studentstay-blush.vercel.app/" target="_blank" class="project-preview" style="display:block; text-decoration:none; color:inherit;">
-        <h4>StudentStay</h4>
-        <p>Room rental marketplace for Bamenda, Cameroon, connecting students with affordable housing.</p>
+      <a href="https://studentstay-cm.vercel.app/" target="_blank" class="project-preview" style="display:block; text-decoration:none; color:inherit;">
+        <h4>StudentStay — Find Rooms. No Stress.</h4>
+        <p>A student accommodation platform helping students discover available rooms and hostels in Bamenda, Cameroon, while giving property owners a digital way to reach potential tenants.</p>
+        <div class="tech-tags"><span>React</span><span>Node.js</span><span>Firebase</span></div>
         <span class="project-link">View Project →</span>
       </a>
       <a href="https://ridealong-two.vercel.app/" target="_blank" class="project-preview" style="display:block; text-decoration:none; color:inherit;">
         <h4>Ride Along</h4>
         <p>Taxi marketplace platform for Cameroon with real-time tracking and secure payments.</p>
+        <div class="tech-tags"><span>React</span><span>Real-time</span></div>
         <span class="project-link">View Project →</span>
       </a>
+    </div>
+  </div>
+</div>
+
+    <!-- Software Solutions -->
+<div class="service-item">
+  <div class="service-header" data-service="software">
+    <div class="service-icon">🧩</div>
+    <div class="service-title">
+      <h3>Software Solutions</h3>
+      <p>Custom software designed to solve specific business and organizational problems.</p>
+    </div>
+    <div class="service-stats">
+      <span>⚙️ Custom Built</span>
+    </div>
+    <div class="service-arrow">▶</div>
+  </div>
+  <div class="service-projects-panel" id="panel-software">
+    <div class="projects-grid">
       <a href="https://github.com/Ayemelong-Ghislain-gh/ChainVote--Blochain-Based-voting-DApp" target="_blank" class="project-preview" style="display:block; text-decoration:none; color:inherit;">
         <h4>ChainVote</h4>
-        <p>Blockchain-based voting DApp with Solidity smart contracts and React/TypeScript frontend.</p>
+        <p>Blockchain-based voting DApp with Solidity smart contracts and a React/TypeScript frontend — a custom system built for secure, verifiable voting.</p>
+        <div class="tech-tags"><span>Solidity</span><span>React</span><span>TypeScript</span></div>
         <span class="project-link">View Project →</span>
       </a>
+      <a href="https://studentstay-cm.vercel.app/" target="_blank" class="project-preview" style="display:block; text-decoration:none; color:inherit;">
+        <h4>StudentStay</h4>
+        <p>A booking-style student housing portal connecting students with landlords — from data management to listings.</p>
+        <div class="tech-tags"><span>React</span><span>Node.js</span><span>Firebase</span></div>
+        <span class="project-link">View Project →</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+    <!-- AI & Automation -->
+<div class="service-item">
+  <div class="service-header" data-service="ai">
+    <div class="service-icon">🤖</div>
+    <div class="service-title">
+      <h3>AI & Automation</h3>
+      <p>AI-powered tools and automated workflows that reduce repetitive work and improve productivity.</p>
+    </div>
+    <div class="service-stats">
+      <span>✨ New Capability</span>
+    </div>
+    <div class="service-arrow">▶</div>
+  </div>
+  <div class="service-projects-panel" id="panel-ai">
+    <div class="design-tools-section" style="margin-bottom: 25px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 12px;">
+      <h4 style="margin-bottom: 12px;">What this can look like</h4>
+      <div class="tech-tags">
+        <span>🤖 AI Assistants</span>
+        <span>💬 Automated Customer Responses</span>
+        <span>📊 Data Processing</span>
+        <span>🔁 Workflow Automation</span>
+        <span>🔎 AI-Powered Search</span>
+        <span>📄 Document Processing</span>
+      </div>
+      <p style="margin-top: 10px; font-size: 0.9rem; color: #888;">Tell us the repetitive process slowing your team down, and we'll help you figure out what's worth automating.</p>
     </div>
   </div>
 </div>
@@ -113,7 +177,7 @@
         <div class="service-icon">🎨</div>
         <div class="service-title">
           <h3>Graphic Design</h3>
-          <p>Visual identities that tell stories, branding, UI/UX, illustrations, and 3D design</p>
+          <p>Visual identities that tell stories — branding, UI/UX, illustrations, and 3D design.</p>
         </div>
         <div class="service-stats">
           <span>⚡ 30+ Projects</span>
@@ -263,6 +327,100 @@
   </div>
 </section>
 
+<!-- PROJECTS -->
+<section id="projects">
+  <h2>💼 Projects</h2>
+  <div class="section-sub">A few things we've built recently</div>
+  <div class="projects-grid" style="max-width: 1000px; margin: 0 auto;">
+    <a href="https://studentstay-cm.vercel.app/" target="_blank" class="project-preview" style="display:block; text-decoration:none; color:inherit;">
+      <h4>StudentStay — Find Rooms. No Stress.</h4>
+      <p>A student accommodation platform helping students discover available rooms and hostels in Bamenda, Cameroon, while giving property owners a digital way to reach potential tenants.</p>
+      <div class="tech-tags"><span>React</span><span>Node.js</span><span>Firebase</span></div>
+      <span class="project-link">View Project →</span>
+    </a>
+    <a href="https://ridealong-two.vercel.app/" target="_blank" class="project-preview" style="display:block; text-decoration:none; color:inherit;">
+      <h4>Ride Along</h4>
+      <p>Taxi marketplace platform for Cameroon with real-time tracking and secure payments.</p>
+      <div class="tech-tags"><span>React</span><span>Real-time</span></div>
+      <span class="project-link">View Project →</span>
+    </a>
+    <a href="https://github.com/Ayemelong-Ghislain-gh/ChainVote--Blochain-Based-voting-DApp" target="_blank" class="project-preview" style="display:block; text-decoration:none; color:inherit;">
+      <h4>ChainVote</h4>
+      <p>Blockchain-based voting DApp with Solidity smart contracts and a React/TypeScript frontend.</p>
+      <div class="tech-tags"><span>Solidity</span><span>React</span><span>TypeScript</span></div>
+      <span class="project-link">View Project →</span>
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2>🏢 About AsghinLabs</h2>
+  <div class="section-sub">What we do and how we think about it</div>
+  <div style="max-width: 800px; margin: 0 auto;">
+    <p style="margin-bottom: 18px;">AsghinLabs is a technology and digital solutions initiative focused on turning ideas and real-world problems into practical solutions.</p>
+    <p style="margin-bottom: 18px;">We build websites, software, AI-powered tools and automation systems for businesses, organizations and individuals.</p>
+    <p>Our approach is simple: understand the problem, design the right solution, build it, and help our clients use it effectively.</p>
+  </div>
+</section>
+
+<!-- WHY ASGHINLABS -->
+<section id="why">
+  <h2>🧭 Why AsghinLabs</h2>
+  <div class="section-sub">What guides how we work</div>
+  <div class="cards">
+    <div class="card">
+      <h3>Practical Solutions</h3>
+      <p>We focus on solving real problems, not building technology for technology's sake.</p>
+    </div>
+    <div class="card">
+      <h3>Built for Your Needs</h3>
+      <p>Solutions are designed around your specific workflow and goals.</p>
+    </div>
+    <div class="card">
+      <h3>Modern Technology</h3>
+      <p>We use modern web, cloud and AI technologies to create practical and scalable solutions.</p>
+    </div>
+    <div class="card">
+      <h3>Direct Communication</h3>
+      <p>Work directly with the people building your solution.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section id="howwework">
+  <h2>🔧 How We Work</h2>
+  <div class="section-sub">A simple, transparent process</div>
+  <div class="process-steps">
+    <div class="process-step">
+      <span class="process-number">01</span>
+      <h4>Tell us your idea</h4>
+      <p>Describe your business, problem or project.</p>
+    </div>
+    <div class="process-step">
+      <span class="process-number">02</span>
+      <h4>We understand the problem</h4>
+      <p>We discuss your requirements and recommend an appropriate solution.</p>
+    </div>
+    <div class="process-step">
+      <span class="process-number">03</span>
+      <h4>We build</h4>
+      <p>Development begins after agreement on scope and pricing.</p>
+    </div>
+    <div class="process-step">
+      <span class="process-number">04</span>
+      <h4>We launch</h4>
+      <p>We test, deploy and hand over your solution.</p>
+    </div>
+    <div class="process-step">
+      <span class="process-number">05</span>
+      <h4>We support</h4>
+      <p>Optional maintenance and improvements.</p>
+    </div>
+  </div>
+</section>
+
 <!-- FOUNDER SPOTLIGHT -->
 <section id="founder">
   <h2>✨ Meet the Founder</h2>
@@ -272,13 +430,14 @@
       <img src="images/profile.jpeg" alt="Founder Ayemelong Selobie Ghislain" class="founder-img" id="founderImg" onerror="this.src='images/logo-violet.jpeg'">
       <div class="founder-info">
         <h3>AYEMELONG SELOBIE GHISLAIN</h3>
-        <h4>Founder & Creative Technologist</h4>
-        <p style="margin: 15px 0 10px; font-size:1.05rem;">"AsghinLabs was born to merge elegant code with human-centered design. We don't just create websites, we build digital ecosystems, visual identities, and immersive stories."</p>
+        <h4>Founder & Software Developer</h4>
+        <p style="margin: 15px 0 10px; font-size:1.05rem;">"AsghinLabs was founded to turn real problems into practical software — websites, systems, and automation that people actually use, backed by an eye for good design."</p>
         <p>📌 Remote-first studio built by a small, hands-on team.</p>
 
         <div class="founder-contact">
           <a href="founder.html" class="primary">🧑‍💻 View Full Portfolio →</a>
           <a href="https://github.com/Ayemelong-Ghislain-gh" target="_blank" rel="noopener">💻 GitHub</a>
+          <a href="https://www.linkedin.com/in/ayemelong-ghislain-b9b813426/" target="_blank" rel="noopener">🔗 LinkedIn</a>
           <a href="mailto:ayemelongghislain@gmail.com">📧 Email</a>
           <a href="https://wa.me/237682402876?text=Hi%20AsghinLabs%2C%20I%27d%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">💬 WhatsApp</a>
         </div>
@@ -289,17 +448,28 @@
 
 <!-- CONTACT FORM -->
 <section id="contact">
-  <h2>📬 Let's create together</h2>
-  <div class="section-sub">Got a project? Need a website, brand identity, or video edit? Reach out.</div>
+  <h2>📬 Have an idea? Let's build it.</h2>
+  <div class="section-sub">Tell us what you're trying to solve and we'll help you figure out the right digital solution.</div>
   <div class="contact-grid">
     <form class="contact-form" id="contactForm">
       <input type="text" placeholder="Your name" id="contactName" name="name" required>
       <input type="email" placeholder="Email address" id="contactEmail" name="email" required>
       <select id="serviceSelect" name="service">
-        <option>Web Development</option>
+        <option>Website</option>
+        <option>Web Application</option>
+        <option>Custom Software</option>
+        <option>AI / Automation</option>
         <option>Graphic Design</option>
         <option>Video Editing</option>
-        <option>Creative direction / Other</option>
+        <option>Other</option>
+      </select>
+      <select id="budgetSelect" name="budget">
+        <option value="">Budget range (optional)</option>
+        <option>Under 100k FCFA</option>
+        <option>100k–250k FCFA</option>
+        <option>250k–500k FCFA</option>
+        <option>500k+ FCFA</option>
+        <option>Not sure</option>
       </select>
       <textarea rows="3" placeholder="Tell us about your idea..." id="contactMsg" name="message" required></textarea>
       <button type="submit" id="sendContactBtn" style="background: var(--brand-primary); color: #050816; border-radius: 40px; padding: 14px 32px;">Send message →</button>
@@ -308,23 +478,27 @@
     <div class="contact-info">
       <p>📧 <a href="mailto:asghinlabs@gmail.com">asghinlabs@gmail.com</a></p>
       <p>📞 <a href="tel:+237682402876">+237 682 402 876</a></p>
-      <p>🌍 Remote / global creative studio</p>
+      <p>🌍 Remote / global digital solutions studio</p>
       <p>⚡ 24h reply for pro inquiries</p>
       <a class="whatsapp-btn" href="https://wa.me/237682402876?text=Hi%20AsghinLabs%2C%20I%27d%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">
         💬 Chat on WhatsApp
       </a>
       <div class="social-icons">
+        <span><i class="fab fa-facebook-f"></i> <a href="https://www.facebook.com/AsghinLabs/" target="_blank" rel="noopener">Facebook</a></span>
+        <span><i class="fab fa-github"></i> <a href="https://github.com/Ayemelong-Ghislain-gh" target="_blank" rel="noopener">GitHub</a></span>
         <span><i class="fab fa-youtube"></i> <a href="https://youtube.com/@asghinlabs?si=8H8hlesgpdl-_qF1" target="_blank">YouTube</a></span>
         <span><i class="fab fa-tiktok"></i> <a href="https://www.tiktok.com/@asghinlabs?_r=1&_t=ZS-980XOFyfzjZ" target="_blank">TikTok</a></span>
-
-        <span><i class="fab fa-linkedin"></i> LinkedIn</span>
-        <span><i class="fab fa-instagram"></i> Instagram</span>
       </div>
     </div>
   </div>
 </section>
 
-<footer>© 2026 AsghinLabs | Building what people actually need. Web · Design · Video</footer>
+<footer>
+  <p style="font-weight:700; color:var(--text-light); margin-bottom:6px;">AsghinLabs</p>
+  <p style="margin-bottom:6px;">Building practical digital solutions for businesses and organizations.</p>
+  <p style="margin-bottom:18px;">Web • Software • AI • Automation</p>
+  © 2026 AsghinLabs. All rights reserved.
+</footer>
 
 <!-- Site-wide floating WhatsApp button -->
 <a class="whatsapp-float" href="https://wa.me/237682402876?text=Hi%20AsghinLabs%2C%20I%27d%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
