@@ -626,6 +626,7 @@ h2 {
   height: 160px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: top center;
   border: 3px solid var(--brand-primary);
   box-shadow: 0 0 30px var(--brand-glow);
 }

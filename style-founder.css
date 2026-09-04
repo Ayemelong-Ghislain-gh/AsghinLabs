@@ -1,45 +1,237 @@
 /* ========== FOUNDER PORTFOLIO PAGE (founder.html) ========== */
 
-.founder-hero {
-  padding-top: 160px;
-  padding-bottom: 40px;
-  text-align: center;
-  max-width: 750px;
+/* Full-bleed hero: the photo used here (images/founder-hero.jpg) is a
+   tall, narrow portrait — cropping it with "cover" across a wide, short
+   hero would force a huge zoom and cut it down to almost nothing (e.g.
+   just an eye). Instead, the gradient layer covers the full hero (so
+   the dark tech background always fills edge-to-edge), while the photo
+   layer uses "contain" and is anchored to the right, so the ENTIRE
+   photo stays visible and correctly proportioned, just floated over
+   the dark background rather than cropped into it. */
+.founder-hero-banner {
+  position: relative;
+  /* Bounded height instead of pure vh: prevents the layout from swinging
+     wildly on short browser windows or unusual aspect ratios, while
+     still feeling full-bleed. */
+  min-height: clamp(480px, 80vh, 760px);
+  padding: 150px 0 60px;
+  margin: -20px 0 0;
+  background-color: #050816;
+  overflow: hidden;
+}
+
+/* Centers the photo+text pair as a single group. On very wide screens
+   the group is capped at max-width and centered via auto margins,
+   instead of the text and photo each hugging their own edge with a
+   huge empty gap between them. */
+.founder-hero-inner {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  max-width: 1240px;
   margin: 0 auto;
+  padding: 0 8% 0 calc(8% + 28px);
 }
 
-.founder-hero img {
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
+/* The photo used to be a second background-image scaled with
+   background-size: contain — but that size is calculated against the
+   banner's own box, whose width grows independently of its (capped)
+   height. As the page got wider, that ratio shifted and the "contain"
+   math ended up cropping/zooming the photo instead of showing it whole.
+   A real <img> with object-fit sidesteps that entirely: it always shows
+   the full photo, scaled to fit, no matter how wide the banner gets. */
+.founder-hero-photo {
+  position: absolute;
+  top: 50%;
+  right: 7%;
+  transform: translateY(-50%);
+  /* Sized off viewport height + a hard px ceiling — NOT off the banner's
+     width. That means resizing the browser window narrower (without
+     changing its height) no longer shrinks the photo; it stays put
+     until the mobile breakpoint below takes over with its own fixed size. */
+  height: min(620px, 68vh);
+  width: auto;
+  /* founder-hero.jpg is 521x1024 (~0.51 ratio). Deriving width from
+     height + this exact aspect-ratio means the browser never has to
+     "guess" a size against the banner's box — it's always exactly as
+     wide as a 521x1024 image scaled to the chosen height, full stop. */
+  aspect-ratio: 521 / 1024;
   object-fit: cover;
-  border: 3px solid var(--brand-primary);
-  box-shadow: 0 0 35px var(--brand-glow, rgba(0, 212, 255, 0.4));
-  margin-bottom: 24px;
+  object-position: center 20%;
+  z-index: 0;
+  pointer-events: none;
+  /* A visible frame + glow so the photo reads as its own distinct
+     element instead of blending into the dark banner background where
+     the gradient overlay crosses it. */
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4), 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 45px var(--brand-glow, rgba(0, 212, 255, 0.3));
 }
 
-.founder-hero h1 {
-  font-size: 2.6rem;
-  background: linear-gradient(135deg, #fff 30%, var(--brand-primary) 80%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 10px;
+/* Gradient overlay, now separate from the photo so it always sits on
+   top of it and keeps the text readable regardless of banner width.
+   Stops short of the photo's zone (right ~40%) instead of washing all
+   the way across, so the photo stays crisp instead of fading into the
+   same dark tone as the rest of the banner. */
+.founder-hero-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(5, 8, 22, 0.94) 0%, rgba(5, 8, 22, 0.85) 40%, rgba(5, 8, 22, 0.4) 58%, transparent 65%);
+  pointer-events: none;
 }
 
-.founder-hero .role-tag {
+.founder-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+}
+
+.hero-tag {
+  display: block;
   color: var(--brand-primary);
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.founder-hero-content h1 {
+  font-size: 3rem;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  color: var(--text-light);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+.founder-hero-content h1 .dot { color: var(--brand-primary); }
+
+.founder-role {
+  font-size: 1.35rem;
   font-weight: 600;
-  letter-spacing: 0.5px;
+  color: var(--text-light);
   margin-bottom: 22px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+.founder-role .accent { color: var(--brand-primary); }
+
+.founder-hero-banner p.bio {
+  color: var(--text-light);
+  line-height: 1.8;
+  font-size: 1.02rem;
+  margin-bottom: 8px;
+  max-width: 540px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+.founder-hero-banner .founder-available-badge {
+  position: absolute;
+  z-index: 2;
+  bottom: 32px;
+  right: 6%;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 30px;
+  background: rgba(5, 8, 22, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  color: var(--text-light);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+.founder-hero-banner .founder-available-badge::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2ee68b;
+  box-shadow: 0 0 8px #2ee68b;
+  animation: founder-badge-pulse 1.8s ease-in-out infinite;
+}
+@keyframes founder-badge-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+@media (max-width: 900px) {
+  .founder-hero-banner {
+    min-height: 0;
+    padding: 120px 0 50px;
+  }
+  .founder-hero-inner {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 6%;
+    gap: 22px;
+  }
+  .founder-hero-photo {
+    position: static;
+    transform: none;
+    height: min(320px, 42vh);
+    margin: 0 auto;
+  }
+  .founder-hero-content { text-align: center; max-width: 100%; }
+  .founder-hero-content h1 { font-size: 2.2rem; }
+  .founder-role { font-size: 1.1rem; }
+  .founder-hero-banner p.bio { margin-left: auto; margin-right: auto; }
+  .founder-hero-banner .founder-available-badge {
+    position: static;
+    margin: 0 auto;
+  }
+  .founder-cta { justify-content: center; flex-wrap: wrap; }
+}
+
+/* ---- About Me ---- */
+.founder-about {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 50px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 8%;
+}
+.founder-about-photo {
+  flex: 1 1 260px;
+  max-width: 320px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 30px var(--brand-glow, rgba(0, 212, 255, 0.3));
+}
+.founder-about-photo img {
+  width: 100%;
   display: block;
 }
-
-.founder-hero p.bio {
+.founder-about-text { flex: 2 1 380px; }
+.about-tag {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid var(--brand-primary);
+  border-radius: 20px;
+  color: var(--brand-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+.founder-about-text h2 { font-size: 2rem; margin-bottom: 18px; }
+.founder-about-text p {
   color: var(--text-muted);
   line-height: 1.8;
-  font-size: 1.05rem;
+  margin-bottom: 14px;
+  font-size: 1.02rem;
 }
+
+@media (max-width: 700px) {
+  .founder-about { padding: 60px 6%; text-align: center; justify-content: center; }
+}
+
 
 .founder-cta {
   display: flex;
