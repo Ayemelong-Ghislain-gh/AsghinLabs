@@ -38,6 +38,7 @@
     hamburger.classList.toggle('active');
     navLinks.classList.toggle('active');
     document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+    hamburger.setAttribute('aria-expanded', navLinks.classList.contains('active') ? 'true' : 'false');
   }
 
   if (hamburger) hamburger.addEventListener('click', toggleMenu);

@@ -160,31 +160,30 @@
 }
 
 @media (max-width: 900px) {
+  /* The photo itself keeps its normal size and position rules (no
+     override here) — it just naturally slides further left and starts
+     overlapping the text as the container narrows, since it holds a
+     fixed size while the text column no longer fits beside it. Text
+     stays on top (z-index above the photo) so the overlap reads as
+     "photo behind text", not a broken layout. */
   .founder-hero-banner {
     min-height: 0;
     padding: 120px 0 50px;
   }
-  .founder-hero-inner {
-    flex-direction: column;
-    align-items: center;
-    padding: 0 6%;
-    gap: 22px;
-  }
-  .founder-hero-photo {
-    position: static;
-    transform: none;
-    height: min(320px, 42vh);
-    margin: 0 auto;
-  }
-  .founder-hero-content { text-align: center; max-width: 100%; }
   .founder-hero-content h1 { font-size: 2.2rem; }
   .founder-role { font-size: 1.1rem; }
-  .founder-hero-banner p.bio { margin-left: auto; margin-right: auto; }
-  .founder-hero-banner .founder-available-badge {
-    position: static;
-    margin: 0 auto;
-  }
   .founder-cta { justify-content: center; flex-wrap: wrap; }
+  /* Below this width the CTA row wraps onto a second line, which would
+     otherwise collide with the badge's fixed bottom-right position —
+     move it up top instead, out of the way. */
+  .founder-hero-banner .founder-available-badge {
+    top: 20px;
+    bottom: auto;
+    right: 6%;
+  }
+  /* Clears space below the badge now that it's up top, so it doesn't
+     crowd the heading directly beneath it. */
+  .founder-hero-content { margin-top: 56px; }
 }
 
 /* ---- About Me ---- */
@@ -207,6 +206,7 @@
 }
 .founder-about-photo img {
   width: 100%;
+  height: auto;
   display: block;
 }
 .founder-about-text { flex: 2 1 380px; }

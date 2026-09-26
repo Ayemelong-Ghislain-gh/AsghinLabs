@@ -10,10 +10,13 @@
     <meta property="og:title" content="AsghinLabs — Digital Solutions, Software, AI & Automation">
     <meta property="og:description" content="AsghinLabs builds websites, software, AI-powered solutions and automation systems for businesses and organizations.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="images/logo-blue.jpeg">
+    <meta property="og:image" content="https://asghinlabs.com/images/og-cover.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style-main.css">
     
@@ -25,16 +28,39 @@
         gtag('js', new Date());
         gtag('config', 'G-FK679H74R1');
     </script>
+  <link rel="canonical" href="https://asghinlabs.com/index.html">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AsghinLabs",
+    "url": "https://asghinlabs.com/",
+    "logo": "https://asghinlabs.com/images/logo-blue.jpeg",
+    "description": "AsghinLabs builds websites, software, AI-powered solutions and automation systems for businesses and organizations in Cameroon and beyond.",
+    "email": "asghinlabs@gmail.com",
+    "founder": {
+      "@type": "Person",
+      "name": "Ayemelong Selobie Ghislain"
+    },
+    "sameAs": [
+      "https://www.facebook.com/AsghinLabs/",
+      "https://github.com/Ayemelong-Ghislain-gh",
+      "https://youtube.com/@asghinlabs",
+      "https://www.tiktok.com/@asghinlabs"
+    ]
+  }
+  </script>
 </head>
 
 <body>
 
 <nav>
   <a class="logo" href="index.html">
-    <img src="images/logo-blue.jpeg" alt="AsghinLabs Logo" id="navLogoImg">
+    <img src="images/logo-blue.jpeg" alt="AsghinLabs Logo" id="navLogoImg" width="42" height="42">
     <span>ASGHINLABS</span>
   </a>
-  <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+  <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
     <span></span>
     <span></span>
     <span></span>
@@ -43,6 +69,7 @@
     <li><a href="#home">Home</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="academy.html">Academy</a></li>
     <li><a href="#founder">Founder</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -55,7 +82,7 @@
     <p>AsghinLabs builds websites, software, AI-powered solutions, and automation systems that help businesses and organizations work smarter and grow.</p>
     <div class="buttons">
       <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Start a Project</button>
-      <button class="btn-secondary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">View Our Work</button>
+      <button class="btn-secondary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View Our Work</button>
     </div>
   </div>
   <div class="hero-3d">
@@ -177,7 +204,7 @@
     <div class="service-icon">🎓</div>
     <div class="service-title">
       <h3>Training & Digital Skills</h3>
-      <p>Practical computer, coding, and digital-tools training for individuals, students, and businesses.</p>
+      <p>Practical computer, coding, and digital-tools training — plus private school subject tutoring.</p>
     </div>
     <div class="service-stats">
       <span>🧑‍🏫 Taught by a CS Teacher</span>
@@ -192,17 +219,17 @@
         <div class="tech-tags"><span>One-on-one or group</span><span>In-person or online</span></div>
       </div>
       <div class="project-preview">
-        <h4>Business Digital Tools</h4>
-        <p>WhatsApp Business setup, using social media to sell, and basic Mobile Money tools for running a business online.</p>
+        <h4>Private CS & Math Lessons</h4>
+        <p>Evening and private classes in Computer Science and Mathematics for secondary school students.</p>
         <div class="tech-tags"><span>One-on-one or group</span><span>In-person or online</span></div>
       </div>
       <div class="project-preview">
-        <h4>Intro to Coding</h4>
-        <p>Programming fundamentals for beginners — logic, structure, and a first real project to build confidence.</p>
+        <h4>Intro to Coding & Web Dev</h4>
+        <p>Programming fundamentals and web development for beginners — a first real project to build confidence.</p>
         <div class="tech-tags"><span>One-on-one or group</span><span>In-person or online</span></div>
       </div>
     </div>
-    <p style="margin-top: 16px; font-size: 0.9rem; color: #888;">Available as one-on-one sessions, small group classes, in person, or online — whichever fits you best.</p>
+    <p style="margin-top: 16px; font-size: 0.9rem; color: #888;">Full details, pricing, and free study resources are on <a href="academy.html" style="color: var(--brand-primary); font-weight:600;">AsghinLabs Academy →</a></p>
   </div>
 </div>
 
@@ -217,7 +244,7 @@
         </div>
         <div class="service-stats">
           <span>⚡ 30+ Projects</span>
-          <span>🚀 99% Uptime</span>
+          <span>🖨️ Print &amp; Digital</span>
         </div>
         <div class="service-arrow">▶</div>
       </div>
@@ -256,7 +283,7 @@
             </div>
             <span class="project-link">View Portfolio →</span>
           </a>
-          <a href="#" class="project-preview" style="display:block; text-decoration:none; color:inherit;">
+          <a href="#contact" class="project-preview" style="display:block; text-decoration:none; color:inherit;">
             <h4>UI/UX Design</h4>
             <p>User-centered interface designs for web and mobile apps with wireframes, prototypes, and design systems.</p>
             <div class="tech-tags">
@@ -264,7 +291,7 @@
               <span>Prototyping</span>
               <span>Design Systems</span>
             </div>
-            <span class="project-link">View Portfolio →</span>
+            <span class="project-link">Ask for Samples →</span>
           </a>
         </div>
       </div>
@@ -314,7 +341,7 @@
         </div>
         
         <div class="projects-grid">
-          <a href="#" class="project-preview" style="display:block; text-decoration:none; color:inherit;">
+          <a href="#contact" class="project-preview" style="display:block; text-decoration:none; color:inherit;">
             <h4>🎞️ Corporate Video Production</h4>
             <p>Professional corporate videos, brand story films, and company culture documentaries.</p>
             <div class="tech-tags">
@@ -322,10 +349,10 @@
               <span>Corporate</span>
               <span>Documentary</span>
             </div>
-            <span class="project-link">Watch Demo →</span>
+            <span class="project-link">Request a Demo →</span>
           </a>
           
-          <a href="#" class="project-preview" style="display:block; text-decoration:none; color:inherit;">
+          <a href="#contact" class="project-preview" style="display:block; text-decoration:none; color:inherit;">
             <h4>🎵 Music Video & Visualizers</h4>
             <p>Creative music videos, audio-reactive visualizers, and artist promotional content.</p>
             <div class="tech-tags">
@@ -333,10 +360,10 @@
               <span>Visual Effects</span>
               <span>Motion Graphics</span>
             </div>
-            <span class="project-link">Watch Demo →</span>
+            <span class="project-link">Request a Demo →</span>
           </a>
           
-          <a href="#" class="project-preview" style="display:block; text-decoration:none; color:inherit;">
+          <a href="#contact" class="project-preview" style="display:block; text-decoration:none; color:inherit;">
             <h4>📱 Social Media Content</h4>
             <p>Engaging short-form videos, reels, and promotional content optimized for social platforms.</p>
             <div class="tech-tags">
@@ -344,10 +371,10 @@
               <span>Shorts</span>
               <span>Ads</span>
             </div>
-            <span class="project-link">Watch Demo →</span>
+            <span class="project-link">Request a Demo →</span>
           </a>
           
-          <a href="#" class="project-preview" style="display:block; text-decoration:none; color:inherit;">
+          <a href="#contact" class="project-preview" style="display:block; text-decoration:none; color:inherit;">
             <h4>🎯 Motion Graphics & VFX</h4>
             <p>Animated logos, visual effects, title sequences, and dynamic motion graphics.</p>
             <div class="tech-tags">
@@ -355,7 +382,7 @@
               <span>Animation</span>
               <span>Motion Design</span>
             </div>
-            <span class="project-link">Watch Demo →</span>
+            <span class="project-link">Request a Demo →</span>
           </a>
         </div>
       </div>
@@ -463,7 +490,7 @@
   <div class="section-sub">The face behind AsghinLabs</div>
   <div class="founder-spotlight">
     <div class="founder-flex">
-      <img src="images/founder-portrait.jpg" alt="Founder Ayemelong Selobie Ghislain" class="founder-img" id="founderImg" onerror="this.src='images/profile.jpeg'">
+      <img src="images/founder-portrait.jpg" alt="Founder Ayemelong Selobie Ghislain" class="founder-img" id="founderImg" width="160" height="160" onerror="this.src='images/profile.jpeg'">
       <div class="founder-info">
         <h3>AYEMELONG SELOBIE GHISLAIN</h3>
         <h4>Founder & Software Developer</h4>
@@ -488,8 +515,11 @@
   <div class="section-sub">Tell us what you're trying to solve and we'll help you figure out the right digital solution.</div>
   <div class="contact-grid">
     <form class="contact-form" id="contactForm">
-      <input type="text" placeholder="Your name" id="contactName" name="name" required>
-      <input type="email" placeholder="Email address" id="contactEmail" name="email" required>
+      <label class="sr-only" for="contactName">Your name</label>
+      <input type="text" placeholder="Your name" id="contactName" name="name" autocomplete="name" required>
+      <label class="sr-only" for="contactEmail">Email address</label>
+      <input type="email" placeholder="Email address" id="contactEmail" name="email" autocomplete="email" required>
+      <label class="sr-only" for="serviceSelect">What do you need?</label>
       <select id="serviceSelect" name="service">
         <option>Website</option>
         <option>Web Application</option>
@@ -500,6 +530,7 @@
         <option>Video Editing</option>
         <option>Other</option>
       </select>
+      <label class="sr-only" for="budgetSelect">Budget range</label>
       <select id="budgetSelect" name="budget">
         <option value="">Budget range (optional)</option>
         <option>Under 100k FCFA</option>
@@ -508,6 +539,7 @@
         <option>500k+ FCFA</option>
         <option>Not sure</option>
       </select>
+      <label class="sr-only" for="contactMsg">Tell us about your idea</label>
       <textarea rows="3" placeholder="Tell us about your idea..." id="contactMsg" name="message" required></textarea>
       <button type="submit" id="sendContactBtn" style="background: var(--brand-primary); color: #050816; border-radius: 40px; padding: 14px 32px;">Send message →</button>
       <p id="formFeedback" style="margin-top: 12px; font-size:0.85rem;"></p>
