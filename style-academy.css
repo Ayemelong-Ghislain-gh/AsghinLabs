@@ -458,6 +458,9 @@
   padding: 4px 10px;
   border-radius: 20px;
 }
+/* 2-year pack cards stand out */
+.wb-badge.pack { top: auto; bottom: 10px; left: 50%; right: auto; transform: translateX(-50%); white-space: nowrap; }
+.wb-card.is-pack { border-color: rgba(255, 182, 72, 0.45); }
 .wb-body { padding: 16px 16px 18px; display: flex; flex-direction: column; flex: 1; }
 .wb-subject { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: var(--brand-primary); }
 .wb-body h4 { font-size: 1.08rem; margin: 6px 0 2px; }

@@ -38,39 +38,40 @@ const ACADEMY_PAST_QUESTIONS = [
    - To add or remove a workbook, add or delete its line.
    Covers live in images/academy/workbooks/.
    --------------------------------------------------------------------- */
-const WORKBOOK_PRICES = {
-  // ⚠️ Placeholder prices — change these to your real prices.
-  "Form 1": 2500, "Form 2": 2500, "Form 3": 2500,
-  "Form 4": 3000, "Form 5": 3000,
-  "Lower Sixth": 3500, "Upper Sixth": 3500,
+const WORKBOOK_LEVELS = {
+  "form-1": { level: "Form 1", title: "Form 1 Workbook", stage: "Lower Secondary", price: 2000 },
+  "form-2": { level: "Form 2", title: "Form 2 Workbook", stage: "Lower Secondary", price: 2000 },
+  "form-3": { level: "Form 3", title: "Form 3 Workbook", stage: "Lower Secondary", price: 2500 },
+  "o-level-complete": {
+    level: "O Level", title: "Complete O Level Workbook", stage: "Form 4 & Form 5 · GCE exam preparation",
+    price: 4000, pack: true,
+  },
+  "a-level-complete": {
+    level: "A Level", title: "Complete A Level Workbook", stage: "Lower & Upper Sixth · GCE exam preparation",
+    price: 5000, pack: true,
+  },
 };
 
-const WORKBOOK_LEVELS = [
-  { level: "Form 1", slug: "form-1", stage: "Lower Secondary" },
-  { level: "Form 2", slug: "form-2", stage: "Lower Secondary" },
-  { level: "Form 3", slug: "form-3", stage: "Lower Secondary" },
-  { level: "Form 4", slug: "form-4", stage: "O Level Preparation" },
-  { level: "Form 5", slug: "form-5", stage: "GCE O Level" },
-  { level: "Lower Sixth", slug: "lower-sixth", stage: "A Level Preparation" },
-  { level: "Upper Sixth", slug: "upper-sixth", stage: "GCE A Level" },
-];
-
-function buildWorkbooks(subject, code, slugs) {
-  return WORKBOOK_LEVELS
-    .filter(l => !slugs || slugs.includes(l.slug))
-    .map(l => ({
-      id: `${code}-${l.slug}`,
-      subject,
-      level: l.level,
-      stage: l.stage,
-      cover: `images/academy/workbooks/${code}-${l.slug}.jpg`,
-      price: WORKBOOK_PRICES[l.level] || 0,
-      status: "available",
-    }));
+// prices (optional): override the default price for this subject,
+// e.g. { "form-1": 2500 }.
+function buildWorkbooks(subject, code, slugs, prices = {}) {
+  return slugs.map(slug => ({
+    id: `${code}-${slug}`,
+    subject,
+    ...WORKBOOK_LEVELS[slug],
+    ...(prices[slug] ? { price: prices[slug] } : {}),
+    cover: `images/academy/workbooks/${code}-${slug}.jpg`,
+    status: "available",
+  }));
 }
 
+// Computer Science runs Form 1 → A Level. At A Level it splits into
+// Computer Science and ICT, so ICT only has an A Level workbook.
 const ACADEMY_WORKBOOKS = [
-  ...buildWorkbooks("Computer Science", "cs"),
-  ...buildWorkbooks("ICT", "ict", ["form-4", "form-5", "lower-sixth", "upper-sixth"]),
-  ...buildWorkbooks("Mathematics", "maths"),
+  ...buildWorkbooks("Computer Science", "cs", ["form-1", "form-2", "form-3", "o-level-complete", "a-level-complete"]),
+  ...buildWorkbooks("ICT", "ict", ["a-level-complete"]),
+  // Mathematics has its own prices.
+  ...buildWorkbooks("Mathematics", "maths", ["form-1", "form-2", "form-3", "o-level-complete", "a-level-complete"], {
+    "form-1": 2500, "form-2": 2500, "form-3": 3000, "o-level-complete": 5000, "a-level-complete": 6000,
+  }),
 ];

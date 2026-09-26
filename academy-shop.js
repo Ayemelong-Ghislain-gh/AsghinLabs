@@ -67,14 +67,14 @@
   function renderGrid() {
     const list = BOOKS.filter(b => activeSubject === 'All' || b.subject === activeSubject);
     grid.innerHTML = list.map(b => `
-      <article class="wb-card" data-id="${b.id}">
+      <article class="wb-card${b.pack ? ' is-pack' : ''}" data-id="${b.id}">
         <div class="wb-cover">
-          <img src="${esc(b.cover)}" alt="${esc(b.subject)} workbook — ${esc(b.level)}" loading="lazy" width="600" height="800">
-          ${b.status === 'preorder' ? '<span class="wb-badge">Pre-order</span>' : ''}
+          <img src="${esc(b.cover)}" alt="${esc(b.subject)} — ${esc(b.title)}" loading="lazy" width="600" height="800">
+          ${b.status === 'preorder' ? '<span class="wb-badge">Pre-order</span>' : (b.pack ? '<span class="wb-badge pack">⭐ 2-year exam pack</span>' : '')}
         </div>
         <div class="wb-body">
           <span class="wb-subject">${esc(b.subject)}</span>
-          <h4>${esc(b.level)} Workbook</h4>
+          <h4>${esc(b.title)}</h4>
           <p class="wb-stage">${esc(b.stage)}</p>
           <p class="wb-price">${esc(priceLabel(b))}</p>
           <div class="wb-actions">${cardActions(b)}</div>
@@ -151,7 +151,7 @@
         <div class="order-item">
           <img src="${esc(b.cover)}" alt="" width="48" height="64">
           <div class="order-item-info">
-            <strong>${esc(b.subject)} — ${esc(b.level)}</strong>
+            <strong>${esc(b.subject)} — ${esc(b.title)}</strong>
             <span>${esc(priceLabel(b))}</span>
           </div>
           <div class="wb-stepper small">
@@ -220,7 +220,7 @@
     let msg = `Hello AsghinLabs Academy 👋, I'd like to order these workbooks:\n\n`;
     Object.entries(cart).forEach(([id, q]) => {
       const b = byId[id];
-      msg += `• ${q} × ${b.subject} — ${b.level}${b.price ? ` (${money(b.price * q)})` : ''}\n`;
+      msg += `• ${q} × ${b.subject} — ${b.title}${b.price ? ` (${money(b.price * q)})` : ''}\n`;
     });
     msg += `\nTotal: ${money(total())}${hasUnpriced() ? ' + items to confirm' : ''}\n`;
     msg += `\nName: ${name}\nPhone: ${phone}\n`;
