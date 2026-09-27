@@ -1293,3 +1293,9 @@ footer a:hover { color: var(--brand-primary); }
 @media (min-width: 1000px) {
   .process-steps { grid-template-columns: repeat(5, 1fr); }
 }
+
+/* Footer links (help visitors and search engines find every page) */
+.footer-links { margin: 0 auto 12px; font-size: 0.88rem; line-height: 2; max-width: 800px; position: static; display: block; background: none; backdrop-filter: none; border: none; padding: 0; width: auto; }
+.footer-links a { color: #9aa3b5; text-decoration: none; }
+.footer-links a:hover { color: var(--brand-primary); }
+.footer-fr { font-size: 0.8rem; color: #6b7385; margin-bottom: 14px; }

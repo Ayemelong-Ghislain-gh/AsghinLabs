@@ -108,7 +108,8 @@
         link.classList.remove('current');
         const href = link.getAttribute('href') || '';
         const [pagePart, hashPart] = href.split('#');
-        const page = pagePart || currentPage; // '' page part = "this page"
+        // '' = this page; '/' = the home page (index.html)
+        const page = pagePart === '' ? currentPage : (pagePart.replace(/^\//, '') || 'index.html');
         const linkHash = hashPart ? '#' + hashPart : '';
         if (page === currentPage && linkHash === targetHash) matched = link;
       });

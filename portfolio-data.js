@@ -54,11 +54,11 @@ const PORTFOLIO_ITEMS = {
   ],
 
   banner: [
-    { src: "images/portfolio/banners/HarrietsShopping.png", title: "Harriet's Shopping" },
-    { src: "images/portfolio/banners/EasyGas.png", title: "Easy Gas" },
-    { src: "images/portfolio/banners/DoualaSupermarche.png", title: "Douala Super-marche" },
-    { src: "images/portfolio/banners/asghinlabs.png", title: "AsghinLabs" },
-    { src: "images/portfolio/banners/novatechsolutions.png", title: "Novatech Solutions" },
+    { src: "images/portfolio/banners/HarrietsShopping.jpg", title: "Harriet's Shopping" },
+    { src: "images/portfolio/banners/EasyGas.jpg", title: "Easy Gas" },
+    { src: "images/portfolio/banners/DoualaSupermarche.jpg", title: "Douala Super-marche" },
+    { src: "images/portfolio/banners/asghinlabs.jpg", title: "AsghinLabs" },
+    { src: "images/portfolio/banners/novatechsolutions.jpg", title: "Novatech Solutions" },
   ],
 
   adcreatives: [
