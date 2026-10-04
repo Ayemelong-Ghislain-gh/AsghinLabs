@@ -905,3 +905,39 @@ body.has-order-bar .whatsapp-float { bottom: 96px; }
   .academy-strip { grid-template-columns: repeat(2, 1fr); }
   .academy-strip a:nth-child(2) { border-right: none; }
 }
+
+/* ---- One clear primary action (Shop Workbooks) ---- */
+.hero-secondary { margin-top: 16px; font-size: 0.95rem; color: var(--text-muted); }
+.hero-secondary a,
+.text-link {
+  color: var(--brand-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.text-link { font-size: 0.9rem; }
+
+/* Quick strip: a quiet jump-menu, with Workbooks as the only accented tile */
+.academy-strip a { padding: 16px 12px; }
+.academy-strip strong { font-size: 1.1rem; color: var(--text-light); }
+.academy-strip a:first-child strong { color: var(--brand-primary); }
+
+/* Interactive-lessons teaser: neutral, so it doesn't compete with the shop */
+.beta-badge {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 14px;
+  padding: 6px 16px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.apply-btn.ghost {
+  background: transparent;
+  border: 1px solid var(--brand-primary);
+  color: var(--brand-primary);
+  box-shadow: none;
+}
+.apply-btn.ghost:hover { box-shadow: 0 10px 22px var(--brand-glow); }
