@@ -44,11 +44,11 @@ const WORKBOOK_LEVELS = {
   "form-3": { level: "Form 3", title: "Form 3 Workbook", stage: "Lower Secondary", price: 2500 },
   "o-level-complete": {
     level: "O Level", title: "Complete O Level Workbook", stage: "Form 4 & Form 5 · GCE exam preparation",
-    price: 4000, pack: true,
+    price: 5000, pack: true,
   },
   "a-level-complete": {
     level: "A Level", title: "Complete A Level Workbook", stage: "Lower & Upper Sixth · GCE exam preparation",
-    price: 5000, pack: true,
+    price: 7000, pack: true,
   },
 };
 
@@ -72,6 +72,6 @@ const ACADEMY_WORKBOOKS = [
   ...buildWorkbooks("ICT", "ict", ["a-level-complete"]),
   // Mathematics has its own prices.
   ...buildWorkbooks("Mathematics", "maths", ["form-1", "form-2", "form-3", "o-level-complete", "a-level-complete"], {
-    "form-1": 2500, "form-2": 2500, "form-3": 3000, "o-level-complete": 5000, "a-level-complete": 6000,
+    "form-1": 2500, "form-2": 2500, "form-3": 3000, "o-level-complete": 5000, "a-level-complete": 8000,
   }),
 ];
