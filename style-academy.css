@@ -377,7 +377,7 @@
 
 .academy-strip {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   max-width: 1000px;
   margin: 0 auto 20px;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -895,4 +895,9 @@ body.has-order-bar .whatsapp-float { bottom: 96px; }
 .order-bar-btn { padding: 12px 20px; border-radius: 12px; }
 @media (max-width: 700px) {
   .wb-add, .wb-buy { padding: 10px 6px; }
+}
+
+@media (max-width: 640px) {
+  .academy-strip { grid-template-columns: repeat(2, 1fr); }
+  .academy-strip a:nth-child(2) { border-right: none; }
 }
