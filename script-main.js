@@ -96,7 +96,8 @@
     // entry (e.g. founder.html links out from "index.html#founder").
     const noMatchFallbackHash = {
       'founder.html': '#founder',
-      'portfolio.html': '#services'
+      'portfolio.html': '#services',
+      'lesson-sorting-algorithms.html': '#interactive-coming-soon'
     };
 
     function setCurrent(hash) {
@@ -135,7 +136,8 @@
 
     // Scrollspy: on index.html, follow whichever section is in view so the
     // pill (and mobile "current" chip) track scroll position, not just clicks.
-    const spySectionIds = ['home', 'services', 'projects', 'about', 'why', 'howwework', 'founder', 'contact'];
+    const spySectionIds = ['home', 'services', 'projects', 'about', 'why', 'howwework', 'founder', 'contact',
+      'workbooks', 'resources', 'classes', 'interactive-coming-soon', 'enroll'];
     const spySections = spySectionIds.map(id => document.getElementById(id)).filter(Boolean);
 
     if (spySections.length && 'IntersectionObserver' in window) {

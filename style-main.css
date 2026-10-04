@@ -1312,3 +1312,9 @@ footer a:hover { color: var(--brand-primary); }
 .footer-links a { color: #9aa3b5; text-decoration: none; }
 .footer-links a:hover { color: var(--brand-primary); }
 .footer-fr { font-size: 0.8rem; color: #6b7385; margin-bottom: 14px; }
+
+/* ---- Agency / Academy nav split ---- */
+.nav-links a.nav-cta { color: var(--brand-primary); font-weight: 700; }
+.nav-links a.nav-back { color: var(--text-muted); font-size: 0.85rem; }
+.nav-links a.nav-back:hover { color: var(--brand-primary); }
+.logo-sub { font-size: 0.8em; font-weight: 600; color: var(--text-light); margin-left: 2px; }
