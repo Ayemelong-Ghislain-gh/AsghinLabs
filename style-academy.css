@@ -381,7 +381,7 @@
 
 .academy-strip {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   max-width: 1000px;
   margin: 0 auto 20px;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -941,3 +941,11 @@ body.has-order-bar .whatsapp-float { bottom: 96px; }
   box-shadow: none;
 }
 .apply-btn.ghost:hover { box-shadow: 0 10px 22px var(--brand-glow); }
+
+/* ---- Classes & Tutoring (merged section) ---- */
+.classes-grid .academy-track { display: flex; flex-direction: column; }
+.classes-grid .track-list { margin-bottom: 24px; }
+.classes-grid .apply-btn { margin-top: auto; align-self: flex-start; }
+.classes-apply { max-width: 520px; margin: 70px auto 0; scroll-margin-top: 100px; }
+.classes-apply h3 { text-align: center; font-size: 1.5rem; margin-bottom: 6px; }
+.classes-apply .section-sub { text-align: center; }

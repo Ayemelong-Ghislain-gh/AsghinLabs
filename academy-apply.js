@@ -22,6 +22,8 @@
     const program = programSelect.value;
     const school = document.getElementById('applySchool').value.trim();
     const phone = document.getElementById('applyPhone').value.trim();
+    const detailsEl = document.getElementById('applyDetails');
+    const details = detailsEl ? detailsEl.value.trim() : '';
 
     if (!name || !program || !phone) {
       feedback.textContent = '✏️ Please fill in your name, program, and phone number.';
@@ -29,8 +31,11 @@
       return;
     }
 
-    let message = `Hi AsghinLabs Academy, I'd like to apply for: ${program}\n\n`;
+    let message = program === 'Not sure yet'
+      ? `Hi AsghinLabs Academy, I'd like to join a class but I'm not sure which one yet.\n\n`
+      : `Hi AsghinLabs Academy, I'd like to apply for: ${program}\n\n`;
     message += `Name: ${name}\n`;
+    if (details) message += `Subject/level: ${details}\n`;
     if (school) message += `School: ${school}\n`;
     message += `Phone: ${phone}`;
 
