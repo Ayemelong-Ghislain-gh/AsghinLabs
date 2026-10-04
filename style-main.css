@@ -23,6 +23,19 @@ textarea:focus-visible,
   border-radius: 4px;
 }
 
+/* Site-wide fix: the OS-native dropdown list for <select> ignores most
+   custom CSS, but it DOES honor background/color set directly on
+   <option>. Without this, an option inherits the page's white text with
+   no explicit background, so the browser falls back to its own default
+   (white-on-white) — every item is invisible except the one currently
+   highlighted (which gets the OS highlight color). This rule guarantees
+   every <select> on the site stays readable, even ones added later that
+   forget to style their own options. */
+select option {
+  background: #000000;
+  color: #ffffff;
+}
+
 /* Visually hidden but still readable by screen readers — used for form
    labels we don't want to show visually since the inputs already have
    clear placeholder text, but screen reader users need a real <label>,

@@ -270,8 +270,12 @@
   font-size: 0.95rem;
 }
 .apply-form input::placeholder { color: var(--text-muted); }
-.apply-form select { color: var(--text-muted); }
+.apply-form select { color: var(--text-muted); cursor: pointer; }
 .apply-form select:valid { color: var(--text-light); }
+.apply-form select option {
+  background: #000000;
+  color: #ffffff;
+}
 .apply-form button {
   padding: 15px 20px;
   border-radius: 14px;
