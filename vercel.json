@@ -10,6 +10,21 @@
       ],
       "destination": "https://www.asghinlabs.com/$1",
       "permanent": true
+    },
+    {
+      "source": "/learn",
+      "destination": "/academy.html",
+      "permanent": false
+    },
+    {
+      "source": "/academy",
+      "destination": "/academy.html",
+      "permanent": false
+    },
+    {
+      "source": "/lessons",
+      "destination": "/lessons.html",
+      "permanent": false
     }
   ],
   "headers": [
