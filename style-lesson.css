@@ -180,3 +180,71 @@
   .nibble { gap: 4px; }
   .gridm th, .gridm td { min-width: 62px; height: 48px; font-size: 0.95rem; }
 }
+
+/* ---- Guided steps (binary conversions, expanding brackets) ---- */
+.gsteps { display: flex; flex-direction: column; gap: 12px; margin-top: 6px; }
+.gstep {
+  display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 12px; align-items: start;
+  padding: 14px 16px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02); animation: lessonFade 0.35s ease;
+}
+.gstep.current { border-color: var(--brand-primary); background: rgba(0, 212, 255, 0.05); }
+.gstep.done { border-color: rgba(46, 230, 139, 0.35); }
+.gstep.revealed { border-color: rgba(255, 182, 72, 0.35); }
+.gstep-num {
+  font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--text-muted); padding-top: 9px;
+}
+.gstep.current .gstep-num { color: var(--brand-primary); }
+.gstep-q { font-size: 1.05rem; line-height: 2.1; color: var(--text-light); }
+.g-code sub { font-size: 0.6em; letter-spacing: 0; color: var(--text-muted); }
+.gstep-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.gstep-msg { font-size: 0.92rem; line-height: 1.6; margin-top: 8px; color: var(--text-muted); }
+.gstep-msg:empty { display: none; }
+.gstep-msg.ok { color: #7ff0b8; }
+.gstep-msg.bad { color: #ff8f8f; }
+.gstep-msg b { color: var(--text-light); }
+.g-hint { color: var(--text-muted); }
+.gin {
+  font-family: ui-monospace, Consolas, monospace; font-size: 1.05rem; font-weight: 800; text-align: center;
+  padding: 6px 8px; margin: 0 4px; border-radius: 10px; min-width: 3.2em; max-width: 9em; box-sizing: content-box;
+  border: 2px solid rgba(255, 255, 255, 0.25); background: rgba(255, 255, 255, 0.06); color: var(--text-light); outline: none;
+}
+.gin:focus { border-color: var(--brand-primary); }
+.gin.good { border-color: #2ee68b; color: #7ff0b8; background: rgba(46, 230, 139, 0.10); }
+.gin.bad { border-color: #ff6b6b; color: #ff8f8f; background: rgba(255, 107, 107, 0.10); }
+.gin.shown { border-color: #ffb648; color: #ffcf85; background: rgba(255, 182, 72, 0.10); }
+.gin:disabled { opacity: 1; -webkit-text-fill-color: currentColor; }
+.g-code {
+  font-family: ui-monospace, Consolas, monospace; font-weight: 800; letter-spacing: 1px;
+  padding: 2px 8px; border-radius: 8px; background: rgba(255, 255, 255, 0.07); color: var(--text-light); white-space: nowrap;
+}
+.gstep-end { padding: 14px 16px; border-radius: 16px; background: rgba(46, 230, 139, 0.08); color: var(--text-light); font-weight: 700; line-height: 2.4; }
+.gstep-end .lesson-btn { margin-left: 8px; }
+.pv-table { display: inline-block; margin: 8px 0 0; vertical-align: top; }
+.pv-row { display: grid; grid-template-columns: repeat(8, minmax(30px, 46px)); gap: 4px; text-align: center; }
+.pv-row span { padding: 4px 0; border-radius: 8px; line-height: 1.6; }
+.pv-head span { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); }
+.pv-bits span { font-family: ui-monospace, Consolas, monospace; font-size: 1.15rem; font-weight: 800; background: rgba(255, 255, 255, 0.05); color: var(--text-muted); }
+.pv-bits span.pv-on { background: rgba(0, 212, 255, 0.18); color: #7fe3ff; }
+.ref-row { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; max-width: 420px; margin: 4px 0 14px; }
+.ref-row span { text-align: center; padding: 6px 0; border-radius: 10px; background: rgba(255, 255, 255, 0.05); color: var(--text-light); font-weight: 800; font-size: 0.85rem; }
+@media (max-width: 640px) {
+  .gstep { grid-template-columns: 1fr; gap: 2px; padding: 12px; }
+  .gstep-num { padding-top: 0; }
+  .gstep-q { font-size: 0.98rem; }
+  .pv-row { grid-template-columns: repeat(8, minmax(26px, 1fr)); }
+}
+/* Grid method with answer boxes inside the grid */
+.gridm-in { margin: 12px 0 4px; }
+.gridm-in td { color: var(--text-light); border-style: solid; white-space: nowrap; }
+.gridm-in td.c-x2 { background: rgba(0, 212, 255, 0.08); border-color: rgba(0, 212, 255, 0.35); }
+.gridm-in td.c-x { background: rgba(255, 182, 72, 0.08); border-color: rgba(255, 182, 72, 0.35); }
+.gridm-in td.c-k { background: rgba(46, 230, 139, 0.08); border-color: rgba(46, 230, 139, 0.35); }
+.gridm-in .gin { min-width: 2.4em; margin: 0 2px; }
+.sfx { font-weight: 800; color: var(--text-light); }
+@media (max-width: 640px) {
+  .gridm-in { border-spacing: 4px; }
+  .gridm-in th, .gridm-in td { min-width: 0; padding: 4px 6px; }
+  .gridm-in .gin { min-width: 1.8em; padding: 6px 4px; font-size: 0.95rem; }
+}

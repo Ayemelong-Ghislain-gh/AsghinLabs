@@ -81,7 +81,7 @@
   <a class="lesson-crumb" href="lessons.html">← All interactive lessons</a>
   <span class="lesson-badge">🧪 Interactive Lesson · Mathematics · Form 3</span>
   <h1>Expanding Brackets</h1>
-  <p class="lead">Expand double brackets with the grid method. Watch the working one step at a time, then try your own answer on a fresh question.</p>
+  <p class="lead">Expand double brackets with the grid method, one step at a time. You fill in each step and get corrected straight away.</p>
 
   <div class="lesson-panel">
     <div class="lesson-controls">
@@ -90,22 +90,12 @@
         <option value="hard">Harder: (px + a)(qx + b)</option>
       </select>
       <button type="button" id="newBtn" class="primary">🔀 New question</button>
-      <button type="button" id="stepBtn">⏭ Show next step</button>
+      <span class="chal-score" id="score"></span>
     </div>
 
     <p class="q-big" id="question"></p>
-    <table class="gridm" id="grid" aria-label="Grid method"></table>
-    <div id="work"></div>
-
-    <h3>Your turn</h3>
-    <p class="lesson-hint">Write the expanded answer in the form <b>Ax² + Bx + C</b>. Type the three numbers (use a minus sign for negatives, and 0 if a term is missing).</p>
-    <div class="answer-row">
-      <label class="lesson-field">x² coefficient (A)<input class="lesson-input" id="ansA" type="number" inputmode="numeric"></label>
-      <label class="lesson-field">x coefficient (B)<input class="lesson-input" id="ansB" type="number" inputmode="numeric"></label>
-      <label class="lesson-field">Number (C)<input class="lesson-input" id="ansC" type="number" inputmode="numeric"></label>
-    </div>
-    <button type="button" class="lesson-btn primary" id="checkBtn">Check my answer</button>
-    <div class="lesson-step-msg" id="result" aria-live="polite"></div>
+    <p class="lesson-hint">Work through the steps below. Type a number in each box (use a minus sign for negatives), press <b>Check</b>, and you'll be told what is right and why. Stuck? Press <b>Show me</b>.</p>
+    <div id="steps" class="gsteps"></div>
   </div>
 
   <div class="lesson-panel lesson-explain">
@@ -145,78 +135,75 @@
 (function () {
   const SLUG = 'expanding-brackets';
   const $ = (id) => document.getElementById(id);
-  const levelSel = $('levelSel'), grid = $('grid'), work = $('work'), result = $('result');
-  const ansA = $('ansA'), ansB = $('ansB'), ansC = $('ansC'), stepBtn = $('stepBtn');
-  let q = null, stage = 0;
+  const levelSel = $('levelSel');
+  let done = 0, clean = 0;
 
-  const side = (k) => (k < 0 ? '\u2212 ' : '+ ') + num(Math.abs(k));   // "+ 3" / "− 4"
+  const side = (k) => (k < 0 ? '− ' : '+ ') + num(Math.abs(k));   // "+ 3" / "− 4"
   const bracket = (p, a) => '(' + polyStr([0, p, a]) + ')';
+  const paren = (k) => k < 0 ? '(' + num(k) + ')' : num(k);
+  const xTerm = (k) => polyStr([0, k, 0]);
 
-  function newQuestion() {
-    const hard = levelSel.value === 'hard';
-    q = { p: hard ? pick([1, 2, 3]) : 1, a: rnz(-9, 9), q: hard ? pick([1, 2, 3]) : 1, b: rnz(-9, 9) };
-    stage = 0;
-    [ansA, ansB, ansC].forEach(i => { i.value = ''; });
-    result.textContent = ''; result.className = 'lesson-step-msg';
-    render();
-    trackLesson(SLUG, 'new_question');
-  }
-
-  function render() {
-    const { p, a, q: qq, b } = q;
-    $('question').textContent = 'Expand ' + bracket(p, a) + bracket(qq, b);
-    const cells = [
-      { v: polyStr([p * qq, 0, 0]), cls: 'c-x2' },
-      { v: polyStr([0, p * b, 0]), cls: 'c-x' },
-      { v: polyStr([0, a * qq, 0]), cls: 'c-x' },
-      { v: polyStr([0, 0, a * b]), cls: 'c-k' },
+  function build(p, a, qq, b) {
+    const A = p * qq, B1 = p * b, B2 = a * qq, C = a * b, B = B1 + B2;
+    const cell = (k, sfx, cls) => `<td class="${cls}">{${k}}<span class="sfx">${sfx}</span></td>`;
+    const grid =
+      `<table class="gridm gridm-in" aria-label="Grid method"><tr><th>×</th><th>${xTerm(qq)}</th><th>${side(b)}</th></tr>` +
+      `<tr><th>${xTerm(p)}</th>${cell(0, 'x²', 'c-x2')}${cell(1, 'x', 'c-x')}</tr>` +
+      `<tr><th>${side(a)}</th>${cell(2, 'x', 'c-x')}${cell(3, '', 'c-k')}</tr></table>`;
+    return [
+      {
+        html: `Fill the grid: multiply the term at the side of each row by the term at the top of each column.${grid}`,
+        fields: [
+          { answer: A, kind: 'int', label: 'Top-left box (x²)', size: 3 },
+          { answer: B1, kind: 'int', label: 'Top-right box (x)', size: 3 },
+          { answer: B2, kind: 'int', label: 'Bottom-left box (x)', size: 3 },
+          { answer: C, kind: 'int', label: 'Bottom-right box (number)', size: 3 },
+        ],
+        hint: 'Multiply the numbers, then check the sign: + × + = +, − × − = +, and + × − = −. Type 1 if the box is just x² or x.',
+        why: `${xTerm(p)} × ${xTerm(qq)} = <b>${polyStr([A, 0, 0])}</b>, ${xTerm(p)} × ${paren(b)} = <b>${xTerm(B1)}</b>, ${paren(a)} × ${xTerm(qq)} = <b>${xTerm(B2)}</b>, ${paren(a)} × ${paren(b)} = <b>${num(C)}</b>.`,
+      },
+      {
+        html: `Collect the two x boxes: ${xTerm(B1)} and ${xTerm(B2)} make {0}<span class="sfx">x</span>`,
+        fields: [{ answer: B, kind: 'int', label: 'x coefficient', size: 3 }],
+        hint: `Add the numbers in front of x: ${num(B1)} + ${paren(B2)}.`,
+        why: `${num(B1)} + ${paren(B2)} = <b>${num(B)}</b>, so the x terms make <b>${B === 0 ? '0 (they cancel out)' : xTerm(B)}</b>.`,
+      },
+      {
+        html: `Write the final answer: {0}<span class="sfx">x²</span> + {1}<span class="sfx">x</span> + {2}`,
+        fields: [
+          { answer: A, kind: 'int', label: 'x² coefficient', size: 3 },
+          { answer: B, kind: 'int', label: 'x coefficient', size: 3 },
+          { answer: C, kind: 'int', label: 'Number', size: 3 },
+        ],
+        hint: 'Take the x² box, the x total from Step 2 and the number box.',
+        why: `${bracket(p, a)}${bracket(qq, b)} = <b>${polyStr([A, B, C])}</b>` + (B === 0 ? '. The x terms cancel: this is a <b>difference of two squares</b>.' : '.'),
+      },
     ];
-    const show = stage >= 1 ? ' show' : '';
-    grid.innerHTML =
-      `<tr><th>×</th><th>${polyStr([0, qq, 0])}</th><th>${side(b)}</th></tr>` +
-      `<tr><th>${polyStr([0, p, 0])}</th><td class="${cells[0].cls}${show}">${cells[0].v}</td><td class="${cells[1].cls}${show}">${cells[1].v}</td></tr>` +
-      `<tr><th>${side(a)}</th><td class="${cells[2].cls}${show}">${cells[2].v}</td><td class="${cells[3].cls}${show}">${cells[3].v}</td></tr>`;
-
-    const mid = p * b + a * qq;
-    const four = joinTerms([[p * qq, 'x\u00B2'], [p * b, 'x'], [a * qq, 'x'], [a * b, '']]);
-    const final = polyStr([p * qq, mid, a * b]);
-    let w = '';
-    if (stage === 0) w = '<p class="work-line">Multiply each term of the side bracket by each term of the top bracket to fill the four boxes. Press <b>Show next step</b> when you want to see them.</p>';
-    if (stage >= 2) w += `<p class="work-line">Add the four boxes: <b>${four}</b></p>`;
-    if (stage >= 3) {
-      w += `<p class="work-line">Collect like terms (${polyStr([0, p * b, 0])} and ${polyStr([0, a * qq, 0])} are both x terms): <b>${final}</b></p>`;
-      if (mid === 0) w += '<p class="work-line ok">The x terms cancel out. This is a <b>difference of two squares</b>.</p>';
-    }
-    work.innerHTML = w;
-    stepBtn.disabled = stage >= 3;
   }
 
-  stepBtn.addEventListener('click', () => { if (stage < 3) { stage++; render(); trackLesson(SLUG, 'step'); } });
-  $('newBtn').addEventListener('click', newQuestion);
-  levelSel.addEventListener('change', newQuestion);
-
-  function check() {
-    const { p, a, q: qq, b } = q;
-    const want = [p * qq, p * b + a * qq, a * b];
-    const got = [ansA, ansB, ansC].map(i => i.value.trim() === '' ? NaN : Number(i.value));
-    if (got.some(isNaN)) { result.className = 'lesson-step-msg bad'; result.textContent = 'Fill in all three boxes first.'; return; }
-    const wrong = ['x² coefficient', 'x coefficient', 'number'].filter((n, i) => got[i] !== want[i]);
-    if (!wrong.length) {
-      result.className = 'lesson-step-msg ok';
-      result.innerHTML = '✅ Correct! The answer is <b>' + polyStr(want) + '</b>.';
-      stage = 3; render();
-      trackLesson(SLUG, 'check_correct');
-    } else {
-      result.className = 'lesson-step-msg bad';
-      result.textContent = '❌ Not yet. Check your ' + wrong.join(' and ') + '. Press "Show next step" if you want help from the grid.';
-      trackLesson(SLUG, 'check_wrong');
-    }
+  function newQuestion(first) {
+    const hard = levelSel.value === 'hard';
+    const q = first || { p: hard ? pick([1, 2, 3]) : 1, a: rnz(-9, 9), q: hard ? pick([1, 2, 3]) : 1, b: rnz(-9, 9) };
+    $('question').textContent = 'Expand ' + bracket(q.p, q.a) + bracket(q.q, q.b);
+    runSteps($('steps'), build(q.p, q.a, q.q, q.b), {
+      onCheck: (ok) => trackLesson(SLUG, ok ? 'check_correct' : 'check_wrong'),
+      onFinish: (usedHelp) => {
+        done++; if (!usedHelp) clean++;
+        $('score').textContent = `${done} finished · ${clean} without help`;
+        const end = document.createElement('div');
+        end.className = 'gstep-end';
+        end.innerHTML = (usedHelp ? '👍 Finished. Try another one on your own.' : '🎉 Well done! You solved it without help.') +
+          ' <button type="button" class="lesson-btn primary">Next question →</button>';
+        end.querySelector('button').addEventListener('click', () => { newQuestion(); $('question').scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+        $('steps').appendChild(end);
+        trackLesson(SLUG, 'question_finished');
+      },
+    });
   }
-  $('checkBtn').addEventListener('click', check);
-  [ansA, ansB, ansC].forEach(i => i.addEventListener('keydown', (e) => { if (e.key === 'Enter') check(); }));
 
-  q = { p: 1, a: 3, q: 1, b: -4 };   // a fixed first example so the page never opens blank
-  render();
+  $('newBtn').addEventListener('click', () => { newQuestion(); trackLesson(SLUG, 'new_question'); });
+  levelSel.addEventListener('change', () => newQuestion());
+  newQuestion({ p: 1, a: 3, q: 1, b: -4 });   // a fixed first example
 })();
 viewLesson("expanding-brackets");
 </script>

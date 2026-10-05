@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Binary, Decimal and Hexadecimal Converter — Interactive Lesson | AsghinLabs Academy</title>
-  <meta name="description" content="Flip bits to see how binary, decimal and hexadecimal numbers convert, with the working shown and a challenge mode. Free interactive Computer Science lesson.">
+  <title>Binary, Decimal and Hexadecimal Conversions — Interactive Lesson | AsghinLabs Academy</title>
+  <meta name="description" content="Practise binary, decimal and hexadecimal conversions step by step, with instant correction and explanations at every step. Free interactive Computer Science lesson.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://www.asghinlabs.com/lesson-binary-converter.html">
   <link rel="apple-touch-icon" href="images/logo-blue.jpeg">
   <link rel="icon" href="images/logo-blue.jpeg" type="image/jpeg">
   <meta property="og:site_name" content="AsghinLabs">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Binary, Decimal and Hexadecimal Converter — Interactive Lesson | AsghinLabs Academy">
-  <meta property="og:description" content="Flip bits to see how binary, decimal and hexadecimal numbers convert, with the working shown and a challenge mode. Free interactive Computer Science lesson.">
+  <meta property="og:title" content="Binary, Decimal and Hexadecimal Conversions — Interactive Lesson | AsghinLabs Academy">
+  <meta property="og:description" content="Practise binary, decimal and hexadecimal conversions step by step, with instant correction and explanations at every step. Free interactive Computer Science lesson.">
   <meta property="og:url" content="https://www.asghinlabs.com/lesson-binary-converter.html">
   <meta property="og:image" content="https://www.asghinlabs.com/images/og-cover.jpg">
   <meta name="twitter:card" content="summary_large_image">
@@ -20,8 +20,8 @@
 {
   "@context": "https://schema.org",
   "@type": "LearningResource",
-  "name": "Binary, Decimal and Hexadecimal Converter",
-  "description": "Flip bits to see how binary, decimal and hexadecimal numbers convert, with the working shown and a challenge mode. Free interactive Computer Science lesson.",
+  "name": "Binary, Decimal and Hexadecimal Conversions",
+  "description": "Practise binary, decimal and hexadecimal conversions step by step, with instant correction and explanations at every step. Free interactive Computer Science lesson.",
   "url": "https://www.asghinlabs.com/lesson-binary-converter.html",
   "learningResourceType": "Interactive lesson",
   "educationalLevel": "O Level",
@@ -80,50 +80,41 @@
 <div class="lesson-wrap">
   <a class="lesson-crumb" href="lessons.html">← All interactive lessons</a>
   <span class="lesson-badge">🧪 Interactive Lesson · Computer Science · O Level</span>
-  <h1>Binary, Decimal and Hexadecimal Converter</h1>
-  <p class="lead">Computers store every number as a row of bits. Flip the bits below to see how binary, decimal and hexadecimal are three ways of writing the same number. Then try the challenge.</p>
+  <h1>Binary, Decimal and Hexadecimal Conversions</h1>
+  <p class="lead">Practise conversions one step at a time. Fill in each step, press <b>Check</b>, and you'll be told straight away what is right, what is wrong and why.</p>
 
   <div class="lesson-panel">
     <div class="lesson-controls">
-      <button type="button" id="randBtn">🔀 Random number</button>
-      <button type="button" id="resetBtn">↺ Reset</button>
-      <button type="button" id="modeBtn" class="primary">🎯 Challenge me</button>
+      <select id="typeSel" aria-label="Type of conversion">
+        <option value="d2b">Decimal → Binary</option>
+        <option value="b2d">Binary → Decimal</option>
+        <option value="b2h">Binary → Hexadecimal</option>
+        <option value="h2b">Hexadecimal → Binary</option>
+        <option value="mix">Mixed (random)</option>
+      </select>
+      <select id="levelSel" aria-label="Size of numbers">
+        <option value="easy">Smaller numbers</option>
+        <option value="hard">Bigger numbers (up to 255)</option>
+      </select>
+      <button type="button" id="newBtn" class="primary">🔀 New question</button>
+      <span class="chal-score" id="score"></span>
     </div>
 
-    <div class="nibbles" id="nibbles" aria-label="Eight bits"></div>
-
-    <div id="explore">
-      <p class="lesson-hint">Tap a bit to flip it between 0 and 1. Each place is worth double the one on its right. You can also type in any box.</p>
-      <div class="conv-row">
-        <label class="lesson-field">Decimal (0–255)<input class="lesson-input" id="decIn" type="number" min="0" max="255" inputmode="numeric"></label>
-        <label class="lesson-field">Binary (8 bits)<input class="lesson-input" id="binIn" type="text" maxlength="8" inputmode="numeric" autocomplete="off"></label>
-        <label class="lesson-field">Hexadecimal (00–FF)<input class="lesson-input" id="hexIn" type="text" maxlength="2" autocomplete="off"></label>
-      </div>
-      <div class="lesson-step-msg" id="working"></div>
-    </div>
-
-    <div id="challenge" hidden>
-      <p class="chal-prompt" id="chalPrompt"></p>
-      <div class="chal-answer">
-        <input class="lesson-input" id="chalInput" type="text" autocomplete="off" aria-label="Your answer">
-        <button type="button" class="lesson-btn primary" id="chalCheck">Check</button>
-      </div>
-      <div class="lesson-step-msg" id="chalResult" aria-live="polite"></div>
-      <div class="chal-actions">
-        <button type="button" class="lesson-btn" id="chalShow">👀 Show answer</button>
-        <button type="button" class="lesson-btn" id="chalNext">Next question →</button>
-        <span class="chal-score" id="chalScore"></span>
-      </div>
-    </div>
+    <p class="q-big" id="question"></p>
+    <p class="lesson-hint" id="method"></p>
+    <div id="steps" class="gsteps"></div>
   </div>
 
   <div class="lesson-panel lesson-explain">
-    <h2>How it works</h2>
+    <h2>Keep these in mind</h2>
+    <div class="ref-row" aria-label="Binary place values">
+      <span>128</span><span>64</span><span>32</span><span>16</span><span>8</span><span>4</span><span>2</span><span>1</span>
+    </div>
     <ul>
-      <li><b>Binary</b> uses only 0 and 1. From the right, the places are worth <b>1, 2, 4, 8, 16, 32, 64, 128</b>. A 1 means "count this place".</li>
-      <li><b>Binary → decimal:</b> add up the place values that have a 1. For example 1010 0110 = 128 + 32 + 4 + 2 = <b>166</b>.</li>
-      <li><b>Hexadecimal</b> uses 16 digits: 0–9 then A=10, B=11, C=12, D=13, E=14, F=15. One hex digit stands for exactly <b>4 bits</b>, so you convert each group of four separately.</li>
-      <li><b>Binary → hex:</b> split into two groups of four, then turn each group into a digit. 1010 0110 → A and 6 → <b>A6</b>.</li>
+      <li><b>Place values:</b> from the right, binary places are worth 1, 2, 4, 8, 16, 32, 64, 128. Each one is double the place on its right.</li>
+      <li><b>Decimal → binary:</b> keep dividing by 2 and write down each remainder. Then read the remainders from the <b>bottom up</b>.</li>
+      <li><b>Binary → decimal:</b> add up the place values that have a 1 under them.</li>
+      <li><b>Hexadecimal</b> digits go 0–9, then A = 10, B = 11, C = 12, D = 13, E = 14, F = 15. One hex digit is exactly <b>4 bits</b>, worth 8, 4, 2, 1.</li>
     </ul>
   </div>
 
@@ -134,7 +125,7 @@
       <a class="next-btn primary" href="academy.html#workbooks">🛒 See the workbooks</a>
       <a class="next-btn" href="lessons.html">More lessons →</a>
     </div>
-    <div class="fb"><a href="https://wa.me/237682402876?text=Hi%20AsghinLabs%20Academy%2C%20I%20tried%20the%20Binary%2C%20Decimal%20and%20Hexadecimal%20Converter%20lesson%20and%20wanted%20to%20say..." target="_blank" rel="noopener">💬 Tell us what to improve on WhatsApp →</a></div>
+    <div class="fb"><a href="https://wa.me/237682402876?text=Hi%20AsghinLabs%20Academy%2C%20I%20tried%20the%20Binary%2C%20Decimal%20and%20Hexadecimal%20Conversions%20lesson%20and%20wanted%20to%20say..." target="_blank" rel="noopener">💬 Tell us what to improve on WhatsApp →</a></div>
   </div>
 </div>
 
@@ -153,148 +144,183 @@
 <script>
 (function () {
   const SLUG = 'binary-converter';
-  const places = [128, 64, 32, 16, 8, 4, 2, 1];
   const $ = (id) => document.getElementById(id);
-  const nibblesEl = $('nibbles'), decIn = $('decIn'), binIn = $('binIn'), hexIn = $('hexIn');
-  const working = $('working'), exploreEl = $('explore'), chalEl = $('challenge');
-  const chalPrompt = $('chalPrompt'), chalInput = $('chalInput'), chalResult = $('chalResult');
-  const chalScore = $('chalScore'), chalCheck = $('chalCheck'), modeBtn = $('modeBtn');
+  const typeSel = $('typeSel'), levelSel = $('levelSel'), stepsEl = $('steps');
+  const PLACES = [128, 64, 32, 16, 8, 4, 2, 1];
+  const HEXV = 'A = 10, B = 11, C = 12, D = 13, E = 14, F = 15';
+  let done = 0, clean = 0;
 
-  let value = 0, chal = null, score = 0, asked = 0, challengeMode = false;
-  const bitBtns = [], nibHex = [];
+  const bits8 = (n) => n.toString(2).padStart(8, '0');
+  const bits4 = (n) => n.toString(2).padStart(4, '0');
+  const hexd = (n) => n.toString(16).toUpperCase();
+  const spaced = (s) => s.slice(0, 4) + ' ' + s.slice(4);
+  const code = (s) => `<span class="g-code">${s}</span>`;
 
-  for (let n = 0; n < 2; n++) {
-    const wrap = document.createElement('div'); wrap.className = 'nibble-wrap';
-    const nib = document.createElement('div'); nib.className = 'nibble';
-    for (let k = 0; k < 4; k++) {
-      const i = n * 4 + k;
-      const col = document.createElement('div'); col.className = 'bit-col';
-      const pl = document.createElement('span'); pl.className = 'bit-place'; pl.textContent = places[i];
-      const b = document.createElement('button'); b.type = 'button'; b.className = 'bit'; b.dataset.i = i;
-      b.setAttribute('aria-label', 'Bit worth ' + places[i]);
-      col.append(pl, b); nib.appendChild(col); bitBtns.push(b);
-    }
-    const hx = document.createElement('div'); hx.className = 'nibble-hex';
-    wrap.append(nib, hx); nibblesEl.appendChild(wrap); nibHex.push(hx);
+  function pickNumber(type) {
+    const easy = levelSel.value === 'easy';
+    if (type === 'd2b') return easy ? rint(5, 31) : rint(32, 255);
+    if (type === 'b2d') return easy ? rint(5, 63) : rint(64, 255);
+    return easy ? rint(17, 127) : rint(128, 255);   // hex questions
   }
 
-  const bits8 = (v) => v.toString(2).padStart(8, '0');
-  const hex2 = (v) => v.toString(16).toUpperCase().padStart(2, '0');
-
-  function render(source) {
-    const s = bits8(value);
-    bitBtns.forEach((b, i) => {
-      b.textContent = s[i];
-      b.classList.toggle('on', s[i] === '1');
-      b.setAttribute('aria-pressed', s[i] === '1');
+  // ---------- Decimal → Binary (repeated division by 2) ----------
+  function d2b(n) {
+    const steps = [];
+    let x = n;
+    const rems = [];
+    while (x > 0) {
+      const q = Math.floor(x / 2), r = x % 2;
+      rems.push(r);
+      steps.push({
+        html: `${code(x)} ÷ 2 = {0} remainder {1}`,
+        fields: [{ answer: q, kind: 'int', label: 'Quotient', size: 3 }, { answer: r, kind: 'int', label: 'Remainder', size: 2 }],
+        hint: `Halve ${x} and ignore any half: that is the answer. The remainder is <b>1</b> if ${x} is odd and <b>0</b> if it is even.`,
+        why: `${x} ÷ 2 = <b>${q}</b> remainder <b>${r}</b> (because 2 × ${q} = ${2 * q}, and ${x} − ${2 * q} = ${r}).` + (q === 0 ? ' The answer is 0, so we stop dividing.' : ''),
+      });
+      x = q;
+    }
+    const ans = rems.slice().reverse().join('');
+    steps.push({
+      html: `Now read the remainders from the <b>bottom up</b>. ${code(n)} in binary is {0}`,
+      fields: [{ answer: ans, kind: 'bin', label: 'Binary answer', size: 10 }],
+      hint: `Start with the <b>last</b> remainder you wrote and go up to the first one. The remainders, top to bottom, were ${rems.join(', ')}.`,
+      why: `Reading the remainders from the bottom up gives <b>${ans}</b>. Check: ${placeSum(ans)} = ${n}. ✔`,
     });
-    nibHex[0].textContent = parseInt(s.slice(0, 4), 2).toString(16).toUpperCase();
-    nibHex[1].textContent = parseInt(s.slice(4), 2).toString(16).toUpperCase();
-    if (source !== 'dec') decIn.value = value;
-    if (source !== 'bin') binIn.value = s;
-    if (source !== 'hex') hexIn.value = hex2(value);
-    const on = places.filter((p, i) => s[i] === '1');
-    working.innerHTML = on.length
-      ? `<b>${on.join(' + ')} = ${value}</b><br>Hex: ${s.slice(0, 4)} → ${nibHex[0].textContent}, ${s.slice(4)} → ${nibHex[1].textContent}, so the hex value is <b>${hex2(value)}</b>.`
-      : 'Every bit is 0, so the number is <b>0</b>.';
+    return {
+      q: `Convert ${code(n + '<sub>10</sub>')} from decimal to binary.`,
+      method: 'Method: divide by 2 again and again. Write the answer and the remainder each time, until the answer is 0.',
+      steps,
+    };
   }
 
-  nibblesEl.addEventListener('click', (e) => {
-    const b = e.target.closest('.bit'); if (!b) return;
-    value ^= places[Number(b.dataset.i)];
-    render();
-    if (challengeMode && chal && chal.type === 'toBinary') chalResult.textContent = '';
-  });
-  decIn.addEventListener('input', () => {
-    const n = parseInt(decIn.value, 10);
-    if (!isNaN(n) && n >= 0 && n <= 255) { value = n; render('dec'); }
-  });
-  binIn.addEventListener('input', () => {
-    const t = binIn.value.replace(/[^01]/g, '');
-    if (t !== binIn.value) binIn.value = t;
-    if (t.length) { value = parseInt(t, 2); render('bin'); }
-  });
-  hexIn.addEventListener('input', () => {
-    const t = hexIn.value.replace(/[^0-9a-fA-F]/g, '').toUpperCase();
-    if (t !== hexIn.value) hexIn.value = t;
-    if (t.length) { value = parseInt(t, 16); render('hex'); }
-  });
-  $('randBtn').addEventListener('click', () => { value = rint(1, 255); render(); });
-  $('resetBtn').addEventListener('click', () => { value = 0; render(); });
-
-  // ---------- Challenge mode ----------
-  function newChallenge() {
-    const type = pick(['toBinary', 'toDecimal', 'toHex']);
-    const n = rint(1, 255);
-    chal = { type, n, done: false };
-    chalResult.textContent = ''; chalResult.className = 'lesson-step-msg';
-    chalInput.value = '';
-    chalCheck.disabled = false;
-    if (type === 'toBinary') {
-      value = 0; render();
-      nibblesEl.hidden = false;
-      chalInput.style.display = 'none';
-      chalPrompt.innerHTML = `Set the bits so they show the decimal number <b>${n}</b>, then press Check.`;
-    } else {
-      nibblesEl.hidden = true;
-      chalInput.style.display = '';
-      chalInput.placeholder = type === 'toDecimal' ? 'Decimal answer' : 'Hex answer, e.g. 3F';
-      chalPrompt.innerHTML = `Convert the binary number <span class="big-code">${bits8(n).slice(0, 4)} ${bits8(n).slice(4)}</span> to ${type === 'toDecimal' ? '<b>decimal</b>' : '<b>hexadecimal</b>'}.`;
-      chalInput.focus();
-    }
-    updateScore();
+  function placeSum(bin) {
+    const b = bin.padStart(8, '0');
+    const on = PLACES.filter((p, i) => b[i] === '1');
+    return on.join(' + ');
   }
-  function updateScore() { chalScore.textContent = asked ? `${score} / ${asked} correct` : ''; }
 
-  function checkChallenge() {
-    if (!chal || chal.done) return;
-    const n = chal.n; let ok = false;
-    if (chal.type === 'toBinary') ok = value === n;
-    else if (chal.type === 'toDecimal') ok = parseInt(chalInput.value, 10) === n;
-    else ok = chalInput.value.trim().toUpperCase().replace(/^0X/, '').padStart(2, '0') === hex2(n);
-    if (chal.type !== 'toBinary' && !chalInput.value.trim()) { chalResult.className = 'lesson-step-msg bad'; chalResult.textContent = 'Type an answer first.'; return; }
-    asked++;
-    if (ok) {
-      score++; chal.done = true; chalCheck.disabled = true;
-      chalResult.className = 'lesson-step-msg ok';
-      chalResult.innerHTML = `✅ Correct! ${bits8(n)} = ${n} = ${hex2(n)} in hex.`;
-      trackLesson(SLUG, 'check_correct');
-    } else {
-      chalResult.className = 'lesson-step-msg bad';
-      chalResult.innerHTML = chal.type === 'toBinary'
-        ? `❌ Not yet. Your bits show ${value}, but the target is ${n}. Try flipping a different bit.`
-        : '❌ Not quite. Hint: add up the place values (128, 64, 32 …) that have a 1.';
-      trackLesson(SLUG, 'check_wrong');
-    }
-    updateScore();
+  // ---------- Binary → Decimal (place values) ----------
+  function b2d(n) {
+    const b = bits8(n);
+    const on = PLACES.filter((p, i) => b[i] === '1');
+    const table = '<div class="pv-table"><div class="pv-row pv-head">' + PLACES.map(p => `<span>${p}</span>`).join('') +
+      '</div><div class="pv-row pv-bits">' + [...b].map(c => `<span class="${c === '1' ? 'pv-on' : ''}">${c}</span>`).join('') + '</div></div>';
+    const steps = [
+      {
+        info: true,
+        html: `Write the place values above the bits:${table}`,
+        why: `The places with a <b>1</b> under them are highlighted. Only those count.`,
+        fields: [],
+      },
+      {
+        html: `Which place values have a 1 under them? Add them up: ${on.map((p, i) => '{' + i + '}').join(' + ')}`,
+        fields: on.map(p => ({ answer: p, kind: 'int', label: 'Place value', size: 3 })),
+        hint: `Read the highlighted columns from left to right and type the place value above each one.`,
+        why: `The 1s are under <b>${on.join(', ')}</b>.`,
+      },
+      {
+        html: `${on.join(' + ')} = {0}`,
+        fields: [{ answer: n, kind: 'int', label: 'Total', size: 4 }],
+        hint: `Add them carefully, two at a time if it helps.`,
+        why: `${on.join(' + ')} = <b>${n}</b>. So ${spaced(b)} in binary is <b>${n}</b> in decimal.`,
+      },
+    ];
+    return {
+      q: `Convert ${code(spaced(b) + '<sub>2</sub>')} from binary to decimal.`,
+      method: 'Method: write the place values (128, 64, 32 … 1) above the bits, then add up the ones that have a 1 under them.',
+      steps,
+    };
   }
-  chalCheck.addEventListener('click', checkChallenge);
-  chalInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkChallenge(); });
-  $('chalNext').addEventListener('click', newChallenge);
-  $('chalShow').addEventListener('click', () => {
-    if (!chal) return;
-    chal.done = true; chalCheck.disabled = true;
-    const n = chal.n, s = bits8(n);
-    const on = places.filter((p, i) => s[i] === '1');
-    chalResult.className = 'lesson-step-msg';
-    chalResult.innerHTML = `<b>${s}</b> → ${on.join(' + ')} = <b>${n}</b>, and in hex that is <b>${hex2(n)}</b>.`;
-    if (chal.type === 'toBinary') { value = n; render(); }
-  });
 
-  modeBtn.addEventListener('click', () => {
-    challengeMode = !challengeMode;
-    exploreEl.hidden = challengeMode;
-    chalEl.hidden = !challengeMode;
-    nibblesEl.hidden = false;
-    modeBtn.textContent = challengeMode ? '↩ Back to exploring' : '🎯 Challenge me';
-    modeBtn.classList.toggle('primary', !challengeMode);
-    $('randBtn').disabled = challengeMode; $('resetBtn').disabled = challengeMode;
-    if (challengeMode) { newChallenge(); trackLesson(SLUG, 'challenge_start'); }
-    else { value = 0; render(); }
-  });
+  // ---------- Binary → Hex (groups of 4) ----------
+  function b2h(n) {
+    const b = bits8(n), g1 = b.slice(0, 4), g2 = b.slice(4);
+    const v1 = parseInt(g1, 2), v2 = parseInt(g2, 2);
+    const sum4 = (g) => { const on = [8, 4, 2, 1].filter((p, i) => g[i] === '1'); return on.length ? on.join(' + ') : '0'; };
+    const steps = [
+      {
+        info: true, fields: [],
+        html: `Split the bits into groups of 4, starting from the right: ${code(g1)} and ${code(g2)}`,
+        why: 'Each group of 4 bits becomes <b>one</b> hex digit. Inside a group the places are worth <b>8, 4, 2, 1</b>.',
+      },
+      {
+        html: `Work out the decimal value of each group: ${code(g1)} = {0} and ${code(g2)} = {1}`,
+        fields: [{ answer: v1, kind: 'int', label: 'First group', size: 3 }, { answer: v2, kind: 'int', label: 'Second group', size: 3 }],
+        hint: 'Use the place values 8, 4, 2, 1 and add the ones with a 1 under them.',
+        why: `${g1} → ${sum4(g1)} = <b>${v1}</b>, and ${g2} → ${sum4(g2)} = <b>${v2}</b>.`,
+      },
+      {
+        html: `Write each value as one hex digit: ${v1} → {0} and ${v2} → {1}`,
+        fields: [{ answer: hexd(v1), kind: 'hexdigit', label: 'First hex digit', size: 2 }, { answer: hexd(v2), kind: 'hexdigit', label: 'Second hex digit', size: 2 }],
+        hint: `0–9 stay the same. Above 9 use letters: ${HEXV}.`,
+        why: `${v1} → <b>${hexd(v1)}</b> and ${v2} → <b>${hexd(v2)}</b>. So ${spaced(b)} = <b>${hexd(v1)}${hexd(v2)}</b> in hexadecimal.`,
+      },
+    ];
+    return {
+      q: `Convert ${code(spaced(b) + '<sub>2</sub>')} from binary to hexadecimal.`,
+      method: 'Method: split the bits into groups of 4, find the value of each group, then write each value as a hex digit.',
+      steps,
+    };
+  }
 
-  value = rint(1, 255);
-  render();
+  // ---------- Hex → Binary ----------
+  function h2b(n) {
+    const h = n.toString(16).toUpperCase().padStart(2, '0');
+    const d1 = parseInt(h[0], 16), d2 = parseInt(h[1], 16);
+    const sum4 = (v) => { const on = [8, 4, 2, 1].filter(p => v & p); return on.length ? on.join(' + ') : '0'; };
+    const steps = [
+      {
+        html: `Write the value of each hex digit: ${code(h[0])} = {0} and ${code(h[1])} = {1}`,
+        fields: [{ answer: d1, kind: 'int', label: 'First digit value', size: 3 }, { answer: d2, kind: 'int', label: 'Second digit value', size: 3 }],
+        hint: `Digits 0–9 keep their value. Letters: ${HEXV}.`,
+        why: `${h[0]} = <b>${d1}</b> and ${h[1]} = <b>${d2}</b>.`,
+      },
+      {
+        html: `Turn each value into exactly 4 bits (8, 4, 2, 1): ${d1} → {0} and ${d2} → {1}`,
+        fields: [{ answer: bits4(d1), kind: 'bin4', label: 'First 4 bits', size: 5 }, { answer: bits4(d2), kind: 'bin4', label: 'Second 4 bits', size: 5 }],
+        hint: 'Which of 8, 4, 2, 1 add up to the value? Put a 1 under those and 0 under the rest. Always write 4 bits, even if it starts with 0.',
+        why: `${d1} = ${sum4(d1)} → <b>${bits4(d1)}</b>, and ${d2} = ${sum4(d2)} → <b>${bits4(d2)}</b>. So ${h} = <b>${bits4(d1)} ${bits4(d2)}</b> in binary.`,
+      },
+    ];
+    return {
+      q: `Convert ${code(h + '<sub>16</sub>')} from hexadecimal to binary.`,
+      method: 'Method: each hex digit becomes exactly 4 bits. Find the value of each digit, then write it with the places 8, 4, 2, 1.',
+      steps,
+    };
+  }
+
+  const BUILD = { d2b, b2d, b2h, h2b };
+
+  function updateScore() {
+    $('score').textContent = done ? `${done} finished · ${clean} without help` : '';
+  }
+
+  function newQuestion() {
+    const type = typeSel.value === 'mix' ? pick(['d2b', 'b2d', 'b2h', 'h2b']) : typeSel.value;
+    const Q = BUILD[type](pickNumber(type));
+    $('question').innerHTML = Q.q;
+    $('method').textContent = Q.method;
+    runSteps(stepsEl, Q.steps, {
+      onCheck: (ok) => trackLesson(SLUG, ok ? 'check_correct' : 'check_wrong'),
+      onFinish: (usedHelp) => {
+        done++; if (!usedHelp) clean++;
+        updateScore();
+        const end = document.createElement('div');
+        end.className = 'gstep-end';
+        end.innerHTML = (usedHelp ? '👍 Finished. Try another one on your own.' : '🎉 Well done! You solved it without help.') +
+          ' <button type="button" class="lesson-btn primary">Next question →</button>';
+        end.querySelector('button').addEventListener('click', () => { newQuestion(); $('question').scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+        stepsEl.appendChild(end);
+        trackLesson(SLUG, 'question_finished');
+      },
+    });
+    trackLesson(SLUG, 'new_question');
+  }
+
+  $('newBtn').addEventListener('click', newQuestion);
+  typeSel.addEventListener('change', newQuestion);
+  levelSel.addEventListener('change', newQuestion);
+  newQuestion();
 })();
 viewLesson("binary-converter");
 </script>
