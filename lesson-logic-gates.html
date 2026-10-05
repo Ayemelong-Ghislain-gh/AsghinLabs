@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Logic Gates and Truth Tables — Interactive Lesson | AsghinLabs Academy</title>
+  <meta name="description" content="Tap the inputs of AND, OR, NOT, NAND, NOR and XOR gates, then fill in truth tables for gates and circuits, one column at a time. Free interactive lesson.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.asghinlabs.com/lesson-logic-gates.html">
+  <link rel="apple-touch-icon" href="images/logo-blue.jpeg">
+  <link rel="icon" href="images/logo-blue.jpeg" type="image/jpeg">
+  <meta property="og:site_name" content="AsghinLabs">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Logic Gates and Truth Tables — Interactive Lesson | AsghinLabs Academy">
+  <meta property="og:description" content="Tap the inputs of AND, OR, NOT, NAND, NOR and XOR gates, then fill in truth tables for gates and circuits, one column at a time. Free interactive lesson.">
+  <meta property="og:url" content="https://www.asghinlabs.com/lesson-logic-gates.html">
+  <meta property="og:image" content="https://www.asghinlabs.com/images/og-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Logic Gates and Truth Tables",
+  "description": "Tap the inputs of AND, OR, NOT, NAND, NOR and XOR gates, then fill in truth tables for gates and circuits, one column at a time. Free interactive lesson.",
+  "url": "https://www.asghinlabs.com/lesson-logic-gates.html",
+  "learningResourceType": "Interactive lesson",
+  "educationalLevel": "Lower Sixth",
+  "teaches": "Logic gates, logic circuits and truth tables",
+  "about": "ICT",
+  "isAccessibleForFree": true,
+  "inLanguage": "en",
+  "provider": {
+    "@type": "Organization",
+    "name": "AsghinLabs Academy",
+    "url": "https://www.asghinlabs.com/academy.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Ayemelong Selobie Ghislain"
+  }
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style-main.css">
+  <link rel="stylesheet" href="style-lesson.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK679H74R1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FK679H74R1');
+  </script>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="academy.html">
+    <img src="images/logo-blue.jpeg" alt="AsghinLabs Academy Logo" id="navLogoImg" width="42" height="42">
+    <span>ASGHINLABS <span class="logo-sub">Academy</span></span>
+  </a>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="academy.html#workbooks">Workbooks</a></li>
+    <li><a href="academy.html#resources">Free Notes</a></li>
+    <li><a href="academy.html#classes">Classes</a></li>
+    <li><a href="lessons.html">Interactive Lessons</a></li>
+    <li><a href="academy.html#enroll">Contact</a></li>
+    <li><a href="/" class="nav-back">← AsghinLabs</a></li>
+  </ul>
+</nav>
+
+<div class="lesson-wrap">
+  <a class="lesson-crumb" href="lessons.html">← All interactive lessons</a>
+  <span class="lesson-badge">🧪 ICT · Lower Sixth · Lesson 74–77</span>
+  <h1>Logic Gates and Truth Tables</h1>
+  <p class="lead">Tap the inputs to see each gate work, then fill in truth tables yourself.</p>
+
+  <div class="lesson-panel" id="explore">
+    <h2>🔌 Explore: tap the inputs</h2>
+    <div class="lesson-controls">
+      <select id="gateSel" aria-label="Gate">
+        <option>AND</option><option>OR</option><option>NOT</option><option>NAND</option><option>NOR</option><option>XOR</option>
+      </select>
+    </div>
+    <div class="gate-explore">
+      <div class="gate-io">
+        <button type="button" class="sw" id="swA">A = 0</button>
+        <button type="button" class="sw" id="swB">B = 0</button>
+      </div>
+      <div id="gSymbol"></div>
+      <div class="lamp" id="lamp">Q = 0</div>
+    </div>
+    <p class="lesson-hint" id="gRule"></p>
+    <div class="vt-wrap"><table class="vt tt" id="gTable"></table></div>
+  </div>
+
+  <div class="lesson-panel" id="learn">
+    <h2>📘 Learn it</h2>
+    <p class="lesson-hint">Four short cards. Read them, then practise below.</p>
+    <div id="walk"></div>
+  </div>
+
+  <div class="lesson-panel" id="practice">
+    <h2>✍️ Practise step by step</h2>
+    <p class="lesson-hint">One step at a time. Wrong answers turn red with a hint. Press <b>Show me</b> if you are stuck.</p>
+    <div class="lesson-controls">
+      <select id="pType" aria-label="Type"><option value="gate">One gate</option><option value="circuit">A circuit (3 inputs)</option></select>
+      <button type="button" id="pNew" class="primary">🔀 New question</button>
+      <span class="chal-score" id="pScore"></span>
+    </div>
+    <div class="q-big" id="pQuestion"></div>
+    <div id="pExtra"></div>
+    <div id="pSteps" class="gsteps"></div>
+  </div>
+
+  <div class="lesson-panel lesson-next">
+    <h3>Keep practising</h3>
+    <p>Practise more logic circuits in the ICT and Computer Science workbooks.</p>
+    <div class="lesson-next-actions">
+      <a class="next-btn primary" href="academy.html#workbooks">🛒 See the workbooks</a>
+      <a class="next-btn" href="lessons.html">More lessons →</a>
+    </div>
+    <div class="fb"><a href="https://wa.me/237682402876?text=Hi%20AsghinLabs%20Academy%2C%20I%20tried%20the%20Logic%20Gates%20and%20Truth%20Tables%20lesson%20and%20wanted%20to%20say..." target="_blank" rel="noopener">💬 Tell us what to improve on WhatsApp →</a></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links" role="navigation" aria-label="Footer">
+    <a href="/">Home</a> · <a href="/#services">Web &amp; Software</a> · <a href="academy.html">Academy</a> · <a href="academy.html#workbooks">Workbooks</a> · <a href="academy.html#resources">Free Notes</a> · <a href="lessons.html">Interactive Lessons</a> · <a href="portfolio.html">Portfolio</a> · <a href="founder.html">Founder</a>
+  </div>
+  <p class="footer-fr">Développement web, logiciels et automatisation IA à Douala, Cameroun · Cours d'informatique et fascicules GCE.</p>
+  <p>© 2026 AsghinLabs Academy. Douala, Cameroon.</p>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/237682402876?text=Hi%20AsghinLabs%20Academy%2C%20I%27d%20like%20to%20learn%20more." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+<script src="script-main.js"></script>
+<script src="lessons-common.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const OPS = {
+    AND: (a, b) => a & b, OR: (a, b) => a | b, NAND: (a, b) => 1 - (a & b), NOR: (a, b) => 1 - (a | b), XOR: (a, b) => a ^ b, NOT: (a) => 1 - a,
+  };
+  const RULE = {
+    AND: 'Output is 1 only when <b>both</b> inputs are 1.', OR: 'Output is 1 when <b>at least one</b> input is 1.',
+    NOT: 'Output is the <b>opposite</b> of the input.', NAND: 'NOT AND: the <b>opposite</b> of AND.',
+    NOR: 'NOT OR: the <b>opposite</b> of OR.', XOR: 'Output is 1 when the inputs are <b>different</b>.',
+  };
+
+  // Simple gate symbols (inputs on the left, output on the right)
+  function symbol(g) {
+    const bubble = (x) => `<circle cx="${x}" cy="40" r="6" class="g-sym"/>`;
+    const inLines = g === 'NOT' ? '<line x1="0" y1="40" x2="40" y2="40" class="g-wire"/>' :
+      '<line x1="0" y1="25" x2="45" y2="25" class="g-wire"/><line x1="0" y1="55" x2="45" y2="55" class="g-wire"/>';
+    let body = '', outX = 110;
+    if (g === 'AND' || g === 'NAND') body = '<path d="M40 10 H75 A30 30 0 0 1 75 70 H40 Z" class="g-sym"/>';
+    if (g === 'OR' || g === 'NOR' || g === 'XOR') body = '<path d="M38 10 Q58 40 38 70 Q85 70 108 40 Q85 10 38 10 Z" class="g-sym"/>' + (g === 'XOR' ? '<path d="M28 10 Q48 40 28 70" class="g-sym" fill="none"/>' : '');
+    if (g === 'NOT') { body = '<path d="M40 12 L95 40 L40 68 Z" class="g-sym"/>'; outX = 95; }
+    const neg = g === 'NAND' || g === 'NOR' || g === 'NOT';
+    if (g === 'AND' || g === 'NAND') outX = 105;
+    const end = neg ? outX + 12 : outX;
+    return `<svg class="gate-svg" viewBox="0 0 160 80" aria-label="${g} gate">${inLines}${body}${neg ? bubble(outX + 6) : ''}<line x1="${end}" y1="40" x2="160" y2="40" class="g-wire"/></svg>`;
+  }
+
+  runWalkthrough($('walk'), [
+    {
+      title: '1 and 0',
+      html: `<p>In a circuit, every wire is either <b>1</b> (ON, true) or <b>0</b> (OFF, false).</p>
+             <p>A logic gate takes inputs (A, B) and gives one output (Q).</p>
+             <p class="wt-key">A truth table lists the output for every possible input.</p>`,
+    },
+    {
+      title: 'AND, OR, NOT',
+      html: `<ul><li><b>AND</b>: 1 only if A <b>and</b> B are 1</li><li><b>OR</b>: 1 if A <b>or</b> B (or both) is 1</li><li><b>NOT</b>: flips the input (1 → 0, 0 → 1)</li></ul>
+             <p class="wt-key">Try them in the explorer above.</p>`,
+    },
+    {
+      title: 'NAND, NOR, XOR',
+      html: `<ul><li><b>NAND</b> = NOT AND: the AND answer, flipped</li><li><b>NOR</b> = NOT OR: the OR answer, flipped</li><li><b>XOR</b>: 1 when A and B are <b>different</b></li></ul>
+             <p class="wt-key">The small circle on a symbol means "NOT".</p>`,
+    },
+    {
+      title: 'Circuits: one column at a time',
+      html: `<p>Q = (A AND B) OR C</p>
+             <p>1. Make a column for <b>A AND B</b></p><p>2. Then OR that column with C to get Q</p>
+             <p class="wt-key">With 3 inputs there are 8 rows: 000, 001, 010 … 111.</p>`,
+    },
+  ]);
+
+  // ---------- Explorer ----------
+  let gate = 'AND', A = 0, B = 0;
+  function drawExplorer() {
+    const one = gate === 'NOT';
+    const q = one ? OPS.NOT(A) : OPS[gate](A, B);
+    $('gSymbol').innerHTML = symbol(gate);
+    $('gRule').innerHTML = RULE[gate];
+    $('swA').textContent = 'A = ' + A; $('swA').classList.toggle('on', !!A);
+    $('swB').textContent = 'B = ' + B; $('swB').classList.toggle('on', !!B); $('swB').hidden = one;
+    $('lamp').textContent = 'Q = ' + q; $('lamp').classList.toggle('on', !!q);
+    const rows = one ? [[0], [1]] : [[0, 0], [0, 1], [1, 0], [1, 1]];
+    $('gTable').innerHTML = `<tr><th>A</th>${one ? '' : '<th>B</th>'}<th>Q</th></tr>` + rows.map(r => {
+      const out = one ? OPS.NOT(r[0]) : OPS[gate](r[0], r[1]);
+      const cur = r[0] === A && (one || r[1] === B);
+      return `<tr class="${cur ? 'cur' : ''}"><td>${r[0]}</td>${one ? '' : `<td>${r[1]}</td>`}<td><b>${out}</b></td></tr>`;
+    }).join('');
+  }
+  $('gateSel').addEventListener('change', (e) => { gate = e.target.value; drawExplorer(); trackLesson('logic-gates', 'interact'); });
+  $('swA').addEventListener('click', () => { A = 1 - A; drawExplorer(); });
+  $('swB').addEventListener('click', () => { B = 1 - B; drawExplorer(); });
+  drawExplorer();
+
+  // ---------- Practice ----------
+  const vtable = (head, rows, inputCol) => '<div class="vt-wrap"><table class="vt tt"><tr>' + head.map(h => `<th>${h}</th>`).join('') + '</tr>' +
+    rows.map((r, i) => '<tr>' + r.map(v => `<td>${v}</td>`).join('') + (inputCol ? `<td>{${i}}</td>` : '') + '</tr>').join('') + '</table></div>';
+
+  function gateQ() {
+    const g = pick(['AND', 'OR', 'NAND', 'NOR', 'XOR', 'NOT']);
+    const one = g === 'NOT';
+    const rows = one ? [[0], [1]] : [[0, 0], [0, 1], [1, 0], [1, 1]];
+    const out = rows.map(r => (one ? OPS.NOT(r[0]) : OPS[g](r[0], r[1])));
+    return {
+      q: `Complete the truth table for a <b>${g}</b> gate.${symbol(g)}`,
+      steps: [
+        { html: 'Q for each row:' + vtable(one ? ['A', 'Q'] : ['A', 'B', 'Q'], rows, true),
+          fields: out.map(o => ({ answer: o, kind: 'int', size: 1, label: 'Q' })),
+          hint: RULE[g].replace(/<\/?b>/g, ''),
+          why: `${RULE[g]} So Q = ${out.join(', ')} going down.` },
+      ],
+    };
+  }
+
+  function circuitQ() {
+    const op1 = pick(['AND', 'OR', 'NAND', 'NOR', 'XOR']), op2 = pick(['AND', 'OR']);
+    const notC = Math.random() < 0.6;
+    const rows = []; for (let n = 0; n < 8; n++) rows.push([(n >> 2) & 1, (n >> 1) & 1, n & 1]);
+    const X = rows.map(([a, b]) => OPS[op1](a, b));
+    const Y = rows.map(([, , c]) => (notC ? 1 - c : c));
+    const Q = rows.map((r, i) => OPS[op2](X[i], Y[i]));
+    const xName = `A ${op1} B`, yName = notC ? 'NOT C' : 'C';
+    const steps = [
+      { html: `Step by step. First the column <b>${xName}</b> (look only at A and B):` + vtable(['A', 'B', 'C', xName], rows, true),
+        fields: X.map(v => ({ answer: v, kind: 'int', size: 1 })),
+        hint: RULE[op1].replace(/<\/?b>/g, '') + ' Ignore C for now.',
+        why: `${xName} = ${X.join(', ')}` },
+    ];
+    if (notC) steps.push({
+      html: 'Now the column <b>NOT C</b> (flip C):' + vtable(['A', 'B', 'C', xName, 'NOT C'], rows.map((r, i) => [...r, X[i]]), true),
+      fields: Y.map(v => ({ answer: v, kind: 'int', size: 1 })),
+      hint: 'NOT turns 1 into 0 and 0 into 1.', why: `NOT C = ${Y.join(', ')}` });
+    steps.push({
+      html: `Finally Q = (${xName}) <b>${op2}</b> ${yName}:` + vtable(['A', 'B', 'C', xName, yName, 'Q'], rows.map((r, i) => [...r, X[i], Y[i]]), true),
+      fields: Q.map(v => ({ answer: v, kind: 'int', size: 1 })),
+      hint: `${RULE[op2].replace(/<\/?b>/g, '')} Use the two columns just before Q.`,
+      why: `Q = ${Q.join(', ')}` });
+    return { q: `Complete the truth table for <span class="g-code">Q = (A ${op1} B) ${op2} ${yName}</span>`, steps };
+  }
+
+  const next = practice({ slug: 'logic-gates', questionEl: $('pQuestion'), stepsEl: $('pSteps'), scoreEl: $('pScore'),
+    build: () => ($('pType').value === 'gate' ? gateQ() : circuitQ()) });
+  $('pNew').addEventListener('click', next);
+  $('pType').addEventListener('change', next);
+})();
+
+viewLesson("logic-gates");
+</script>
+</body>
+</html>

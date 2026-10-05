@@ -35,6 +35,7 @@ function polyStr(coefs) {
 // Same event name as the sorting lesson, so Analytics groups them together
 function viewLesson(slug) {
   if (typeof gtag === 'function') gtag('event', 'view_interactive_lesson', { lesson: slug });
+  feedbackBox(slug);
 }
 
 // Tracks the main interactions: 'check_correct', 'check_wrong', 'new_question' ...
@@ -78,8 +79,15 @@ function runSteps(container, steps, opts) {
       case 'hexdigit':
         if (/^\d+$/.test(v) && Number(v) > 9 && Number(v) === parseInt(a, 16)) return { ok: false, note: 'Right value, but in hex ' + v + ' is written as the single digit <b>' + a + '</b>.' };
         return v.toUpperCase() === String(a).toUpperCase() ? { ok: true } : { ok: false };
+      case 'num': {
+        const n = Number(v.replace(',', '.'));
+        if (!/^-?\d*[.,]?\d+$/.test(v)) return { ok: false, note: 'Type a number, e.g. 7.3' };
+        return Math.abs(n - Number(a)) <= (field.tol == null ? 0.05 : field.tol) ? { ok: true } : { ok: false };
+      }
+      case 'text':
+        return v.toUpperCase().replace(/^=/, '') === clean(a).toUpperCase().replace(/^=/, '') ? { ok: true } : { ok: false };
       case 'choice':
-        return v.toLowerCase() === String(a).toLowerCase().replace(/\s+/g, '') ? { ok: true } : { ok: false };
+        return v.toLowerCase() === clean(a).toLowerCase() ? { ok: true } : { ok: false };
       case 'hex':
         if (!/^[0-9a-fA-F]+$/.test(v)) return { ok: false, note: 'Hex digits are 0–9 and A–F only.' };
         return parseInt(v, 16) === parseInt(a, 16) ? { ok: true } : { ok: false };
@@ -199,4 +207,175 @@ function practiceEnd(stepsEl, usedHelp, onNext) {
     ' <button type="button" class="lesson-btn primary">Next question →</button>';
   end.querySelector('button').addEventListener('click', onNext);
   stepsEl.appendChild(end);
+}
+
+
+/* =====================================================================
+   "How was this lesson?" box at the end of every lesson.
+   Sends to /api/feedback; the teacher reads it on feedback-dashboard.html.
+   ===================================================================== */
+function feedbackBox(slug) {
+  shareBar();
+  if (document.getElementById('fbBox')) return;
+  const wrap = document.querySelector('.lesson-wrap');
+  if (!wrap) return;
+  const box = document.createElement('div');
+  box.className = 'lesson-panel fb-panel';
+  box.id = 'fbBox';
+  const levels = ['Form 1', 'Form 2', 'Form 3', 'Form 4', 'Form 5', 'Lower Sixth', 'Upper Sixth', 'Other'];
+  box.innerHTML = `
+    <h2>💬 How was this lesson?</h2>
+    <p class="lesson-hint">Tell your teacher. Every message is read and helps make the lessons better.</p>
+    <form class="fb-form" novalidate>
+      <p class="fb-label">Did you understand it?</p>
+      <div class="fb-choices" role="radiogroup" aria-label="Did you understand it?">
+        <button type="button" class="fb-choice" data-v="yes" role="radio" aria-checked="false">😀 Yes</button>
+        <button type="button" class="fb-choice" data-v="partly" role="radio" aria-checked="false">🙂 A little</button>
+        <button type="button" class="fb-choice" data-v="no" role="radio" aria-checked="false">😕 Not yet</button>
+      </div>
+      <label class="fb-field">What was hard or confusing? <span>(optional)</span>
+        <textarea name="hard" rows="2" maxlength="600" placeholder="e.g. I don't understand the minus signs"></textarea></label>
+      <label class="fb-field">Do you have a question? <span>(optional)</span>
+        <textarea name="question" rows="2" maxlength="600" placeholder="Ask anything about this lesson"></textarea></label>
+      <div class="fb-row">
+        <label class="fb-field">First name <span>(optional)</span><input name="name" maxlength="40" autocomplete="given-name"></label>
+        <label class="fb-field">Class <span>(optional)</span><select name="level"><option value="">—</option>${levels.map(l => `<option>${l}</option>`).join('')}</select></label>
+      </div>
+      <input name="website" class="fb-trap" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button type="submit" class="lesson-btn primary fb-send">Send to my teacher</button>
+      <div class="fb-msg" aria-live="polite"></div>
+    </form>`;
+  const next = wrap.querySelector('.lesson-next, .lesson-feedback');
+  if (next) wrap.insertBefore(box, next); else wrap.appendChild(box);
+
+  const form = box.querySelector('form'), msg = box.querySelector('.fb-msg'), send = box.querySelector('.fb-send');
+  let understood = '';
+  box.querySelectorAll('.fb-choice').forEach(b => b.addEventListener('click', () => {
+    understood = b.dataset.v; msg.textContent = '';
+    box.querySelectorAll('.fb-choice').forEach(x => { const on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-checked', on); });
+  }));
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const f = new FormData(form);
+    const data = {
+      lesson: slug, understood,
+      hard: (f.get('hard') || '').trim(), question: (f.get('question') || '').trim(),
+      name: (f.get('name') || '').trim(), level: f.get('level') || '', website: f.get('website') || '',
+    };
+    if (!data.understood && !data.hard && !data.question) {
+      msg.className = 'fb-msg bad'; msg.textContent = 'Choose Yes, A little or Not yet, or write something first.'; return;
+    }
+    send.disabled = true; msg.className = 'fb-msg'; msg.textContent = 'Sending…';
+    const wa = 'https://wa.me/237682402876?text=' + encodeURIComponent(
+      `Lesson: ${document.title.split('—')[0].trim()}\nUnderstood: ${({ yes: 'Yes', partly: 'A little', no: 'Not yet' })[understood] || '-'}` +
+      (data.hard ? `\nHard: ${data.hard}` : '') + (data.question ? `\nQuestion: ${data.question}` : ''));
+    try {
+      const r = await fetch('/api/feedback', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+      if (!r.ok) throw new Error(r.status);
+      form.innerHTML = `<p class="fb-thanks">✅ Thank you${data.name ? ', ' + data.name.replace(/[<>&"]/g, '') : ''}! Your teacher will read this.</p>` +
+        (data.question ? `<p class="lesson-hint">Need an answer quickly? <a class="inline-link" href="${wa}" target="_blank" rel="noopener">Ask on WhatsApp →</a></p>` : '') +
+        (understood === 'no' || understood === 'partly' ? '<p class="lesson-hint">Tip: read the short cards again, then try one more question with <b>Show me</b> on the hard step.</p>' : '');
+      if (typeof gtag === 'function') gtag('event', 'lesson_feedback', { lesson: slug, understood: understood || 'none' });
+    } catch (err) {
+      send.disabled = false;
+      msg.className = 'fb-msg bad';
+      msg.innerHTML = `Sorry, it didn't send. <a class="inline-link" href="${wa}" target="_blank" rel="noopener">Send it on WhatsApp instead →</a>`;
+    }
+  });
+}
+
+
+// Shuffle a copy of a list (for multiple-choice options)
+function shuffle(list) {
+  const a = list.slice();
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+
+// Standard practice runner: question text + steps + score + "next question"
+function practice(cfg) {
+  // cfg: { slug, questionEl, stepsEl, scoreEl, build: () => ({ q, steps, onStep? }) , afterRender? }
+  let done = 0, clean = 0;
+  function next() {
+    const Q = cfg.build();
+    cfg.questionEl.innerHTML = Q.q;
+    if (Q.before && cfg.extraEl) cfg.extraEl.innerHTML = Q.before; else if (cfg.extraEl) cfg.extraEl.innerHTML = '';
+    runSteps(cfg.stepsEl, Q.steps, {
+      onCheck: (ok) => trackLesson(cfg.slug, ok ? 'check_correct' : 'check_wrong'),
+      onStep: Q.onStep,
+      onFinish: (usedHelp) => {
+        done++; if (!usedHelp) clean++;
+        if (cfg.scoreEl) cfg.scoreEl.textContent = `${done} finished · ${clean} without help`;
+        practiceEnd(cfg.stepsEl, usedHelp, () => { next(); cfg.questionEl.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+        trackLesson(cfg.slug, 'question_finished');
+      },
+    });
+    if (Q.after) Q.after();
+  }
+  next();
+  return next;
+}
+
+
+/* =====================================================================
+   Share a lesson: WhatsApp, copy link, or the phone's own share menu.
+   shareLesson(url, title, button) is also used by the cards on lessons.html.
+   ===================================================================== */
+function lessonUrl() {
+  const c = document.querySelector('link[rel="canonical"]');
+  return c ? c.href : location.origin + location.pathname;
+}
+
+function copyText(text) {
+  if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+  return new Promise((resolve, reject) => {
+    const t = document.createElement('textarea');
+    t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select();
+    try { document.execCommand('copy') ? resolve() : reject(); } catch (e) { reject(e); }
+    t.remove();
+  });
+}
+
+function shareButtons(url, title) {
+  const text = `Try this free lesson: ${title} ${url}`;
+  const wrap = document.createElement('div');
+  wrap.className = 'share-bar';
+  wrap.innerHTML =
+    `<a class="share-btn wa" href="https://wa.me/?text=${encodeURIComponent(text)}" target="_blank" rel="noopener">💬 Share on WhatsApp</a>` +
+    '<button type="button" class="share-btn copy">🔗 Copy link</button>' +
+    (navigator.share ? '<button type="button" class="share-btn more">📤 More</button>' : '') +
+    '<span class="share-msg" aria-live="polite"></span>';
+  const msg = wrap.querySelector('.share-msg');
+  wrap.querySelector('.copy').addEventListener('click', () => {
+    copyText(url).then(() => { msg.textContent = '✅ Link copied. Paste it to your classmates.'; },
+                       () => { msg.innerHTML = `Copy this link: <input class="share-url" value="${url}" readonly>`; const i = msg.querySelector('input'); i.focus(); i.select(); });
+    if (typeof gtag === 'function') gtag('event', 'share_lesson', { method: 'copy', url });
+  });
+  wrap.querySelector('.wa').addEventListener('click', () => { if (typeof gtag === 'function') gtag('event', 'share_lesson', { method: 'whatsapp', url }); });
+  const more = wrap.querySelector('.more');
+  if (more) more.addEventListener('click', () => {
+    navigator.share({ title, text: `Try this free lesson: ${title}`, url }).catch(() => {});
+    if (typeof gtag === 'function') gtag('event', 'share_lesson', { method: 'native', url });
+  });
+  return wrap;
+}
+
+function shareBar() {
+  const wrap = document.querySelector('.lesson-wrap');
+  if (!wrap || wrap.querySelector('.share-bar')) return;
+  const title = (document.querySelector('.lesson-wrap h1') || {}).textContent || document.title;
+  const lead = wrap.querySelector('p.lead') || wrap.querySelector('h1');
+  const top = shareButtons(lessonUrl(), title.trim());
+  top.classList.add('share-top');
+  lead.insertAdjacentElement('afterend', top);
+  const next = wrap.querySelector('.lesson-next, .lesson-feedback');
+  if (next) {
+    const box = document.createElement('div');
+    box.className = 'share-end';
+    box.innerHTML = '<p class="lesson-hint">Found this useful? Send it to a classmate:</p>';
+    box.appendChild(shareButtons(lessonUrl(), title.trim()));
+    next.insertBefore(box, next.querySelector('.fb') || null);
+  }
 }

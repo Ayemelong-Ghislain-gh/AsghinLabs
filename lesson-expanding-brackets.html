@@ -95,13 +95,13 @@
 
     <h2>✍️ Practise: expand step by step</h2>
     <p class="q-big" id="question"></p>
-    <p class="lesson-hint">New to this? Read the <a href="#learn" class="inline-link">Learn it cards</a> below first. Then work through the steps below. Type a number in each box (use a minus sign for negatives), press <b>Check</b>, and you'll be told what is right and why. Stuck? Press <b>Show me</b>.</p>
+    <p class="lesson-hint">New to this? Read the <a href="#learn" class="inline-link">Learn it cards</a> below first. Then type a number in each box (use − for negatives) and press <b>Check</b>. Stuck? Press <b>Show me</b>.</p>
     <div id="steps" class="gsteps"></div>
   </div>
 
   <div class="lesson-panel" id="learn">
     <h2>📘 Learn it: why the grid method works</h2>
-    <p class="lesson-hint">Stuck on a step? Go through these cards. Each one explains one idea with an example.</p>
+    <p class="lesson-hint">Stuck? Read these four short cards.</p>
     <div id="walk"></div>
   </div>
 
@@ -222,51 +222,30 @@
   const hl = (t, c) => `<span class="hl hl-${c}">${t}</span>`;
   runWalkthrough(document.getElementById('walk'), [
     {
-      title: 'What "expand" means',
-      html: `<p><b>(x + 3)(x + 2)</b> means "(x + 3) multiplied by (x + 2)". Expanding means writing it <b>without brackets</b>.</p>
-             <p>The rule: <b>every term</b> in the first bracket multiplies <b>every term</b> in the second bracket.</p>
-             <p class="wt-key">2 terms × 2 terms = 4 multiplications. The grid makes sure you don't miss any.</p>`,
+      title: 'Multiply every term',
+      html: `<p>Every term in the first bracket × every term in the second.</p>
+             <table class="gridm wt-grid"><tr><th>×</th><th>x</th><th>+ 2</th></tr>
+             <tr><th>x</th><td>x²</td><td>2x</td></tr>
+             <tr><th>+ 3</th><td>3x</td><td>6</td></tr></table>
+             <p class="wt-key">(x + 3)(x + 2) → x² + 2x + 3x + 6</p>`,
     },
     {
-      title: 'The grid is a rectangle cut into four parts',
-      html: `<p>Think of a rectangle with sides ${hl('x + 3', 'a')} and ${hl('x + 2', 'b')}. Cut it into four boxes:</p>
-             <table class="gridm wt-grid"><tr><th>×</th><th>${hl('x', 'b')}</th><th>${hl('+ 2', 'b')}</th></tr>
-             <tr><th>${hl('x', 'a')}</th><td>x²</td><td>2x</td></tr>
-             <tr><th>${hl('+ 3', 'a')}</th><td>3x</td><td>6</td></tr></table>
-             <p>The total area is the sum of the boxes: x² + 2x + 3x + 6.</p>`,
-    },
-    {
-      title: 'Multiplying terms with x',
-      html: `<ul>
-               <li><b>x × x = x²</b> (x squared, not 2x).</li>
-               <li><b>2x × 3x</b>: multiply the numbers (2 × 3 = 6) and the x's (x × x = x²) → <b>6x²</b>.</li>
-               <li><b>x × 5 = 5x</b>, and <b>3 × 4 = 12</b>.</li>
-             </ul>
-             <p class="wt-key">Numbers multiply with numbers, x's multiply with x's.</p>`,
-    },
-    {
-      title: 'The sign rules',
-      html: `<p>The sign belongs to the number after it: in (x − 4), the second term is <b>−4</b>.</p>
-             <ul>
-               <li>+ × + = <b>+</b> &nbsp; e.g. 3 × 2 = 6</li>
-               <li>− × − = <b>+</b> &nbsp; e.g. (−3) × (−4) = 12</li>
-               <li>+ × − = <b>−</b> &nbsp; e.g. 3 × (−4) = −12, and x × (−4) = −4x</li>
-             </ul>
-             <p class="wt-key">Most mistakes in expanding are sign mistakes. Check every box's sign.</p>`,
+      title: 'Signs',
+      html: `<ul><li>+ × + = +</li><li>− × − = +</li><li>+ × − = −</li></ul>
+             <p>Example: x × (−4) = −4x and 3 × (−4) = −12</p>
+             <p class="wt-key">Most mistakes are sign mistakes.</p>`,
     },
     {
       title: 'Collect like terms',
-      html: `<p>After the grid, add the boxes. The two <b>x</b> boxes are "like terms", so combine them:</p>
-             <p>(x + 3)(x − 4) → x² − 4x + 3x − 12</p>
-             <p>−4x + 3x = <b>−x</b> → answer <b>x² − x − 12</b></p>
-             <p class="wt-key">x² terms, x terms and numbers are different kinds. Only add things of the same kind.</p>`,
+      html: `<p>Add the two x boxes together.</p>
+             <p>x² − 4x + 3x − 12</p>
+             <p class="wt-key">−4x + 3x = −x → x² − x − 12</p>`,
     },
     {
       title: 'Check with x = 1',
-      html: `<p>Pick an easy number, x = 1, and put it into the question and into your answer:</p>
-             <p>(1 + 3)(1 − 4) = 4 × (−3) = <b>−12</b></p>
-             <p>1² − 1 − 12 = <b>−12</b> ✓</p>
-             <p class="wt-key">Same result → your expansion is right. Different → look for a sign mistake.</p>`,
+      html: `<p>Put x = 1 into the question and into your answer.</p>
+             <p>(1 + 3)(1 − 4) = −12 &nbsp;and&nbsp; 1 − 1 − 12 = −12</p>
+             <p class="wt-key">Same number → correct ✓</p>`,
     },
   ]);
 })();

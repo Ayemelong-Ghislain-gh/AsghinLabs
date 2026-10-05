@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson Feedback | AsghinLabs Academy</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="images/logo-blue.jpeg" type="image/jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style-main.css">
+  <link rel="stylesheet" href="style-lesson.css">
+  <style>
+    .dash { max-width: 980px; margin: 0 auto; padding: 40px 5% 80px; }
+    .dash h1 { font-size: 1.8rem; margin: 0 0 6px; }
+    .dash .sub { color: var(--text-muted); margin: 0 0 24px; }
+    .login { max-width: 380px; }
+    .login .row { display: flex; gap: 10px; }
+    .summary { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; margin: 0 0 22px; }
+    .sum-card { padding: 16px; border-radius: 16px; background: var(--card-bg); border: 1px solid rgba(255,255,255,0.08); cursor: pointer; text-align: left; font-family: inherit; color: inherit; }
+    .sum-card.active { border-color: var(--brand-primary); }
+    .sum-card h3 { margin: 0 0 8px; font-size: 0.95rem; }
+    .bar { display: flex; height: 8px; border-radius: 6px; overflow: hidden; background: rgba(255,255,255,0.06); margin: 6px 0; }
+    .bar i { display: block; height: 100%; }
+    .b-yes { background: #2ee68b; } .b-partly { background: #ffb648; } .b-no { background: #ff6b6b; }
+    .sum-nums { font-size: 0.8rem; color: var(--text-muted); }
+    .filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 16px; }
+    .filters select, .filters label { font-family: inherit; font-size: 0.88rem; color: var(--text-light); }
+    .filters select { padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); }
+    .filters select option { background: #050816; }
+    .count { margin-left: auto; color: var(--text-muted); font-size: 0.85rem; }
+    .item { padding: 16px 18px; border-radius: 16px; background: var(--card-bg); border: 1px solid rgba(255,255,255,0.08); margin-bottom: 10px; }
+    .item.has-q { border-left: 3px solid var(--brand-primary); }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px; }
+    .pill { padding: 3px 10px; border-radius: 20px; font-weight: 700; font-size: 0.75rem; }
+    .p-yes { background: rgba(46,230,139,0.15); color: #7ff0b8; } .p-partly { background: rgba(255,182,72,0.15); color: #ffcf85; } .p-no { background: rgba(255,107,107,0.15); color: #ff8f8f; }
+    .p-lesson { border: 1px solid rgba(255,255,255,0.18); color: var(--text-light); }
+    .item p { margin: 4px 0; line-height: 1.6; color: var(--text-light); }
+    .item p b { color: var(--text-muted); font-weight: 700; }
+    .empty { color: var(--text-muted); padding: 30px 0; text-align: center; }
+  </style>
+</head>
+<body>
+<div class="dash">
+  <h1>💬 Lesson feedback</h1>
+  <p class="sub">What students say after each interactive lesson. Private page, not shown on Google.</p>
+
+  <div class="lesson-panel login" id="login">
+    <label class="fb-field">Dashboard password
+      <div class="row"><input type="password" id="key" autocomplete="current-password"><button type="button" class="lesson-btn primary" id="go">Open</button></div>
+    </label>
+    <div class="fb-msg" id="loginMsg"></div>
+  </div>
+
+  <div id="main" hidden>
+    <div class="summary" id="summary"></div>
+    <div class="filters">
+      <select id="fLesson" aria-label="Lesson"><option value="">All lessons</option></select>
+      <select id="fUnd" aria-label="Understood">
+        <option value="">All answers</option><option value="no">😕 Not yet</option><option value="partly">🙂 A little</option><option value="yes">😀 Yes</option>
+      </select>
+      <label><input type="checkbox" id="fQ"> Only with a question</label>
+      <button type="button" class="lesson-btn" id="refresh">↻ Refresh</button>
+      <span class="count" id="count"></span>
+    </div>
+    <div id="list"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const UND = { yes: '😀 Yes', partly: '🙂 A little', no: '😕 Not yet' };
+  const nice = (slug) => slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  let items = [], key = '';
+  try { key = sessionStorage.getItem('fbKey') || ''; } catch (e) {}
+
+  async function load() {
+    $('loginMsg').className = 'fb-msg'; $('loginMsg').textContent = 'Loading…';
+    try {
+      const r = await fetch('/api/feedback', { headers: { 'x-admin-key': key }, cache: 'no-store' });
+      const data = await r.json().catch(() => ({}));
+      if (r.status === 401) throw new Error('Wrong password.');
+      if (r.status === 503) throw new Error('The feedback database is not connected yet. Follow the setup steps.');
+      if (!r.ok) throw new Error('Could not load feedback (' + r.status + ').');
+      items = data.items || [];
+      try { sessionStorage.setItem('fbKey', key); } catch (e) {}
+      $('login').hidden = true; $('main').hidden = false;
+      const lessons = [...new Set(items.map(i => i.lesson))].sort();
+      const cur = $('fLesson').value;
+      $('fLesson').innerHTML = '<option value="">All lessons</option>' + lessons.map(l => `<option value="${esc(l)}">${esc(nice(l))}</option>`).join('');
+      $('fLesson').value = lessons.includes(cur) ? cur : '';
+      render();
+    } catch (err) {
+      $('login').hidden = false; $('main').hidden = true;
+      $('loginMsg').className = 'fb-msg bad'; $('loginMsg').textContent = err.message;
+    }
+  }
+
+  function render() {
+    const by = {};
+    items.forEach(i => { const s = by[i.lesson] = by[i.lesson] || { yes: 0, partly: 0, no: 0, q: 0, n: 0 }; s.n++; if (s[i.understood] !== undefined) s[i.understood]++; if (i.question) s.q++; });
+    const sel = $('fLesson').value;
+    $('summary').innerHTML = Object.keys(by).sort().map(l => {
+      const s = by[l], t = s.yes + s.partly + s.no || 1;
+      return `<button type="button" class="sum-card${sel === l ? ' active' : ''}" data-l="${esc(l)}"><h3>${esc(nice(l))}</h3>
+        <div class="bar"><i class="b-yes" style="width:${s.yes / t * 100}%"></i><i class="b-partly" style="width:${s.partly / t * 100}%"></i><i class="b-no" style="width:${s.no / t * 100}%"></i></div>
+        <div class="sum-nums">😀 ${s.yes} · 🙂 ${s.partly} · 😕 ${s.no} · ❓ ${s.q} question${s.q === 1 ? '' : 's'}</div></button>`;
+    }).join('') || '';
+    const u = $('fUnd').value, onlyQ = $('fQ').checked;
+    const shown = items.filter(i => (!sel || i.lesson === sel) && (!u || i.understood === u) && (!onlyQ || i.question));
+    $('count').textContent = `${shown.length} of ${items.length}`;
+    $('list').innerHTML = shown.length ? shown.map(i => `
+      <div class="item${i.question ? ' has-q' : ''}">
+        <div class="meta"><span class="pill p-lesson">${esc(nice(i.lesson))}</span>
+          ${i.understood ? `<span class="pill p-${esc(i.understood)}">${UND[i.understood] || ''}</span>` : ''}
+          <span>${esc([i.name, i.level].filter(Boolean).join(' · ') || 'Anonymous')}</span>
+          <span>· ${new Date(i.at).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}</span></div>
+        ${i.hard ? `<p><b>Hard:</b> ${esc(i.hard)}</p>` : ''}
+        ${i.question ? `<p><b>Question:</b> ${esc(i.question)}</p>` : ''}
+      </div>`).join('') : '<p class="empty">No feedback here yet.</p>';
+  }
+
+  $('summary').addEventListener('click', (e) => { const c = e.target.closest('.sum-card'); if (!c) return; $('fLesson').value = $('fLesson').value === c.dataset.l ? '' : c.dataset.l; render(); });
+  ['fLesson', 'fUnd', 'fQ'].forEach(id => $(id).addEventListener('change', render));
+  $('refresh').addEventListener('click', load);
+  $('go').addEventListener('click', () => { key = $('key').value.trim(); if (key) load(); });
+  $('key').addEventListener('keydown', (e) => { if (e.key === 'Enter') $('go').click(); });
+  if (key) load();
+})();
+</script>
+</body>
+</html>

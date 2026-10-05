@@ -81,7 +81,7 @@
   <a class="lesson-crumb" href="lessons.html">← All interactive lessons</a>
   <span class="lesson-badge">🧪 Interactive Lesson · Mathematics · O Level</span>
   <h1>Factorising Quadratics</h1>
-  <p class="lead">Factorising is expanding in reverse. Start with a quick try below, learn exactly how to find the two numbers, then practise the full working yourself.</p>
+  <p class="lead">Factorising is expanding backwards. Try it, read the short cards, then practise step by step.</p>
 
   <div class="lesson-panel">
     <h2>⚡ Quick practice: tap the right pair</h2>
@@ -104,13 +104,13 @@
 
   <div class="lesson-panel" id="learn">
     <h2>📘 Learn it: how to find the two numbers</h2>
-    <p class="lesson-hint">Go through these cards first. Each one explains one idea with an example.</p>
+    <p class="lesson-hint">Four short cards. Read them, then try it yourself below.</p>
     <div id="walk"></div>
   </div>
 
   <div class="lesson-panel" id="practice">
     <h2>✍️ Try it yourself: full working</h2>
-    <p class="lesson-hint">Now you do every step: find b and c, decide the signs, list the factor pairs, pick the right pair, write the brackets and check. Wrong boxes turn red with a hint. Press <b>Show me</b> only if you are stuck.</p>
+    <p class="lesson-hint">Do one step at a time. Wrong answers turn red with a hint. Press <b>Show me</b> if you are stuck.</p>
     <div class="lesson-controls">
       <select id="pLevel" aria-label="Practice level">
         <option value="easy">Easier: x² + bx + c</option>
@@ -279,63 +279,31 @@
   // ---------- Learn it ----------
   runWalkthrough($('walk'), [
     {
-      title: 'Factorising is expanding backwards',
-      html: `<p>When you expand <b>(x + 2)(x + 3)</b> you get <b>x² + 5x + 6</b>.</p>
-             <p>Factorising goes the other way: you start with <b>x² + 5x + 6</b> and you must find the brackets <b>(x + ?)(x + ?)</b>.</p>
-             <p class="wt-key">So the whole job is to find the two missing numbers.</p>`,
+      title: 'The rule',
+      html: `<p>To factorise <b>x² + bx + c</b>, find <b>two numbers</b> that:</p>
+             <ul><li><b>multiply</b> to give <b>c</b></li><li><b>add</b> to give <b>b</b></li></ul>
+             <p>Example: x² + 7x + 12 → 3 × 4 = 12 and 3 + 4 = 7</p>
+             <p class="wt-key">Answer: (x + 3)(x + 4)</p>`,
     },
     {
-      title: 'Where do the two numbers show up?',
-      html: `<p>Expand (x + ${hl('2', 'a')})(x + ${hl('3', 'b')}) with the grid:</p>
-             <table class="gridm wt-grid"><tr><th>×</th><th>x</th><th>+ ${hl('3', 'b')}</th></tr>
-             <tr><th>x</th><td>x²</td><td>${hl('3', 'b')}x</td></tr>
-             <tr><th>+ ${hl('2', 'a')}</th><td>${hl('2', 'a')}x</td><td>${hl('2', 'a')} × ${hl('3', 'b')} = 6</td></tr></table>
-             <p>The x terms are ${hl('2', 'a')}x + ${hl('3', 'b')}x = <b>5x</b> → the numbers <b>ADD</b> to give the middle number <b>5</b>.</p>
-             <p>The last box is ${hl('2', 'a')} × ${hl('3', 'b')} → the numbers <b>MULTIPLY</b> to give the last number <b>6</b>.</p>
-             <p class="wt-key">Rule: in x² + bx + c, look for two numbers that multiply to c and add to b.</p>`,
+      title: 'How to find the two numbers',
+      html: `<p>Write the pairs that multiply to c, then add each pair.</p>
+             <p>For x² + 7x + 12, the pairs of 12 are:</p>
+             <div class="wt-pairs"><span class="no">1 and 12 → 13</span><span class="no">2 and 6 → 8</span><span class="yes">3 and 4 → 7 ✓</span></div>
+             <p class="wt-key">Pick the pair that adds to b.</p>`,
     },
     {
-      title: 'Step 1: list the pairs that multiply to c',
-      html: `<p>For <b>x² + 7x + 12</b>, c = 12. Write every pair of whole numbers that multiply to 12. Start from 1 and go up so you don't miss any:</p>
-             <div class="wt-pairs"><span>1 × 12</span><span>2 × 6</span><span>3 × 4</span></div>
-             <p>Stop when the numbers start repeating (4 × 3 is the same as 3 × 4).</p>
-             <p class="wt-key">Tip: try 1, 2, 3, 4 … and ask "does it divide c exactly?"</p>`,
+      title: 'Minus signs',
+      html: `<ul><li><b>c is +</b> → both numbers have the sign of b.<br>x² − 5x + 6 → −2 and −3</li>
+             <li><b>c is −</b> → one number is +, one is −.<br>x² − x − 6 → −3 and +2</li></ul>
+             <p class="wt-key">Check: (x − 3)(x + 2) = x² − x − 6 ✓</p>`,
     },
     {
-      title: 'Step 2: test which pair adds to b',
-      html: `<p>We need the pair that adds to <b>b = 7</b>:</p>
-             <div class="wt-pairs"><span class="no">1 + 12 = 13 ✗</span><span class="no">2 + 6 = 8 ✗</span><span class="yes">3 + 4 = 7 ✓</span></div>
-             <p>So the numbers are 3 and 4, and <b>x² + 7x + 12 = (x + 3)(x + 4)</b>.</p>`,
-    },
-    {
-      title: 'Step 3: the sign rules (the tricky part)',
-      html: `<p>Look at the sign of <b>c</b> first, then the sign of <b>b</b>:</p>
-             <ul>
-               <li><b>c positive</b> → both numbers have the <b>same sign</b>. They take the sign of b.<br>
-                 x² ${hl('− 5x', 'b')} + 6 → both negative: <b>−2 and −3</b> → (x − 2)(x − 3)</li>
-               <li><b>c negative</b> → the numbers have <b>different signs</b>. The <b>bigger</b> one (ignoring the sign) takes the sign of b.<br>
-                 x² ${hl('+ x', 'b')} − 6 → 3 and −2 (3 is bigger, b is +) → (x + 3)(x − 2)<br>
-                 x² ${hl('− x', 'b')} − 6 → −3 and 2 (3 is bigger, b is −) → (x − 3)(x + 2)</li>
-             </ul>
-             <p class="wt-key">Why? Two negatives multiply to a positive, and a negative × positive gives a negative.</p>`,
-    },
-    {
-      title: 'Step 4: always check by expanding',
-      html: `<p>Expand your answer. If you get back the question, you are right.</p>
-             <p>(x − 3)(x + 2) = x² + 2x − 3x − 6 = <b>x² − x − 6</b> ✓</p>
-             <p class="wt-key">Quick check: put x = 1 into the question and into your answer. Both must give the same number.</p>`,
-    },
-    {
-      title: 'When there is a number in front of x²',
-      html: `<p>Example: <b>2x² + 7x + 3</b> (a = 2, b = 7, c = 3).</p>
-             <ol>
-               <li>Multiply <b>a × c</b> = 2 × 3 = <b>6</b>.</li>
-               <li>Find two numbers that multiply to 6 and add to 7: <b>1 and 6</b>.</li>
-               <li>Use them to <b>split the middle term</b>: 2x² + 1x + 6x + 3.</li>
-               <li><b>Group</b> in pairs and take out what is common: x(2x + 1) + 3(2x + 1).</li>
-               <li>The bracket (2x + 1) is common to both, so: <b>(2x + 1)(x + 3)</b>.</li>
-             </ol>
-             <p class="wt-key">The bracket in step 4 must be the same twice. If it isn't, check your signs.</p>`,
+      title: 'A number in front of x²',
+      html: `<p>Example: 2x² + 7x + 3</p>
+             <ol><li>Multiply 2 × 3 = 6</li><li>Two numbers: × to 6, + to 7 → 1 and 6</li>
+             <li>Split: 2x² + x + 6x + 3</li><li>Group: x(2x + 1) + 3(2x + 1)</li></ol>
+             <p class="wt-key">Answer: (2x + 1)(x + 3)</p>`,
     },
   ]);
 

@@ -81,7 +81,7 @@
   <a class="lesson-crumb" href="lessons.html">← All interactive lessons</a>
   <span class="lesson-badge">🧪 Interactive Lesson · Mathematics · Form 3</span>
   <h1>Straight-Line and Quadratic Graph Plotter</h1>
-  <p class="lead">Change the numbers and watch the graph move. Then learn how to draw a graph from a table of values, and practise it yourself with instant correction.</p>
+  <p class="lead">Move the sliders to see the graph change, then practise drawing a graph from a table of values.</p>
 
   <div class="lesson-panel">
     <h2>🔭 Explore: move the sliders</h2>
@@ -112,13 +112,13 @@
 
   <div class="lesson-panel" id="learn">
     <h2>📘 Learn it: how to draw and read a graph</h2>
-    <p class="lesson-hint">Go through these cards first. Each one explains one idea with an example.</p>
+    <p class="lesson-hint">Four short cards. Read them, then try it yourself below.</p>
     <div id="walk"></div>
   </div>
 
   <div class="lesson-panel" id="practice">
     <h2>✍️ Try it yourself: from table to graph</h2>
-    <p class="lesson-hint">Fill in the table of values. Every correct table is plotted on the small graph, then you read off the key facts. Wrong boxes turn red with a hint.</p>
+    <p class="lesson-hint">Fill in the table. Your points appear on the small graph. Wrong answers turn red with a hint.</p>
     <div class="lesson-controls">
       <select id="gType" aria-label="Type of graph">
         <option value="line">Straight line: y = mx + c</option>
@@ -300,51 +300,32 @@
   // ---------- Learn it ----------
   runWalkthrough($('walk'), [
     {
-      title: 'A graph is a picture of an equation',
-      html: `<p>An equation like <b>y = 2x + 1</b> is a rule: choose any x, and the rule tells you y.</p>
-             <p>Each (x, y) pair is a <b>point</b>. Plot enough points, join them, and you have the graph.</p>
-             <p class="wt-key">So drawing a graph always starts with a table of values.</p>`,
+      title: 'Make a table of values',
+      html: `<p>Put each x into the rule to get y.</p>
+             <p>For y = 2x + 1:</p>
+             <div class="vt-wrap"><table class="vt"><tr><th>x</th><td class="vx">−1</td><td class="vx">0</td><td class="vx">1</td><td class="vx">2</td></tr>
+             <tr><th>y</th><td>−1</td><td>1</td><td>3</td><td>5</td></tr></table></div>
+             <p class="wt-key">x = −1 → y = 2 × (−1) + 1 = −1</p>`,
     },
     {
-      title: 'Step 1: make a table of values',
-      html: `<p>For y = 2x + 1, put each x into the rule:</p>
-             <div class="vt-wrap"><table class="vt"><tr><th>x</th><td class="vx">−2</td><td class="vx">−1</td><td class="vx">0</td><td class="vx">1</td><td class="vx">2</td></tr>
-             <tr><th>y</th><td>−3</td><td>−1</td><td>1</td><td>3</td><td>5</td></tr></table></div>
-             <p>Example: when x = −2, y = 2 × (−2) + 1 = −4 + 1 = <b>−3</b>.</p>
-             <p class="wt-key">Be careful with negatives: use brackets when you substitute a negative number.</p>`,
+      title: 'Plot and join',
+      html: `<p>Each column is a point: (−1, −1), (0, 1), (1, 3), (2, 5).</p>
+             <p>Go <b>across</b> to x, then <b>up or down</b> to y. Join the points.</p>
+             <p class="wt-key">Straight line → use a ruler. Curve → draw it smooth.</p>`,
     },
     {
-      title: 'Step 2: plot the points and join them',
-      html: `<p>Each column of the table is a point: (−2, −3), (−1, −1), (0, 1), (1, 3), (2, 5).</p>
-             <p>Go <b>across</b> to x first, then <b>up or down</b> to y. Mark the point, then join the points with a ruler.</p>
-             <p class="wt-key">If one point is not in line with the others, recheck that value in your table.</p>`,
+      title: 'm and c in y = mx + c',
+      html: `<ul><li><b>c</b> = where the line crosses the y-axis.</li>
+             <li><b>m</b> = how much y goes up each time x goes up by 1.</li></ul>
+             <p>y = 2x + 1 → crosses at 1, goes up 2 each step.</p>
+             <p class="wt-key">m = 2, c = 1</p>`,
     },
     {
-      title: 'Reading m and c in y = mx + c',
-      html: `<ul>
-               <li><b>c</b> is where the line crosses the <b>y-axis</b> (put x = 0: y = c). For y = 2x + 1 that is (0, 1).</li>
-               <li><b>m</b> is the <b>gradient</b>: how much y changes when x goes up by 1. In the table, y goes −3, −1, 1, 3, 5: up <b>2</b> each time, so m = 2.</li>
-               <li>m positive → the line goes up to the right. m negative → it goes down. m = 0 → flat.</li>
-             </ul>
-             <p class="wt-key">The line crosses the x-axis where y = 0: solve mx + c = 0.</p>`,
-    },
-    {
-      title: 'Curves: y = x² + bx + c',
-      html: `<p>When there is an x², the graph is a curve called a <b>parabola</b>. You make the table in the same way:</p>
-             <p>For y = x² − 2x − 3 and x = −1: y = (−1)² − 2 × (−1) − 3 = 1 + 2 − 3 = <b>0</b>.</p>
-             <ul>
-               <li>(−1)² = <b>+1</b>, not −1. A negative number squared is always positive.</li>
-               <li>Join the points with a smooth curve, not straight lines.</li>
-             </ul>`,
-    },
-    {
-      title: 'Roots and the turning point',
-      html: `<ul>
-               <li>The <b>roots</b> are where the curve crosses the x-axis (y = 0). In the table, look for the x values where y = 0.</li>
-               <li>The curve is <b>symmetrical</b>. The turning point is exactly halfway between the roots: x = (root 1 + root 2) ÷ 2.</li>
-               <li>You can also use <b>x = −b ÷ 2a</b>. For y = x² − 2x − 3: x = 2 ÷ 2 = 1, and y = 1 − 2 − 3 = −4. Turning point (1, −4).</li>
-             </ul>
-             <p class="wt-key">Use the plotter above to see each of these move as you change the numbers.</p>`,
+      title: 'Curves: roots and turning point',
+      html: `<p>For y = x² − 2x − 3:</p>
+             <ul><li><b>Roots</b> = where y = 0 → x = −1 and x = 3</li>
+             <li><b>Turning point</b> = halfway between the roots → x = 1, y = −4</li></ul>
+             <p class="wt-key">Remember: (−2)² = +4</p>`,
     },
   ]);
 
