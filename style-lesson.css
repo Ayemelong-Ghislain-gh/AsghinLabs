@@ -219,7 +219,7 @@
   font-family: ui-monospace, Consolas, monospace; font-weight: 800; letter-spacing: 1px;
   padding: 2px 8px; border-radius: 8px; background: rgba(255, 255, 255, 0.07); color: var(--text-light); white-space: nowrap;
 }
-.gstep-end { padding: 14px 16px; border-radius: 16px; background: rgba(46, 230, 139, 0.08); color: var(--text-light); font-weight: 700; line-height: 2.4; }
+.gstep-end { padding: 14px 16px; border-radius: 16px; background: rgba(46, 230, 139, 0.08); color: var(--text-light); font-weight: 700; line-height: 1.8; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 .gstep-end .lesson-btn { margin-left: 8px; }
 .pv-table { display: inline-block; margin: 8px 0 0; vertical-align: top; }
 .pv-row { display: grid; grid-template-columns: repeat(8, minmax(30px, 46px)); gap: 4px; text-align: center; }
@@ -248,3 +248,51 @@
   .gridm-in th, .gridm-in td { min-width: 0; padding: 4px 6px; }
   .gridm-in .gin { min-width: 1.8em; padding: 6px 4px; font-size: 0.95rem; }
 }
+
+/* ---- Walkthrough cards ("Learn it") ---- */
+.wt-card { border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 18px; padding: 18px 20px; background: rgba(255, 255, 255, 0.02); }
+.wt-top { display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+.wt-count { font-size: 0.75rem; font-weight: 800; color: var(--brand-primary); white-space: nowrap; }
+.wt-title { margin: 0; font-size: 1.1rem; }
+.wt-body { color: var(--text-muted); font-size: 0.97rem; line-height: 1.75; min-height: 150px; animation: lessonFade 0.3s ease; }
+.wt-body b { color: var(--text-light); }
+.wt-body p { margin: 0 0 10px; }
+.wt-body ul, .wt-body ol { margin: 6px 0 10px 18px; padding: 0; }
+.wt-body li { margin-bottom: 8px; }
+.wt-key { color: var(--text-light) !important; font-weight: 700; padding: 10px 14px; border-radius: 12px; background: rgba(0, 212, 255, 0.08); border-left: 3px solid var(--brand-primary); }
+.wt-nav { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 14px; }
+.wt-dots { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+.wt-dot { width: 10px; height: 10px; border-radius: 50%; border: none; padding: 0; background: rgba(255, 255, 255, 0.18); cursor: pointer; }
+.wt-dot.on { background: var(--brand-primary); }
+.wt-pairs { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 12px; }
+.wt-pairs span { padding: 6px 12px; border-radius: 10px; background: rgba(255, 255, 255, 0.06); color: var(--text-light); font-weight: 700; }
+.wt-pairs span.yes { background: rgba(46, 230, 139, 0.15); color: #7ff0b8; }
+.wt-pairs span.no { color: #ff8f8f; }
+.wt-grid { margin: 8px 0 12px; }
+.wt-grid td { color: var(--text-light); border-style: solid; }
+.hl { font-weight: 800; padding: 0 3px; border-radius: 5px; }
+.hl-a { color: #ffcf85; background: rgba(255, 182, 72, 0.15); }
+.hl-b { color: #7fe3ff; background: rgba(0, 212, 255, 0.15); }
+.hl-c { color: #7ff0b8; background: rgba(46, 230, 139, 0.15); }
+
+/* ---- Practice extras ---- */
+.lesson-panel > h2 + .lesson-controls, .lesson-panel > .lesson-hint + .lesson-controls { margin-top: 4px; }
+.gsel { font-family: inherit; font-size: 0.95rem; text-align: left; padding: 6px 8px; cursor: pointer; }
+.gsel option { background: #050816; color: #fff; }
+.pair-rows { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 6px; }
+.pair-rows span { white-space: nowrap; }
+.vt { border-collapse: separate; border-spacing: 4px; margin: 8px 0 2px; }
+.vt th, .vt td { text-align: center; padding: 2px 4px; font-weight: 800; color: var(--text-light); }
+.vt th { color: var(--text-muted); font-size: 0.85rem; padding-right: 8px; }
+.vt td.vx { background: rgba(255, 255, 255, 0.06); border-radius: 8px; min-width: 2.6em; }
+.vt .gin { min-width: 2.2em; margin: 0; padding: 6px 2px; }
+.vt-wrap { overflow-x: auto; max-width: 100%; }
+.mini-graph { width: 100%; max-width: 320px; display: block; margin: 10px auto 0; border-radius: 12px; background: rgba(0, 0, 0, 0.25); }
+@media (max-width: 640px) {
+  .wt-card { padding: 14px; }
+  .wt-body { font-size: 0.93rem; }
+  .vt .gin { min-width: 1.9em; font-size: 0.9rem; }
+}
+.wt-nav .lesson-btn { white-space: nowrap; }
+.inline-link { color: var(--brand-primary); font-weight: 700; text-decoration: none; }
+.hl { white-space: nowrap; }

@@ -81,9 +81,10 @@
   <a class="lesson-crumb" href="lessons.html">← All interactive lessons</a>
   <span class="lesson-badge">🧪 Interactive Lesson · Mathematics · Form 3</span>
   <h1>Straight-Line and Quadratic Graph Plotter</h1>
-  <p class="lead">Change the numbers and watch the graph move. See how m and c shape a straight line, and how a, b and c shape a curve.</p>
+  <p class="lead">Change the numbers and watch the graph move. Then learn how to draw a graph from a table of values, and practise it yourself with instant correction.</p>
 
   <div class="lesson-panel">
+    <h2>🔭 Explore: move the sliders</h2>
     <div class="lesson-controls">
       <select id="modeSel" aria-label="Choose graph type">
         <option value="lin">Straight line: y = mx + c</option>
@@ -107,6 +108,28 @@
         <ul class="graph-info" id="info"></ul>
       </div>
     </div>
+  </div>
+
+  <div class="lesson-panel" id="learn">
+    <h2>📘 Learn it: how to draw and read a graph</h2>
+    <p class="lesson-hint">Go through these cards first. Each one explains one idea with an example.</p>
+    <div id="walk"></div>
+  </div>
+
+  <div class="lesson-panel" id="practice">
+    <h2>✍️ Try it yourself: from table to graph</h2>
+    <p class="lesson-hint">Fill in the table of values. Every correct table is plotted on the small graph, then you read off the key facts. Wrong boxes turn red with a hint.</p>
+    <div class="lesson-controls">
+      <select id="gType" aria-label="Type of graph">
+        <option value="line">Straight line: y = mx + c</option>
+        <option value="curve">Curve: y = x² + bx + c</option>
+      </select>
+      <button type="button" id="gNew" class="primary">🔀 New question</button>
+      <span class="chal-score" id="gScore"></span>
+    </div>
+    <p class="q-big" id="gQuestion"></p>
+    <div id="gSteps" class="gsteps"></div>
+    <svg id="gMini" class="mini-graph" viewBox="0 0 320 320" role="img" aria-label="Your plotted points"></svg>
   </div>
 
   <div class="lesson-panel lesson-explain">
@@ -246,6 +269,196 @@
     render();
   });
   render();
+})();
+
+/* ===== Learn it + Try it yourself (added) ===== */
+(function () {
+  const SLUG = 'graph-plotter';
+  const $ = (id) => document.getElementById(id);
+  const S = (k) => (k < 0 ? '−' : '') + Math.abs(k);
+  const P = (k) => (k < 0 ? '(' + S(k) + ')' : String(k));
+
+  // Small graph that shows the student's points as they get them right
+  function miniGraph(svg, pts, f, showLine) {
+    const R = 10, W = 320, s = W / (2 * R), px = (x) => W / 2 + x * s, py = (y) => W / 2 - y * s;
+    let g = '';
+    for (let k = -R; k <= R; k++) {
+      if (!k) continue;
+      g += `<line class="g-grid" x1="${px(k)}" y1="0" x2="${px(k)}" y2="${W}"/><line class="g-grid" x1="0" y1="${py(k)}" x2="${W}" y2="${py(k)}"/>`;
+    }
+    g += `<line class="g-axis" x1="0" y1="${py(0)}" x2="${W}" y2="${py(0)}"/><line class="g-axis" x1="${px(0)}" y1="0" x2="${px(0)}" y2="${W}"/>`;
+    for (let k = -8; k <= 8; k += 4) if (k) g += `<text class="g-tick" x="${px(k)}" y="${py(0) + 12}" text-anchor="middle">${S(k)}</text><text class="g-tick" x="${px(0) - 4}" y="${py(k) + 3}" text-anchor="end">${S(k)}</text>`;
+    if (showLine) {
+      let d = '', pen = false;
+      for (let x = -R; x <= R + 0.001; x += 0.05) { const y = f(x); if (Math.abs(y) > R + 1) { pen = false; continue; } d += (pen ? 'L' : 'M') + px(x).toFixed(1) + ',' + py(y).toFixed(1); pen = true; }
+      g += `<path class="g-curve" d="${d}"/>`;
+    }
+    pts.forEach(([x, y]) => { if (Math.abs(y) <= R) g += `<circle class="g-dot" cx="${px(x)}" cy="${py(y)}" r="4.5"/>`; });
+    svg.innerHTML = g;
+  }
+
+  // ---------- Learn it ----------
+  runWalkthrough($('walk'), [
+    {
+      title: 'A graph is a picture of an equation',
+      html: `<p>An equation like <b>y = 2x + 1</b> is a rule: choose any x, and the rule tells you y.</p>
+             <p>Each (x, y) pair is a <b>point</b>. Plot enough points, join them, and you have the graph.</p>
+             <p class="wt-key">So drawing a graph always starts with a table of values.</p>`,
+    },
+    {
+      title: 'Step 1: make a table of values',
+      html: `<p>For y = 2x + 1, put each x into the rule:</p>
+             <div class="vt-wrap"><table class="vt"><tr><th>x</th><td class="vx">−2</td><td class="vx">−1</td><td class="vx">0</td><td class="vx">1</td><td class="vx">2</td></tr>
+             <tr><th>y</th><td>−3</td><td>−1</td><td>1</td><td>3</td><td>5</td></tr></table></div>
+             <p>Example: when x = −2, y = 2 × (−2) + 1 = −4 + 1 = <b>−3</b>.</p>
+             <p class="wt-key">Be careful with negatives: use brackets when you substitute a negative number.</p>`,
+    },
+    {
+      title: 'Step 2: plot the points and join them',
+      html: `<p>Each column of the table is a point: (−2, −3), (−1, −1), (0, 1), (1, 3), (2, 5).</p>
+             <p>Go <b>across</b> to x first, then <b>up or down</b> to y. Mark the point, then join the points with a ruler.</p>
+             <p class="wt-key">If one point is not in line with the others, recheck that value in your table.</p>`,
+    },
+    {
+      title: 'Reading m and c in y = mx + c',
+      html: `<ul>
+               <li><b>c</b> is where the line crosses the <b>y-axis</b> (put x = 0: y = c). For y = 2x + 1 that is (0, 1).</li>
+               <li><b>m</b> is the <b>gradient</b>: how much y changes when x goes up by 1. In the table, y goes −3, −1, 1, 3, 5: up <b>2</b> each time, so m = 2.</li>
+               <li>m positive → the line goes up to the right. m negative → it goes down. m = 0 → flat.</li>
+             </ul>
+             <p class="wt-key">The line crosses the x-axis where y = 0: solve mx + c = 0.</p>`,
+    },
+    {
+      title: 'Curves: y = x² + bx + c',
+      html: `<p>When there is an x², the graph is a curve called a <b>parabola</b>. You make the table in the same way:</p>
+             <p>For y = x² − 2x − 3 and x = −1: y = (−1)² − 2 × (−1) − 3 = 1 + 2 − 3 = <b>0</b>.</p>
+             <ul>
+               <li>(−1)² = <b>+1</b>, not −1. A negative number squared is always positive.</li>
+               <li>Join the points with a smooth curve, not straight lines.</li>
+             </ul>`,
+    },
+    {
+      title: 'Roots and the turning point',
+      html: `<ul>
+               <li>The <b>roots</b> are where the curve crosses the x-axis (y = 0). In the table, look for the x values where y = 0.</li>
+               <li>The curve is <b>symmetrical</b>. The turning point is exactly halfway between the roots: x = (root 1 + root 2) ÷ 2.</li>
+               <li>You can also use <b>x = −b ÷ 2a</b>. For y = x² − 2x − 3: x = 2 ÷ 2 = 1, and y = 1 − 2 − 3 = −4. Turning point (1, −4).</li>
+             </ul>
+             <p class="wt-key">Use the plotter above to see each of these move as you change the numbers.</p>`,
+    },
+  ]);
+
+  // ---------- Try it yourself ----------
+  let done = 0, clean = 0;
+  const vtable = (xs) => '<div class="vt-wrap"><table class="vt"><tr><th>x</th>' + xs.map(x => `<td class="vx">${S(x)}</td>`).join('') +
+    '</tr><tr><th>y</th>' + xs.map((x, i) => `<td>{${i}}</td>`).join('') + '</tr></table></div>';
+
+  function buildLine() {
+    let m, xi;
+    do { m = pick([-3, -2, -1, 1, 2, 3]); xi = rint(-3, 3); } while (Math.abs(m * xi) > 6);
+    const c = -m * xi;                               // integer x-intercept
+    const f = (x) => m * x + c, xs = [-2, -1, 0, 1, 2];
+    const eq = 'y = ' + polyStr([0, m, c]);
+    return {
+      eq, f, xs, steps: [
+        {
+          html: `Complete the table of values for ${eq}:` + vtable(xs),
+          fields: xs.map(x => ({ answer: f(x), kind: 'int', size: 2, label: 'y when x = ' + x })),
+          hint: `Put each x into the rule. For x = −2: y = ${S(m)} × (−2) ${c < 0 ? '−' : '+'} ${Math.abs(c)}. Watch the signs.`,
+          why: xs.map(x => `x = ${S(x)}: ${S(m)} × ${P(x)} ${c < 0 ? '−' : '+'} ${Math.abs(c)} = <b>${S(f(x))}</b>`).join('<br>') + '<br>The points are now plotted on the graph below.',
+          plot: true,
+        },
+        {
+          html: 'Look at the table. Each time x goes up by 1, y changes by {0}. So the gradient m = {1}.',
+          fields: [{ answer: m, kind: 'int', size: 2, label: 'change in y' }, { answer: m, kind: 'int', size: 2, label: 'gradient' }],
+          hint: 'Take any y value and subtract the one before it (to its left). If y goes down, the change is negative.',
+          why: `y changes by <b>${S(m)}</b> each step, so m = <b>${S(m)}</b>. ${m > 0 ? 'Positive: the line goes up to the right.' : 'Negative: the line goes down to the right.'}`,
+          line: true,
+        },
+        {
+          html: 'The line crosses the y-axis where x = 0, at the point (0, {0}). So c = {1}.',
+          fields: [{ answer: c, kind: 'int', size: 2, label: 'y when x is 0' }, { answer: c, kind: 'int', size: 2, label: 'c' }],
+          hint: 'Find x = 0 in your table. The y below it is where the line crosses the y-axis.',
+          why: `At x = 0, y = <b>${S(c)}</b>. That is c in y = mx + c.`,
+        },
+        {
+          html: `Where does the line cross the x-axis? Solve ${polyStr([0, m, c])} = 0: x = {0}`,
+          fields: [{ answer: xi, kind: 'int', size: 2, label: 'x' }],
+          hint: c === 0 ? 'If c = 0, the line goes through the origin.' : `Move ${S(c)} to the other side, then divide by ${S(m)}.`,
+          why: c === 0 ? `x = <b>0</b>: the line passes through the origin (0, 0).` : `${S(m)}x = ${S(-c)}, so x = ${S(-c)} ÷ ${P(m)} = <b>${S(xi)}</b>. The line crosses at (${S(xi)}, 0).`,
+        },
+      ],
+    };
+  }
+
+  function buildCurve() {
+    let r1, r2;
+    do { r1 = rint(-4, 3); r2 = rint(r1 + 2, 4); } while ((r1 + r2) % 2 !== 0);
+    const b = -(r1 + r2), c = r1 * r2, xv = (r1 + r2) / 2;
+    const f = (x) => x * x + b * x + c, xs = [-3, -2, -1, 0, 1, 2, 3].map(x => x + xv).filter(x => Math.abs(f(x)) <= 12);
+    const eq = 'y = ' + polyStr([1, b, c]);
+    const sub = (x) => `${P(x)}² ${b < 0 ? '−' : '+'} ${Math.abs(b)} × ${P(x)} ${c < 0 ? '−' : '+'} ${Math.abs(c)}`.replace(/ [+−] 0 × \S+/, '').replace(/ [+−] 0$/, '');
+    return {
+      eq, f, xs, steps: [
+        {
+          html: `Complete the table of values for ${eq}:` + vtable(xs),
+          fields: xs.map(x => ({ answer: f(x), kind: 'int', size: 2, label: 'y when x = ' + x })),
+          hint: 'Square x first (a negative squared is positive), then do the rest. Example: (−2)² = 4.',
+          why: xs.map(x => `x = ${S(x)}: ${sub(x)} = <b>${S(f(x))}</b>`).join('<br>') + '<br>The points are now plotted on the graph below.',
+          plot: true,
+        },
+        {
+          html: 'Where does the curve cross the x-axis (y = 0)? x = {0} and x = {1}',
+          fields: [{ answer: r1, kind: 'int', size: 2, label: 'first root' }, { answer: r2, kind: 'int', size: 2, label: 'second root' }],
+          validate: (v) => {
+            const a = Number(v[0]), d = Number(v[1]);
+            const ok = [Number.isInteger(a) && f(a) === 0, Number.isInteger(d) && f(d) === 0 && d !== a];
+            const notes = [];
+            [a, d].forEach((x, i) => { if (!ok[i] && Number.isInteger(x)) notes.push(i === 1 && x === a && f(x) === 0 ? 'You wrote the same root twice. There are two different roots.' : `At x = ${S(x)}, y = ${S(f(x))}, not 0.`); });
+            return { ok, notes };
+          },
+          hint: 'In your table, find the x values where y = 0.',
+          why: `y = 0 at x = <b>${S(r1)}</b> and x = <b>${S(r2)}</b>. These are the roots.`,
+          line: true,
+        },
+        {
+          html: 'The turning point is halfway between the roots: x = {0}. Put that x into the rule: y = {1}',
+          fields: [{ answer: xv, kind: 'int', size: 2, label: 'x of turning point' }, { answer: f(xv), kind: 'int', size: 2, label: 'y of turning point' }],
+          hint: `Halfway: (${S(r1)} + ${P(r2)}) ÷ 2. Then put that x into the rule to get y.`,
+          why: `x = (${S(r1)} + ${P(r2)}) ÷ 2 = <b>${S(xv)}</b> (same as −b ÷ 2a = ${S(-b)} ÷ 2). y = <b>${S(f(xv))}</b>. Turning point (${S(xv)}, ${S(f(xv))}), the lowest point of the curve.`,
+        },
+        {
+          html: 'Where does the curve cross the y-axis? (0, {0})',
+          fields: [{ answer: c, kind: 'int', size: 2, label: 'y-intercept' }],
+          hint: 'Put x = 0 into the rule. Every x term becomes 0.',
+          why: `At x = 0, y = <b>${S(c)}</b>, which is the number c at the end of the equation.`,
+        },
+      ],
+    };
+  }
+
+  function newQuestion() {
+    const Q = $('gType').value === 'curve' ? buildCurve() : buildLine();
+    $('gQuestion').textContent = Q.eq;
+    const mini = $('gMini');
+    const plotted = [];
+    miniGraph(mini, [], Q.f, false);
+    runSteps($('gSteps'), Q.steps, {
+      onCheck: (ok) => trackLesson(SLUG, ok ? 'practice_correct' : 'practice_wrong'),
+      onStep: (i, st) => {
+        if (st.plot) Q.xs.forEach(x => plotted.push([x, Q.f(x)]));
+        miniGraph(mini, plotted, Q.f, Q.steps.slice(0, i + 1).some(s => s.line));
+      },
+      onFinish: (usedHelp) => {
+        done++; if (!usedHelp) clean++;
+        $('gScore').textContent = `${done} finished · ${clean} without help`;
+        practiceEnd($('gSteps'), usedHelp, () => { newQuestion(); $('gQuestion').scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+      },
+    });
+  }
+  $('gNew').addEventListener('click', newQuestion);
+  $('gType').addEventListener('change', newQuestion);
+  newQuestion();
 })();
 viewLesson("graph-plotter");
 </script>

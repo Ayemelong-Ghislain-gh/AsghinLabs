@@ -78,6 +78,8 @@ function runSteps(container, steps, opts) {
       case 'hexdigit':
         if (/^\d+$/.test(v) && Number(v) > 9 && Number(v) === parseInt(a, 16)) return { ok: false, note: 'Right value, but in hex ' + v + ' is written as the single digit <b>' + a + '</b>.' };
         return v.toUpperCase() === String(a).toUpperCase() ? { ok: true } : { ok: false };
+      case 'choice':
+        return v.toLowerCase() === String(a).toLowerCase().replace(/\s+/g, '') ? { ok: true } : { ok: false };
       case 'hex':
         if (!/^[0-9a-fA-F]+$/.test(v)) return { ok: false, note: 'Hex digits are 0–9 and A–F only.' };
         return parseInt(v, 16) === parseInt(a, 16) ? { ok: true } : { ok: false };
@@ -92,6 +94,8 @@ function runSteps(container, steps, opts) {
     box.className = 'gstep current';
     let html = st.html.replace(/\{(\d+)\}/g, (m, k) => {
       const f = st.fields[Number(k)];
+      if (f.options) return `<select class="gin gsel" data-k="${k}" aria-label="${f.label || 'Answer'}"><option value="">choose…</option>` +
+        f.options.map(o => `<option>${o}</option>`).join('') + '</select>';
       return `<input class="gin" data-k="${k}" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="${f.label || 'Answer'}" size="${f.size || 4}">`;
     });
     box.innerHTML =
@@ -111,6 +115,7 @@ function runSteps(container, steps, opts) {
       box.querySelectorAll('.gstep-actions').forEach(n => n.remove());
       msg.className = 'gstep-msg ' + (revealed ? '' : 'ok');
       msg.innerHTML = (revealed ? '👀 ' : '✅ ') + (st.why || 'Correct!');
+      if (opts.onStep) opts.onStep(i, st, revealed);
       show(i + 1);
     };
 
@@ -122,11 +127,13 @@ function runSteps(container, steps, opts) {
       }
       const notes = [];
       let allOk = true;
-      inputs.forEach(inp => {
-        const r = test(st.fields[Number(inp.dataset.k)], inp.value);
+      const custom = st.validate ? st.validate(inputs.map(inp => clean(inp.value))) : null;
+      inputs.forEach((inp, n) => {
+        const r = custom ? { ok: custom.ok[n] } : test(st.fields[Number(inp.dataset.k)], inp.value);
         inp.classList.toggle('good', r.ok); inp.classList.toggle('bad', !r.ok);
         if (!r.ok) { allOk = false; if (r.note) notes.push(r.note); }
       });
+      if (custom && custom.notes) notes.push(...custom.notes);
       if (allOk) { finish(false); if (opts.onCheck) opts.onCheck(true); return; }
       if (opts.onCheck) opts.onCheck(false);
       const wrongCount = inputs.filter(inp => inp.classList.contains('bad')).length;
@@ -134,13 +141,14 @@ function runSteps(container, steps, opts) {
       msg.innerHTML = '❌ ' + (inputs.length > 1 ? (wrongCount === 1 ? 'One box (in red) is not right yet.' : wrongCount + ' boxes (in red) are not right yet.') : 'Not right yet.') +
         (notes.length ? '<br>' + [...new Set(notes)].join('<br>') : '') +
         (st.hint ? '<br><span class="g-hint">💡 ' + st.hint + '</span>' : '') +
-        '<br><span class="g-hint">Fix the red box and press Check again, or press <b>Show me</b>.</span>';
+        '<br><span class="g-hint">Fix what is in red and press Check again, or press <b>Show me</b>.</span>';
     }
 
     box.querySelector('.g-check').addEventListener('click', check);
     box.querySelector('.g-show').addEventListener('click', () => {
       usedHelp = true;
       inputs.forEach(inp => { inp.value = st.fields[Number(inp.dataset.k)].answer; });
+      inputs.forEach(inp => { if (inp.tagName === 'SELECT') inp.value = st.fields[Number(inp.dataset.k)].answer; });
       finish(true);
     });
     inputs.forEach((inp, n) => inp.addEventListener('keydown', (e) => {
@@ -151,4 +159,44 @@ function runSteps(container, steps, opts) {
   }
 
   show(0);
+}
+
+
+/* =====================================================================
+   Walkthrough: a short explanation shown one card at a time.
+   runWalkthrough(container, [{ title, html }, …])
+   ===================================================================== */
+function runWalkthrough(container, slides) {
+  let i = 0;
+  container.innerHTML =
+    '<div class="wt-card"><div class="wt-top"><span class="wt-count"></span><h3 class="wt-title"></h3></div>' +
+    '<div class="wt-body"></div>' +
+    '<div class="wt-nav"><button type="button" class="lesson-btn wt-back">← Back</button>' +
+    '<div class="wt-dots"></div>' +
+    '<button type="button" class="lesson-btn primary wt-next">Next →</button></div></div>';
+  const $q = (s) => container.querySelector(s);
+  const dots = $q('.wt-dots');
+  dots.innerHTML = slides.map((_, k) => `<button type="button" class="wt-dot" aria-label="Card ${k + 1}" data-k="${k}"></button>`).join('');
+  function draw() {
+    $q('.wt-count').textContent = `${i + 1} / ${slides.length}`;
+    $q('.wt-title').innerHTML = slides[i].title;
+    $q('.wt-body').innerHTML = slides[i].html;
+    $q('.wt-back').disabled = i === 0;
+    $q('.wt-next').textContent = i === slides.length - 1 ? 'Start again ↺' : 'Next →';
+    dots.querySelectorAll('.wt-dot').forEach((d, k) => d.classList.toggle('on', k === i));
+  }
+  $q('.wt-back').addEventListener('click', () => { if (i > 0) { i--; draw(); } });
+  $q('.wt-next').addEventListener('click', () => { i = (i + 1) % slides.length; draw(); });
+  dots.addEventListener('click', (e) => { const d = e.target.closest('.wt-dot'); if (d) { i = Number(d.dataset.k); draw(); } });
+  draw();
+}
+
+// Shared "finished" banner for guided practice
+function practiceEnd(stepsEl, usedHelp, onNext) {
+  const end = document.createElement('div');
+  end.className = 'gstep-end';
+  end.innerHTML = (usedHelp ? '👍 Finished. Try another one on your own.' : '🎉 Well done! You solved it without help.') +
+    ' <button type="button" class="lesson-btn primary">Next question →</button>';
+  end.querySelector('button').addEventListener('click', onNext);
+  stepsEl.appendChild(end);
 }

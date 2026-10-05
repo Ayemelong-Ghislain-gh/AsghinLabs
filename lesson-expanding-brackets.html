@@ -93,9 +93,16 @@
       <span class="chal-score" id="score"></span>
     </div>
 
+    <h2>✍️ Practise: expand step by step</h2>
     <p class="q-big" id="question"></p>
-    <p class="lesson-hint">Work through the steps below. Type a number in each box (use a minus sign for negatives), press <b>Check</b>, and you'll be told what is right and why. Stuck? Press <b>Show me</b>.</p>
+    <p class="lesson-hint">New to this? Read the <a href="#learn" class="inline-link">Learn it cards</a> below first. Then work through the steps below. Type a number in each box (use a minus sign for negatives), press <b>Check</b>, and you'll be told what is right and why. Stuck? Press <b>Show me</b>.</p>
     <div id="steps" class="gsteps"></div>
+  </div>
+
+  <div class="lesson-panel" id="learn">
+    <h2>📘 Learn it: why the grid method works</h2>
+    <p class="lesson-hint">Stuck on a step? Go through these cards. Each one explains one idea with an example.</p>
+    <div id="walk"></div>
   </div>
 
   <div class="lesson-panel lesson-explain">
@@ -178,6 +185,12 @@
         hint: 'Take the x² box, the x total from Step 2 and the number box.',
         why: `${bracket(p, a)}${bracket(qq, b)} = <b>${polyStr([A, B, C])}</b>` + (B === 0 ? '. The x terms cancel: this is a <b>difference of two squares</b>.' : '.'),
       },
+      {
+        html: `Check your answer: put x = 1 into both. Question: ${bracket(p, a).replace(/x/g, '(1)')}${bracket(qq, b).replace(/x/g, '(1)')} = {0}. Your answer: ${polyStr([A, B, C]).replace(/x/g, '(1)')} = {1}`,
+        fields: [{ answer: (p + a) * (qq + b), kind: 'int', label: 'question with x = 1', size: 4 }, { answer: A + B + C, kind: 'int', label: 'answer with x = 1', size: 4 }],
+        hint: `Work out each bracket first: (${num(p)} ${a < 0 ? '−' : '+'} ${Math.abs(a)}) and (${num(qq)} ${b < 0 ? '−' : '+'} ${Math.abs(b)}), then multiply. For your answer, add ${num(A)} ${B < 0 ? '−' : '+'} ${Math.abs(B)} ${C < 0 ? '−' : '+'} ${Math.abs(C)}.`,
+        why: `Both give <b>${num((p + a) * (qq + b))}</b>, so the expansion is right. ✔ If they were different, there would be a mistake somewhere.`,
+      },
     ];
   }
 
@@ -204,6 +217,58 @@
   $('newBtn').addEventListener('click', () => { newQuestion(); trackLesson(SLUG, 'new_question'); });
   levelSel.addEventListener('change', () => newQuestion());
   newQuestion({ p: 1, a: 3, q: 1, b: -4 });   // a fixed first example
+})();
+(function () {
+  const hl = (t, c) => `<span class="hl hl-${c}">${t}</span>`;
+  runWalkthrough(document.getElementById('walk'), [
+    {
+      title: 'What "expand" means',
+      html: `<p><b>(x + 3)(x + 2)</b> means "(x + 3) multiplied by (x + 2)". Expanding means writing it <b>without brackets</b>.</p>
+             <p>The rule: <b>every term</b> in the first bracket multiplies <b>every term</b> in the second bracket.</p>
+             <p class="wt-key">2 terms × 2 terms = 4 multiplications. The grid makes sure you don't miss any.</p>`,
+    },
+    {
+      title: 'The grid is a rectangle cut into four parts',
+      html: `<p>Think of a rectangle with sides ${hl('x + 3', 'a')} and ${hl('x + 2', 'b')}. Cut it into four boxes:</p>
+             <table class="gridm wt-grid"><tr><th>×</th><th>${hl('x', 'b')}</th><th>${hl('+ 2', 'b')}</th></tr>
+             <tr><th>${hl('x', 'a')}</th><td>x²</td><td>2x</td></tr>
+             <tr><th>${hl('+ 3', 'a')}</th><td>3x</td><td>6</td></tr></table>
+             <p>The total area is the sum of the boxes: x² + 2x + 3x + 6.</p>`,
+    },
+    {
+      title: 'Multiplying terms with x',
+      html: `<ul>
+               <li><b>x × x = x²</b> (x squared, not 2x).</li>
+               <li><b>2x × 3x</b>: multiply the numbers (2 × 3 = 6) and the x's (x × x = x²) → <b>6x²</b>.</li>
+               <li><b>x × 5 = 5x</b>, and <b>3 × 4 = 12</b>.</li>
+             </ul>
+             <p class="wt-key">Numbers multiply with numbers, x's multiply with x's.</p>`,
+    },
+    {
+      title: 'The sign rules',
+      html: `<p>The sign belongs to the number after it: in (x − 4), the second term is <b>−4</b>.</p>
+             <ul>
+               <li>+ × + = <b>+</b> &nbsp; e.g. 3 × 2 = 6</li>
+               <li>− × − = <b>+</b> &nbsp; e.g. (−3) × (−4) = 12</li>
+               <li>+ × − = <b>−</b> &nbsp; e.g. 3 × (−4) = −12, and x × (−4) = −4x</li>
+             </ul>
+             <p class="wt-key">Most mistakes in expanding are sign mistakes. Check every box's sign.</p>`,
+    },
+    {
+      title: 'Collect like terms',
+      html: `<p>After the grid, add the boxes. The two <b>x</b> boxes are "like terms", so combine them:</p>
+             <p>(x + 3)(x − 4) → x² − 4x + 3x − 12</p>
+             <p>−4x + 3x = <b>−x</b> → answer <b>x² − x − 12</b></p>
+             <p class="wt-key">x² terms, x terms and numbers are different kinds. Only add things of the same kind.</p>`,
+    },
+    {
+      title: 'Check with x = 1',
+      html: `<p>Pick an easy number, x = 1, and put it into the question and into your answer:</p>
+             <p>(1 + 3)(1 − 4) = 4 × (−3) = <b>−12</b></p>
+             <p>1² − 1 − 12 = <b>−12</b> ✓</p>
+             <p class="wt-key">Same result → your expansion is right. Different → look for a sign mistake.</p>`,
+    },
+  ]);
 })();
 viewLesson("expanding-brackets");
 </script>

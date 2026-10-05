@@ -81,9 +81,10 @@
   <a class="lesson-crumb" href="lessons.html">← All interactive lessons</a>
   <span class="lesson-badge">🧪 Interactive Lesson · Mathematics · O Level</span>
   <h1>Factorising Quadratics</h1>
-  <p class="lead">Factorising is expanding in reverse. Find the pair of numbers that multiplies and adds correctly, and the brackets follow.</p>
+  <p class="lead">Factorising is expanding in reverse. Start with a quick try below, learn exactly how to find the two numbers, then practise the full working yourself.</p>
 
   <div class="lesson-panel">
+    <h2>⚡ Quick practice: tap the right pair</h2>
     <div class="lesson-controls">
       <select id="levelSel" aria-label="Question type">
         <option value="easy">Easier: x² + bx + c</option>
@@ -99,6 +100,27 @@
     <div class="lesson-step-msg" id="msg" aria-live="polite"></div>
     <div class="factor-steps" id="steps"></div>
     <div class="lesson-step-msg" id="tally"></div>
+  </div>
+
+  <div class="lesson-panel" id="learn">
+    <h2>📘 Learn it: how to find the two numbers</h2>
+    <p class="lesson-hint">Go through these cards first. Each one explains one idea with an example.</p>
+    <div id="walk"></div>
+  </div>
+
+  <div class="lesson-panel" id="practice">
+    <h2>✍️ Try it yourself: full working</h2>
+    <p class="lesson-hint">Now you do every step: find b and c, decide the signs, list the factor pairs, pick the right pair, write the brackets and check. Wrong boxes turn red with a hint. Press <b>Show me</b> only if you are stuck.</p>
+    <div class="lesson-controls">
+      <select id="pLevel" aria-label="Practice level">
+        <option value="easy">Easier: x² + bx + c</option>
+        <option value="hard">Harder: ax² + bx + c</option>
+      </select>
+      <button type="button" id="pNew" class="primary">🔀 New question</button>
+      <span class="chal-score" id="pScore"></span>
+    </div>
+    <p class="q-big" id="pQuestion"></p>
+    <div id="pSteps" class="gsteps"></div>
   </div>
 
   <div class="lesson-panel lesson-explain">
@@ -243,6 +265,263 @@
   Q = { m: 1, n: 1, p: 2, q: 3, a: 1, b: 5, c: 6 };
   Q.pairs = pairsFor(6).sort((x, y) => x[0] - y[0]);
   render();
+})();
+
+/* ===== Learn it + Try it yourself (added) ===== */
+(function () {
+  const SLUG = 'factorising-quadratics';
+  const $ = (id) => document.getElementById(id);
+  const S = (k) => (k < 0 ? '−' : '') + Math.abs(k);            // −3 / 3
+  const P = (k) => (k < 0 ? '(' + S(k) + ')' : String(k));           // (−3) / 3
+  const B = (k) => (k < 0 ? '− ' : '+ ') + Math.abs(k);           // "− 3" / "+ 3"
+  const hl = (t, c) => `<span class="hl hl-${c}">${t}</span>`;
+
+  // ---------- Learn it ----------
+  runWalkthrough($('walk'), [
+    {
+      title: 'Factorising is expanding backwards',
+      html: `<p>When you expand <b>(x + 2)(x + 3)</b> you get <b>x² + 5x + 6</b>.</p>
+             <p>Factorising goes the other way: you start with <b>x² + 5x + 6</b> and you must find the brackets <b>(x + ?)(x + ?)</b>.</p>
+             <p class="wt-key">So the whole job is to find the two missing numbers.</p>`,
+    },
+    {
+      title: 'Where do the two numbers show up?',
+      html: `<p>Expand (x + ${hl('2', 'a')})(x + ${hl('3', 'b')}) with the grid:</p>
+             <table class="gridm wt-grid"><tr><th>×</th><th>x</th><th>+ ${hl('3', 'b')}</th></tr>
+             <tr><th>x</th><td>x²</td><td>${hl('3', 'b')}x</td></tr>
+             <tr><th>+ ${hl('2', 'a')}</th><td>${hl('2', 'a')}x</td><td>${hl('2', 'a')} × ${hl('3', 'b')} = 6</td></tr></table>
+             <p>The x terms are ${hl('2', 'a')}x + ${hl('3', 'b')}x = <b>5x</b> → the numbers <b>ADD</b> to give the middle number <b>5</b>.</p>
+             <p>The last box is ${hl('2', 'a')} × ${hl('3', 'b')} → the numbers <b>MULTIPLY</b> to give the last number <b>6</b>.</p>
+             <p class="wt-key">Rule: in x² + bx + c, look for two numbers that multiply to c and add to b.</p>`,
+    },
+    {
+      title: 'Step 1: list the pairs that multiply to c',
+      html: `<p>For <b>x² + 7x + 12</b>, c = 12. Write every pair of whole numbers that multiply to 12. Start from 1 and go up so you don't miss any:</p>
+             <div class="wt-pairs"><span>1 × 12</span><span>2 × 6</span><span>3 × 4</span></div>
+             <p>Stop when the numbers start repeating (4 × 3 is the same as 3 × 4).</p>
+             <p class="wt-key">Tip: try 1, 2, 3, 4 … and ask "does it divide c exactly?"</p>`,
+    },
+    {
+      title: 'Step 2: test which pair adds to b',
+      html: `<p>We need the pair that adds to <b>b = 7</b>:</p>
+             <div class="wt-pairs"><span class="no">1 + 12 = 13 ✗</span><span class="no">2 + 6 = 8 ✗</span><span class="yes">3 + 4 = 7 ✓</span></div>
+             <p>So the numbers are 3 and 4, and <b>x² + 7x + 12 = (x + 3)(x + 4)</b>.</p>`,
+    },
+    {
+      title: 'Step 3: the sign rules (the tricky part)',
+      html: `<p>Look at the sign of <b>c</b> first, then the sign of <b>b</b>:</p>
+             <ul>
+               <li><b>c positive</b> → both numbers have the <b>same sign</b>. They take the sign of b.<br>
+                 x² ${hl('− 5x', 'b')} + 6 → both negative: <b>−2 and −3</b> → (x − 2)(x − 3)</li>
+               <li><b>c negative</b> → the numbers have <b>different signs</b>. The <b>bigger</b> one (ignoring the sign) takes the sign of b.<br>
+                 x² ${hl('+ x', 'b')} − 6 → 3 and −2 (3 is bigger, b is +) → (x + 3)(x − 2)<br>
+                 x² ${hl('− x', 'b')} − 6 → −3 and 2 (3 is bigger, b is −) → (x − 3)(x + 2)</li>
+             </ul>
+             <p class="wt-key">Why? Two negatives multiply to a positive, and a negative × positive gives a negative.</p>`,
+    },
+    {
+      title: 'Step 4: always check by expanding',
+      html: `<p>Expand your answer. If you get back the question, you are right.</p>
+             <p>(x − 3)(x + 2) = x² + 2x − 3x − 6 = <b>x² − x − 6</b> ✓</p>
+             <p class="wt-key">Quick check: put x = 1 into the question and into your answer. Both must give the same number.</p>`,
+    },
+    {
+      title: 'When there is a number in front of x²',
+      html: `<p>Example: <b>2x² + 7x + 3</b> (a = 2, b = 7, c = 3).</p>
+             <ol>
+               <li>Multiply <b>a × c</b> = 2 × 3 = <b>6</b>.</li>
+               <li>Find two numbers that multiply to 6 and add to 7: <b>1 and 6</b>.</li>
+               <li>Use them to <b>split the middle term</b>: 2x² + 1x + 6x + 3.</li>
+               <li><b>Group</b> in pairs and take out what is common: x(2x + 1) + 3(2x + 1).</li>
+               <li>The bracket (2x + 1) is common to both, so: <b>(2x + 1)(x + 3)</b>.</li>
+             </ol>
+             <p class="wt-key">The bracket in step 4 must be the same twice. If it isn't, check your signs.</p>`,
+    },
+  ]);
+
+  // ---------- Try it yourself ----------
+  let done = 0, clean = 0;
+
+  function posPairs(n) {
+    const out = [];
+    for (let d = 1; d * d <= n; d++) if (n % d === 0) out.push([d, n / d]);
+    return out;
+  }
+
+  // Accept answers in any order: values = [a1, b1, a2, b2 …] as rows of two
+  function pairRowsValidate(values, n) {
+    const want = posPairs(n).map(p => p.join('x'));
+    const seen = new Set(), ok = [], notes = [];
+    for (let r = 0; r < values.length; r += 2) {
+      const a = Number(values[r]), b = Number(values[r + 1]);
+      const key = [Math.min(a, b), Math.max(a, b)].join('x');
+      const good = Number.isInteger(a) && Number.isInteger(b) && a > 0 && b > 0 && a * b === n && !seen.has(key);
+      if (good) seen.add(key);
+      else if (a * b === n && seen.has(key)) notes.push(`You wrote ${a} × ${b} twice. Each pair only once.`);
+      else if (values[r] && values[r + 1]) notes.push(`${values[r]} × ${values[r + 1]} = ${a * b}, not ${n}.`);
+      ok.push(good, good);
+    }
+    return { ok, notes };
+  }
+
+  function twoNumbersValidate(values, prod, sum) {
+    const a = Number(values[0]), b = Number(values[1]);
+    if (a * b === prod && a + b === sum) return { ok: [true, true] };
+    const notes = [];
+    if (a * b !== prod) notes.push(`${P(a)} × ${P(b)} = ${S(a * b)}, but they must multiply to <b>${S(prod)}</b>.`);
+    else notes.push(`They multiply to ${S(prod)} ✓ but ${P(a)} + ${P(b)} = ${S(a + b)}, and they must add to <b>${S(sum)}</b>.`);
+    if (Math.abs(a) * Math.abs(b) === Math.abs(prod) && Math.abs(a + b) === Math.abs(sum)) notes.push('You have the right numbers — only the signs are wrong. Look at the sign rules again.');
+    return { ok: [false, false], notes };
+  }
+
+  function buildEasy(p, q) {            // x² + (p+q)x + pq = (x + p)(x + q)
+    const b = p + q, c = p * q;
+    const pairs = posPairs(Math.abs(c));
+    const same = c > 0;
+    const big = Math.abs(p) >= Math.abs(q) ? p : q;
+    const steps = [
+      {
+        html: `Read the question. In x² + bx + c: b = {0} and c = {1}`,
+        fields: [{ answer: b, kind: 'int', label: 'b', size: 3 }, { answer: c, kind: 'int', label: 'c', size: 3 }],
+        hint: 'b is the number in front of x (with its sign). c is the number on its own (with its sign).',
+        why: `b = <b>${S(b)}</b> and c = <b>${S(c)}</b>. We need two numbers that multiply to ${S(c)} and add to ${S(b)}.`,
+      },
+      same ? {
+        html: `Signs: c = ${S(c)} is positive, so the two numbers have the {0} sign. b = ${S(b)} is ${b > 0 ? 'positive' : 'negative'}, so both numbers are {1}.`,
+        fields: [{ answer: 'same', kind: 'choice', options: ['same', 'different'], label: 'same or different' },
+                 { answer: b > 0 ? 'positive' : 'negative', kind: 'choice', options: ['positive', 'negative'], label: 'positive or negative' }],
+        hint: 'Positive × positive = positive, and negative × negative = positive. Then the sum has the same sign as both numbers.',
+        why: `c is positive → <b>same</b> signs. b is ${b > 0 ? 'positive' : 'negative'} → both numbers are <b>${b > 0 ? 'positive' : 'negative'}</b>.`,
+      } : {
+        html: `Signs: c = ${S(c)} is negative, so the two numbers have {0} signs. b = ${S(b)}, so the bigger number (ignoring the sign) is {1}.`,
+        fields: [{ answer: 'different', kind: 'choice', options: ['same', 'different'], label: 'same or different' },
+                 { answer: big > 0 ? 'positive' : 'negative', kind: 'choice', options: ['positive', 'negative'], label: 'positive or negative' }],
+        hint: 'Only a positive × a negative gives a negative answer. When you add them, the bigger one wins, so it carries the sign of b.',
+        why: `c is negative → <b>different</b> signs. b is ${b >= 0 ? 'positive' : 'negative'} → the bigger number is <b>${big > 0 ? 'positive' : 'negative'}</b>.`,
+      },
+      {
+        html: `List every pair of whole numbers that multiply to ${Math.abs(c)} (ignore signs for now):<div class="pair-rows">` +
+          pairs.map((_, r) => `<span>{${2 * r}} × {${2 * r + 1}}</span>`).join('') + '</div>',
+        fields: pairs.flatMap(pr => [{ answer: pr[0], kind: 'int', size: 2, label: 'number' }, { answer: pr[1], kind: 'int', size: 2, label: 'number' }]),
+        validate: (v) => pairRowsValidate(v, Math.abs(c)),
+        hint: `Try 1, 2, 3 … in turn. Does it divide ${Math.abs(c)} exactly? There are ${pairs.length} pair${pairs.length > 1 ? 's' : ''} to find.`,
+        why: `The pairs are <b>${pairs.map(pr => pr.join(' × ')).join(', ')}</b>.`,
+      },
+      {
+        html: `Now add the signs and test the pairs. Which two numbers multiply to ${S(c)} <b>and</b> add to ${S(b)}? {0} and {1}`,
+        fields: [{ answer: p, kind: 'int', size: 3, label: 'first number' }, { answer: q, kind: 'int', size: 3, label: 'second number' }],
+        validate: (v) => twoNumbersValidate(v, c, b),
+        hint: `Use the sign rule from step 2 on each pair, then add them. You need a total of ${S(b)}.`,
+        why: `${P(p)} × ${P(q)} = ${S(c)} ✓ and ${P(p)} + ${P(q)} = ${S(b)} ✓. The numbers are <b>${S(p)} and ${S(q)}</b>.`,
+      },
+      {
+        html: `Write the brackets: (x {0}) (x {1})<br><span class="g-hint">Type the number with its sign, e.g. +3 or −2.</span>`,
+        fields: [{ answer: (p < 0 ? '' : '+') + p, kind: 'int', size: 3, label: 'first bracket' }, { answer: (q < 0 ? '' : '+') + q, kind: 'int', size: 3, label: 'second bracket' }],
+        validate: (v) => { const a = Number(v[0]), d = Number(v[1]); const ok = (a === p && d === q) || (a === q && d === p); return ok ? { ok: [true, true] } : twoNumbersValidate(v, c, b); },
+        hint: 'Put one number in each bracket, keeping its sign.',
+        why: `x² ${B(b)}x ${B(c)} = <b>(x ${B(p)})(x ${B(q)})</b>.`,
+      },
+      {
+        html: `Check by expanding (x ${B(p)})(x ${B(q)}): x² + {0}x + {1}`,
+        fields: [{ answer: b, kind: 'int', size: 3, label: 'x coefficient' }, { answer: c, kind: 'int', size: 3, label: 'number' }],
+        hint: `The x terms: ${S(p)}x + ${P(q)}x. The number: ${P(p)} × ${P(q)}.`,
+        why: `You get back x² ${B(b)}x ${B(c)}, the question. ✔ The answer is right.`,
+      },
+    ];
+    return { q: `Factorise x² ${B(b)}x ${B(c)}`.replace('x² + 1x', 'x² + x').replace('x² − 1x', 'x² − x'), steps };
+  }
+
+  function buildHard(m, p, n, q) {      // (mx + p)(nx + q) = mn x² + (mq + np) x + pq
+    const a = m * n, b = m * q + n * p, c = p * q, ac = a * c;
+    const r1 = m * q, r2 = n * p;       // split of the middle term
+    const term = (k, sym) => (k === 1 ? '' : k === -1 ? '−' : S(k)) + sym;
+    const qs = `${term(a, 'x²')} ${B(b)}x ${B(c)}`.replace(/ ([+−]) 1x/, ' $1 x');
+    const steps = [
+      {
+        html: `Read the question. a = {0}, b = {1}, c = {2}`,
+        fields: [{ answer: a, kind: 'int', size: 3, label: 'a' }, { answer: b, kind: 'int', size: 3, label: 'b' }, { answer: c, kind: 'int', size: 3, label: 'c' }],
+        hint: 'a is in front of x², b is in front of x, c is the number on its own. Keep the signs.',
+        why: `a = <b>${S(a)}</b>, b = <b>${S(b)}</b>, c = <b>${S(c)}</b>.`,
+      },
+      {
+        html: `Multiply a × c: ${P(a)} × ${P(c)} = {0}`,
+        fields: [{ answer: ac, kind: 'int', size: 4, label: 'a × c' }],
+        hint: 'Multiply the numbers, then the sign: different signs give a negative.',
+        why: `a × c = <b>${S(ac)}</b>. Now we need two numbers that multiply to ${S(ac)} and add to ${S(b)}.`,
+      },
+      {
+        html: `Signs: a × c = ${S(ac)} is ${ac > 0 ? 'positive' : 'negative'}, so the two numbers have {0} signs.`,
+        fields: [{ answer: ac > 0 ? 'same' : 'different', kind: 'choice', options: ['same', 'different'], label: 'same or different' }],
+        hint: 'A positive product means same signs; a negative product means different signs.',
+        why: ac > 0 ? `Same signs, and b is ${b > 0 ? 'positive' : 'negative'}, so both are <b>${b > 0 ? 'positive' : 'negative'}</b>.`
+                    : `Different signs. The bigger one takes the sign of b (${b >= 0 ? 'positive' : 'negative'}).`,
+      },
+      {
+        html: `Find the two numbers that multiply to ${S(ac)} and add to ${S(b)}: {0} and {1}`,
+        fields: [{ answer: r1, kind: 'int', size: 3, label: 'first number' }, { answer: r2, kind: 'int', size: 3, label: 'second number' }],
+        validate: (v) => twoNumbersValidate(v, ac, b),
+        hint: `List the pairs of ${Math.abs(ac)} (1 × ${Math.abs(ac)}, 2 × …), add the signs, and test the sums.`,
+        why: `${P(r1)} × ${P(r2)} = ${S(ac)} ✓ and ${P(r1)} + ${P(r2)} = ${S(b)} ✓.`,
+      },
+      {
+        html: `Split the middle term with those numbers: ${term(a, 'x²')} + {0}x + {1}x ${B(c)}`,
+        fields: [{ answer: r1, kind: 'int', size: 3, label: 'first x term' }, { answer: r2, kind: 'int', size: 3, label: 'second x term' }],
+        validate: (v) => { const x = Number(v[0]), y = Number(v[1]); const ok = (x === r1 && y === r2) || (x === r2 && y === r1); return { ok: [ok, ok], notes: ok ? [] : ['Use the two numbers from the step before.'] }; },
+        hint: `${S(b)}x is split into two x terms using your two numbers.`,
+        why: `${term(a, 'x²')} ${B(r1)}x ${B(r2)}x ${B(c)}. Same value as before, just written in four parts.`,
+      },
+      {
+        html: `Group and take out what is common. The common bracket is ({0}x + {1})`,
+        fields: [{ answer: n, kind: 'int', size: 2, label: 'x number in bracket' }, { answer: q, kind: 'int', size: 3, label: 'number in bracket' }],
+        validate: (v) => { const x = Number(v[0]), y = Number(v[1]);
+          const ok = (x === n && y === q) || (x === -n && y === -q) || (x === m && y === p) || (x === -m && y === -p);
+          return { ok: [ok, ok], notes: ok ? [] : ['Take the biggest common factor out of the first two terms, and look at what is left in the bracket.'] }; },
+        hint: `From ${term(a, 'x²')} ${B(r1)}x, take out the biggest common factor. What is left inside the bracket?`,
+        why: `${term(m, 'x')}(${term(n, 'x')} ${B(q)}) ${B(p)}(${term(n, 'x')} ${B(q)}) — the bracket (${term(n, 'x')} ${B(q)}) appears twice.`,
+      },
+      {
+        html: `Write the answer: ({0}x + {1})({2}x + {3})<br><span class="g-hint">Type the numbers with their signs.</span>`,
+        fields: [{ answer: m, kind: 'int', size: 2 }, { answer: p, kind: 'int', size: 3 }, { answer: n, kind: 'int', size: 2 }, { answer: q, kind: 'int', size: 3 }],
+        validate: (v) => {
+          const [w, x, y, z] = v.map(Number);
+          const ok = (w === m && x === p && y === n && z === q) || (w === n && x === q && y === m && z === p) ||
+                     (w === -m && x === -p && y === -n && z === -q) || (w === -n && x === -q && y === -m && z === -p);
+          if (ok) return { ok: [true, true, true, true] };
+          const ex = [w * y, w * z + x * y, x * z];
+          return { ok: [false, false, false, false], notes: [`Your brackets expand to ${polyStr(ex)}, not ${polyStr([a, b, c])}.`] };
+        },
+        hint: 'One bracket is the common bracket. The other holds the two numbers you took out.',
+        why: `${qs} = <b>(${term(m, 'x')} ${B(p)})(${term(n, 'x')} ${B(q)})</b>. Expand to check: ${polyStr([a, b, c])} ✓`,
+      },
+    ];
+    return { q: 'Factorise ' + qs, steps };
+  }
+
+  function newQuestion(first) {
+    let Q;
+    if ($('pLevel').value === 'hard' && !first) {
+      let m, n, p, q;
+      do { m = pick([1, 2, 3]); n = pick([1, 2, 3]); p = rnz(-5, 5); q = rnz(-5, 5); }
+      while ((m === 1 && n === 1) || gcd(m, p) !== 1 || gcd(n, q) !== 1 || m * q + n * p === 0);
+      Q = buildHard(m, p, n, q);
+    } else {
+      let p, q;
+      if (first) { p = 2; q = 3; } else do { p = rnz(-9, 9); q = rnz(-9, 9); } while (p + q === 0);
+      Q = buildEasy(p, q);
+    }
+    $('pQuestion').textContent = Q.q;
+    runSteps($('pSteps'), Q.steps, {
+      onCheck: (ok) => trackLesson(SLUG, ok ? 'practice_correct' : 'practice_wrong'),
+      onFinish: (usedHelp) => {
+        done++; if (!usedHelp) clean++;
+        $('pScore').textContent = `${done} finished · ${clean} without help`;
+        practiceEnd($('pSteps'), usedHelp, () => { newQuestion(); $('pQuestion').scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+      },
+    });
+  }
+  $('pNew').addEventListener('click', () => newQuestion());
+  $('pLevel').addEventListener('change', () => newQuestion());
+  newQuestion(true);
 })();
 viewLesson("factorising-quadratics");
 </script>
