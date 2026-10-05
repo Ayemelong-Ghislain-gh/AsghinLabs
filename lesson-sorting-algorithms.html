@@ -57,10 +57,10 @@
 
     .lesson-stage {
       display: flex; align-items: flex-end; gap: 6px; height: 220px;
-      border-bottom: 2px solid rgba(255,255,255,0.1); padding: 0 4px 10px; overflow-x: auto;
+      border-bottom: 2px solid rgba(255,255,255,0.1); padding: 0 4px 10px; overflow: hidden;
     }
     .lesson-bar {
-      flex: 1 1 0; min-width: 14px; background: linear-gradient(180deg,#1c2b4a,#13203c);
+      flex: 1 1 0; min-width: 0; background: linear-gradient(180deg,#1c2b4a,#13203c);
       border: 1px solid rgba(255,255,255,0.12); border-radius: 6px 6px 2px 2px;
       position: relative; transition: height 0.25s ease, background 0.2s ease;
       display: flex; align-items: flex-start; justify-content: center;
@@ -90,6 +90,9 @@
     @media (max-width: 640px) {
       .lesson-wrap { padding-top: 120px; }
       .lesson-wrap h1 { font-size: 1.6rem; }
+      .lesson-stage { gap: 3px; padding: 0 0 10px; }
+      .lesson-bar { border-radius: 4px 4px 2px 2px; }
+      .lesson-bar span { font-size: 0.7rem; margin-top: 4px; }
     }
   </style>
 </head>
@@ -109,7 +112,7 @@
     <li><a href="academy.html#workbooks">Workbooks</a></li>
     <li><a href="academy.html#resources">Free Notes</a></li>
     <li><a href="academy.html#classes">Classes</a></li>
-    <li><a href="academy.html#interactive-coming-soon">Interactive Lessons</a></li>
+    <li><a href="lessons.html">Interactive Lessons</a></li>
     <li><a href="academy.html#enroll">Contact</a></li>
     <li><a href="/" class="nav-back">← AsghinLabs</a></li>
   </ul>
@@ -160,7 +163,7 @@
 
 <footer>
   <div class="footer-links" role="navigation" aria-label="Footer">
-    <a href="/">Home</a> · <a href="/#services">Web &amp; Software</a> · <a href="academy.html">Academy</a> · <a href="academy.html#workbooks">Workbooks</a> · <a href="academy.html#resources">Free Notes</a> · <a href="portfolio.html">Portfolio</a> · <a href="founder.html">Founder</a>
+    <a href="/">Home</a> · <a href="/#services">Web &amp; Software</a> · <a href="academy.html">Academy</a> · <a href="academy.html#workbooks">Workbooks</a> · <a href="academy.html#resources">Free Notes</a> · <a href="lessons.html">Interactive Lessons</a> · <a href="portfolio.html">Portfolio</a> · <a href="founder.html">Founder</a>
   </div>
   <p class="footer-fr">Développement web, logiciels et automatisation IA à Douala, Cameroun · Cours d'informatique et fascicules GCE.</p>
   <p>© 2026 AsghinLabs Academy. Douala, Cameroon.</p>

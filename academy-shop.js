@@ -14,6 +14,11 @@
   const money = (n) => n.toLocaleString('en-US').replace(/,/g, ' ') + ' FCFA';
   const priceLabel = (b) => b.price ? money(b.price) : 'Ask for price';
 
+  // Keep the hero "From … FCFA" in sync with the cheapest priced workbook
+  const lowestEl = document.getElementById('lowestPrice');
+  const priced = BOOKS.filter(b => b.price > 0).map(b => b.price);
+  if (lowestEl && priced.length) lowestEl.textContent = money(Math.min(...priced));
+
   // ---------- Basket (kept for this visitor between visits) ----------
   let cart = {};
   try { cart = JSON.parse(localStorage.getItem('asghin-cart') || '{}') || {}; } catch (e) { cart = {}; }

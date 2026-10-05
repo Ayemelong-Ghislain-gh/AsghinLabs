@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Binary, Decimal and Hexadecimal Converter — Interactive Lesson | AsghinLabs Academy</title>
+  <meta name="description" content="Flip bits to see how binary, decimal and hexadecimal numbers convert, with the working shown and a challenge mode. Free interactive Computer Science lesson.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.asghinlabs.com/lesson-binary-converter.html">
+  <link rel="apple-touch-icon" href="images/logo-blue.jpeg">
+  <link rel="icon" href="images/logo-blue.jpeg" type="image/jpeg">
+  <meta property="og:site_name" content="AsghinLabs">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Binary, Decimal and Hexadecimal Converter — Interactive Lesson | AsghinLabs Academy">
+  <meta property="og:description" content="Flip bits to see how binary, decimal and hexadecimal numbers convert, with the working shown and a challenge mode. Free interactive Computer Science lesson.">
+  <meta property="og:url" content="https://www.asghinlabs.com/lesson-binary-converter.html">
+  <meta property="og:image" content="https://www.asghinlabs.com/images/og-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Binary, Decimal and Hexadecimal Converter",
+  "description": "Flip bits to see how binary, decimal and hexadecimal numbers convert, with the working shown and a challenge mode. Free interactive Computer Science lesson.",
+  "url": "https://www.asghinlabs.com/lesson-binary-converter.html",
+  "learningResourceType": "Interactive lesson",
+  "educationalLevel": "O Level",
+  "teaches": "Number systems",
+  "about": "Computer Science",
+  "isAccessibleForFree": true,
+  "inLanguage": "en",
+  "provider": {
+    "@type": "Organization",
+    "name": "AsghinLabs Academy",
+    "url": "https://www.asghinlabs.com/academy.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Ayemelong Selobie Ghislain"
+  }
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style-main.css">
+  <link rel="stylesheet" href="style-lesson.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK679H74R1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FK679H74R1');
+  </script>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="academy.html">
+    <img src="images/logo-blue.jpeg" alt="AsghinLabs Academy Logo" id="navLogoImg" width="42" height="42">
+    <span>ASGHINLABS <span class="logo-sub">Academy</span></span>
+  </a>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="academy.html#workbooks">Workbooks</a></li>
+    <li><a href="academy.html#resources">Free Notes</a></li>
+    <li><a href="academy.html#classes">Classes</a></li>
+    <li><a href="lessons.html">Interactive Lessons</a></li>
+    <li><a href="academy.html#enroll">Contact</a></li>
+    <li><a href="/" class="nav-back">← AsghinLabs</a></li>
+  </ul>
+</nav>
+
+<div class="lesson-wrap">
+  <a class="lesson-crumb" href="lessons.html">← All interactive lessons</a>
+  <span class="lesson-badge">🧪 Interactive Lesson · Computer Science · O Level</span>
+  <h1>Binary, Decimal and Hexadecimal Converter</h1>
+  <p class="lead">Computers store every number as a row of bits. Flip the bits below to see how binary, decimal and hexadecimal are three ways of writing the same number. Then try the challenge.</p>
+
+  <div class="lesson-panel">
+    <div class="lesson-controls">
+      <button type="button" id="randBtn">🔀 Random number</button>
+      <button type="button" id="resetBtn">↺ Reset</button>
+      <button type="button" id="modeBtn" class="primary">🎯 Challenge me</button>
+    </div>
+
+    <div class="nibbles" id="nibbles" aria-label="Eight bits"></div>
+
+    <div id="explore">
+      <p class="lesson-hint">Tap a bit to flip it between 0 and 1. Each place is worth double the one on its right. You can also type in any box.</p>
+      <div class="conv-row">
+        <label class="lesson-field">Decimal (0–255)<input class="lesson-input" id="decIn" type="number" min="0" max="255" inputmode="numeric"></label>
+        <label class="lesson-field">Binary (8 bits)<input class="lesson-input" id="binIn" type="text" maxlength="8" inputmode="numeric" autocomplete="off"></label>
+        <label class="lesson-field">Hexadecimal (00–FF)<input class="lesson-input" id="hexIn" type="text" maxlength="2" autocomplete="off"></label>
+      </div>
+      <div class="lesson-step-msg" id="working"></div>
+    </div>
+
+    <div id="challenge" hidden>
+      <p class="chal-prompt" id="chalPrompt"></p>
+      <div class="chal-answer">
+        <input class="lesson-input" id="chalInput" type="text" autocomplete="off" aria-label="Your answer">
+        <button type="button" class="lesson-btn primary" id="chalCheck">Check</button>
+      </div>
+      <div class="lesson-step-msg" id="chalResult" aria-live="polite"></div>
+      <div class="chal-actions">
+        <button type="button" class="lesson-btn" id="chalShow">👀 Show answer</button>
+        <button type="button" class="lesson-btn" id="chalNext">Next question →</button>
+        <span class="chal-score" id="chalScore"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-panel lesson-explain">
+    <h2>How it works</h2>
+    <ul>
+      <li><b>Binary</b> uses only 0 and 1. From the right, the places are worth <b>1, 2, 4, 8, 16, 32, 64, 128</b>. A 1 means "count this place".</li>
+      <li><b>Binary → decimal:</b> add up the place values that have a 1. For example 1010 0110 = 128 + 32 + 4 + 2 = <b>166</b>.</li>
+      <li><b>Hexadecimal</b> uses 16 digits: 0–9 then A=10, B=11, C=12, D=13, E=14, F=15. One hex digit stands for exactly <b>4 bits</b>, so you convert each group of four separately.</li>
+      <li><b>Binary → hex:</b> split into two groups of four, then turn each group into a digit. 1010 0110 → A and 6 → <b>A6</b>.</li>
+    </ul>
+  </div>
+
+  <div class="lesson-panel lesson-next">
+    <h3>Keep practising</h3>
+    <p>Reinforce number systems with exam-style questions in the Computer Science workbooks.</p>
+    <div class="lesson-next-actions">
+      <a class="next-btn primary" href="academy.html#workbooks">🛒 See the workbooks</a>
+      <a class="next-btn" href="lessons.html">More lessons →</a>
+    </div>
+    <div class="fb"><a href="https://wa.me/237682402876?text=Hi%20AsghinLabs%20Academy%2C%20I%20tried%20the%20Binary%2C%20Decimal%20and%20Hexadecimal%20Converter%20lesson%20and%20wanted%20to%20say..." target="_blank" rel="noopener">💬 Tell us what to improve on WhatsApp →</a></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links" role="navigation" aria-label="Footer">
+    <a href="/">Home</a> · <a href="/#services">Web &amp; Software</a> · <a href="academy.html">Academy</a> · <a href="academy.html#workbooks">Workbooks</a> · <a href="academy.html#resources">Free Notes</a> · <a href="lessons.html">Interactive Lessons</a> · <a href="portfolio.html">Portfolio</a> · <a href="founder.html">Founder</a>
+  </div>
+  <p class="footer-fr">Développement web, logiciels et automatisation IA à Douala, Cameroun · Cours d'informatique et fascicules GCE.</p>
+  <p>© 2026 AsghinLabs Academy. Douala, Cameroon.</p>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/237682402876?text=Hi%20AsghinLabs%20Academy%2C%20I%27d%20like%20to%20learn%20more." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+<script src="script-main.js"></script>
+<script src="lessons-common.js"></script>
+<script>
+(function () {
+  const SLUG = 'binary-converter';
+  const places = [128, 64, 32, 16, 8, 4, 2, 1];
+  const $ = (id) => document.getElementById(id);
+  const nibblesEl = $('nibbles'), decIn = $('decIn'), binIn = $('binIn'), hexIn = $('hexIn');
+  const working = $('working'), exploreEl = $('explore'), chalEl = $('challenge');
+  const chalPrompt = $('chalPrompt'), chalInput = $('chalInput'), chalResult = $('chalResult');
+  const chalScore = $('chalScore'), chalCheck = $('chalCheck'), modeBtn = $('modeBtn');
+
+  let value = 0, chal = null, score = 0, asked = 0, challengeMode = false;
+  const bitBtns = [], nibHex = [];
+
+  for (let n = 0; n < 2; n++) {
+    const wrap = document.createElement('div'); wrap.className = 'nibble-wrap';
+    const nib = document.createElement('div'); nib.className = 'nibble';
+    for (let k = 0; k < 4; k++) {
+      const i = n * 4 + k;
+      const col = document.createElement('div'); col.className = 'bit-col';
+      const pl = document.createElement('span'); pl.className = 'bit-place'; pl.textContent = places[i];
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'bit'; b.dataset.i = i;
+      b.setAttribute('aria-label', 'Bit worth ' + places[i]);
+      col.append(pl, b); nib.appendChild(col); bitBtns.push(b);
+    }
+    const hx = document.createElement('div'); hx.className = 'nibble-hex';
+    wrap.append(nib, hx); nibblesEl.appendChild(wrap); nibHex.push(hx);
+  }
+
+  const bits8 = (v) => v.toString(2).padStart(8, '0');
+  const hex2 = (v) => v.toString(16).toUpperCase().padStart(2, '0');
+
+  function render(source) {
+    const s = bits8(value);
+    bitBtns.forEach((b, i) => {
+      b.textContent = s[i];
+      b.classList.toggle('on', s[i] === '1');
+      b.setAttribute('aria-pressed', s[i] === '1');
+    });
+    nibHex[0].textContent = parseInt(s.slice(0, 4), 2).toString(16).toUpperCase();
+    nibHex[1].textContent = parseInt(s.slice(4), 2).toString(16).toUpperCase();
+    if (source !== 'dec') decIn.value = value;
+    if (source !== 'bin') binIn.value = s;
+    if (source !== 'hex') hexIn.value = hex2(value);
+    const on = places.filter((p, i) => s[i] === '1');
+    working.innerHTML = on.length
+      ? `<b>${on.join(' + ')} = ${value}</b><br>Hex: ${s.slice(0, 4)} → ${nibHex[0].textContent}, ${s.slice(4)} → ${nibHex[1].textContent}, so the hex value is <b>${hex2(value)}</b>.`
+      : 'Every bit is 0, so the number is <b>0</b>.';
+  }
+
+  nibblesEl.addEventListener('click', (e) => {
+    const b = e.target.closest('.bit'); if (!b) return;
+    value ^= places[Number(b.dataset.i)];
+    render();
+    if (challengeMode && chal && chal.type === 'toBinary') chalResult.textContent = '';
+  });
+  decIn.addEventListener('input', () => {
+    const n = parseInt(decIn.value, 10);
+    if (!isNaN(n) && n >= 0 && n <= 255) { value = n; render('dec'); }
+  });
+  binIn.addEventListener('input', () => {
+    const t = binIn.value.replace(/[^01]/g, '');
+    if (t !== binIn.value) binIn.value = t;
+    if (t.length) { value = parseInt(t, 2); render('bin'); }
+  });
+  hexIn.addEventListener('input', () => {
+    const t = hexIn.value.replace(/[^0-9a-fA-F]/g, '').toUpperCase();
+    if (t !== hexIn.value) hexIn.value = t;
+    if (t.length) { value = parseInt(t, 16); render('hex'); }
+  });
+  $('randBtn').addEventListener('click', () => { value = rint(1, 255); render(); });
+  $('resetBtn').addEventListener('click', () => { value = 0; render(); });
+
+  // ---------- Challenge mode ----------
+  function newChallenge() {
+    const type = pick(['toBinary', 'toDecimal', 'toHex']);
+    const n = rint(1, 255);
+    chal = { type, n, done: false };
+    chalResult.textContent = ''; chalResult.className = 'lesson-step-msg';
+    chalInput.value = '';
+    chalCheck.disabled = false;
+    if (type === 'toBinary') {
+      value = 0; render();
+      nibblesEl.hidden = false;
+      chalInput.style.display = 'none';
+      chalPrompt.innerHTML = `Set the bits so they show the decimal number <b>${n}</b>, then press Check.`;
+    } else {
+      nibblesEl.hidden = true;
+      chalInput.style.display = '';
+      chalInput.placeholder = type === 'toDecimal' ? 'Decimal answer' : 'Hex answer, e.g. 3F';
+      chalPrompt.innerHTML = `Convert the binary number <span class="big-code">${bits8(n).slice(0, 4)} ${bits8(n).slice(4)}</span> to ${type === 'toDecimal' ? '<b>decimal</b>' : '<b>hexadecimal</b>'}.`;
+      chalInput.focus();
+    }
+    updateScore();
+  }
+  function updateScore() { chalScore.textContent = asked ? `${score} / ${asked} correct` : ''; }
+
+  function checkChallenge() {
+    if (!chal || chal.done) return;
+    const n = chal.n; let ok = false;
+    if (chal.type === 'toBinary') ok = value === n;
+    else if (chal.type === 'toDecimal') ok = parseInt(chalInput.value, 10) === n;
+    else ok = chalInput.value.trim().toUpperCase().replace(/^0X/, '').padStart(2, '0') === hex2(n);
+    if (chal.type !== 'toBinary' && !chalInput.value.trim()) { chalResult.className = 'lesson-step-msg bad'; chalResult.textContent = 'Type an answer first.'; return; }
+    asked++;
+    if (ok) {
+      score++; chal.done = true; chalCheck.disabled = true;
+      chalResult.className = 'lesson-step-msg ok';
+      chalResult.innerHTML = `✅ Correct! ${bits8(n)} = ${n} = ${hex2(n)} in hex.`;
+      trackLesson(SLUG, 'check_correct');
+    } else {
+      chalResult.className = 'lesson-step-msg bad';
+      chalResult.innerHTML = chal.type === 'toBinary'
+        ? `❌ Not yet. Your bits show ${value}, but the target is ${n}. Try flipping a different bit.`
+        : '❌ Not quite. Hint: add up the place values (128, 64, 32 …) that have a 1.';
+      trackLesson(SLUG, 'check_wrong');
+    }
+    updateScore();
+  }
+  chalCheck.addEventListener('click', checkChallenge);
+  chalInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkChallenge(); });
+  $('chalNext').addEventListener('click', newChallenge);
+  $('chalShow').addEventListener('click', () => {
+    if (!chal) return;
+    chal.done = true; chalCheck.disabled = true;
+    const n = chal.n, s = bits8(n);
+    const on = places.filter((p, i) => s[i] === '1');
+    chalResult.className = 'lesson-step-msg';
+    chalResult.innerHTML = `<b>${s}</b> → ${on.join(' + ')} = <b>${n}</b>, and in hex that is <b>${hex2(n)}</b>.`;
+    if (chal.type === 'toBinary') { value = n; render(); }
+  });
+
+  modeBtn.addEventListener('click', () => {
+    challengeMode = !challengeMode;
+    exploreEl.hidden = challengeMode;
+    chalEl.hidden = !challengeMode;
+    nibblesEl.hidden = false;
+    modeBtn.textContent = challengeMode ? '↩ Back to exploring' : '🎯 Challenge me';
+    modeBtn.classList.toggle('primary', !challengeMode);
+    $('randBtn').disabled = challengeMode; $('resetBtn').disabled = challengeMode;
+    if (challengeMode) { newChallenge(); trackLesson(SLUG, 'challenge_start'); }
+    else { value = 0; render(); }
+  });
+
+  value = rint(1, 255);
+  render();
+})();
+viewLesson("binary-converter");
+</script>
+</body>
+</html>

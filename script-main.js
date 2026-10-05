@@ -96,8 +96,7 @@
     // entry (e.g. founder.html links out from "index.html#founder").
     const noMatchFallbackHash = {
       'founder.html': '#founder',
-      'portfolio.html': '#services',
-      'lesson-sorting-algorithms.html': '#interactive-coming-soon'
+      'portfolio.html': '#services'
     };
 
     function setCurrent(hash) {
@@ -114,6 +113,11 @@
         const linkHash = hashPart ? '#' + hashPart : '';
         if (page === currentPage && linkHash === targetHash) matched = link;
       });
+
+      // Every lesson-*.html page lights up "Interactive Lessons" (the lessons hub)
+      if (!matched && !targetHash && currentPage.startsWith('lesson-')) {
+        matched = navLinkEls.find(l => l.getAttribute('href') === 'lessons.html') || null;
+      }
 
       if (!matched && !targetHash) {
         const fallbackHash = noMatchFallbackHash[currentPage];

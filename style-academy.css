@@ -949,3 +949,11 @@ body.has-order-bar .whatsapp-float { bottom: 96px; }
 .classes-apply { max-width: 520px; margin: 70px auto 0; scroll-margin-top: 100px; }
 .classes-apply h3 { text-align: center; font-size: 1.5rem; margin-bottom: 6px; }
 .classes-apply .section-sub { text-align: center; }
+
+/* ---- Interactive-lessons teaser: lesson chips ---- */
+.lesson-chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 0 auto 22px; }
+.lesson-chips a {
+  padding: 8px 16px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--text-light); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: 0.25s;
+}
+.lesson-chips a:hover { border-color: var(--brand-primary); color: var(--brand-primary); }

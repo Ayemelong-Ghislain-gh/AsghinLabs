@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Straight-Line and Quadratic Graph Plotter — Interactive Lesson | AsghinLabs Academy</title>
+  <meta name="description" content="Drag sliders to change y = mx + c and y = ax² + bx + c and see the graph, intercepts and turning point update instantly. Free interactive Maths lesson.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.asghinlabs.com/lesson-graph-plotter.html">
+  <link rel="apple-touch-icon" href="images/logo-blue.jpeg">
+  <link rel="icon" href="images/logo-blue.jpeg" type="image/jpeg">
+  <meta property="og:site_name" content="AsghinLabs">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Straight-Line and Quadratic Graph Plotter — Interactive Lesson | AsghinLabs Academy">
+  <meta property="og:description" content="Drag sliders to change y = mx + c and y = ax² + bx + c and see the graph, intercepts and turning point update instantly. Free interactive Maths lesson.">
+  <meta property="og:url" content="https://www.asghinlabs.com/lesson-graph-plotter.html">
+  <meta property="og:image" content="https://www.asghinlabs.com/images/og-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Straight-Line and Quadratic Graph Plotter",
+  "description": "Drag sliders to change y = mx + c and y = ax² + bx + c and see the graph, intercepts and turning point update instantly. Free interactive Maths lesson.",
+  "url": "https://www.asghinlabs.com/lesson-graph-plotter.html",
+  "learningResourceType": "Interactive lesson",
+  "educationalLevel": "Form 3",
+  "teaches": "Straight-line and quadratic graphs",
+  "about": "Mathematics",
+  "isAccessibleForFree": true,
+  "inLanguage": "en",
+  "provider": {
+    "@type": "Organization",
+    "name": "AsghinLabs Academy",
+    "url": "https://www.asghinlabs.com/academy.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Ayemelong Selobie Ghislain"
+  }
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style-main.css">
+  <link rel="stylesheet" href="style-lesson.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK679H74R1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FK679H74R1');
+  </script>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="academy.html">
+    <img src="images/logo-blue.jpeg" alt="AsghinLabs Academy Logo" id="navLogoImg" width="42" height="42">
+    <span>ASGHINLABS <span class="logo-sub">Academy</span></span>
+  </a>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="academy.html#workbooks">Workbooks</a></li>
+    <li><a href="academy.html#resources">Free Notes</a></li>
+    <li><a href="academy.html#classes">Classes</a></li>
+    <li><a href="lessons.html">Interactive Lessons</a></li>
+    <li><a href="academy.html#enroll">Contact</a></li>
+    <li><a href="/" class="nav-back">← AsghinLabs</a></li>
+  </ul>
+</nav>
+
+<div class="lesson-wrap">
+  <a class="lesson-crumb" href="lessons.html">← All interactive lessons</a>
+  <span class="lesson-badge">🧪 Interactive Lesson · Mathematics · Form 3</span>
+  <h1>Straight-Line and Quadratic Graph Plotter</h1>
+  <p class="lead">Change the numbers and watch the graph move. See how m and c shape a straight line, and how a, b and c shape a curve.</p>
+
+  <div class="lesson-panel">
+    <div class="lesson-controls">
+      <select id="modeSel" aria-label="Choose graph type">
+        <option value="lin">Straight line: y = mx + c</option>
+        <option value="quad">Curve: y = ax² + bx + c</option>
+      </select>
+      <button type="button" id="resetBtn">↺ Reset</button>
+    </div>
+    <div class="graph-layout">
+      <svg id="graph" class="graph-svg" viewBox="0 0 440 440" role="img" aria-label="Graph of the equation"></svg>
+      <div>
+        <div class="equation" id="equation"></div>
+        <div id="linPanel">
+          <div class="slider-row"><label for="sm">m</label><input type="range" id="sm" min="-5" max="5" step="0.5" value="1"><output id="vm"></output></div>
+          <div class="slider-row"><label for="sc">c</label><input type="range" id="sc" min="-10" max="10" step="1" value="2"><output id="vc"></output></div>
+        </div>
+        <div id="quadPanel" hidden>
+          <div class="slider-row"><label for="sa">a</label><input type="range" id="sa" min="-3" max="3" step="0.5" value="1"><output id="va"></output></div>
+          <div class="slider-row"><label for="sb">b</label><input type="range" id="sb" min="-6" max="6" step="1" value="0"><output id="vb"></output></div>
+          <div class="slider-row"><label for="sq">c</label><input type="range" id="sq" min="-10" max="10" step="1" value="-4"><output id="vq"></output></div>
+        </div>
+        <ul class="graph-info" id="info"></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-panel lesson-explain">
+    <h2>Try these</h2>
+    <ul>
+      <li>Set <b>c = 3</b> and move <b>m</b>. What stays the same? (The line always crosses the y-axis at 3.)</li>
+      <li>Make <b>m negative</b>. Which way does the line lean?</li>
+      <li>Switch to the curve and change <b>a</b> from positive to negative. What happens to the shape?</li>
+      <li>Set <b>a = 1, b = 0, c = −4</b>. Where does the curve cross the x-axis? Those two points are the <b>roots</b> of x² − 4 = 0.</li>
+    </ul>
+  </div>
+
+  <div class="lesson-panel lesson-next">
+    <h3>Keep practising</h3>
+    <p>Get more graph and algebra practice in the Mathematics workbooks.</p>
+    <div class="lesson-next-actions">
+      <a class="next-btn primary" href="academy.html#workbooks">🛒 See the workbooks</a>
+      <a class="next-btn" href="lessons.html">More lessons →</a>
+    </div>
+    <div class="fb"><a href="https://wa.me/237682402876?text=Hi%20AsghinLabs%20Academy%2C%20I%20tried%20the%20Straight-Line%20and%20Quadratic%20Graph%20Plotter%20lesson%20and%20wanted%20to%20say..." target="_blank" rel="noopener">💬 Tell us what to improve on WhatsApp →</a></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links" role="navigation" aria-label="Footer">
+    <a href="/">Home</a> · <a href="/#services">Web &amp; Software</a> · <a href="academy.html">Academy</a> · <a href="academy.html#workbooks">Workbooks</a> · <a href="academy.html#resources">Free Notes</a> · <a href="lessons.html">Interactive Lessons</a> · <a href="portfolio.html">Portfolio</a> · <a href="founder.html">Founder</a>
+  </div>
+  <p class="footer-fr">Développement web, logiciels et automatisation IA à Douala, Cameroun · Cours d'informatique et fascicules GCE.</p>
+  <p>© 2026 AsghinLabs Academy. Douala, Cameroon.</p>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/237682402876?text=Hi%20AsghinLabs%20Academy%2C%20I%27d%20like%20to%20learn%20more." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+<script src="script-main.js"></script>
+<script src="lessons-common.js"></script>
+<script>
+(function () {
+  const SLUG = 'graph-plotter';
+  const $ = (id) => document.getElementById(id);
+  const svg = $('graph'), modeSel = $('modeSel');
+  const S = 22, C = 220;                       // 22 px per unit, origin at the centre
+  const px = (x) => C + x * S, py = (y) => C - y * S;
+  const inputs = { m: $('sm'), c: $('sc'), a: $('sa'), b: $('sb'), q: $('sq') };
+  const outs = { m: $('vm'), c: $('vc'), a: $('va'), b: $('vb'), q: $('vq') };
+  const defaults = { m: 1, c: 2, a: 1, b: 0, q: -4 };
+
+  function frame() {
+    let s = '';
+    for (let k = -10; k <= 10; k++) {
+      if (k === 0) continue;
+      s += `<line class="g-grid" x1="${px(k)}" y1="${py(-10)}" x2="${px(k)}" y2="${py(10)}"/>`;
+      s += `<line class="g-grid" x1="${px(-10)}" y1="${py(k)}" x2="${px(10)}" y2="${py(k)}"/>`;
+    }
+    s += `<line class="g-axis" x1="${px(-10)}" y1="${py(0)}" x2="${px(10)}" y2="${py(0)}"/>`;
+    s += `<line class="g-axis" x1="${px(0)}" y1="${py(-10)}" x2="${px(0)}" y2="${py(10)}"/>`;
+    for (let k = -10; k <= 10; k += 2) {
+      if (k === 0) continue;
+      s += `<text class="g-tick" x="${px(k)}" y="${py(0) + 13}" text-anchor="middle">${num(k)}</text>`;
+      s += `<text class="g-tick" x="${px(0) - 6}" y="${py(k) + 3}" text-anchor="end">${num(k)}</text>`;
+    }
+    s += `<text class="g-tick" x="${px(10) - 2}" y="${py(0) - 6}" text-anchor="end">x</text>`;
+    s += `<text class="g-tick" x="${px(0) + 7}" y="${py(10) + 10}">y</text>`;
+    return s;
+  }
+  const FRAME = frame();
+
+  function curve(f) {
+    let d = '', pen = false;
+    for (let x = -10; x <= 10.0001; x += 0.05) {
+      const y = f(x);
+      if (Math.abs(y) > 11) { pen = false; continue; }
+      d += (pen ? 'L' : 'M') + px(x).toFixed(1) + ',' + py(y).toFixed(1);
+      pen = true;
+    }
+    return d;
+  }
+  function dot(x, y, label, dx, dy, anchor) {
+    if (Math.abs(x) > 10.5 || Math.abs(y) > 10.5) return '';
+    return `<circle class="g-dot" cx="${px(x)}" cy="${py(y)}" r="4.5"/>` +
+      `<text class="g-lbl" x="${px(x) + (dx || 8)}" y="${py(y) + (dy || -8)}" text-anchor="${anchor || 'start'}">${label}</text>`;
+  }
+  const pt = (x, y) => `(${num(x)}, ${num(y)})`;
+
+  function render() {
+    const quad = modeSel.value === 'quad';
+    $('linPanel').hidden = quad; $('quadPanel').hidden = !quad;
+    const v = {}; Object.keys(inputs).forEach(k => { v[k] = Number(inputs[k].value); outs[k].textContent = num(v[k]); });
+    let f, eq, info = [], marks = '';
+
+    if (!quad || v.a === 0) {
+      const m = quad ? v.b : v.m, c = quad ? v.q : v.c;
+      f = (x) => m * x + c;
+      eq = 'y = ' + polyStr([0, m, c]);
+      if (quad) info.push('<b>a = 0</b>, so the x² term disappears and the graph is a straight line.');
+      info.push(m === 0
+        ? 'Gradient <b>m = 0</b>: the line is flat (horizontal).'
+        : `Gradient <b>m = ${num(m)}</b>: for every 1 step right, the line goes ${m > 0 ? 'up' : 'down'} ${num(Math.abs(m))}.`);
+      info.push(`y-intercept <b>c = ${num(c)}</b>: the line crosses the y-axis at <b>${pt(0, c)}</b>.`);
+      marks += dot(0, c, pt(0, c), 8, -8);
+      if (m !== 0) {
+        const xi = -c / m;
+        info.push(`It crosses the x-axis where mx + c = 0, at <b>${pt(xi, 0)}</b>.`);
+        marks += dot(xi, 0, pt(xi, 0), 0, -9, 'middle');
+      } else info.push(c === 0 ? 'The line lies on the x-axis.' : 'It never crosses the x-axis.');
+    } else {
+      const a = v.a, b = v.b, c = v.q;
+      f = (x) => a * x * x + b * x + c;
+      eq = 'y = ' + polyStr([a, b, c]);
+      const xv = -b / (2 * a), yv = f(xv), disc = b * b - 4 * a * c;
+      info.push(a > 0 ? '<b>a is positive</b>: the curve opens upward (a "U" shape) with a lowest point.'
+                      : '<b>a is negative</b>: the curve opens downward (an "∩" shape) with a highest point.');
+      info.push(`Turning point (vertex): <b>${pt(xv, yv)}</b>.`);
+      info.push(`y-intercept <b>c = ${num(c)}</b>: it crosses the y-axis at <b>${pt(0, c)}</b>.`);
+      marks += dot(xv, yv, pt(xv, yv), 8, a > 0 ? 16 : -8) + dot(0, c, pt(0, c), 8, -8);
+      if (disc > 0) {
+        const r1 = (-b - Math.sqrt(disc)) / (2 * a), r2 = (-b + Math.sqrt(disc)) / (2 * a);
+        info.push(`b² − 4ac = ${num(disc)} is positive, so it crosses the x-axis twice, at x = <b>${num(Math.min(r1, r2))}</b> and x = <b>${num(Math.max(r1, r2))}</b> (the roots).`);
+        marks += dot(r1, 0, '', 0, 0) + dot(r2, 0, '', 0, 0);
+      } else if (disc === 0) {
+        info.push(`b² − 4ac = 0, so it just touches the x-axis at x = <b>${num(xv)}</b> (one repeated root).`);
+        marks += dot(xv, 0, '', 0, 0);
+      } else info.push(`b² − 4ac = ${num(disc)} is negative, so the curve <b>never crosses</b> the x-axis (no real roots).`);
+    }
+    svg.innerHTML = FRAME + `<path class="g-curve" d="${curve(f)}"/>` + marks;
+    $('equation').textContent = eq;
+    $('info').innerHTML = info.map(t => `<li>${t}</li>`).join('');
+  }
+
+  Object.values(inputs).forEach(el => el.addEventListener('input', render));
+  let moved = false;
+  Object.values(inputs).forEach(el => el.addEventListener('input', () => {
+    if (!moved) { moved = true; trackLesson(SLUG, 'interact'); }
+  }));
+  modeSel.addEventListener('change', render);
+  $('resetBtn').addEventListener('click', () => {
+    Object.keys(inputs).forEach(k => { inputs[k].value = defaults[k]; });
+    render();
+  });
+  render();
+})();
+viewLesson("graph-plotter");
+</script>
+</body>
+</html>
