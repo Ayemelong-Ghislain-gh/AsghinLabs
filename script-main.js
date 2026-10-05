@@ -95,12 +95,14 @@
     // Fallback mapping for pages that don't have their own direct nav
     // entry (e.g. founder.html links out from "index.html#founder").
     const noMatchFallbackHash = {
-      'founder.html': '#founder',
-      'portfolio.html': '#services'
+      'founder': '#founder',
+      'portfolio': '#services'
     };
 
     function setCurrent(hash) {
-      const currentPage = location.pathname.split('/').pop() || 'index.html';
+      // Works with and without ".html" in the address (the site uses clean URLs)
+      const bare = (p) => (p || 'index').replace(/\.html$/, '');
+      const currentPage = bare(location.pathname.split('/').pop() || 'index');
       const targetHash = hash || '';
       let matched = null;
 
@@ -109,14 +111,14 @@
         const href = link.getAttribute('href') || '';
         const [pagePart, hashPart] = href.split('#');
         // '' = this page; '/' = the home page (index.html)
-        const page = pagePart === '' ? currentPage : (pagePart.replace(/^\//, '') || 'index.html');
+        const page = pagePart === '' ? currentPage : bare(pagePart.replace(/^\//, '').split('/').pop() || 'index');
         const linkHash = hashPart ? '#' + hashPart : '';
         if (page === currentPage && linkHash === targetHash) matched = link;
       });
 
-      // Every lesson-*.html page lights up "Interactive Lessons" (the lessons hub)
-      if (!matched && !targetHash && currentPage.startsWith('lesson-')) {
-        matched = navLinkEls.find(l => l.getAttribute('href') === 'lessons.html') || null;
+      // Every lesson page (/lessons/...) lights up "Interactive Lessons" (the lessons hub)
+      if (!matched && !targetHash && (location.pathname.startsWith('/lessons/') || currentPage.startsWith('lesson-'))) {
+        matched = navLinkEls.find(l => /(^|\/)lessons(\.html)?$/.test(l.getAttribute('href') || '')) || null;
       }
 
       if (!matched && !targetHash) {

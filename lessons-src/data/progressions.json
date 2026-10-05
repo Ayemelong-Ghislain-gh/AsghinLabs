@@ -1,0 +1,2437 @@
+[
+ {
+  "class": "Form 1",
+  "subject": "Computer Science",
+  "chapters": [
+   {
+    "chapter": "Understanding Computer evolution",
+    "lessons": [
+     {
+      "n": 1,
+      "title": "Introduction to Computer Science",
+      "integration": false
+     },
+     {
+      "n": 2,
+      "title": "History of computers",
+      "integration": false
+     },
+     {
+      "n": 3,
+      "title": "Classification of Computers",
+      "integration": false
+     },
+     {
+      "n": 4,
+      "title": "Introduction to Artificial Intelligence",
+      "integration": false
+     },
+     {
+      "n": 5,
+      "title": "Applications and Ethics of Artificial Intelligence",
+      "integration": false
+     },
+     {
+      "n": 6,
+      "title": "The use of appropriate Prompts to generate AI responses",
+      "integration": false
+     },
+     {
+      "n": 7,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Introducing analytical and logical thinking",
+    "lessons": [
+     {
+      "n": 8,
+      "title": "Decomposition",
+      "integration": false
+     },
+     {
+      "n": 9,
+      "title": "Pattern recognition",
+      "integration": false
+     },
+     {
+      "n": 10,
+      "title": "Abstraction",
+      "integration": false
+     },
+     {
+      "n": 11,
+      "title": "Introduction to algorithms",
+      "integration": false
+     },
+     {
+      "n": 12,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Discovering the computing environment",
+    "lessons": [
+     {
+      "n": 13,
+      "title": "Components of the computing environment and role",
+      "integration": false
+     },
+     {
+      "n": 14,
+      "title": "Users of the computing environment and notions on data and information",
+      "integration": false
+     },
+     {
+      "n": 15,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Describing the computer laboratory",
+    "lessons": [
+     {
+      "n": 16,
+      "title": "Computer laboratory equipment and devices",
+      "integration": false
+     },
+     {
+      "n": 17,
+      "title": "Computer laboratory designs",
+      "integration": false
+     },
+     {
+      "n": 18,
+      "title": "Behaviours to adopt in a computer laboratory",
+      "integration": false
+     },
+     {
+      "n": 19,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Exploring the computer",
+    "lessons": [
+     {
+      "n": 20,
+      "title": "Types of personal computer",
+      "integration": false
+     },
+     {
+      "n": 21,
+      "title": "Components of a computer",
+      "integration": false
+     },
+     {
+      "n": 22,
+      "title": "Keyboard, mouse and touch screen manipulations",
+      "integration": false
+     },
+     {
+      "n": 23,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Exploring areas of computer application",
+    "lessons": [
+     {
+      "n": 24,
+      "title": "Application of computers",
+      "integration": false
+     },
+     {
+      "n": 25,
+      "title": "Application of embedded systems and IoT",
+      "integration": false
+     },
+     {
+      "n": 26,
+      "title": "Notions on Generative AI",
+      "integration": false
+     },
+     {
+      "n": 27,
+      "title": "AI assisted creation",
+      "integration": false
+     },
+     {
+      "n": 28,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Introducing Ethics in computing",
+    "lessons": [
+     {
+      "n": 29,
+      "title": "Introducing Ethics",
+      "integration": false
+     },
+     {
+      "n": 30,
+      "title": "Computer Ethics",
+      "integration": false
+     },
+     {
+      "n": 31,
+      "title": "Ethical ways of using technology",
+      "integration": false
+     },
+     {
+      "n": 32,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Introducing programming tools",
+    "lessons": [
+     {
+      "n": 33,
+      "title": "Block programming environment",
+      "integration": false
+     },
+     {
+      "n": 34,
+      "title": "Pseudocodes and Block programming",
+      "integration": false
+     },
+     {
+      "n": 35,
+      "title": "Write programs in a block programming environment",
+      "integration": false
+     },
+     {
+      "n": 36,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Describing hardware",
+    "lessons": [
+     {
+      "n": 37,
+      "title": "Peripheral devices",
+      "integration": false
+     },
+     {
+      "n": 38,
+      "title": "Computer ports",
+      "integration": false
+     },
+     {
+      "n": 39,
+      "title": "The boot process",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Describing software",
+    "lessons": [
+     {
+      "n": 40,
+      "title": "System software",
+      "integration": false
+     },
+     {
+      "n": 41,
+      "title": "Application software",
+      "integration": false
+     },
+     {
+      "n": 42,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Working with GUI Operating system",
+    "lessons": [
+     {
+      "n": 43,
+      "title": "Features of a GUI",
+      "integration": false
+     },
+     {
+      "n": 44,
+      "title": "Operations on files and folders",
+      "integration": false
+     },
+     {
+      "n": 45,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Using application software",
+    "lessons": [
+     {
+      "n": 46,
+      "title": "Features of a word processor",
+      "integration": false
+     },
+     {
+      "n": 47,
+      "title": "Features of a spreadsheet",
+      "integration": false
+     },
+     {
+      "n": 48,
+      "title": "Features of a graphic software",
+      "integration": false
+     },
+     {
+      "n": 49,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Discovering the internet",
+    "lessons": [
+     {
+      "n": 50,
+      "title": "Introduction to the internet",
+      "integration": false
+     },
+     {
+      "n": 51,
+      "title": "Web browsers and search engines",
+      "integration": false
+     },
+     {
+      "n": 52,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Computers and the workplace",
+    "lessons": [
+     {
+      "n": 53,
+      "title": "Common dangers in a workplace: Electricity shocks, fire, flood",
+      "integration": false
+     },
+     {
+      "n": 54,
+      "title": "Computer related health issues",
+      "integration": false
+     },
+     {
+      "n": 55,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "class": "Form 2",
+  "subject": "Computer Science",
+  "chapters": [
+   {
+    "chapter": "Classifying hardware components",
+    "lessons": [
+     {
+      "n": 1,
+      "title": "Types of Input and output devices",
+      "integration": false
+     },
+     {
+      "n": 2,
+      "title": "Types of processing devices and storage devices",
+      "integration": false
+     },
+     {
+      "n": 3,
+      "title": "Integration activities",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Exploring Application Areas of Computers",
+    "lessons": [
+     {
+      "n": 4,
+      "title": "Introduction to Artificial Intelligence",
+      "integration": false
+     },
+     {
+      "n": 5,
+      "title": "Applications and Ethics of Artificial Intelligence",
+      "integration": false
+     },
+     {
+      "n": 6,
+      "title": "The use of appropriate Prompts to generate AI responses",
+      "integration": false
+     },
+     {
+      "n": 7,
+      "title": "Integration activities",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Problem solving strategies",
+    "lessons": [
+     {
+      "n": 8,
+      "title": "Solving problems 1",
+      "integration": false
+     },
+     {
+      "n": 9,
+      "title": "Solving problems 2",
+      "integration": false
+     },
+     {
+      "n": 10,
+      "title": "Integration activities",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Choosing appropriate system software",
+    "lessons": [
+     {
+      "n": 11,
+      "title": "Notions on operating systems",
+      "integration": false
+     },
+     {
+      "n": 12,
+      "title": "Notions on utility software and device drivers",
+      "integration": false
+     },
+     {
+      "n": 13,
+      "title": "Integration activities",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Representing numbers and characters",
+    "lessons": [
+     {
+      "n": 14,
+      "title": "Introduction to number systems",
+      "integration": false
+     },
+     {
+      "n": 15,
+      "title": "Notions on encoding numbers",
+      "integration": false
+     },
+     {
+      "n": 16,
+      "title": "Notions on encoding characters",
+      "integration": false
+     },
+     {
+      "n": 17,
+      "title": "Integration activities",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Converting between units of time and storage",
+    "lessons": [
+     {
+      "n": 18,
+      "title": "Conversion between units of time",
+      "integration": false
+     },
+     {
+      "n": 19,
+      "title": "Conversion between units of storage",
+      "integration": false
+     },
+     {
+      "n": 20,
+      "title": "Integration activities",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Understanding embedded systems, IoT and cloud computing",
+    "lessons": [
+     {
+      "n": 32,
+      "title": "Initiation to cloud computing",
+      "integration": false
+     },
+     {
+      "n": 33,
+      "title": "Types of sensors",
+      "integration": false
+     },
+     {
+      "n": 34,
+      "title": "Notions on embedded systems and IoT",
+      "integration": false
+     },
+     {
+      "n": 35,
+      "title": "Integration activities",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Exploring the internet and browsers",
+    "lessons": [
+     {
+      "n": 21,
+      "title": "Accessing the internet",
+      "integration": false
+     },
+     {
+      "n": 22,
+      "title": "Using a browser",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Examining technologies for the disabled",
+    "lessons": [
+     {
+      "n": 23,
+      "title": "Integration activities",
+      "integration": true
+     },
+     {
+      "n": 24,
+      "title": "Assistive technologies",
+      "integration": false
+     },
+     {
+      "n": 25,
+      "title": "Integration activities",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Notions of programming",
+    "lessons": [
+     {
+      "n": 26,
+      "title": "Writing programs in a block programming environment 1",
+      "integration": false
+     },
+     {
+      "n": 27,
+      "title": "Writing programs in a block programming environment 2",
+      "integration": false
+     },
+     {
+      "n": 28,
+      "title": "Integration activities",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Managing digital identities",
+    "lessons": [
+     {
+      "n": 29,
+      "title": "Notions on digital Identity",
+      "integration": false
+     },
+     {
+      "n": 30,
+      "title": "Types of digital footprint",
+      "integration": false
+     },
+     {
+      "n": 31,
+      "title": "Managing digital footprints",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Using presentation, desktop publishing and spreadsheet software",
+    "lessons": [
+     {
+      "n": 36,
+      "title": "Notions on Spreadsheet software",
+      "integration": false
+     },
+     {
+      "n": 37,
+      "title": "Using a spreadsheet to solve problems",
+      "integration": false
+     },
+     {
+      "n": 38,
+      "title": "Notions on presentation software and desktop publishing software",
+      "integration": false
+     },
+     {
+      "n": 39,
+      "title": "Using presentation software to solve problems",
+      "integration": false
+     },
+     {
+      "n": 40,
+      "title": "Using desktop publishing software to solve problems",
+      "integration": false
+     },
+     {
+      "n": 41,
+      "title": "Integration activities",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Protecting against data loss and unauthorised access",
+    "lessons": [
+     {
+      "n": 42,
+      "title": "Notions on authentication",
+      "integration": false
+     },
+     {
+      "n": 43,
+      "title": "Notions on backup",
+      "integration": false
+     },
+     {
+      "n": 44,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Using communication and collaboration tools",
+    "lessons": [
+     {
+      "n": 45,
+      "title": "Communication and collaboration tools",
+      "integration": false
+     },
+     {
+      "n": 46,
+      "title": "Email tool",
+      "integration": false
+     },
+     {
+      "n": 47,
+      "title": "Chat tool",
+      "integration": false
+     },
+     {
+      "n": 48,
+      "title": "Videoconference tool",
+      "integration": false
+     },
+     {
+      "n": 49,
+      "title": "Integration activities",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Applying basic preventive and corrective maintenance",
+    "lessons": [
+     {
+      "n": 50,
+      "title": "Introduction to computer maintenance",
+      "integration": false
+     },
+     {
+      "n": 51,
+      "title": "Common hardware problems",
+      "integration": false
+     },
+     {
+      "n": 52,
+      "title": "Common software problems",
+      "integration": false
+     },
+     {
+      "n": 53,
+      "title": "Integration activities",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Evaluating the credibility and reliability of sources of information",
+    "lessons": [
+     {
+      "n": 54,
+      "title": "Verifying the credibility of information",
+      "integration": false
+     },
+     {
+      "n": 55,
+      "title": "Integration activities",
+      "integration": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "class": "Form 3",
+  "subject": "Mathematics",
+  "chapters": [
+   {
+    "chapter": "Simple algebra",
+    "lessons": [
+     {
+      "n": 0,
+      "title": "Contact with students and Diagnostic Assessment",
+      "integration": true
+     },
+     {
+      "n": 1,
+      "title": "Algebraic expressions (Simplification)",
+      "integration": false
+     },
+     {
+      "n": 2,
+      "title": "Expansions of algebraic expressions",
+      "integration": false
+     },
+     {
+      "n": 3,
+      "title": "Factorisation of algebraic expressions",
+      "integration": false
+     },
+     {
+      "n": 4,
+      "title": "Factorising quadratic trinomials",
+      "integration": false
+     },
+     {
+      "n": 5,
+      "title": "Factorising difference of two squares",
+      "integration": false
+     },
+     {
+      "n": 9,
+      "title": "Solving simple linear equations",
+      "integration": false
+     },
+     {
+      "n": 10,
+      "title": "Solving simultaneous linear equations by elimination method",
+      "integration": false
+     },
+     {
+      "n": 11,
+      "title": "Solving simultaneous linear equations by substitution method",
+      "integration": false
+     },
+     {
+      "n": 12,
+      "title": "Building and solving equations from real life problems",
+      "integration": false
+     },
+     {
+      "n": 13,
+      "title": "Solving quadratic equations by factorization",
+      "integration": false
+     },
+     {
+      "n": "13b",
+      "title": "Solving quadratic equations by the quadratic formula",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Transposition of formulae and variation",
+    "lessons": [
+     {
+      "n": 6,
+      "title": "Transposition of formulae (Change of subject)",
+      "integration": false
+     },
+     {
+      "n": 7,
+      "title": "Direct and inverse variation",
+      "integration": false
+     },
+     {
+      "n": 8,
+      "title": "Joint Variation and graphs",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Trigonometry in a right-angled triangle",
+    "lessons": [
+     {
+      "n": 14,
+      "title": "Right angled triangles and Pythagoras’ theorem",
+      "integration": false
+     },
+     {
+      "n": 15,
+      "title": "Trigonometric ratios for acute angles, Sine and cosine of complementary angles",
+      "integration": false
+     },
+     {
+      "n": 16,
+      "title": "Trigonometric ratio for special angles, use of calculators",
+      "integration": false
+     },
+     {
+      "n": 17,
+      "title": "Solving triangles",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Matrices",
+    "lessons": [
+     {
+      "n": 18,
+      "title": "Definition and types of matrices",
+      "integration": false
+     },
+     {
+      "n": 19,
+      "title": "Addition and subtraction, Scalar multiplication of matrices",
+      "integration": false
+     },
+     {
+      "n": 20,
+      "title": "Multiplication of a matrix by another matrix",
+      "integration": false
+     },
+     {
+      "n": 21,
+      "title": "Transpose, Determinant and adjoint of a matrix",
+      "integration": false
+     },
+     {
+      "n": 22,
+      "title": "Inverse of a matrix",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Congruency and similarities",
+    "lessons": [
+     {
+      "n": 23,
+      "title": "Congruency and congruent plane figures",
+      "integration": false
+     },
+     {
+      "n": 24,
+      "title": "Congruency in triangles (SSS, SAS, ASA, RHS)",
+      "integration": false
+     },
+     {
+      "n": 25,
+      "title": "Similar plane figures and the constant of proportionality",
+      "integration": false
+     },
+     {
+      "n": 26,
+      "title": "Areas and volume of similar plane figures",
+      "integration": false
+     },
+     {
+      "n": 27,
+      "title": "Thales property and its converse",
+      "integration": false
+     },
+     {
+      "n": 28,
+      "title": "Application of similarities to areas and volume",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Indices and logarithm",
+    "lessons": [
+     {
+      "n": 29,
+      "title": "Laws of indices",
+      "integration": false
+     },
+     {
+      "n": 30,
+      "title": "Simple exponential equations",
+      "integration": false
+     },
+     {
+      "n": 31,
+      "title": "Laws of logarithms",
+      "integration": false
+     },
+     {
+      "n": 32,
+      "title": "Simple logarithmic equations",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Vectors in 2 dimensions",
+    "lessons": [
+     {
+      "n": 33,
+      "title": "Scalar and vector quantities, Vector notation and representation",
+      "integration": false
+     },
+     {
+      "n": 34,
+      "title": "Position vectors, free vectors and localized vectors",
+      "integration": false
+     },
+     {
+      "n": 35,
+      "title": "Operations with vectors, Equal vectors, Addition and subtraction of vectors",
+      "integration": false
+     },
+     {
+      "n": 36,
+      "title": "Multiplication of a vector by a scalar and dot product of two vectors",
+      "integration": false
+     },
+     {
+      "n": 37,
+      "title": "Magnitude, direction and sense of a vector",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Sets",
+    "lessons": [
+     {
+      "n": 38,
+      "title": "Sets of numbers (ℕ, ℤ, ℚ, ℝ)",
+      "integration": false
+     },
+     {
+      "n": 39,
+      "title": "Operations in the sets",
+      "integration": false
+     },
+     {
+      "n": 40,
+      "title": "Set language and notation",
+      "integration": false
+     },
+     {
+      "n": 41,
+      "title": "Types of sets (Finite, infinite, null, singleton, equal and equivalent sets)",
+      "integration": false
+     },
+     {
+      "n": 42,
+      "title": "The universal set, complement of a set and relative complement",
+      "integration": false
+     },
+     {
+      "n": 43,
+      "title": "Cardinality, subsets and power sets",
+      "integration": false
+     },
+     {
+      "n": 44,
+      "title": "Intersection and union of sets, disjoint sets",
+      "integration": false
+     },
+     {
+      "n": 45,
+      "title": "Venn diagrams and De Morgan’s laws",
+      "integration": false
+     },
+     {
+      "n": 46,
+      "title": "Sets, Venn diagrams and real life problems",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Relations and functions",
+    "lessons": [
+     {
+      "n": 47,
+      "title": "Relation between 2 sets and in a set",
+      "integration": false
+     },
+     {
+      "n": 48,
+      "title": "Cartesian product A×B and arrow diagrams",
+      "integration": false
+     },
+     {
+      "n": 49,
+      "title": "Types of relations",
+      "integration": false
+     },
+     {
+      "n": 50,
+      "title": "Properties of relations in a set",
+      "integration": false
+     },
+     {
+      "n": 51,
+      "title": "Equivalent relations",
+      "integration": false
+     },
+     {
+      "n": 52,
+      "title": "Domain, Codomain, Image and Range",
+      "integration": false
+     },
+     {
+      "n": 53,
+      "title": "Types of mappings",
+      "integration": false
+     },
+     {
+      "n": 54,
+      "title": "Flow diagrams",
+      "integration": false
+     },
+     {
+      "n": 55,
+      "title": "Functions",
+      "integration": false
+     },
+     {
+      "n": 56,
+      "title": "Inverse function",
+      "integration": false
+     },
+     {
+      "n": 57,
+      "title": "Composite functions (2 functions)",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Mensuration",
+    "lessons": [
+     {
+      "n": 58,
+      "title": "Spheres : Surface area and volume",
+      "integration": false
+     },
+     {
+      "n": 59,
+      "title": "Right circular cylinder : Net, Surface area and volume",
+      "integration": false
+     },
+     {
+      "n": 60,
+      "title": "Right circular cone : Net, Surface area and volume",
+      "integration": false
+     },
+     {
+      "n": 61,
+      "title": "Pyramids : Nets, surface area and volume",
+      "integration": false
+     },
+     {
+      "n": 62,
+      "title": "Prisms : Nets, surface area and volume",
+      "integration": false
+     },
+     {
+      "n": 63,
+      "title": "Frustums of cones and Volume of frustum",
+      "integration": false
+     },
+     {
+      "n": 64,
+      "title": "Frustums of pyramids and Volume of frustum",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Statistics",
+    "lessons": [
+     {
+      "n": 65,
+      "title": "Representation of data - Bar chart",
+      "integration": false
+     },
+     {
+      "n": 66,
+      "title": "Representation of data - Pie chart",
+      "integration": false
+     },
+     {
+      "n": 67,
+      "title": "Representation of data",
+      "integration": false
+     },
+     {
+      "n": 68,
+      "title": "Histogram of grouped data ( Equal class width)",
+      "integration": false
+     },
+     {
+      "n": 69,
+      "title": "Measures of central tendency (Ungrouped data) - Mode - Median",
+      "integration": false
+     },
+     {
+      "n": 70,
+      "title": "Measures of central tendency : (Ungrouped data) - Mean",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Probability",
+    "lessons": [
+     {
+      "n": 71,
+      "title": "Sample space and events",
+      "integration": false
+     },
+     {
+      "n": 72,
+      "title": "Equiprobable events",
+      "integration": false
+     },
+     {
+      "n": 73,
+      "title": "Probability of an event",
+      "integration": false
+     },
+     {
+      "n": 74,
+      "title": "The probability scale",
+      "integration": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "class": "Lower Sixth",
+  "subject": "ICT",
+  "chapters": [
+   {
+    "chapter": "Computing Systems and Components",
+    "lessons": [
+     {
+      "n": 1,
+      "title": "History and Evolution of Computing",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Exploring AI Concepts",
+    "lessons": [
+     {
+      "n": 2,
+      "title": "Introduction to Artificial Intelligence (AI)",
+      "integration": false
+     },
+     {
+      "n": 3,
+      "title": "AI Ethics and Responsible Use",
+      "integration": false
+     },
+     {
+      "n": 4,
+      "title": "AI Techniques and Intelligent Systems",
+      "integration": false
+     },
+     {
+      "n": 5,
+      "title": "Machine Learning",
+      "integration": false
+     },
+     {
+      "n": 6,
+      "title": "Developing AI Systems",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Description of computing trends and categorization of computers",
+    "lessons": [
+     {
+      "n": 7,
+      "title": "Types of Computers",
+      "integration": false
+     },
+     {
+      "n": 8,
+      "title": "Basic Components of a Computer",
+      "integration": false
+     },
+     {
+      "n": 9,
+      "title": "Input devices",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Hardware and Categorisation of Hardware components",
+    "lessons": [
+     {
+      "n": 10,
+      "title": "Output devices",
+      "integration": false
+     },
+     {
+      "n": 11,
+      "title": "Secondary Storage media and devices",
+      "integration": false
+     },
+     {
+      "n": 12,
+      "title": "Primary Storage devices",
+      "integration": false
+     },
+     {
+      "n": 13,
+      "title": "Processing device and the machine instruction cycle",
+      "integration": false
+     },
+     {
+      "n": 14,
+      "title": "Processor architectures, parallel & distributed computing",
+      "integration": false
+     },
+     {
+      "n": 15,
+      "title": "Conversion between units of storage and units of processing",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Computer Software",
+    "lessons": [
+     {
+      "n": 16,
+      "title": "Definitions and classification of software",
+      "integration": false
+     },
+     {
+      "n": 17,
+      "title": "Application software",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Operating Systems",
+    "lessons": [
+     {
+      "n": 18,
+      "title": "System software and examples",
+      "integration": false
+     },
+     {
+      "n": 19,
+      "title": "Notions of the Operating System",
+      "integration": false
+     },
+     {
+      "n": 20,
+      "title": "Functions of an operating system 1",
+      "integration": false
+     },
+     {
+      "n": 21,
+      "title": "Functions of the operating system 2",
+      "integration": false
+     },
+     {
+      "n": 22,
+      "title": "Installing an operating system and user interfaces",
+      "integration": false
+     },
+     {
+      "n": 23,
+      "title": "Using the GUI of an operating system",
+      "integration": false
+     },
+     {
+      "n": 24,
+      "title": "Using the CLI of an operating system",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Hardware and Software Maintenance",
+    "lessons": [
+     {
+      "n": 25,
+      "title": "Hardware faults identification and correction",
+      "integration": false
+     },
+     {
+      "n": 26,
+      "title": "Software faults identification and correction",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Assistive technologies and computer ergonomics",
+    "lessons": [
+     {
+      "n": 27,
+      "title": "Assistive technology",
+      "integration": false
+     },
+     {
+      "n": 28,
+      "title": "Computer ergonomics",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Using a word processor",
+    "lessons": [
+     {
+      "n": 29,
+      "title": "Editing and Formatting text",
+      "integration": false
+     },
+     {
+      "n": 30,
+      "title": "Editing and formatting images and tables",
+      "integration": false
+     },
+     {
+      "n": 31,
+      "title": "Using Text boxes and adjusting Page layout",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Using electronic spreadsheets",
+    "lessons": [
+     {
+      "n": 32,
+      "title": "Introduction to spreadsheets",
+      "integration": false
+     },
+     {
+      "n": 33,
+      "title": "Performing calculations using spreadsheets",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Digital Citizenship and Ethics",
+    "lessons": [
+     {
+      "n": 34,
+      "title": "Types of cells referencing and calculations",
+      "integration": false
+     },
+     {
+      "n": 35,
+      "title": "Positive and Negative Uses of Computer Systems",
+      "integration": false
+     },
+     {
+      "n": 36,
+      "title": "Computer Ethics, Legislation and Cameroon Law",
+      "integration": false
+     },
+     {
+      "n": 37,
+      "title": "Data Protection, Copyright and the Digital Divide",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Cybersecurity",
+    "lessons": [
+     {
+      "n": 38,
+      "title": "Protecting Computer Systems from Illegal Access",
+      "integration": false
+     },
+     {
+      "n": 39,
+      "title": "System Recovery and Safe Working Practices",
+      "integration": false
+     },
+     {
+      "n": 40,
+      "title": "Computer Crimes and Combat Measures",
+      "integration": false
+     },
+     {
+      "n": 41,
+      "title": "Malware — Types and Characteristics",
+      "integration": false
+     },
+     {
+      "n": 42,
+      "title": "Protecting a Computer System from Malware",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Description of Systems",
+    "lessons": [
+     {
+      "n": 43,
+      "title": "Types of Systems",
+      "integration": false
+     },
+     {
+      "n": 44,
+      "title": "Modelling a System with a Data Flow Diagram",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Information Systems and Data processing",
+    "lessons": [
+     {
+      "n": 45,
+      "title": "Introduction to Information Systems",
+      "integration": false
+     },
+     {
+      "n": 46,
+      "title": "Types of Information Systems",
+      "integration": false
+     },
+     {
+      "n": 47,
+      "title": "General and Commercial Data Processing",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Artificial Intelligence and emerging technologies",
+    "lessons": [
+     {
+      "n": 48,
+      "title": "Computer Systems in Industry and Science",
+      "integration": false
+     },
+     {
+      "n": 49,
+      "title": "Robots and Their Application in Daily Life",
+      "integration": false
+     },
+     {
+      "n": 50,
+      "title": "Monitoring systems, Control systems, and Monitoring & Control systems",
+      "integration": false
+     },
+     {
+      "n": 51,
+      "title": "Simulation and Modelling",
+      "integration": false
+     },
+     {
+      "n": 52,
+      "title": "Embedded systems and IoT",
+      "integration": false
+     },
+     {
+      "n": 53,
+      "title": "Virtual Reality and Augmented Reality",
+      "integration": false
+     },
+     {
+      "n": 54,
+      "title": "Multimedia Systems and Authoring",
+      "integration": false
+     },
+     {
+      "n": 55,
+      "title": "Multimodal Systems",
+      "integration": false
+     },
+     {
+      "n": 56,
+      "title": "AI technologies",
+      "integration": false
+     },
+     {
+      "n": 57,
+      "title": "Generative AI",
+      "integration": false
+     },
+     {
+      "n": 58,
+      "title": "Using generative AI for day-to-day activities",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "SDLC and SDLC models",
+    "lessons": [
+     {
+      "n": 59,
+      "title": "Introduction to the System Development Life Cycle (SDLC)",
+      "integration": false
+     },
+     {
+      "n": 60,
+      "title": "SDLC Models",
+      "integration": false
+     },
+     {
+      "n": 61,
+      "title": "The prototyping model",
+      "integration": false
+     },
+     {
+      "n": 62,
+      "title": "Changeover Strategies",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Modelling Data in an Information System",
+    "lessons": [
+     {
+      "n": 63,
+      "title": "Data Modelling Concepts",
+      "integration": false
+     },
+     {
+      "n": 64,
+      "title": "Entity Relationship Model Concepts and representation systems",
+      "integration": false
+     },
+     {
+      "n": 65,
+      "title": "Designing an ER diagram and normalisation",
+      "integration": false
+     },
+     {
+      "n": 66,
+      "title": "Normalisation and converting ER model to relational model",
+      "integration": false
+     },
+     {
+      "n": 67,
+      "title": "Implementing a relational model",
+      "integration": false
+     },
+     {
+      "n": 68,
+      "title": "Using an RDBMS for sorting, filtering and queries",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Software Testing",
+    "lessons": [
+     {
+      "n": 69,
+      "title": "Types of software testing",
+      "integration": false
+     },
+     {
+      "n": 70,
+      "title": "Module testing",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Representing numbers",
+    "lessons": [
+     {
+      "n": 71,
+      "title": "Introduction to data representation and number systems",
+      "integration": false
+     },
+     {
+      "n": 72,
+      "title": "Conversion between number systems and representing negative numbers",
+      "integration": false
+     },
+     {
+      "n": 73,
+      "title": "Subtraction and representing negative numbers",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Building Logic Circuits",
+    "lessons": [
+     {
+      "n": 74,
+      "title": "Logic gates",
+      "integration": false
+     },
+     {
+      "n": 75,
+      "title": "Logic circuits",
+      "integration": false
+     },
+     {
+      "n": 76,
+      "title": "Boolean expressions from truth table and De Morgan’s laws",
+      "integration": false
+     },
+     {
+      "n": 77,
+      "title": "Simplification of Boolean expressions",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Developing Software — Data Types and Structures",
+    "lessons": [
+     {
+      "n": 78,
+      "title": "Data Types and Data structures",
+      "integration": false
+     },
+     {
+      "n": 79,
+      "title": "Operations on data structures",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Designing Software",
+    "lessons": [
+     {
+      "n": 80,
+      "title": "Approaches to Software Design",
+      "integration": false
+     },
+     {
+      "n": 81,
+      "title": "Applying software design techniques",
+      "integration": false
+     },
+     {
+      "n": 82,
+      "title": "Representing Software Design",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Writing and Testing Algorithms",
+    "lessons": [
+     {
+      "n": 83,
+      "title": "Introduction to Algorithms",
+      "integration": false
+     },
+     {
+      "n": 84,
+      "title": "Algorithmic instructions",
+      "integration": false
+     },
+     {
+      "n": 85,
+      "title": "Representing Algorithms — Flowcharts",
+      "integration": false
+     },
+     {
+      "n": 86,
+      "title": "Representing Algorithms — Pseudocode",
+      "integration": false
+     },
+     {
+      "n": 87,
+      "title": "Control Structures — Sequence and Selection",
+      "integration": false
+     },
+     {
+      "n": 88,
+      "title": "Control Structures — Loops",
+      "integration": false
+     },
+     {
+      "n": 89,
+      "title": "Sorting and Searching",
+      "integration": false
+     },
+     {
+      "n": 90,
+      "title": "Establishing Correctness of Algorithms",
+      "integration": false
+     },
+     {
+      "n": 91,
+      "title": "Evaluating Algorithm Performance",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Programming Paradigms and Software Reuse",
+    "lessons": [
+     {
+      "n": 92,
+      "title": "Programming Paradigms",
+      "integration": false
+     },
+     {
+      "n": 93,
+      "title": "Software Reuse",
+      "integration": false
+     },
+     {
+      "n": 94,
+      "title": "Internally versus Externally Developed Software",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Implementing algorithms",
+    "lessons": [
+     {
+      "n": 95,
+      "title": "Language Translators and IDE",
+      "integration": false
+     },
+     {
+      "n": 96,
+      "title": "Introduction to coding",
+      "integration": false
+     },
+     {
+      "n": 97,
+      "title": "Writing code 1",
+      "integration": false
+     },
+     {
+      "n": 98,
+      "title": "Writing code 2",
+      "integration": false
+     },
+     {
+      "n": 99,
+      "title": "Writing code 3",
+      "integration": false
+     },
+     {
+      "n": 100,
+      "title": "Writing code 4",
+      "integration": false
+     },
+     {
+      "n": 101,
+      "title": "Writing code 5",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Writing functions and testing a developed program",
+    "lessons": [
+     {
+      "n": 102,
+      "title": "Functions and procedures 1",
+      "integration": false
+     },
+     {
+      "n": 103,
+      "title": "Functions and procedures 2",
+      "integration": false
+     },
+     {
+      "n": 104,
+      "title": "Testing a program 1",
+      "integration": false
+     },
+     {
+      "n": 105,
+      "title": "Testing a program 2",
+      "integration": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "class": "Upper Sixth",
+  "subject": "Computer Science",
+  "chapters": [
+   {
+    "chapter": "Exploring ai concepts and emerging technologies",
+    "lessons": [
+     {
+      "n": 1,
+      "title": "Introduction to Artificial Intelligence (AI) - AI Ethics and Responsible Use",
+      "integration": false
+     },
+     {
+      "n": 2,
+      "title": "AI Techniques and Intelligent Systems",
+      "integration": false
+     },
+     {
+      "n": 3,
+      "title": "Machine Learning",
+      "integration": false
+     },
+     {
+      "n": 4,
+      "title": "Developing AI Systems",
+      "integration": false
+     },
+     {
+      "n": 5,
+      "title": "Integration Activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Selecting and manipulating abstract data types (adts) and data structures",
+    "lessons": [
+     {
+      "n": 6,
+      "title": "Abstract Data Types",
+      "integration": false
+     },
+     {
+      "n": 7,
+      "title": "Binary Tree Concepts and Representation",
+      "integration": false
+     },
+     {
+      "n": 8,
+      "title": "Applications of ADTs",
+      "integration": false
+     },
+     {
+      "n": 9,
+      "title": "Integration Activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Applying searching and sorting techniques",
+    "lessons": [
+     {
+      "n": 10,
+      "title": "Searching Algorithms",
+      "integration": false
+     },
+     {
+      "n": 11,
+      "title": "Sorting Algorithms",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Representing data in a computer",
+    "lessons": [
+     {
+      "n": 12,
+      "title": "Representation of Fractional Numbers 1",
+      "integration": false
+     },
+     {
+      "n": 13,
+      "title": "Representation of Fractional Numbers 2",
+      "integration": false
+     },
+     {
+      "n": 14,
+      "title": "Integration Activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Analysing digital logic systems",
+    "lessons": [
+     {
+      "n": 15,
+      "title": "Boolean Algebra Principles",
+      "integration": false
+     },
+     {
+      "n": 16,
+      "title": "Standard Forms and Logic Minimisation",
+      "integration": false
+     },
+     {
+      "n": 17,
+      "title": "Integration Activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Write, debug and run programs in c",
+    "lessons": [
+     {
+      "n": 18,
+      "title": "Setting up a C Programming Environment",
+      "integration": false
+     },
+     {
+      "n": 19,
+      "title": "Implementing basic instructions",
+      "integration": false
+     },
+     {
+      "n": 20,
+      "title": "Implementing Selection",
+      "integration": false
+     },
+     {
+      "n": 21,
+      "title": "Implementing Iteration",
+      "integration": false
+     },
+     {
+      "n": 22,
+      "title": "Strings & character handling",
+      "integration": false
+     },
+     {
+      "n": 23,
+      "title": "Implementing 1D Arrays with loops",
+      "integration": false
+     },
+     {
+      "n": 24,
+      "title": "Implementing 2D Arrays with loops",
+      "integration": false
+     },
+     {
+      "n": 25,
+      "title": "Implementing Records and list",
+      "integration": false
+     },
+     {
+      "n": 26,
+      "title": "Implementing Subroutines",
+      "integration": false
+     },
+     {
+      "n": 27,
+      "title": "Integration Activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Evaluating software development approaches",
+    "lessons": [
+     {
+      "n": 28,
+      "title": "Software Development Activities and Models",
+      "integration": false
+     },
+     {
+      "n": 29,
+      "title": "Requirements Analysis and Specification",
+      "integration": false
+     },
+     {
+      "n": 30,
+      "title": "Software Design - Software Design Stages and Documentation",
+      "integration": false
+     },
+     {
+      "n": 31,
+      "title": "Software Development Tools",
+      "integration": false
+     },
+     {
+      "n": 32,
+      "title": "Software Quality, Acquisition and Evaluation",
+      "integration": false
+     },
+     {
+      "n": 33,
+      "title": "Software Verification, Validation and Testing",
+      "integration": false
+     },
+     {
+      "n": 34,
+      "title": "Software Project Management and Reporting",
+      "integration": false
+     },
+     {
+      "n": 35,
+      "title": "Software Reuse, Teamwork and Maintenance",
+      "integration": false
+     },
+     {
+      "n": 36,
+      "title": "Integration Activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Categories of software",
+    "lessons": [
+     {
+      "n": 37,
+      "title": "Classification of software",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Exploring system software concepts",
+    "lessons": [
+     {
+      "n": 38,
+      "title": "Introduction to System Software",
+      "integration": false
+     },
+     {
+      "n": 39,
+      "title": "System and Utility Software",
+      "integration": false
+     },
+     {
+      "n": 40,
+      "title": "Types and Evolution of Operating Systems",
+      "integration": false
+     },
+     {
+      "n": 41,
+      "title": "Operating System Interfaces",
+      "integration": false
+     },
+     {
+      "n": 42,
+      "title": "Operating System Installation and File Storage",
+      "integration": false
+     },
+     {
+      "n": 43,
+      "title": "Integration Activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Managing processes",
+    "lessons": [
+     {
+      "n": 44,
+      "title": "Process Management Basics",
+      "integration": false
+     },
+     {
+      "n": 45,
+      "title": "Process Scheduling",
+      "integration": false
+     },
+     {
+      "n": 46,
+      "title": "Non-preemptive Scheduling",
+      "integration": false
+     },
+     {
+      "n": 47,
+      "title": "Pre-emptive Scheduling",
+      "integration": false
+     },
+     {
+      "n": 48,
+      "title": "Process Synchronisation",
+      "integration": false
+     },
+     {
+      "n": 49,
+      "title": "Deadlock Handling",
+      "integration": false
+     },
+     {
+      "n": 50,
+      "title": "Integration Activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Managing memory resources",
+    "lessons": [
+     {
+      "n": 51,
+      "title": "Memory Management Basics",
+      "integration": false
+     },
+     {
+      "n": 52,
+      "title": "Contiguous Memory Allocation",
+      "integration": false
+     },
+     {
+      "n": 53,
+      "title": "Non-contiguous Memory Allocation",
+      "integration": false
+     },
+     {
+      "n": 54,
+      "title": "Virtual Memory and Demand Paging",
+      "integration": false
+     },
+     {
+      "n": 55,
+      "title": "Integration Activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Managing input/output operations and file systems",
+    "lessons": [
+     {
+      "n": 56,
+      "title": "I/O Device Management",
+      "integration": false
+     },
+     {
+      "n": 57,
+      "title": "I/O Transfer Mechanisms",
+      "integration": false
+     },
+     {
+      "n": 58,
+      "title": "File Systems & Management",
+      "integration": false
+     },
+     {
+      "n": 59,
+      "title": "Mass Storage and File Access Methods",
+      "integration": false
+     },
+     {
+      "n": 60,
+      "title": "OS Security and Error Management",
+      "integration": false
+     },
+     {
+      "n": 61,
+      "title": "Integration Activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Supporting decision-making in organisations",
+    "lessons": [
+     {
+      "n": 62,
+      "title": "Introduction to Information System",
+      "integration": false
+     },
+     {
+      "n": 63,
+      "title": "Data Capture",
+      "integration": false
+     },
+     {
+      "n": 64,
+      "title": "Data Verification and Validation",
+      "integration": false
+     },
+     {
+      "n": 65,
+      "title": "Organisational Levels and Information Systems",
+      "integration": false
+     },
+     {
+      "n": 66,
+      "title": "Integration Activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Developing information systems",
+    "lessons": [
+     {
+      "n": 67,
+      "title": "System Development Process",
+      "integration": false
+     },
+     {
+      "n": 68,
+      "title": "System Design Tools",
+      "integration": false
+     },
+     {
+      "n": 69,
+      "title": "System Testing",
+      "integration": false
+     },
+     {
+      "n": 70,
+      "title": "Information System Management",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Managing and retrieving information",
+    "lessons": [
+     {
+      "n": 71,
+      "title": "Database Fundamentals and Data Organisation",
+      "integration": false
+     },
+     {
+      "n": 72,
+      "title": "Database Models",
+      "integration": false
+     },
+     {
+      "n": 73,
+      "title": "Relational Database Models",
+      "integration": false
+     },
+     {
+      "n": 74,
+      "title": "Database Architecture",
+      "integration": false
+     },
+     {
+      "n": 75,
+      "title": "Entity-Relationship Modelling",
+      "integration": false
+     },
+     {
+      "n": 76,
+      "title": "Relational Database Design and Relationships",
+      "integration": false
+     },
+     {
+      "n": 77,
+      "title": "Database Normalisation and Functional Dependencies",
+      "integration": false
+     },
+     {
+      "n": 78,
+      "title": "Database Design Stages and Data Modelling",
+      "integration": false
+     },
+     {
+      "n": 79,
+      "title": "Database Integrity",
+      "integration": false
+     },
+     {
+      "n": 80,
+      "title": "Integration Activity",
+      "integration": true
+     },
+     {
+      "n": 81,
+      "title": "SQL - Data Definition Language",
+      "integration": false
+     },
+     {
+      "n": 82,
+      "title": "SQL – Data Manipulation Language",
+      "integration": false
+     },
+     {
+      "n": 83,
+      "title": "SQL - Data Query Language",
+      "integration": false
+     },
+     {
+      "n": 84,
+      "title": "SQL – Joins",
+      "integration": false
+     },
+     {
+      "n": 85,
+      "title": "Aggregate Functions",
+      "integration": false
+     },
+     {
+      "n": 86,
+      "title": "RDBMS Packages and Database Implementation",
+      "integration": false
+     },
+     {
+      "n": 87,
+      "title": "Web and Object-Oriented Database Integration",
+      "integration": false
+     },
+     {
+      "n": 88,
+      "title": "Integration Activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Computer architecture & hardware organization",
+    "lessons": [
+     {
+      "n": 89,
+      "title": "Computer Architecture & Hardware Organization",
+      "integration": false
+     },
+     {
+      "n": 90,
+      "title": "Instruction Set Architecture & Low-Level Processing",
+      "integration": false
+     },
+     {
+      "n": 91,
+      "title": "Hands-on C Project: CPU Instruction Cycle & Memory Simulation",
+      "integration": false
+     },
+     {
+      "n": 92,
+      "title": "Hands-on C Project: Assembly Code & Register Manipulation Lab",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Programming, data structures & operating systems",
+    "lessons": [
+     {
+      "n": 93,
+      "title": "Data Structures & C Programming Foundations",
+      "integration": false
+     },
+     {
+      "n": 94,
+      "title": "Operating Systems & System Software",
+      "integration": false
+     },
+     {
+      "n": 95,
+      "title": "Hands-on C Project: Data Indexing & Search Module",
+      "integration": false
+     },
+     {
+      "n": 96,
+      "title": "Hands-on OS Project: CPU & Memory Allocation Simulator",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Database systems & information retrieval",
+    "lessons": [
+     {
+      "n": 97,
+      "title": "Relational Database Modeling & Normalization",
+      "integration": false
+     },
+     {
+      "n": 98,
+      "title": "Database Querying & Information Retrieval with SQL",
+      "integration": false
+     },
+     {
+      "n": 99,
+      "title": "Hands-on Database Project: ER Diagramming & Normalization Case Study",
+      "integration": false
+     },
+     {
+      "n": 100,
+      "title": "Hands-on Database Project: SQL Database Creation & Web/Client Form Binding",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Networking, security, software engineering & synthesis",
+    "lessons": [
+     {
+      "n": 101,
+      "title": "Data Communication, Computer Networks & Security",
+      "integration": false
+     },
+     {
+      "n": 102,
+      "title": "Software Engineering, SDLC & Theoretical Computer Science",
+      "integration": false
+     },
+     {
+      "n": 103,
+      "title": "Hands-on Networking Lab: Subnetting & LAN Simulation",
+      "integration": false
+     }
+    ]
+   }
+  ]
+ }
+]

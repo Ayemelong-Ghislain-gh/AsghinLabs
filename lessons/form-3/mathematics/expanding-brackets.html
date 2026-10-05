@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Expanding Brackets — Interactive Lesson | AsghinLabs Academy</title>
+  <meta name="description" content="Learn to expand double brackets with the grid method: step-by-step working, random practice questions and instant checking. Free interactive Maths lesson.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.asghinlabs.com/lessons/form-3/mathematics/expanding-brackets">
+  <link rel="apple-touch-icon" href="/images/logo-blue.jpeg">
+  <link rel="icon" href="/images/logo-blue.jpeg" type="image/jpeg">
+  <meta property="og:site_name" content="AsghinLabs">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Expanding Brackets — Interactive Lesson | AsghinLabs Academy">
+  <meta property="og:description" content="Learn to expand double brackets with the grid method: step-by-step working, random practice questions and instant checking. Free interactive Maths lesson.">
+  <meta property="og:url" content="https://www.asghinlabs.com/lessons/form-3/mathematics/expanding-brackets">
+  <meta property="og:image" content="https://www.asghinlabs.com/images/og-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Expanding Brackets",
+  "description": "Learn to expand double brackets with the grid method: step-by-step working, random practice questions and instant checking. Free interactive Maths lesson.",
+  "url": "https://www.asghinlabs.com/lessons/form-3/mathematics/expanding-brackets",
+  "learningResourceType": "Interactive lesson",
+  "educationalLevel": "Form 3",
+  "teaches": "Expanding brackets",
+  "about": "Mathematics",
+  "isAccessibleForFree": true,
+  "inLanguage": "en",
+  "provider": {
+    "@type": "Organization",
+    "name": "AsghinLabs Academy",
+    "url": "https://www.asghinlabs.com/academy"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Ayemelong Selobie Ghislain"
+  }
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style-main.css">
+  <link rel="stylesheet" href="/style-lesson.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK679H74R1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FK679H74R1');
+  </script>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/academy.html">
+    <img src="/images/logo-blue.jpeg" alt="AsghinLabs Academy Logo" id="navLogoImg" width="42" height="42">
+    <span>ASGHINLABS <span class="logo-sub">Academy</span></span>
+  </a>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/academy.html#workbooks">Workbooks</a></li>
+    <li><a href="/academy.html#resources">Free Notes</a></li>
+    <li><a href="/academy.html#classes">Classes</a></li>
+    <li><a href="/lessons.html">Interactive Lessons</a></li>
+    <li><a href="/academy.html#enroll">Contact</a></li>
+    <li><a href="/" class="nav-back">← AsghinLabs</a></li>
+  </ul>
+</nav>
+
+<div class="lesson-wrap">
+  <a class="lesson-crumb" href="/lessons.html">← All interactive lessons</a>
+  <span class="lesson-badge">🧪 Interactive Lesson · Mathematics · Form 3</span>
+  <h1>Expanding Brackets</h1>
+  <p class="lead">Expand double brackets with the grid method, one step at a time. You fill in each step and get corrected straight away.</p>
+
+  <div class="lesson-panel">
+    <div class="lesson-controls">
+      <select id="levelSel" aria-label="Question type">
+        <option value="easy">Easier: (x + a)(x + b)</option>
+        <option value="hard">Harder: (px + a)(qx + b)</option>
+      </select>
+      <button type="button" id="newBtn" class="primary">🔀 New question</button>
+      <span class="chal-score" id="score"></span>
+    </div>
+
+    <h2>✍️ Practise: expand step by step</h2>
+    <p class="q-big" id="question"></p>
+    <p class="lesson-hint">New to this? Read the <a href="#learn" class="inline-link">Learn it cards</a> below first. Then type a number in each box (use − for negatives) and press <b>Check</b>. Stuck? Press <b>Show me</b>.</p>
+    <div id="steps" class="gsteps"></div>
+  </div>
+
+  <div class="lesson-panel" id="learn">
+    <h2>📘 Learn it: why the grid method works</h2>
+    <p class="lesson-hint">Stuck? Read these four short cards.</p>
+    <div id="walk"></div>
+  </div>
+
+  <div class="lesson-panel lesson-explain">
+    <h2>The grid method</h2>
+    <ul>
+      <li>Put the terms of the <b>first bracket</b> down the side and the terms of the <b>second bracket</b> across the top.</li>
+      <li>Multiply to fill each box. Mind the signs: negative × negative = positive.</li>
+      <li>Add the four boxes, then <b>collect like terms</b> (the two x boxes combine).</li>
+      <li>You can always check by picking a value, say x = 1: both the original and your answer must give the same number.</li>
+    </ul>
+  </div>
+
+  <div class="lesson-panel lesson-next">
+    <h3>Keep practising</h3>
+    <p>Get more expanding and factorising practice in the Mathematics workbooks.</p>
+    <div class="lesson-next-actions">
+      <a class="next-btn primary" href="/academy.html#workbooks">🛒 See the workbooks</a>
+      <a class="next-btn" href="/lessons.html">More lessons →</a>
+    </div>
+    <div class="fb"><a href="https://wa.me/237682402876?text=Hi%20AsghinLabs%20Academy%2C%20I%20tried%20the%20Expanding%20Brackets%20lesson%20and%20wanted%20to%20say..." target="_blank" rel="noopener">💬 Tell us what to improve on WhatsApp →</a></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links" role="navigation" aria-label="Footer">
+    <a href="/">Home</a> · <a href="/#services">Web &amp; Software</a> · <a href="/academy.html">Academy</a> · <a href="/academy.html#workbooks">Workbooks</a> · <a href="/academy.html#resources">Free Notes</a> · <a href="/lessons.html">Interactive Lessons</a> · <a href="/portfolio.html">Portfolio</a> · <a href="/founder.html">Founder</a>
+  </div>
+  <p class="footer-fr">Développement web, logiciels et automatisation IA à Douala, Cameroun · Cours d'informatique et fascicules GCE.</p>
+  <p>© 2026 AsghinLabs Academy. Douala, Cameroon.</p>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/237682402876?text=Hi%20AsghinLabs%20Academy%2C%20I%27d%20like%20to%20learn%20more." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+<script src="/script-main.js"></script>
+<script src="/lessons-common.js"></script>
+<script>
+(function () {
+  const SLUG = 'expanding-brackets';
+  const $ = (id) => document.getElementById(id);
+  const levelSel = $('levelSel');
+  let done = 0, clean = 0;
+
+  const side = (k) => (k < 0 ? '− ' : '+ ') + num(Math.abs(k));   // "+ 3" / "− 4"
+  const bracket = (p, a) => '(' + polyStr([0, p, a]) + ')';
+  const paren = (k) => k < 0 ? '(' + num(k) + ')' : num(k);
+  const xTerm = (k) => polyStr([0, k, 0]);
+
+  function build(p, a, qq, b) {
+    const A = p * qq, B1 = p * b, B2 = a * qq, C = a * b, B = B1 + B2;
+    const cell = (k, sfx, cls) => `<td class="${cls}">{${k}}<span class="sfx">${sfx}</span></td>`;
+    const grid =
+      `<table class="gridm gridm-in" aria-label="Grid method"><tr><th>×</th><th>${xTerm(qq)}</th><th>${side(b)}</th></tr>` +
+      `<tr><th>${xTerm(p)}</th>${cell(0, 'x²', 'c-x2')}${cell(1, 'x', 'c-x')}</tr>` +
+      `<tr><th>${side(a)}</th>${cell(2, 'x', 'c-x')}${cell(3, '', 'c-k')}</tr></table>`;
+    return [
+      {
+        html: `Fill the grid: multiply the term at the side of each row by the term at the top of each column.${grid}`,
+        fields: [
+          { answer: A, kind: 'int', label: 'Top-left box (x²)', size: 3 },
+          { answer: B1, kind: 'int', label: 'Top-right box (x)', size: 3 },
+          { answer: B2, kind: 'int', label: 'Bottom-left box (x)', size: 3 },
+          { answer: C, kind: 'int', label: 'Bottom-right box (number)', size: 3 },
+        ],
+        hint: 'Multiply the numbers, then check the sign: + × + = +, − × − = +, and + × − = −. Type 1 if the box is just x² or x.',
+        why: `${xTerm(p)} × ${xTerm(qq)} = <b>${polyStr([A, 0, 0])}</b>, ${xTerm(p)} × ${paren(b)} = <b>${xTerm(B1)}</b>, ${paren(a)} × ${xTerm(qq)} = <b>${xTerm(B2)}</b>, ${paren(a)} × ${paren(b)} = <b>${num(C)}</b>.`,
+      },
+      {
+        html: `Collect the two x boxes: ${xTerm(B1)} and ${xTerm(B2)} make {0}<span class="sfx">x</span>`,
+        fields: [{ answer: B, kind: 'int', label: 'x coefficient', size: 3 }],
+        hint: `Add the numbers in front of x: ${num(B1)} + ${paren(B2)}.`,
+        why: `${num(B1)} + ${paren(B2)} = <b>${num(B)}</b>, so the x terms make <b>${B === 0 ? '0 (they cancel out)' : xTerm(B)}</b>.`,
+      },
+      {
+        html: `Write the final answer: {0}<span class="sfx">x²</span> + {1}<span class="sfx">x</span> + {2}`,
+        fields: [
+          { answer: A, kind: 'int', label: 'x² coefficient', size: 3 },
+          { answer: B, kind: 'int', label: 'x coefficient', size: 3 },
+          { answer: C, kind: 'int', label: 'Number', size: 3 },
+        ],
+        hint: 'Take the x² box, the x total from Step 2 and the number box.',
+        why: `${bracket(p, a)}${bracket(qq, b)} = <b>${polyStr([A, B, C])}</b>` + (B === 0 ? '. The x terms cancel: this is a <b>difference of two squares</b>.' : '.'),
+      },
+      {
+        html: `Check your answer: put x = 1 into both. Question: ${bracket(p, a).replace(/x/g, '(1)')}${bracket(qq, b).replace(/x/g, '(1)')} = {0}. Your answer: ${polyStr([A, B, C]).replace(/x/g, '(1)')} = {1}`,
+        fields: [{ answer: (p + a) * (qq + b), kind: 'int', label: 'question with x = 1', size: 4 }, { answer: A + B + C, kind: 'int', label: 'answer with x = 1', size: 4 }],
+        hint: `Work out each bracket first: (${num(p)} ${a < 0 ? '−' : '+'} ${Math.abs(a)}) and (${num(qq)} ${b < 0 ? '−' : '+'} ${Math.abs(b)}), then multiply. For your answer, add ${num(A)} ${B < 0 ? '−' : '+'} ${Math.abs(B)} ${C < 0 ? '−' : '+'} ${Math.abs(C)}.`,
+        why: `Both give <b>${num((p + a) * (qq + b))}</b>, so the expansion is right. ✔ If they were different, there would be a mistake somewhere.`,
+      },
+    ];
+  }
+
+  function newQuestion(first) {
+    const hard = levelSel.value === 'hard';
+    const q = first || { p: hard ? pick([1, 2, 3]) : 1, a: rnz(-9, 9), q: hard ? pick([1, 2, 3]) : 1, b: rnz(-9, 9) };
+    $('question').textContent = 'Expand ' + bracket(q.p, q.a) + bracket(q.q, q.b);
+    runSteps($('steps'), build(q.p, q.a, q.q, q.b), {
+      onCheck: (ok) => trackLesson(SLUG, ok ? 'check_correct' : 'check_wrong'),
+      onFinish: (usedHelp) => {
+        done++; if (!usedHelp) clean++;
+        $('score').textContent = `${done} finished · ${clean} without help`;
+        const end = document.createElement('div');
+        end.className = 'gstep-end';
+        end.innerHTML = (usedHelp ? '👍 Finished. Try another one on your own.' : '🎉 Well done! You solved it without help.') +
+          ' <button type="button" class="lesson-btn primary">Next question →</button>';
+        end.querySelector('button').addEventListener('click', () => { newQuestion(); $('question').scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+        $('steps').appendChild(end);
+        trackLesson(SLUG, 'question_finished');
+      },
+    });
+  }
+
+  $('newBtn').addEventListener('click', () => { newQuestion(); trackLesson(SLUG, 'new_question'); });
+  levelSel.addEventListener('change', () => newQuestion());
+  newQuestion({ p: 1, a: 3, q: 1, b: -4 });   // a fixed first example
+})();
+(function () {
+  const hl = (t, c) => `<span class="hl hl-${c}">${t}</span>`;
+  runWalkthrough(document.getElementById('walk'), [
+    {
+      title: 'Multiply every term',
+      html: `<p>Every term in the first bracket × every term in the second.</p>
+             <table class="gridm wt-grid"><tr><th>×</th><th>x</th><th>+ 2</th></tr>
+             <tr><th>x</th><td>x²</td><td>2x</td></tr>
+             <tr><th>+ 3</th><td>3x</td><td>6</td></tr></table>
+             <p class="wt-key">(x + 3)(x + 2) → x² + 2x + 3x + 6</p>`,
+    },
+    {
+      title: 'Signs',
+      html: `<ul><li>+ × + = +</li><li>− × − = +</li><li>+ × − = −</li></ul>
+             <p>Example: x × (−4) = −4x and 3 × (−4) = −12</p>
+             <p class="wt-key">Most mistakes are sign mistakes.</p>`,
+    },
+    {
+      title: 'Collect like terms',
+      html: `<p>Add the two x boxes together.</p>
+             <p>x² − 4x + 3x − 12</p>
+             <p class="wt-key">−4x + 3x = −x → x² − x − 12</p>`,
+    },
+    {
+      title: 'Check with x = 1',
+      html: `<p>Put x = 1 into the question and into your answer.</p>
+             <p>(1 + 3)(1 − 4) = −12 &nbsp;and&nbsp; 1 − 1 − 12 = −12</p>
+             <p class="wt-key">Same number → correct ✓</p>`,
+    },
+  ]);
+})();
+viewLesson("expanding-brackets");
+</script>
+</body>
+</html>

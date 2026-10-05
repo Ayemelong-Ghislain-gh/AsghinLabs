@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Sorting Algorithms — Interactive Lesson | AsghinLabs Academy</title>
+  <meta name="description" content="Step through Bubble, Selection and Insertion Sort one comparison at a time — an interactive Computer Science lesson from AsghinLabs Academy.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.asghinlabs.com/lessons/lower-sixth/ict/sorting-algorithms">
+  <link rel="apple-touch-icon" href="/images/logo-blue.jpeg">
+  <link rel="icon" href="/images/logo-blue.jpeg" type="image/jpeg">
+  <meta property="og:site_name" content="AsghinLabs">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Sorting Algorithms — Interactive Lesson | AsghinLabs Academy">
+  <meta property="og:description" content="Step through Bubble, Selection and Insertion Sort one comparison at a time.">
+  <meta property="og:url" content="https://www.asghinlabs.com/lessons/lower-sixth/ict/sorting-algorithms">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style-main.css">
+  <link rel="stylesheet" href="/style-lesson.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK679H74R1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FK679H74R1');
+  </script>
+
+  <style>
+    /* ---- Scoped to this lesson page only ---- */
+    .lesson-wrap { max-width: 880px; margin: 0 auto; padding: 150px 6% 70px; }
+    .lesson-badge {
+      display: inline-block; padding: 6px 16px; border-radius: 30px;
+      border: 1px solid var(--brand-primary); color: var(--brand-primary);
+      font-weight: 700; font-size: 0.78rem; margin-bottom: 16px;
+    }
+    .lesson-wrap h1 { font-size: 2.1rem; margin: 0 0 10px; line-height: 1.2; }
+    .lesson-wrap > p.lead { color: var(--text-muted); font-size: 1rem; max-width: 600px; margin-bottom: 30px; }
+
+    .lesson-panel {
+      background: var(--card-bg); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px; padding: 24px; margin-bottom: 20px;
+    }
+    .lesson-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 18px; }
+    .lesson-controls select, .lesson-controls button {
+      font-family: inherit; font-size: 0.88rem; font-weight: 600;
+      border-radius: 12px; border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04); color: var(--text-light); padding: 10px 16px; cursor: pointer;
+    }
+    .lesson-controls button.primary { background: var(--brand-primary); color: #050816; border: none; }
+    .lesson-controls select option { background: #000000; color: #ffffff; }
+    .lesson-controls button:disabled { opacity: 0.4; cursor: not-allowed; }
+    .lesson-speed { display: flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.8rem; }
+    .lesson-speed input[type=range] { accent-color: var(--brand-primary); }
+
+    .lesson-stage {
+      display: flex; align-items: flex-end; gap: 6px; height: 220px;
+      border-bottom: 2px solid rgba(255,255,255,0.1); padding: 0 4px 10px; overflow: hidden;
+    }
+    .lesson-bar {
+      flex: 1 1 0; min-width: 0; background: linear-gradient(180deg,#1c2b4a,#13203c);
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 6px 6px 2px 2px;
+      position: relative; transition: height 0.25s ease, background 0.2s ease;
+      display: flex; align-items: flex-start; justify-content: center;
+      overflow: visible;
+    }
+    .lesson-bar.cmp { background: #ffb648; box-shadow: 0 0 14px rgba(255,182,72,0.4); }
+    .lesson-bar.swap { background: #ff6b6b; box-shadow: 0 0 14px rgba(255,107,107,0.4); }
+    .lesson-bar.sorted { background: #2ee68b; }
+    .lesson-bar span {
+      margin-top: 6px; font-size: 0.95rem; font-weight: 800; color: #ffffff;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8); pointer-events: none;
+    }
+    .lesson-legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.78rem; color: var(--text-muted); margin-top: 14px; }
+    .lesson-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: middle; }
+
+    .lesson-step-msg { min-height: 1.4em; color: var(--brand-primary); font-weight: 700; font-size: 0.92rem; margin-top: 10px; }
+    .lesson-stats { display: flex; gap: 22px; margin-top: 28px; flex-wrap: wrap; font-size: 0.85rem; color: var(--text-muted); }
+    .lesson-stats b { color: var(--text-light); font-size: 1rem; }
+    .lesson-explain { font-size: 0.95rem; line-height: 1.8; color: var(--text-muted); }
+    .lesson-explain b { color: var(--text-light); }
+
+    .lesson-feedback {
+      text-align: center; padding: 28px; margin-top: 10px;
+    }
+    .lesson-feedback a { color: var(--brand-primary); font-weight: 700; text-decoration: none; }
+
+    @media (max-width: 640px) {
+      .lesson-wrap { padding-top: 120px; }
+      .lesson-wrap h1 { font-size: 1.6rem; }
+      .lesson-stage { gap: 3px; padding: 0 0 10px; }
+      .lesson-bar { border-radius: 4px 4px 2px 2px; }
+      .lesson-bar span { font-size: 0.7rem; margin-top: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/academy.html">
+    <img src="/images/logo-blue.jpeg" alt="AsghinLabs Academy Logo" id="navLogoImg" width="42" height="42">
+    <span>ASGHINLABS <span class="logo-sub">Academy</span></span>
+  </a>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/academy.html#workbooks">Workbooks</a></li>
+    <li><a href="/academy.html#resources">Free Notes</a></li>
+    <li><a href="/academy.html#classes">Classes</a></li>
+    <li><a href="/lessons.html">Interactive Lessons</a></li>
+    <li><a href="/academy.html#enroll">Contact</a></li>
+    <li><a href="/" class="nav-back">← AsghinLabs</a></li>
+  </ul>
+</nav>
+
+<div class="lesson-wrap">
+  <span class="lesson-badge">🧪 Interactive Lesson — Beta</span>
+  <h1>Sorting Algorithms</h1>
+  <p class="lead">Step through how Bubble, Selection and Insertion Sort actually move data — one comparison and one swap at a time. Pick an algorithm, then press Step or Play.</p>
+
+  <div class="lesson-panel">
+    <div class="lesson-controls">
+      <select id="algoSelect" aria-label="Choose algorithm">
+        <option value="bubble">Bubble Sort</option>
+        <option value="selection">Selection Sort</option>
+        <option value="insertion">Insertion Sort</option>
+      </select>
+      <button id="newArrayBtn">🔀 New Array</button>
+      <button id="stepBtn" class="primary">⏭ Step</button>
+      <button id="playBtn">▶ Play</button>
+      <button id="resetBtn">↺ Reset</button>
+      <span class="lesson-speed">Speed
+        <input type="range" id="speedRange" min="1" max="4" value="2">
+      </span>
+    </div>
+
+    <div class="lesson-stage" id="stage"></div>
+    <div class="lesson-legend">
+      <span><i style="background:#ffb648"></i>Comparing</span>
+      <span><i style="background:#ff6b6b"></i>Swapping</span>
+      <span><i style="background:#2ee68b"></i>Sorted</span>
+    </div>
+    <div class="lesson-step-msg" id="stepMsg"></div>
+    <div class="lesson-stats">
+      <div>Comparisons <br><b id="cmpCount">0</b></div>
+      <div>Swaps <br><b id="swapCount">0</b></div>
+      <div>Step <br><b id="stepCount">0 / 0</b></div>
+    </div>
+  </div>
+
+  <div class="lesson-panel lesson-explain" id="explainPanel"></div>
+
+  <div class="lesson-feedback">
+    <p>This is the first interactive lesson on AsghinLabs Academy — more topics are coming.</p>
+    <p><a href="https://wa.me/237682402876?text=Hi%20AsghinLabs%20Academy%2C%20I%20tried%20the%20Sorting%20Algorithms%20lesson%20and%20wanted%20to%20say..." target="_blank" rel="noopener">💬 Tell us what you think on WhatsApp →</a></p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links" role="navigation" aria-label="Footer">
+    <a href="/">Home</a> · <a href="/#services">Web &amp; Software</a> · <a href="/academy.html">Academy</a> · <a href="/academy.html#workbooks">Workbooks</a> · <a href="/academy.html#resources">Free Notes</a> · <a href="/lessons.html">Interactive Lessons</a> · <a href="/portfolio.html">Portfolio</a> · <a href="/founder.html">Founder</a>
+  </div>
+  <p class="footer-fr">Développement web, logiciels et automatisation IA à Douala, Cameroun · Cours d'informatique et fascicules GCE.</p>
+  <p>© 2026 AsghinLabs Academy. Douala, Cameroon.</p>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/237682402876?text=Hi%20AsghinLabs%20Academy%2C%20I%27d%20like%20to%20learn%20more." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+<script src="/script-main.js"></script>
+<script>
+const EXPLAIN = {
+  bubble: "<b>Bubble Sort</b> repeatedly compares two side-by-side numbers and swaps them if they're in the wrong order — on every pass, the largest remaining number 'bubbles' up to its correct spot at the end.",
+  selection: "<b>Selection Sort</b> scans the unsorted part of the array to find the smallest value, then swaps it into the next position at the front — one correct number locked in per pass.",
+  insertion: "<b>Insertion Sort</b> builds the sorted array one number at a time, picking the next number and sliding it backwards into the correct position among the numbers already sorted."
+};
+
+let arr = [];
+let steps = [];
+let stepIndex = 0;
+let playing = false;
+let playTimer = null;
+
+const stage = document.getElementById('stage');
+const stepMsg = document.getElementById('stepMsg');
+const cmpCountEl = document.getElementById('cmpCount');
+const swapCountEl = document.getElementById('swapCount');
+const stepCountEl = document.getElementById('stepCount');
+const algoSelect = document.getElementById('algoSelect');
+const playBtn = document.getElementById('playBtn');
+const speedRange = document.getElementById('speedRange');
+
+function newArray(n = 12) {
+  arr = Array.from({length: n}, () => 8 + Math.floor(Math.random() * 92));
+  buildSteps();
+  renderStep(0);
+}
+
+function buildSteps() {
+  const a = arr.slice();
+  const algo = algoSelect.value;
+  const s = [];
+  const snap = (cmp, swap, sortedIdx, msg) => s.push({
+    array: a.slice(), cmp, swap, sorted: new Set(sortedIdx), msg
+  });
+
+  if (algo === 'bubble') {
+    const n = a.length;
+    for (let i = 0; i < n - 1; i++) {
+      let swappedAny = false;
+      for (let j = 0; j < n - i - 1; j++) {
+        const sortedIdx = Array.from({length: i}, (_, k) => n - 1 - k);
+        snap([j, j+1], null, sortedIdx, `Comparing positions ${j+1} and ${j+2}`);
+        if (a[j] > a[j+1]) {
+          [a[j], a[j+1]] = [a[j+1], a[j]];
+          swappedAny = true;
+          snap(null, [j, j+1], sortedIdx, `${a[j+1]} < ${a[j]} → swap!`);
+        }
+      }
+      if (!swappedAny) break;
+    }
+    snap(null, null, Array.from({length: n}, (_, k) => k), "Array fully sorted! ✅");
+  }
+
+  if (algo === 'selection') {
+    const n = a.length;
+    for (let i = 0; i < n - 1; i++) {
+      let minIdx = i;
+      const sortedIdx = Array.from({length: i}, (_, k) => k);
+      for (let j = i + 1; j < n; j++) {
+        snap([minIdx, j], null, sortedIdx, `Looking for the smallest from position ${i+1} onward`);
+        if (a[j] < a[minIdx]) minIdx = j;
+      }
+      if (minIdx !== i) {
+        [a[i], a[minIdx]] = [a[minIdx], a[i]];
+        snap(null, [i, minIdx], sortedIdx, `Smallest found: ${a[i]} → move to position ${i+1}`);
+      }
+    }
+    snap(null, null, Array.from({length: n}, (_, k) => k), "Array fully sorted! ✅");
+  }
+
+  if (algo === 'insertion') {
+    const n = a.length;
+    for (let i = 1; i < n; i++) {
+      let j = i;
+      const sortedIdx = Array.from({length: i}, (_, k) => k);
+      snap([j-1, j], null, sortedIdx, `Picking up ${a[j]} to insert into the sorted part`);
+      while (j > 0 && a[j-1] > a[j]) {
+        [a[j-1], a[j]] = [a[j], a[j-1]];
+        snap(null, [j-1, j], sortedIdx, `${a[j]} > ${a[j-1]} → shift left`);
+        j--;
+      }
+    }
+    snap(null, null, Array.from({length: n}, (_, k) => k), "Array fully sorted! ✅");
+  }
+
+  steps = s;
+}
+
+function renderStep(i) {
+  stepIndex = Math.max(0, Math.min(i, steps.length - 1));
+  const st = steps[stepIndex] || { array: arr, cmp: null, swap: null, sorted: new Set(), msg: '' };
+  const max = Math.max(...st.array, 1);
+
+  stage.innerHTML = '';
+  st.array.forEach((v, idx) => {
+    const bar = document.createElement('div');
+    bar.className = 'lesson-bar';
+    if (st.sorted.has(idx)) bar.classList.add('sorted');
+    if (st.cmp && st.cmp.includes(idx)) bar.classList.add('cmp');
+    if (st.swap && st.swap.includes(idx)) bar.classList.add('swap');
+    bar.style.height = (v / max * 170) + 'px';
+    const label = document.createElement('span');
+    label.textContent = v;
+    bar.appendChild(label);
+    stage.appendChild(bar);
+  });
+
+  stepMsg.textContent = st.msg || '';
+  let cmp = 0, swap = 0;
+  for (let k = 0; k <= stepIndex; k++) {
+    if (steps[k].cmp) cmp++;
+    if (steps[k].swap) swap++;
+  }
+  cmpCountEl.textContent = cmp;
+  swapCountEl.textContent = swap;
+  stepCountEl.textContent = `${stepIndex} / ${steps.length - 1}`;
+
+  document.getElementById('stepBtn').disabled = stepIndex >= steps.length - 1;
+  if (stepIndex >= steps.length - 1) stopPlay();
+}
+
+function stepForward() { renderStep(stepIndex + 1); }
+
+function stopPlay() {
+  playing = false;
+  clearInterval(playTimer);
+  playBtn.textContent = '▶ Play';
+}
+
+function togglePlay() {
+  if (playing) { stopPlay(); return; }
+  if (stepIndex >= steps.length - 1) renderStep(0);
+  playing = true;
+  playBtn.textContent = '⏸ Pause';
+  const delay = [0, 700, 450, 250, 100][Number(speedRange.value)] || 450;
+  playTimer = setInterval(() => {
+    if (stepIndex >= steps.length - 1) { stopPlay(); return; }
+    stepForward();
+  }, delay);
+}
+
+document.getElementById('newArrayBtn').addEventListener('click', () => { stopPlay(); newArray(); });
+document.getElementById('stepBtn').addEventListener('click', () => { stopPlay(); stepForward(); });
+document.getElementById('resetBtn').addEventListener('click', () => { stopPlay(); renderStep(0); });
+document.getElementById('playBtn').addEventListener('click', togglePlay);
+algoSelect.addEventListener('change', () => {
+  stopPlay();
+  document.getElementById('explainPanel').innerHTML = EXPLAIN[algoSelect.value];
+  buildSteps();
+  renderStep(0);
+});
+speedRange.addEventListener('change', () => { if (playing) { stopPlay(); togglePlay(); } });
+
+document.getElementById('explainPanel').innerHTML = EXPLAIN[algoSelect.value];
+newArray();
+
+if (typeof gtag === 'function') gtag('event', 'view_interactive_lesson', { lesson: 'sorting-algorithms' });
+</script>
+<script src="/lessons-common.js"></script>
+<script>feedbackBox("sorting-algorithms");</script>
+</body>
+</html>

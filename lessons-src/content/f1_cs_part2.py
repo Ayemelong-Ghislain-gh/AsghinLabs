@@ -1,0 +1,197 @@
+"""Form 1 Computer Science — chapters 5 to 9."""
+from helpers import *
+
+# A desktop computer: monitor, system unit, keyboard, mouse, speaker
+DESKTOP = svg(420, 230, ''.join([
+    '<rect x="70" y="15" width="200" height="130" rx="10" class="v-box"/>',
+    '<rect x="85" y="28" width="170" height="100" rx="4" fill="rgba(0,212,255,0.15)"/>',
+    '<rect x="155" y="145" width="30" height="18" class="v-line"/><rect x="125" y="163" width="90" height="8" rx="3" class="v-line"/>',
+    '<rect x="300" y="35" width="70" height="140" rx="8" class="v-box2"/><circle cx="335" cy="60" r="7" class="v-line"/>',
+    '<rect x="60" y="185" width="190" height="34" rx="6" class="v-box3"/>',
+    ''.join(f'<rect x="{70 + i * 18}" y="192" width="13" height="8" rx="2" fill="rgba(255,255,255,0.35)"/>' for i in range(10)),
+    '<rect x="270" y="190" width="30" height="40" rx="15" class="v-box"/>',
+    '<rect x="20" y="40" width="34" height="70" rx="8" class="v-box2"/><circle cx="37" cy="85" r="10" class="v-line"/>',
+    marker(170, 78, 1), marker(335, 110, 2), marker(155, 202, 3), marker(285, 205, 4), marker(37, 55, 5),
+]), 'Desktop computer')
+
+KEYBOARD = svg(440, 140, ''.join([
+    '<rect x="5" y="5" width="430" height="130" rx="12" class="v-line"/>',
+    ''.join(f'<rect x="{18 + i * 32}" y="18" width="26" height="22" rx="4" class="v-box"/>' for i in range(12)),
+    ''.join(f'<rect x="{18 + i * 32}" y="46" width="26" height="22" rx="4" class="v-box3"/>' for i in range(10)),
+    '<rect x="338" y="46" width="76" height="22" rx="4" class="v-box2"/>',
+    ''.join(f'<rect x="{18 + i * 32}" y="74" width="26" height="22" rx="4" class="v-box3"/>' for i in range(9)),
+    '<rect x="306" y="74" width="108" height="22" rx="4" class="v-box2"/>',
+    '<rect x="18" y="102" width="58" height="22" rx="4" class="v-box2"/>',
+    '<rect x="114" y="102" width="200" height="22" rx="4" class="v-box"/>',
+    marker(31, 29, 1), marker(376, 57, 2), marker(214, 113, 3), marker(47, 113, 4),
+]), 'Keyboard')
+
+PORTS = svg(440, 120, ''.join([
+    '<rect x="5" y="5" width="430" height="110" rx="12" class="v-line"/>',
+    '<rect x="25" y="40" width="34" height="16" rx="3" class="v-box"/>', marker(42, 82, 1),        # USB
+    '<rect x="85" y="34" width="56" height="26" rx="4" class="v-box2"/>', marker(113, 82, 2),       # VGA
+    '<rect x="165" y="38" width="40" height="18" rx="3" class="v-box3"/>', marker(185, 82, 3),      # HDMI
+    '<rect x="230" y="32" width="36" height="30" rx="3" class="v-box"/>', marker(248, 82, 4),       # Ethernet
+    '<circle cx="300" cy="47" r="10" class="v-box2"/>', marker(300, 82, 5),                         # Audio
+    '<rect x="335" y="34" width="70" height="28" rx="12" class="v-box3"/>', marker(370, 82, 6),     # Power
+]), 'Ports on the back of a computer')
+
+BOOT = flow([('Power on', ''), ('POST', 'checks hardware'), ('BIOS', 'finds OS'), ('Load OS', 'into RAM'), ('Desktop', 'ready to use')])
+
+LESSONS = {
+    20: L('Personal computers come in different shapes for different needs.',
+          [('Types of PC',
+            '<ul><li><b>Desktop</b>: stays on a table, big screen, separate keyboard</li><li><b>Laptop</b>: portable, has a battery</li><li><b>Tablet</b>: touch screen, no keyboard</li><li><b>Smartphone</b>: small, fits in a pocket, makes calls</li><li><b>All-in-one</b>: screen and system unit together</li></ul>'),
+           ('How to choose',
+            '<div class="two-col"><div><b>Need to move?</b>Laptop, tablet, phone</div><div><b>Heavy work, big screen?</b>Desktop</div></div>')],
+          [match('Match the type to its description.', [('Desktop', 'Stays on a table, separate parts'), ('Laptop', 'Portable with a built-in keyboard'), ('Tablet', 'Touch screen, no physical keyboard'), ('Smartphone', 'Fits in a pocket, makes calls')]),
+           mcq('A teacher travels to many schools and needs to type reports. Best choice?', ['Laptop', 'Desktop', 'Supercomputer'], 'Laptop', 'A laptop is portable and has a keyboard.'),
+           sort('Portable or not portable?', ['Portable', 'Not portable'], [('Laptop', 'Portable'), ('Desktop', 'Not portable'), ('Tablet', 'Portable'), ('Smartphone', 'Portable')]),
+           tf('A laptop can work without being plugged in for some time.', True, 'It has a battery.')]),
+
+    21: L('A computer system is made of parts that work together. Each part has a job.',
+          [('The main parts', DESKTOP + '<p>1 Monitor · 2 System unit · 3 Keyboard · 4 Mouse · 5 Speaker</p>'),
+           ('What each part does',
+            '<ul><li><b>Monitor</b>: shows the output</li><li><b>System unit</b>: contains the CPU, memory and storage — the "brain"</li><li><b>Keyboard and mouse</b>: input</li><li><b>Speakers</b>: sound output</li></ul>'),
+           ('Inside the system unit',
+            '<div class="chips"><span>CPU (processor)</span><span>RAM (memory)</span><span>Hard disk / SSD</span><span>Motherboard</span><span>Power supply</span></div>')],
+          [label('Label the computer.', DESKTOP, ['Monitor', 'System unit', 'Keyboard', 'Mouse', 'Speaker']),
+           sort('Input or output?', ['Input', 'Output'], [('Keyboard', 'Input'), ('Monitor', 'Output'), ('Mouse', 'Input'), ('Speaker', 'Output'), ('Printer', 'Output')]),
+           mcq('Which part is called the "brain" of the computer?', ['CPU', 'Monitor', 'Mouse'], 'CPU', 'The CPU (Central Processing Unit) processes all instructions.'),
+           tf('The CPU is inside the system unit.', True)]),
+
+    22: L('The keyboard, mouse and touch screen are how we give instructions to a computer.',
+          [('Keyboard', KEYBOARD + '<p>1 Function keys · 2 Enter · 3 Space bar · 4 Shift (capital letters)</p>'),
+           ('Mouse actions',
+            '<ul><li><b>Click</b>: select</li><li><b>Double-click</b>: open</li><li><b>Right-click</b>: show a menu</li><li><b>Drag</b>: hold and move</li><li><b>Scroll</b>: move up and down</li></ul>'),
+           ('Touch screen gestures',
+            '<ul><li><b>Tap</b> = click</li><li><b>Swipe</b>: slide your finger</li><li><b>Pinch</b>: zoom in or out</li><li><b>Long press</b> = right-click</li></ul>')],
+          [label('Label the keyboard.', KEYBOARD, ['Function keys', 'Enter key', 'Space bar', 'Shift key']),
+           match('Match the mouse action to what it does.', [('Click', 'Select an item'), ('Double-click', 'Open a file or program'), ('Right-click', 'Show a menu of options'), ('Drag', 'Move an item')]),
+           match('Match the touch gesture to the mouse action.', [('Tap', 'Click'), ('Long press', 'Right-click'), ('Pinch', 'Zoom'), ('Swipe', 'Scroll')]),
+           mcq('Which key do you hold to type a capital letter?', ['Shift', 'Enter', 'Space bar'], 'Shift'),
+           tf('Double-click is used to open a file.', True)]),
+
+    24: L('Computers are used almost everywhere: at school, at work, at home and in the community.',
+          [('Where computers are used',
+            '<ul><li><b>Education</b>: lessons, results, e-learning</li><li><b>Health</b>: patient records, scans</li><li><b>Banking</b>: ATMs, mobile money</li><li><b>Business</b>: sales, stock, accounts</li><li><b>Transport</b>: tickets, GPS</li><li><b>Communication</b>: phones, social media, email</li></ul>'),
+           ('In Cameroon',
+            '<p>Mobile Money, online exam results, digital ID cards, e-tax — all use computers.</p>')],
+          [match('Match the area to the example.', [('Banking', 'ATM and mobile money'), ('Health', 'Patient records'), ('Education', 'Online exam results'), ('Transport', 'GPS navigation'), ('Business', 'Stock and sales')]),
+           mcq('A shop uses a computer to know how many items are left. This is…', ['stock control', 'video editing', 'weather forecasting'], 'stock control'),
+           tf('Mobile Money uses computers.', True, 'Every transaction is processed by computers.'),
+           sort('Which area does each belong to?', ['Health', 'Education'], [('X-ray scan', 'Health'), ('E-learning platform', 'Education'), ('Hospital records', 'Health'), ('School report cards', 'Education')])]),
+
+    25: L('Embedded systems are small computers inside other machines. IoT connects objects to the internet.',
+          [('Embedded systems',
+            '<p>A small computer built inside a device to do <b>one job</b>.</p><div class="chips"><span>Microwave</span><span>Washing machine</span><span>Traffic lights</span><span>Digital watch</span><span>Car engine control</span></div>'),
+           ('Internet of Things (IoT)',
+            '<p>Everyday objects connected to the internet so they can send data or be controlled from far.</p><div class="chips"><span>Smart TV</span><span>Smart meter (ENEO)</span><span>Smart watch</span><span>Security camera on a phone</span></div>'),
+           ('The difference', '<p class="wt-key">Embedded = computer inside a device. IoT = that device connected to the internet.</p>')],
+          [mcq('An embedded system is…', ['a small computer inside a device that does one job', 'a big computer in a bank', 'a computer game'], 'a small computer inside a device that does one job'),
+           sort('Embedded system or not?', ['Has an embedded system', 'No computer inside'], [('Microwave oven', 'Has an embedded system'), ('Wooden chair', 'No computer inside'), ('Traffic lights', 'Has an embedded system'), ('Digital watch', 'Has an embedded system'), ('Pencil', 'No computer inside')]),
+           mcq('Which is an IoT device?', ['A camera you can watch on your phone from anywhere', 'A calculator', 'A ruler'], 'A camera you can watch on your phone from anywhere'),
+           tf('IoT devices are connected to the internet.', True)]),
+
+    26: L('Generative AI creates new content: text, pictures, music or code.',
+          [('What is generative AI?',
+            '<p>AI that <b>creates</b> something new from a prompt.</p><div class="chips"><span>Text: ChatGPT, Claude</span><span>Images</span><span>Music</span><span>Code</span></div>'),
+           ('How it works (simple)',
+            '<p>It learned from huge amounts of examples, so it can produce something similar when you ask.</p>' + flow(['Prompt', 'AI model', 'New content'])),
+           ('Be careful',
+            '<ul><li>It can be <b>wrong</b> — check facts</li><li>Don\'t copy it as your own work</li><li>Images can be fake</li></ul>')],
+          [mcq('Generative AI…', ['creates new text, images or sounds', 'only stores files', 'is a type of mouse'], 'creates new text, images or sounds'),
+           order('Put in order.', ['You write a prompt', 'The AI model processes it', 'New content is created']),
+           tf('Everything generative AI says is true.', False, 'It can make mistakes, so always check.'),
+           sort('Generative AI or not?', ['Generative AI', 'Not generative AI'], [('Chatbot writing a poem', 'Generative AI'), ('Calculator adding numbers', 'Not generative AI'), ('AI drawing a picture from a sentence', 'Generative AI'), ('A light switch', 'Not generative AI')])]),
+
+    27: L('AI can help you create, but you stay in charge: plan, check and improve.',
+          [('AI as a helper',
+            '<p>You can use AI to get <b>ideas</b>, make a <b>draft</b>, or create a <b>picture</b> for a project.</p>'),
+           ('Steps for AI-assisted creation', flow(['Plan your idea', 'Write a clear prompt', 'Check the result', 'Improve and add your work'])),
+           ('Be honest', '<p class="wt-key">Say when you used AI. Your own thinking is what counts.</p>')],
+          [order('Put the steps of AI-assisted creation in order.', ['Plan your idea', 'Write a clear prompt', 'Check the result', 'Improve and add your own work']),
+           mcq('You used AI to make a poster image. What should you do?', ['Say that the image was made with AI', 'Pretend you drew it', 'Sell it as your art'], 'Say that the image was made with AI'),
+           sort('Good or bad use?', ['Good use', 'Bad use'], [('Asking AI for ideas for a story', 'Good use'), ('Submitting an AI story as your own', 'Bad use'), ('Using AI to check your spelling', 'Good use'), ('Making a fake photo of a classmate', 'Bad use')]),
+           tf('You should always check and improve what AI creates.', True)]),
+
+    29: L('Ethics is about knowing what is right and wrong, and choosing to do what is right.',
+          [('What is ethics?',
+            '<p>Ethics are principles that help us decide what is <b>right</b> or <b>wrong</b>.</p>'),
+           ('Examples',
+            '<ul><li>Telling the truth</li><li>Respecting other people</li><li>Not taking what is not yours</li><li>Keeping promises</li></ul>'),
+           ('Why it matters', '<p class="wt-key">Good ethics build trust in families, schools and online.</p>')],
+          [mcq('Ethics helps us to…', ['decide what is right and wrong', 'type faster', 'repair computers'], 'decide what is right and wrong'),
+           sort('Ethical or not ethical?', ['Ethical', 'Not ethical'], [('Returning a phone you found', 'Ethical'), ('Copying a friend\'s homework', 'Not ethical'), ('Telling the truth when you broke something', 'Ethical'), ('Reading someone\'s private messages', 'Not ethical')]),
+           tf('Ethics only matter in real life, not online.', False, 'The same rules apply online.')]),
+
+    30: L('Computer ethics are the rules of good behaviour when using computers and the internet.',
+          [('Ten simple rules',
+            '<ul><li>Don\'t use a computer to harm others</li><li>Don\'t snoop in other people\'s files</li><li>Don\'t steal software, music or films (piracy)</li><li>Don\'t use someone\'s account or password</li><li>Respect other people\'s work (no plagiarism)</li></ul>'),
+           ('Key words',
+            '<ul><li><b>Piracy</b>: copying software without paying or permission</li><li><b>Plagiarism</b>: copying someone\'s work as your own</li><li><b>Hacking</b>: entering a system without permission</li><li><b>Cyberbullying</b>: hurting someone online</li></ul>')],
+          [match('Match the word to its meaning.', [('Piracy', 'Copying software without permission'), ('Plagiarism', 'Presenting someone\'s work as yours'), ('Hacking', 'Entering a system without permission'), ('Cyberbullying', 'Hurting someone online')]),
+           sort('Acceptable or not?', ['Acceptable', 'Not acceptable'], [('Using your own password', 'Acceptable'), ('Logging in with your friend\'s password', 'Not acceptable'), ('Citing the website you used', 'Acceptable'), ('Sending insulting messages', 'Not acceptable')]),
+           mcq('Your classmate copies a website text and gives it as his essay. This is…', ['plagiarism', 'programming', 'backup'], 'plagiarism')]),
+
+    31: L('Use technology in ways that are safe, respectful and responsible.',
+          [('Be respectful', '<p>Be polite online. Ask before posting photos of others. Don\'t spread rumours.</p>'),
+           ('Be safe', '<ul><li>Keep passwords secret</li><li>Don\'t share your address or phone number with strangers</li><li>Think before you click</li></ul>'),
+           ('Be responsible', '<ul><li>Limit screen time</li><li>Check if information is true before sharing</li><li>Report bad behaviour</li></ul>')],
+          [sort('Responsible or not?', ['Responsible', 'Not responsible'], [('Asking before posting a friend\'s photo', 'Responsible'), ('Sharing news without checking', 'Not responsible'), ('Reporting a bully to a teacher', 'Responsible'), ('Giving your password to a stranger', 'Not responsible')]),
+           mcq('A stranger online asks where you live. What do you do?', ['Don\'t answer and tell a trusted adult', 'Give your address', 'Send a photo of your house'], 'Don\'t answer and tell a trusted adult'),
+           tf('You should check if a message is true before forwarding it.', True)]),
+
+    33: L('A block programming environment lets you program by snapping blocks together, like puzzle pieces.',
+          [('What is block programming?',
+            '<p>Instead of typing code, you drag <b>blocks</b> and join them. Examples: <b>Scratch</b>, <b>Blockly</b>, <b>MIT App Inventor</b>.</p>'),
+           ('Parts of Scratch',
+            '<ul><li><b>Stage</b>: where the action happens</li><li><b>Sprite</b>: a character that moves</li><li><b>Blocks palette</b>: all the blocks</li><li><b>Script area</b>: where you join blocks</li></ul>'),
+           ('Block colours', '<div class="chips"><span>Motion (blue)</span><span>Looks (purple)</span><span>Sound (pink)</span><span>Events (yellow)</span><span>Control (orange)</span></div>')],
+          [match('Match the Scratch part to its meaning.', [('Sprite', 'A character that moves'), ('Stage', 'Where the action is shown'), ('Script area', 'Where you join blocks'), ('Blocks palette', 'The list of blocks to choose from')]),
+           mcq('Which is a block programming tool?', ['Scratch', 'Microsoft Excel', 'Google Chrome'], 'Scratch'),
+           tf('In block programming you must type every instruction.', False, 'You drag and join blocks.')]),
+
+    34: L('Pseudocode is writing the steps of a program in simple English before coding.',
+          [('What is pseudocode?',
+            '<p>It is like code, but in plain words. It helps you plan.</p><pre class="g-code" style="display:block;white-space:pre">START\n  INPUT name\n  OUTPUT "Hello " + name\nSTOP</pre>'),
+           ('Keywords', '<div class="chips"><span>START / STOP</span><span>INPUT</span><span>OUTPUT</span><span>IF … THEN … ELSE</span><span>REPEAT</span></div>'),
+           ('From pseudocode to blocks', '<p>"when green flag clicked" = START · "ask … and wait" = INPUT · "say …" = OUTPUT</p>')],
+          [order('Put the pseudocode in the right order.', ['START', 'INPUT age', 'IF age >= 18 THEN OUTPUT "Adult" ELSE OUTPUT "Minor"', 'STOP']),
+           match('Match the pseudocode word to the Scratch block.', [('START', 'when green flag clicked'), ('INPUT', 'ask … and wait'), ('OUTPUT', 'say …'), ('REPEAT', 'repeat 10')]),
+           mcq('Why write pseudocode first?', ['To plan the steps before coding', 'To make the computer faster', 'To print the program'], 'To plan the steps before coding')]),
+
+    35: L('Let\'s write small programs with blocks: move, repeat and make decisions.',
+          [('Sequence', '<p>Blocks run from top to bottom:</p><div class="chips"><span>when flag clicked</span><span>move 10 steps</span><span>say "Hi!"</span></div>'),
+           ('Repetition', '<p><b>repeat 4</b> [move 100 steps, turn 90°] draws a square.</p>'),
+           ('Decision', '<p><b>if</b> touching edge <b>then</b> bounce.</p><p class="wt-key">Sequence, repetition and decision are the building blocks of every program.</p>')],
+          [order('Put the blocks in order to make the cat say hello after the green flag.', ['when green flag clicked', 'go to x: 0 y: 0', 'say "Hello!" for 2 seconds']),
+           mcq('Which block draws a square with "move 100, turn 90°"?', ['repeat 4', 'repeat 3', 'repeat 10'], 'repeat 4', 'A square has 4 equal sides and 4 turns of 90°.'),
+           match('Match the idea to the block.', [('Sequence', 'blocks one after another'), ('Repetition', 'repeat 10'), ('Decision', 'if … then')]),
+           tf('Blocks in a script run from bottom to top.', False, 'They run from top to bottom.')]),
+
+    37: L('Peripheral devices are connected to the computer to put data in, show results or store data.',
+          [('Input devices', '<div class="chips"><span>Keyboard</span><span>Mouse</span><span>Scanner</span><span>Microphone</span><span>Webcam</span></div>'),
+           ('Output devices', '<div class="chips"><span>Monitor</span><span>Printer</span><span>Speakers</span><span>Projector</span></div>'),
+           ('Storage devices', '<div class="chips"><span>Flash drive</span><span>External hard disk</span><span>Memory card</span></div>')],
+          [sort('Input, output or storage?', ['Input', 'Output', 'Storage'], [('Scanner', 'Input'), ('Printer', 'Output'), ('Flash drive', 'Storage'), ('Microphone', 'Input'), ('Projector', 'Output'), ('Memory card', 'Storage')]),
+           mcq('Which device turns a paper document into a digital picture?', ['Scanner', 'Printer', 'Speaker'], 'Scanner'),
+           tf('A touch screen is both an input and an output device.', True, 'You touch it (input) and it shows images (output).')]),
+
+    38: L('Ports are the sockets where we plug cables and devices into the computer.',
+          [('Common ports', PORTS + '<p>1 USB · 2 VGA · 3 HDMI · 4 Ethernet · 5 Audio · 6 Power</p>'),
+           ('What plugs in where',
+            '<ul><li><b>USB</b>: flash drive, mouse, keyboard, printer</li><li><b>HDMI / VGA</b>: monitor or projector</li><li><b>Ethernet (RJ45)</b>: network cable</li><li><b>Audio jack</b>: headphones, speakers</li></ul>')],
+          [label('Label the ports.', PORTS, ['USB', 'VGA', 'HDMI', 'Ethernet', 'Audio', 'Power']),
+           match('Match the port to the device.', [('USB', 'Flash drive'), ('HDMI', 'Modern TV or monitor'), ('Ethernet', 'Network cable'), ('Audio jack', 'Headphones')]),
+           mcq('Which port carries both picture and sound to a TV?', ['HDMI', 'VGA', 'Ethernet'], 'HDMI', 'VGA carries picture only.')]),
+
+    39: L('Booting is what happens from the moment you press the power button until the desktop appears.',
+          [('The boot process', BOOT),
+           ('Key words',
+            '<ul><li><b>POST</b> (Power-On Self-Test): checks the hardware</li><li><b>BIOS/UEFI</b>: small program that starts the computer and finds the operating system</li><li><b>Loading the OS</b>: copying the operating system into RAM</li></ul>'),
+           ('Cold and warm boot', '<div class="two-col"><div><b>Cold boot</b>starting a computer that was off</div><div><b>Warm boot</b>restarting a computer that is on</div></div>')],
+          [order('Put the boot process in order.', ['Press the power button', 'POST checks the hardware', 'BIOS finds the operating system', 'Operating system loads into RAM', 'Desktop appears']),
+           match('Match the term to its meaning.', [('POST', 'Checks the hardware'), ('BIOS', 'Starts the computer and finds the OS'), ('Cold boot', 'Starting a computer that was off'), ('Warm boot', 'Restarting a computer that is on')]),
+           tf('Restarting your computer is a warm boot.', True)]),
+}

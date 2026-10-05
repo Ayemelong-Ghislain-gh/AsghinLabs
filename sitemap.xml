@@ -9,7 +9,7 @@
     <image:image><image:loc>https://www.asghinlabs.com/images/og-cover.jpg</image:loc></image:image>
   </url>
   <url>
-    <loc>https://www.asghinlabs.com/academy.html</loc>
+    <loc>https://www.asghinlabs.com/academy</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -20,50 +20,20 @@
     <image:image><image:loc>https://www.asghinlabs.com/images/academy/workbooks/maths-a-level-complete.jpg</image:loc></image:image>
   </url>
   <url>
-    <loc>https://www.asghinlabs.com/lessons.html</loc>
+    <loc>https://www.asghinlabs.com/lessons</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.asghinlabs.com/lesson-binary-converter.html</loc>
-    <lastmod>2026-10-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.asghinlabs.com/lesson-sorting-algorithms.html</loc>
-    <lastmod>2026-10-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.asghinlabs.com/lesson-graph-plotter.html</loc>
-    <lastmod>2026-10-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.asghinlabs.com/lesson-expanding-brackets.html</loc>
-    <lastmod>2026-10-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.asghinlabs.com/lesson-factorising-quadratics.html</loc>
-    <lastmod>2026-10-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.asghinlabs.com/founder.html</loc>
+    <loc>https://www.asghinlabs.com/founder</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image><image:loc>https://www.asghinlabs.com/images/founder-portrait.jpg</image:loc></image:image>
   </url>
   <url>
-    <loc>https://www.asghinlabs.com/portfolio.html</loc>
+    <loc>https://www.asghinlabs.com/portfolio</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -75,37 +45,272 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://www.asghinlabs.com/lesson-unit-conversions.html</loc>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/abstraction</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.asghinlabs.com/lesson-change-subject.html</loc>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/ai-assisted-creation</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.asghinlabs.com/lesson-simultaneous-equations.html</loc>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/application-of-computers</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.asghinlabs.com/lesson-right-triangles.html</loc>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/application-of-embedded-systems-and-iot</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.asghinlabs.com/lesson-cell-referencing.html</loc>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/application-software</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.asghinlabs.com/lesson-logic-gates.html</loc>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/applications-and-ethics-of-artificial-intelligence</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.asghinlabs.com/lesson-cpu-scheduling.html</loc>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/behaviours-to-adopt-in-a-computer-laboratory</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/block-programming-environment</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/classification-of-computers</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/common-dangers-in-a-workplace-electricity-shocks-fire-flood</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/components-of-a-computer</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/components-of-the-computing-environment-and-role</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/computer-ethics</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/computer-laboratory-designs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/computer-laboratory-equipment-and-devices</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/computer-ports</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/computer-related-health-issues</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/decomposition</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/ethical-ways-of-using-technology</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/features-of-a-graphic-software</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/features-of-a-gui</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/features-of-a-spreadsheet</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/features-of-a-word-processor</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/history-of-computers</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/introducing-ethics</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/introduction-to-algorithms</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/introduction-to-artificial-intelligence</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/introduction-to-computer-science</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/introduction-to-the-internet</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/keyboard-mouse-and-touch-screen-manipulations</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/notions-on-generative-ai</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/operations-on-files-and-folders</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/pattern-recognition</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/peripheral-devices</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/pseudocodes-and-block-programming</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/system-software</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/the-boot-process</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/the-use-of-appropriate-prompts-to-generate-ai-responses</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/types-of-personal-computer</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/users-of-the-computing-environment-and-notions-on-data-and-i</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/web-browsers-and-search-engines</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-1/computer-science/write-programs-in-a-block-programming-environment</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-2/computer-science/number-systems-conversions</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-2/computer-science/units-of-time-and-storage</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-3/mathematics/change-the-subject-of-a-formula</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-3/mathematics/expanding-brackets</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-3/mathematics/factorising-quadratic-trinomials</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-3/mathematics/graphs-lines-and-curves</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-3/mathematics/pythagoras-and-soh-cah-toa</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/form-3/mathematics/simultaneous-equations-elimination</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/lower-sixth/ict/cell-referencing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/lower-sixth/ict/logic-gates-and-truth-tables</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/lower-sixth/ict/sorting-algorithms</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/lessons/upper-sixth/computer-science/cpu-scheduling</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

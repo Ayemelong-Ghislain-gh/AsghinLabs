@@ -13,18 +13,138 @@
     },
     {
       "source": "/learn",
-      "destination": "/academy.html",
+      "destination": "/academy",
       "permanent": false
     },
     {
-      "source": "/academy",
-      "destination": "/academy.html",
-      "permanent": false
+      "source": "/lesson-algorithms-order",
+      "destination": "/lessons/form-1/computer-science/introduction-to-algorithms",
+      "permanent": true
     },
     {
-      "source": "/lessons",
-      "destination": "/lessons.html",
-      "permanent": false
+      "source": "/lesson-algorithms-order.html",
+      "destination": "/lessons/form-1/computer-science/introduction-to-algorithms",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-binary-converter",
+      "destination": "/lessons/form-2/computer-science/number-systems-conversions",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-binary-converter.html",
+      "destination": "/lessons/form-2/computer-science/number-systems-conversions",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-unit-conversions",
+      "destination": "/lessons/form-2/computer-science/units-of-time-and-storage",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-unit-conversions.html",
+      "destination": "/lessons/form-2/computer-science/units-of-time-and-storage",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-expanding-brackets",
+      "destination": "/lessons/form-3/mathematics/expanding-brackets",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-expanding-brackets.html",
+      "destination": "/lessons/form-3/mathematics/expanding-brackets",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-factorising-quadratics",
+      "destination": "/lessons/form-3/mathematics/factorising-quadratic-trinomials",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-factorising-quadratics.html",
+      "destination": "/lessons/form-3/mathematics/factorising-quadratic-trinomials",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-change-subject",
+      "destination": "/lessons/form-3/mathematics/change-the-subject-of-a-formula",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-change-subject.html",
+      "destination": "/lessons/form-3/mathematics/change-the-subject-of-a-formula",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-graph-plotter",
+      "destination": "/lessons/form-3/mathematics/graphs-lines-and-curves",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-graph-plotter.html",
+      "destination": "/lessons/form-3/mathematics/graphs-lines-and-curves",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-simultaneous-equations",
+      "destination": "/lessons/form-3/mathematics/simultaneous-equations-elimination",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-simultaneous-equations.html",
+      "destination": "/lessons/form-3/mathematics/simultaneous-equations-elimination",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-right-triangles",
+      "destination": "/lessons/form-3/mathematics/pythagoras-and-soh-cah-toa",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-right-triangles.html",
+      "destination": "/lessons/form-3/mathematics/pythagoras-and-soh-cah-toa",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-cell-referencing",
+      "destination": "/lessons/lower-sixth/ict/cell-referencing",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-cell-referencing.html",
+      "destination": "/lessons/lower-sixth/ict/cell-referencing",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-logic-gates",
+      "destination": "/lessons/lower-sixth/ict/logic-gates-and-truth-tables",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-logic-gates.html",
+      "destination": "/lessons/lower-sixth/ict/logic-gates-and-truth-tables",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-sorting-algorithms",
+      "destination": "/lessons/lower-sixth/ict/sorting-algorithms",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-sorting-algorithms.html",
+      "destination": "/lessons/lower-sixth/ict/sorting-algorithms",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-cpu-scheduling",
+      "destination": "/lessons/upper-sixth/computer-science/cpu-scheduling",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-cpu-scheduling.html",
+      "destination": "/lessons/upper-sixth/computer-science/cpu-scheduling",
+      "permanent": true
     }
   ],
   "headers": [
@@ -37,5 +157,6 @@
         }
       ]
     }
-  ]
+  ],
+  "cleanUrls": true
 }

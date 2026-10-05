@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Factorising Quadratics — Interactive Lesson | AsghinLabs Academy</title>
+  <meta name="description" content="Find the two numbers that multiply and add to factorise quadratics, from x² + bx + c to ax² + bx + c, with a built-in check. Free interactive Maths lesson.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.asghinlabs.com/lesson-factorising-quadratics.html">
+  <link rel="apple-touch-icon" href="images/logo-blue.jpeg">
+  <link rel="icon" href="images/logo-blue.jpeg" type="image/jpeg">
+  <meta property="og:site_name" content="AsghinLabs">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Factorising Quadratics — Interactive Lesson | AsghinLabs Academy">
+  <meta property="og:description" content="Find the two numbers that multiply and add to factorise quadratics, from x² + bx + c to ax² + bx + c, with a built-in check. Free interactive Maths lesson.">
+  <meta property="og:url" content="https://www.asghinlabs.com/lesson-factorising-quadratics.html">
+  <meta property="og:image" content="https://www.asghinlabs.com/images/og-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Factorising Quadratics",
+  "description": "Find the two numbers that multiply and add to factorise quadratics, from x² + bx + c to ax² + bx + c, with a built-in check. Free interactive Maths lesson.",
+  "url": "https://www.asghinlabs.com/lesson-factorising-quadratics.html",
+  "learningResourceType": "Interactive lesson",
+  "educationalLevel": "O Level",
+  "teaches": "Factorising quadratics",
+  "about": "Mathematics",
+  "isAccessibleForFree": true,
+  "inLanguage": "en",
+  "provider": {
+    "@type": "Organization",
+    "name": "AsghinLabs Academy",
+    "url": "https://www.asghinlabs.com/academy.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Ayemelong Selobie Ghislain"
+  }
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style-main.css">
+  <link rel="stylesheet" href="style-lesson.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK679H74R1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FK679H74R1');
+  </script>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="academy.html">
+    <img src="images/logo-blue.jpeg" alt="AsghinLabs Academy Logo" id="navLogoImg" width="42" height="42">
+    <span>ASGHINLABS <span class="logo-sub">Academy</span></span>
+  </a>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="academy.html#workbooks">Workbooks</a></li>
+    <li><a href="academy.html#resources">Free Notes</a></li>
+    <li><a href="academy.html#classes">Classes</a></li>
+    <li><a href="lessons.html">Interactive Lessons</a></li>
+    <li><a href="academy.html#enroll">Contact</a></li>
+    <li><a href="/" class="nav-back">← AsghinLabs</a></li>
+  </ul>
+</nav>
+
+<div class="lesson-wrap">
+  <a class="lesson-crumb" href="lessons.html">← All interactive lessons</a>
+  <span class="lesson-badge">🧪 Interactive Lesson · Mathematics · O Level</span>
+  <h1>Factorising Quadratics</h1>
+  <p class="lead">Factorising is expanding backwards. Try it, read the short cards, then practise step by step.</p>
+
+  <div class="lesson-panel">
+    <h2>⚡ Quick practice: tap the right pair</h2>
+    <div class="lesson-controls">
+      <select id="levelSel" aria-label="Question type">
+        <option value="easy">Easier: x² + bx + c</option>
+        <option value="hard">Harder: ax² + bx + c</option>
+      </select>
+      <button type="button" id="newBtn" class="primary">🔀 New question</button>
+      <button type="button" id="hintBtn">💡 Show the pair</button>
+    </div>
+
+    <p class="q-big" id="question"></p>
+    <p class="work-line" id="task"></p>
+    <div class="pair-list" id="pairs"></div>
+    <div class="lesson-step-msg" id="msg" aria-live="polite"></div>
+    <div class="factor-steps" id="steps"></div>
+    <div class="lesson-step-msg" id="tally"></div>
+  </div>
+
+  <div class="lesson-panel" id="learn">
+    <h2>📘 Learn it: how to find the two numbers</h2>
+    <p class="lesson-hint">Four short cards. Read them, then try it yourself below.</p>
+    <div id="walk"></div>
+  </div>
+
+  <div class="lesson-panel" id="practice">
+    <h2>✍️ Try it yourself: full working</h2>
+    <p class="lesson-hint">Do one step at a time. Wrong answers turn red with a hint. Press <b>Show me</b> if you are stuck.</p>
+    <div class="lesson-controls">
+      <select id="pLevel" aria-label="Practice level">
+        <option value="easy">Easier: x² + bx + c</option>
+        <option value="hard">Harder: ax² + bx + c</option>
+      </select>
+      <button type="button" id="pNew" class="primary">🔀 New question</button>
+      <span class="chal-score" id="pScore"></span>
+    </div>
+    <p class="q-big" id="pQuestion"></p>
+    <div id="pSteps" class="gsteps"></div>
+  </div>
+
+  <div class="lesson-panel lesson-explain">
+    <h2>The idea</h2>
+    <ul>
+      <li>To factorise <b>x² + bx + c</b>, find two numbers that <b>multiply to c</b> and <b>add to b</b>. Those numbers go in the brackets: (x + one)(x + other).</li>
+      <li>When there is a number in front of x² (<b>ax² + bx + c</b>), multiply <b>a × c</b> first. Find two numbers that multiply to <b>a × c</b> and add to b, use them to split the middle term, then group.</li>
+      <li>Always check by expanding the brackets. You must get back the original expression.</li>
+    </ul>
+  </div>
+
+  <div class="lesson-panel lesson-next">
+    <h3>Keep practising</h3>
+    <p>Get more factorising practice in the Mathematics workbooks.</p>
+    <div class="lesson-next-actions">
+      <a class="next-btn primary" href="academy.html#workbooks">🛒 See the workbooks</a>
+      <a class="next-btn" href="lessons.html">More lessons →</a>
+    </div>
+    <div class="fb"><a href="https://wa.me/237682402876?text=Hi%20AsghinLabs%20Academy%2C%20I%20tried%20the%20Factorising%20Quadratics%20lesson%20and%20wanted%20to%20say..." target="_blank" rel="noopener">💬 Tell us what to improve on WhatsApp →</a></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links" role="navigation" aria-label="Footer">
+    <a href="/">Home</a> · <a href="/#services">Web &amp; Software</a> · <a href="academy.html">Academy</a> · <a href="academy.html#workbooks">Workbooks</a> · <a href="academy.html#resources">Free Notes</a> · <a href="lessons.html">Interactive Lessons</a> · <a href="portfolio.html">Portfolio</a> · <a href="founder.html">Founder</a>
+  </div>
+  <p class="footer-fr">Développement web, logiciels et automatisation IA à Douala, Cameroun · Cours d'informatique et fascicules GCE.</p>
+  <p>© 2026 AsghinLabs Academy. Douala, Cameroon.</p>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/237682402876?text=Hi%20AsghinLabs%20Academy%2C%20I%27d%20like%20to%20learn%20more." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+<script src="script-main.js"></script>
+<script src="lessons-common.js"></script>
+<script>
+(function () {
+  const SLUG = 'factorising-quadratics';
+  const $ = (id) => document.getElementById(id);
+  const levelSel = $('levelSel'), pairsEl = $('pairs'), msg = $('msg'), stepsEl = $('steps'), tally = $('tally');
+  let Q = null, solved = 0, tried = 0, finished = false, usedHint = false;
+
+  function pairsFor(P) {
+    const out = [], A = Math.abs(P);
+    for (let d = 1; d * d <= A; d++) {
+      if (A % d) continue;
+      const e = A / d;
+      if (P > 0) { out.push([d, e]); out.push([-d, -e]); }
+      else { out.push([d, -e]); if (d !== e) out.push([-d, e]); }
+    }
+    return out;
+  }
+  const sgn = (k) => (k < 0 ? '\u2212' : '') + Math.abs(k);
+
+  function newQuestion() {
+    const hard = levelSel.value === 'hard';
+    let m, n, p, q, lim = hard ? 6 : 9;
+    while (true) {
+      m = hard ? pick([1, 2, 3]) : 1; n = hard ? pick([1, 2, 3]) : 1;
+      if (hard && m === 1 && n === 1) continue;
+      p = rnz(-lim, lim); q = rnz(-lim, lim);
+      if (gcd(m, p) === 1 && gcd(n, q) === 1) break;   // no common factor, so there is one clean answer
+    }
+    Q = { m, n, p, q, a: m * n, b: m * q + n * p, c: p * q };
+    finished = false; usedHint = false;
+    const target = Q.a * Q.c;
+    Q.pairs = pairsFor(target);
+    Q.pairs.sort((x, y) => x[0] - y[0]);
+    render();
+    trackLesson(SLUG, 'new_question');
+  }
+
+  function render() {
+    const { a, b, c } = Q;
+    $('question').textContent = 'Factorise ' + polyStr([a, b, c]);
+    const hard = a !== 1;
+    $('task').innerHTML = hard
+      ? `Step 1: multiply a × c = ${a} × ${sgn(c)} = <b>${sgn(a * c)}</b>. Which pair of numbers <b>multiplies to ${sgn(a * c)}</b> and <b>adds to ${sgn(b)}</b>? Tap a pair to test it.`
+      : `Which pair of numbers <b>multiplies to ${sgn(c)}</b> and <b>adds to ${sgn(b)}</b>? Tap a pair to test it.`;
+    pairsEl.innerHTML = Q.pairs.map((pr, i) =>
+      `<button type="button" class="pair-btn" data-i="${i}">${sgn(pr[0])} × ${sgn(pr[1])}</button>`).join('');
+    msg.textContent = ''; msg.className = 'lesson-step-msg';
+    stepsEl.innerHTML = '';
+    $('hintBtn').disabled = false;
+    updateTally();
+  }
+
+  function updateTally() { tally.className = 'lesson-step-msg'; tally.style.color = 'var(--text-muted)'; tally.textContent = tried ? `Solved without the hint: ${solved} of ${tried}` : ''; }
+
+  function reveal() {
+    const { m, n, p, q, a, b, c } = Q;
+    const br = (k, r) => polyStr([0, k, r]);
+    const mx = polyStr([0, m, 0]);
+    const grouped = `${mx}(${br(n, q)}) ${p < 0 ? '\u2212' : '+'} ${Math.abs(p)}(${br(n, q)})`;
+    const splitLine = joinTerms([[a, 'x\u00B2'], [m * q, 'x'], [n * p, 'x'], [c, '']]);
+    const finalForm = `(${br(m, p)})(${br(n, q)})`;
+    const check = joinTerms([[m * n, 'x\u00B2'], [m * q, 'x'], [n * p, 'x'], [p * q, '']]);
+    stepsEl.innerHTML =
+      `<p class="work-line"><b>Split the middle term</b> using that pair: ${splitLine}</p>` +
+      `<p class="work-line"><b>Group</b> and take out the common factor of each pair: ${grouped}</p>` +
+      `<p class="work-line"><b>Factorised:</b> <span class="ok">${finalForm}</span></p>` +
+      `<p class="work-line"><b>Check by expanding:</b> ${finalForm} = ${check} = ${polyStr([a, b, c])} ✓</p>`;
+  }
+
+  pairsEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('.pair-btn');
+    if (!btn || finished || btn.disabled) return;
+    const pr = Q.pairs[Number(btn.dataset.i)];
+    const sum = pr[0] + pr[1];
+    btn.disabled = true;
+    if (sum === Q.b) {
+      finished = true;
+      btn.classList.add('right');
+      btn.textContent = `${sgn(pr[0])} × ${sgn(pr[1])}  →  ${sgn(pr[0])} + ${sgn(pr[1])} = ${sgn(sum)} ✓`;
+      msg.className = 'lesson-step-msg ok';
+      msg.textContent = '✅ That pair works. Now see how it gives the factors:';
+      pairsEl.querySelectorAll('.pair-btn').forEach(b => { b.disabled = true; });
+      $('hintBtn').disabled = true;
+      tried++; if (!usedHint) solved++;
+      updateTally(); reveal();
+      trackLesson(SLUG, 'check_correct');
+    } else {
+      btn.classList.add('wrong');
+      btn.textContent = `${sgn(pr[0])} × ${sgn(pr[1])}  →  sum ${sgn(sum)} ✗`;
+      msg.className = 'lesson-step-msg bad';
+      msg.textContent = `The sum is ${sgn(sum)}, but we need ${sgn(Q.b)}. Try another pair.`;
+      trackLesson(SLUG, 'check_wrong');
+    }
+  });
+
+  $('hintBtn').addEventListener('click', () => {
+    if (finished) return;
+    usedHint = true;
+    const i = Q.pairs.findIndex(pr => pr[0] + pr[1] === Q.b);
+    const el = pairsEl.querySelector(`[data-i="${i}"]`);
+    if (el) el.classList.add('hint');
+    msg.className = 'lesson-step-msg'; msg.textContent = 'The highlighted pair is the one. Tap it to see the working.';
+  });
+  $('newBtn').addEventListener('click', newQuestion);
+  levelSel.addEventListener('change', newQuestion);
+
+  // Fixed first example: x² + 5x + 6 = (x + 2)(x + 3)
+  Q = { m: 1, n: 1, p: 2, q: 3, a: 1, b: 5, c: 6 };
+  Q.pairs = pairsFor(6).sort((x, y) => x[0] - y[0]);
+  render();
+})();
+
+/* ===== Learn it + Try it yourself (added) ===== */
+(function () {
+  const SLUG = 'factorising-quadratics';
+  const $ = (id) => document.getElementById(id);
+  const S = (k) => (k < 0 ? '−' : '') + Math.abs(k);            // −3 / 3
+  const P = (k) => (k < 0 ? '(' + S(k) + ')' : String(k));           // (−3) / 3
+  const B = (k) => (k < 0 ? '− ' : '+ ') + Math.abs(k);           // "− 3" / "+ 3"
+  const hl = (t, c) => `<span class="hl hl-${c}">${t}</span>`;
+
+  // ---------- Learn it ----------
+  runWalkthrough($('walk'), [
+    {
+      title: 'The rule',
+      html: `<p>To factorise <b>x² + bx + c</b>, find <b>two numbers</b> that:</p>
+             <ul><li><b>multiply</b> to give <b>c</b></li><li><b>add</b> to give <b>b</b></li></ul>
+             <p>Example: x² + 7x + 12 → 3 × 4 = 12 and 3 + 4 = 7</p>
+             <p class="wt-key">Answer: (x + 3)(x + 4)</p>`,
+    },
+    {
+      title: 'How to find the two numbers',
+      html: `<p>Write the pairs that multiply to c, then add each pair.</p>
+             <p>For x² + 7x + 12, the pairs of 12 are:</p>
+             <div class="wt-pairs"><span class="no">1 and 12 → 13</span><span class="no">2 and 6 → 8</span><span class="yes">3 and 4 → 7 ✓</span></div>
+             <p class="wt-key">Pick the pair that adds to b.</p>`,
+    },
+    {
+      title: 'Minus signs',
+      html: `<ul><li><b>c is +</b> → both numbers have the sign of b.<br>x² − 5x + 6 → −2 and −3</li>
+             <li><b>c is −</b> → one number is +, one is −.<br>x² − x − 6 → −3 and +2</li></ul>
+             <p class="wt-key">Check: (x − 3)(x + 2) = x² − x − 6 ✓</p>`,
+    },
+    {
+      title: 'A number in front of x²',
+      html: `<p>Example: 2x² + 7x + 3</p>
+             <ol><li>Multiply 2 × 3 = 6</li><li>Two numbers: × to 6, + to 7 → 1 and 6</li>
+             <li>Split: 2x² + x + 6x + 3</li><li>Group: x(2x + 1) + 3(2x + 1)</li></ol>
+             <p class="wt-key">Answer: (2x + 1)(x + 3)</p>`,
+    },
+  ]);
+
+  // ---------- Try it yourself ----------
+  let done = 0, clean = 0;
+
+  function posPairs(n) {
+    const out = [];
+    for (let d = 1; d * d <= n; d++) if (n % d === 0) out.push([d, n / d]);
+    return out;
+  }
+
+  // Accept answers in any order: values = [a1, b1, a2, b2 …] as rows of two
+  function pairRowsValidate(values, n) {
+    const want = posPairs(n).map(p => p.join('x'));
+    const seen = new Set(), ok = [], notes = [];
+    for (let r = 0; r < values.length; r += 2) {
+      const a = Number(values[r]), b = Number(values[r + 1]);
+      const key = [Math.min(a, b), Math.max(a, b)].join('x');
+      const good = Number.isInteger(a) && Number.isInteger(b) && a > 0 && b > 0 && a * b === n && !seen.has(key);
+      if (good) seen.add(key);
+      else if (a * b === n && seen.has(key)) notes.push(`You wrote ${a} × ${b} twice. Each pair only once.`);
+      else if (values[r] && values[r + 1]) notes.push(`${values[r]} × ${values[r + 1]} = ${a * b}, not ${n}.`);
+      ok.push(good, good);
+    }
+    return { ok, notes };
+  }
+
+  function twoNumbersValidate(values, prod, sum) {
+    const a = Number(values[0]), b = Number(values[1]);
+    if (a * b === prod && a + b === sum) return { ok: [true, true] };
+    const notes = [];
+    if (a * b !== prod) notes.push(`${P(a)} × ${P(b)} = ${S(a * b)}, but they must multiply to <b>${S(prod)}</b>.`);
+    else notes.push(`They multiply to ${S(prod)} ✓ but ${P(a)} + ${P(b)} = ${S(a + b)}, and they must add to <b>${S(sum)}</b>.`);
+    if (Math.abs(a) * Math.abs(b) === Math.abs(prod) && Math.abs(a + b) === Math.abs(sum)) notes.push('You have the right numbers — only the signs are wrong. Look at the sign rules again.');
+    return { ok: [false, false], notes };
+  }
+
+  function buildEasy(p, q) {            // x² + (p+q)x + pq = (x + p)(x + q)
+    const b = p + q, c = p * q;
+    const pairs = posPairs(Math.abs(c));
+    const same = c > 0;
+    const big = Math.abs(p) >= Math.abs(q) ? p : q;
+    const steps = [
+      {
+        html: `Read the question. In x² + bx + c: b = {0} and c = {1}`,
+        fields: [{ answer: b, kind: 'int', label: 'b', size: 3 }, { answer: c, kind: 'int', label: 'c', size: 3 }],
+        hint: 'b is the number in front of x (with its sign). c is the number on its own (with its sign).',
+        why: `b = <b>${S(b)}</b> and c = <b>${S(c)}</b>. We need two numbers that multiply to ${S(c)} and add to ${S(b)}.`,
+      },
+      same ? {
+        html: `Signs: c = ${S(c)} is positive, so the two numbers have the {0} sign. b = ${S(b)} is ${b > 0 ? 'positive' : 'negative'}, so both numbers are {1}.`,
+        fields: [{ answer: 'same', kind: 'choice', options: ['same', 'different'], label: 'same or different' },
+                 { answer: b > 0 ? 'positive' : 'negative', kind: 'choice', options: ['positive', 'negative'], label: 'positive or negative' }],
+        hint: 'Positive × positive = positive, and negative × negative = positive. Then the sum has the same sign as both numbers.',
+        why: `c is positive → <b>same</b> signs. b is ${b > 0 ? 'positive' : 'negative'} → both numbers are <b>${b > 0 ? 'positive' : 'negative'}</b>.`,
+      } : {
+        html: `Signs: c = ${S(c)} is negative, so the two numbers have {0} signs. b = ${S(b)}, so the bigger number (ignoring the sign) is {1}.`,
+        fields: [{ answer: 'different', kind: 'choice', options: ['same', 'different'], label: 'same or different' },
+                 { answer: big > 0 ? 'positive' : 'negative', kind: 'choice', options: ['positive', 'negative'], label: 'positive or negative' }],
+        hint: 'Only a positive × a negative gives a negative answer. When you add them, the bigger one wins, so it carries the sign of b.',
+        why: `c is negative → <b>different</b> signs. b is ${b >= 0 ? 'positive' : 'negative'} → the bigger number is <b>${big > 0 ? 'positive' : 'negative'}</b>.`,
+      },
+      {
+        html: `List every pair of whole numbers that multiply to ${Math.abs(c)} (ignore signs for now):<div class="pair-rows">` +
+          pairs.map((_, r) => `<span>{${2 * r}} × {${2 * r + 1}}</span>`).join('') + '</div>',
+        fields: pairs.flatMap(pr => [{ answer: pr[0], kind: 'int', size: 2, label: 'number' }, { answer: pr[1], kind: 'int', size: 2, label: 'number' }]),
+        validate: (v) => pairRowsValidate(v, Math.abs(c)),
+        hint: `Try 1, 2, 3 … in turn. Does it divide ${Math.abs(c)} exactly? There are ${pairs.length} pair${pairs.length > 1 ? 's' : ''} to find.`,
+        why: `The pairs are <b>${pairs.map(pr => pr.join(' × ')).join(', ')}</b>.`,
+      },
+      {
+        html: `Now add the signs and test the pairs. Which two numbers multiply to ${S(c)} <b>and</b> add to ${S(b)}? {0} and {1}`,
+        fields: [{ answer: p, kind: 'int', size: 3, label: 'first number' }, { answer: q, kind: 'int', size: 3, label: 'second number' }],
+        validate: (v) => twoNumbersValidate(v, c, b),
+        hint: `Use the sign rule from step 2 on each pair, then add them. You need a total of ${S(b)}.`,
+        why: `${P(p)} × ${P(q)} = ${S(c)} ✓ and ${P(p)} + ${P(q)} = ${S(b)} ✓. The numbers are <b>${S(p)} and ${S(q)}</b>.`,
+      },
+      {
+        html: `Write the brackets: (x {0}) (x {1})<br><span class="g-hint">Type the number with its sign, e.g. +3 or −2.</span>`,
+        fields: [{ answer: (p < 0 ? '' : '+') + p, kind: 'int', size: 3, label: 'first bracket' }, { answer: (q < 0 ? '' : '+') + q, kind: 'int', size: 3, label: 'second bracket' }],
+        validate: (v) => { const a = Number(v[0]), d = Number(v[1]); const ok = (a === p && d === q) || (a === q && d === p); return ok ? { ok: [true, true] } : twoNumbersValidate(v, c, b); },
+        hint: 'Put one number in each bracket, keeping its sign.',
+        why: `x² ${B(b)}x ${B(c)} = <b>(x ${B(p)})(x ${B(q)})</b>.`,
+      },
+      {
+        html: `Check by expanding (x ${B(p)})(x ${B(q)}): x² + {0}x + {1}`,
+        fields: [{ answer: b, kind: 'int', size: 3, label: 'x coefficient' }, { answer: c, kind: 'int', size: 3, label: 'number' }],
+        hint: `The x terms: ${S(p)}x + ${P(q)}x. The number: ${P(p)} × ${P(q)}.`,
+        why: `You get back x² ${B(b)}x ${B(c)}, the question. ✔ The answer is right.`,
+      },
+    ];
+    return { q: `Factorise x² ${B(b)}x ${B(c)}`.replace('x² + 1x', 'x² + x').replace('x² − 1x', 'x² − x'), steps };
+  }
+
+  function buildHard(m, p, n, q) {      // (mx + p)(nx + q) = mn x² + (mq + np) x + pq
+    const a = m * n, b = m * q + n * p, c = p * q, ac = a * c;
+    const r1 = m * q, r2 = n * p;       // split of the middle term
+    const term = (k, sym) => (k === 1 ? '' : k === -1 ? '−' : S(k)) + sym;
+    const qs = `${term(a, 'x²')} ${B(b)}x ${B(c)}`.replace(/ ([+−]) 1x/, ' $1 x');
+    const steps = [
+      {
+        html: `Read the question. a = {0}, b = {1}, c = {2}`,
+        fields: [{ answer: a, kind: 'int', size: 3, label: 'a' }, { answer: b, kind: 'int', size: 3, label: 'b' }, { answer: c, kind: 'int', size: 3, label: 'c' }],
+        hint: 'a is in front of x², b is in front of x, c is the number on its own. Keep the signs.',
+        why: `a = <b>${S(a)}</b>, b = <b>${S(b)}</b>, c = <b>${S(c)}</b>.`,
+      },
+      {
+        html: `Multiply a × c: ${P(a)} × ${P(c)} = {0}`,
+        fields: [{ answer: ac, kind: 'int', size: 4, label: 'a × c' }],
+        hint: 'Multiply the numbers, then the sign: different signs give a negative.',
+        why: `a × c = <b>${S(ac)}</b>. Now we need two numbers that multiply to ${S(ac)} and add to ${S(b)}.`,
+      },
+      {
+        html: `Signs: a × c = ${S(ac)} is ${ac > 0 ? 'positive' : 'negative'}, so the two numbers have {0} signs.`,
+        fields: [{ answer: ac > 0 ? 'same' : 'different', kind: 'choice', options: ['same', 'different'], label: 'same or different' }],
+        hint: 'A positive product means same signs; a negative product means different signs.',
+        why: ac > 0 ? `Same signs, and b is ${b > 0 ? 'positive' : 'negative'}, so both are <b>${b > 0 ? 'positive' : 'negative'}</b>.`
+                    : `Different signs. The bigger one takes the sign of b (${b >= 0 ? 'positive' : 'negative'}).`,
+      },
+      {
+        html: `Find the two numbers that multiply to ${S(ac)} and add to ${S(b)}: {0} and {1}`,
+        fields: [{ answer: r1, kind: 'int', size: 3, label: 'first number' }, { answer: r2, kind: 'int', size: 3, label: 'second number' }],
+        validate: (v) => twoNumbersValidate(v, ac, b),
+        hint: `List the pairs of ${Math.abs(ac)} (1 × ${Math.abs(ac)}, 2 × …), add the signs, and test the sums.`,
+        why: `${P(r1)} × ${P(r2)} = ${S(ac)} ✓ and ${P(r1)} + ${P(r2)} = ${S(b)} ✓.`,
+      },
+      {
+        html: `Split the middle term with those numbers: ${term(a, 'x²')} + {0}x + {1}x ${B(c)}`,
+        fields: [{ answer: r1, kind: 'int', size: 3, label: 'first x term' }, { answer: r2, kind: 'int', size: 3, label: 'second x term' }],
+        validate: (v) => { const x = Number(v[0]), y = Number(v[1]); const ok = (x === r1 && y === r2) || (x === r2 && y === r1); return { ok: [ok, ok], notes: ok ? [] : ['Use the two numbers from the step before.'] }; },
+        hint: `${S(b)}x is split into two x terms using your two numbers.`,
+        why: `${term(a, 'x²')} ${B(r1)}x ${B(r2)}x ${B(c)}. Same value as before, just written in four parts.`,
+      },
+      {
+        html: `Group and take out what is common. The common bracket is ({0}x + {1})`,
+        fields: [{ answer: n, kind: 'int', size: 2, label: 'x number in bracket' }, { answer: q, kind: 'int', size: 3, label: 'number in bracket' }],
+        validate: (v) => { const x = Number(v[0]), y = Number(v[1]);
+          const ok = (x === n && y === q) || (x === -n && y === -q) || (x === m && y === p) || (x === -m && y === -p);
+          return { ok: [ok, ok], notes: ok ? [] : ['Take the biggest common factor out of the first two terms, and look at what is left in the bracket.'] }; },
+        hint: `From ${term(a, 'x²')} ${B(r1)}x, take out the biggest common factor. What is left inside the bracket?`,
+        why: `${term(m, 'x')}(${term(n, 'x')} ${B(q)}) ${B(p)}(${term(n, 'x')} ${B(q)}) — the bracket (${term(n, 'x')} ${B(q)}) appears twice.`,
+      },
+      {
+        html: `Write the answer: ({0}x + {1})({2}x + {3})<br><span class="g-hint">Type the numbers with their signs.</span>`,
+        fields: [{ answer: m, kind: 'int', size: 2 }, { answer: p, kind: 'int', size: 3 }, { answer: n, kind: 'int', size: 2 }, { answer: q, kind: 'int', size: 3 }],
+        validate: (v) => {
+          const [w, x, y, z] = v.map(Number);
+          const ok = (w === m && x === p && y === n && z === q) || (w === n && x === q && y === m && z === p) ||
+                     (w === -m && x === -p && y === -n && z === -q) || (w === -n && x === -q && y === -m && z === -p);
+          if (ok) return { ok: [true, true, true, true] };
+          const ex = [w * y, w * z + x * y, x * z];
+          return { ok: [false, false, false, false], notes: [`Your brackets expand to ${polyStr(ex)}, not ${polyStr([a, b, c])}.`] };
+        },
+        hint: 'One bracket is the common bracket. The other holds the two numbers you took out.',
+        why: `${qs} = <b>(${term(m, 'x')} ${B(p)})(${term(n, 'x')} ${B(q)})</b>. Expand to check: ${polyStr([a, b, c])} ✓`,
+      },
+    ];
+    return { q: 'Factorise ' + qs, steps };
+  }
+
+  function newQuestion(first) {
+    let Q;
+    if ($('pLevel').value === 'hard' && !first) {
+      let m, n, p, q;
+      do { m = pick([1, 2, 3]); n = pick([1, 2, 3]); p = rnz(-5, 5); q = rnz(-5, 5); }
+      while ((m === 1 && n === 1) || gcd(m, p) !== 1 || gcd(n, q) !== 1 || m * q + n * p === 0);
+      Q = buildHard(m, p, n, q);
+    } else {
+      let p, q;
+      if (first) { p = 2; q = 3; } else do { p = rnz(-9, 9); q = rnz(-9, 9); } while (p + q === 0);
+      Q = buildEasy(p, q);
+    }
+    $('pQuestion').textContent = Q.q;
+    runSteps($('pSteps'), Q.steps, {
+      onCheck: (ok) => trackLesson(SLUG, ok ? 'practice_correct' : 'practice_wrong'),
+      onFinish: (usedHelp) => {
+        done++; if (!usedHelp) clean++;
+        $('pScore').textContent = `${done} finished · ${clean} without help`;
+        practiceEnd($('pSteps'), usedHelp, () => { newQuestion(); $('pQuestion').scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+      },
+    });
+  }
+  $('pNew').addEventListener('click', () => newQuestion());
+  $('pLevel').addEventListener('change', () => newQuestion());
+  newQuestion(true);
+})();
+viewLesson("factorising-quadratics");
+</script>
+</body>
+</html>
