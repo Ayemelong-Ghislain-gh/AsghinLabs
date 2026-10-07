@@ -381,8 +381,8 @@
 
 .academy-strip {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  max-width: 1000px;
+  grid-template-columns: repeat(5, 1fr);
+  max-width: 1100px;
   margin: 0 auto 20px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 22px;
@@ -860,6 +860,8 @@ body.has-order-bar .whatsapp-float { bottom: 96px; }
   .academy-tracks { gap: 20px; }
   .academy-strip { grid-template-columns: repeat(2, 1fr); margin: 0 16px 10px; }
   .academy-strip a:nth-child(2) { border-right: none; }
+  .academy-strip a:nth-child(4) { border-right: none; }
+  .academy-strip a:last-child { grid-column: 1 / -1; }
   .academy-strip a:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,0.07); }
   .wb-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .wb-cover { padding: 10px 10px 0; }

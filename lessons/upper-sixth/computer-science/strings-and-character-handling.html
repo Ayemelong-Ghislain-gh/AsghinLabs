@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Strings &amp; character handling — Upper Sixth Computer Science | AsghinLabs Academy</title>
+  <meta name="description" content="Strings &amp; character handling: a free interactive Computer Science lesson for Upper Sixth (Write, debug and run programs in C). Short explanations, visuals and activities with instant correction.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.asghinlabs.com/lessons/upper-sixth/computer-science/strings-and-character-handling">
+  <link rel="apple-touch-icon" href="/images/logo-blue.jpeg">
+  <link rel="icon" href="/images/logo-blue.jpeg" type="image/jpeg">
+  <meta property="og:site_name" content="AsghinLabs">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Strings &amp; character handling — Upper Sixth Computer Science | AsghinLabs Academy">
+  <meta property="og:description" content="Strings &amp; character handling: a free interactive Computer Science lesson for Upper Sixth (Write, debug and run programs in C). Short explanations, visuals and activities with instant correction.">
+  <meta property="og:url" content="https://www.asghinlabs.com/lessons/upper-sixth/computer-science/strings-and-character-handling">
+  <meta property="og:image" content="https://www.asghinlabs.com/images/og-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Strings & character handling",
+  "description": "Strings & character handling: a free interactive Computer Science lesson for Upper Sixth (Write, debug and run programs in C). Short explanations, visuals and activities with instant correction.",
+  "url": "https://www.asghinlabs.com/lessons/upper-sixth/computer-science/strings-and-character-handling",
+  "learningResourceType": "Interactive lesson",
+  "educationalLevel": "Upper Sixth",
+  "teaches": "Strings & character handling",
+  "about": "Computer Science",
+  "isAccessibleForFree": true,
+  "inLanguage": "en",
+  "provider": {
+    "@type": "Organization",
+    "name": "AsghinLabs Academy",
+    "url": "https://www.asghinlabs.com/academy"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Ayemelong Selobie Ghislain"
+  }
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style-main.css">
+  <link rel="stylesheet" href="/style-lesson.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK679H74R1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FK679H74R1');
+  </script>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/academy.html">
+    <img src="/images/logo-blue.jpeg" alt="AsghinLabs Academy Logo" id="navLogoImg" width="42" height="42">
+    <span>ASGHINLABS <span class="logo-sub">Academy</span></span>
+  </a>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/academy.html#workbooks">Workbooks</a></li>
+    <li><a href="/academy.html#resources">Free Notes</a></li>
+    <li><a href="/academy.html#classes">Classes</a></li>
+    <li><a href="/lessons.html">Interactive Lessons</a></li>
+    <li><a href="/academy.html#enroll">Contact</a></li>
+    <li><a href="/" class="nav-back">← AsghinLabs</a></li>
+  </ul>
+</nav>
+
+<div class="lesson-wrap">
+  <div class="lesson-path"><a href="/lessons#upper-sixth">← Upper Sixth</a> › <span>Computer Science</span> › <span>Write, debug and run programs in C</span></div>
+  <span class="lesson-badge">🧩 Computer Science · Upper Sixth · Lesson 22</span>
+  <h1>Strings &amp; character handling</h1>
+  <p class="lead">C strings are char arrays ending with '\0'. Use <string.h> functions to handle them.</p>
+
+  <div class="lesson-panel" id="learn">
+    <h2>📘 Learn it</h2>
+    <p class="lesson-hint">Short cards. Read them, then check your understanding below.</p>
+    <div id="walk"></div>
+  </div>
+
+  <div class="lesson-panel" id="practice">
+    <h2>✍️ Check your understanding</h2>
+    <p class="lesson-hint">Answer each activity and press <b>Check</b>. Wrong answers turn red. Press <b>Show me</b> if you are stuck.</p>
+    <div id="acts"></div>
+  </div>
+
+  <div class="lesson-pn"><a class="prev" href="/lessons/upper-sixth/computer-science/implementing-iteration"><span>← Previous: Lesson 21</span>Implementing Iteration</a><a class="next" href="/lessons/upper-sixth/computer-science/implementing-1d-arrays-with-loops"><span>Next: Lesson 23 →</span>Implementing 1D Arrays with loops</a></div>
+
+  <div class="lesson-panel lesson-next">
+    <h3>Keep learning</h3>
+    <p>Revise this chapter in the AsghinLabs Academy workbooks.</p>
+    <div class="lesson-next-actions">
+      <a class="next-btn primary" href="/academy.html#workbooks">🛒 See the workbooks</a>
+      <a class="next-btn" href="/lessons#upper-sixth">All Upper Sixth lessons →</a>
+    </div>
+    <div class="fb"><a href="https://wa.me/237682402876?text=Hi%20AsghinLabs%20Academy,%20I%20tried%20the%20lesson%20%22Strings%20%26%20character%20handling%22%20and%20wanted%20to%20say..." target="_blank" rel="noopener">💬 Tell us what to improve on WhatsApp →</a></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links" role="navigation" aria-label="Footer">
+    <a href="/">Home</a> · <a href="/#services">Web &amp; Software</a> · <a href="/academy.html">Academy</a> · <a href="/academy.html#workbooks">Workbooks</a> · <a href="/academy.html#resources">Free Notes</a> · <a href="/lessons.html">Interactive Lessons</a> · <a href="/portfolio.html">Portfolio</a> · <a href="/founder.html">Founder</a>
+  </div>
+  <p class="footer-fr">Développement web, logiciels et automatisation IA à Douala, Cameroun · Cours d'informatique et fascicules GCE.</p>
+  <p>© 2026 AsghinLabs Academy. Douala, Cameroon.</p>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/237682402876?text=Hi%20AsghinLabs%20Academy%2C%20I%27d%20like%20to%20learn%20more." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+<script src="/script-main.js"></script>
+<script src="/lessons-common.js"></script>
+<script src="/lessons-activities.js"></script>
+<script>
+const LESSON = {"cards": [{"title": "Strings", "html": "<pre class=\"code\">char name[20] = &quot;Awa&quot;;   // A w a \\0\nprintf(&quot;%s has %lu letters&quot;, name, strlen(name));</pre>"}, {"title": "string.h", "html": "<table class=\"mini\"><tr><th>Function</th><th>Does</th></tr><tr><td>strlen(s)</td><td>length (without \\0)</td></tr><tr><td>strcpy(d, s)</td><td>copy s into d</td></tr><tr><td>strcat(d, s)</td><td>append s to d</td></tr><tr><td>strcmp(a, b)</td><td>0 if equal, <0 or >0 otherwise</td></tr></table>"}, {"title": "Characters", "html": "<p>&lt;ctype.h&gt;: toupper, tolower, isdigit, isalpha. Characters are numbers: 'A' = 65, 'a' − 'A' = 32.</p>"}], "acts": [{"type": "fill", "q": "strlen(\"Bamenda\") =", "q2": "{0}", "answers": [["7"]], "why": ""}, {"type": "fill", "q": "char s[] = \"CAT\"; how many bytes does s occupy?", "q2": "{0}", "answers": [["4"]], "why": "3 letters + \\0"}, {"type": "mcq", "q": "strcmp(\"abc\", \"abc\") returns…", "options": ["0", "1", "-1"], "answer": "0", "why": ""}, {"type": "fill", "q": "In C, 'A' + 2 is the character", "q2": "{0}", "answers": [["C"]], "why": ""}, {"type": "mcq", "q": "Why not compare strings with ==?", "options": ["It compares addresses, not contents", "It is slower", "It is not allowed"], "answer": "It compares addresses, not contents", "why": ""}]};
+runWalkthrough(document.getElementById('walk'), LESSON.cards);
+runActivities(document.getElementById('acts'), LESSON.acts, { slug: "u6-cs-strings-and-character-handling" });
+viewLesson("u6-cs-strings-and-character-handling");
+</script>
+</body>
+</html>

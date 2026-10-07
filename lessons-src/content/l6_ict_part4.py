@@ -1,0 +1,193 @@
+"""Lower Sixth ICT: emerging technologies, SDLC, data modelling, testing (lessons 48-70)."""
+from helpers import *
+from f3_maths_part1 import table
+
+LOOP = flow([('Sensor', 'measures'), ('ADC', 'analog → digital'), ('Processor', 'compares with set value'), ('DAC', 'digital → analog'), ('Actuator', 'acts')])
+
+WATERFALL = svg(440, 210, ''.join(
+    box(10 + i * 64, 10 + i * 32, 104, 30, t, '', ('v-box', 'v-box2', 'v-box3')[i % 3], 6) + (arrow(90 + i * 64, 40 + i * 32, 90 + i * 64, 42 + i * 32 + 6) if i < 5 else '')
+    for i, t in enumerate(['Analysis', 'Design', 'Implement', 'Testing', 'Deployment', 'Maintenance'])), 'Waterfall model')
+
+ER = svg(440, 120, ''.join([
+    box(10, 40, 120, 44, 'STUDENT', '', 'v-box'),
+    '<polygon points="220,30 280,62 220,94 160,62" class="v-box2"/><text x="220" y="67" text-anchor="middle" class="v-t">takes</text>',
+    box(310, 40, 120, 44, 'COURSE', '', 'v-box'),
+    '<line x1="130" y1="62" x2="160" y2="62" class="v-line" style="stroke-width:2"/><line x1="280" y1="62" x2="310" y2="62" class="v-line" style="stroke-width:2"/>',
+    '<text x="145" y="54" text-anchor="middle" class="v-s">M</text><text x="295" y="54" text-anchor="middle" class="v-s">N</text>',
+    marker(10, 40, 1), marker(220, 30, 2),
+]), 'ER diagram')
+
+LESSONS = {
+    48: L('Computers are used across industry and science: design, manufacturing, research and monitoring.',
+          [('Industry', table(['Use', 'Meaning'], [['CAD', 'computer-aided design of products and buildings'], ['CAM', 'computer-aided manufacturing: CNC machines, robots'], ['Process control', 'automatic control of factories, power plants'], ['Stock control', 'automatic reordering with barcodes/RFID']])),
+           ('Science', '<ul><li>Data logging with sensors</li><li>Weather forecasting on supercomputers</li><li>Simulation (climate, drugs)</li><li>Medicine: scanners (CT, MRI), patient monitoring</li></ul>')],
+          [match('Match the application.', [('Designing a bridge on screen', 'CAD'), ('A CNC machine cutting parts', 'CAM'), ('Recording river temperature every hour', 'Data logging'), ('Forecasting rain for next week', 'Weather modelling')]),
+           mcq('Why use data logging instead of a person?', ['Readings are taken accurately at any hour, even in dangerous places', 'It is always cheaper', 'Sensors never need power'], 'Readings are taken accurately at any hour, even in dangerous places'),
+           tf('CAD and CAM are often used together.', True)]),
+
+    49: L('Robots are programmable machines that sense, process and act. They work in factories, homes, medicine and exploration.',
+          [('Parts of a robot', '<ul><li><b>Sensors</b>: cameras, touch, proximity</li><li><b>Controller</b>: the computer/program</li><li><b>Actuators</b>: motors, grippers (end effectors)</li><li><b>Power supply</b></li></ul>'),
+           ('Applications', '<div class="chips"><span>Car assembly</span><span>Warehouse picking</span><span>Surgery robots</span><span>Bomb disposal</span><span>Robot vacuum</span><span>Mars rovers</span><span>Agricultural drones</span></div>'),
+           ('Pros and cons', '<div class="two-col"><div><b>➕</b>work 24/7, precise, dangerous tasks, consistent quality</div><div><b>➖</b>expensive, job losses, limited flexibility, maintenance</div></div>')],
+          [match('Match the part to its role.', [('Sensor', 'Detects the environment'), ('Controller', 'Runs the program and decides'), ('Actuator', 'Moves the robot'), ('End effector', 'Tool at the end of the arm (gripper)')]),
+           sort('Advantage or disadvantage of robots?', ['Advantage', 'Disadvantage'], [('Can work in toxic places', 'Advantage'), ('High initial cost', 'Disadvantage'), ('Very consistent quality', 'Advantage'), ('May replace some workers', 'Disadvantage')]),
+           tf('A robot vacuum cleaner uses sensors to avoid obstacles.', True)]),
+
+    50: L('Monitoring systems only record and warn. Control systems act to change the conditions, using feedback.',
+          [('Monitoring vs control', '<div class="two-col"><div><b>Monitoring</b>sensors → computer → display/alarm. Example: hospital heart monitor</div><div><b>Control</b>sensors → computer → actuator changes conditions. Example: greenhouse, traffic lights</div></div>'),
+           ('Control loop', LOOP + '<p class="wt-key">Feedback: the output affects the next input reading.</p>'),
+           ('Greenhouse example', '<p>Temperature sensor reads 32 °C; set value 28 °C → processor opens the window motor and switches on the fan until it is ≤ 28 °C.</p>')],
+          [sort('Monitoring or control?', ['Monitoring', 'Control'], [('Patient heart-rate display with alarm', 'Monitoring'), ('Automatic greenhouse windows', 'Control'), ('Air-pollution readings on a website', 'Monitoring'), ('Central heating thermostat', 'Control')]),
+           order('Order the control loop.', ['Sensor measures', 'ADC converts to digital', 'Processor compares with set value', 'DAC converts signal', 'Actuator acts']),
+           mcq('Why is an ADC needed?', ['Sensors give analog signals; computers need digital', 'To store data', 'To print results'], 'Sensors give analog signals; computers need digital')]),
+
+    51: L('A model represents a real system mathematically; a simulation runs the model to see what happens.',
+          [('Uses', '<ul><li>Flight simulators for pilot training</li><li>Weather and climate forecasting</li><li>Traffic flow and new roads</li><li>Spreadsheets: "what if" financial models</li><li>Car crash tests, epidemics</li></ul>'),
+           ('Why simulate?', '<div class="two-col"><div><b>➕</b>safe, cheaper, faster or slower than reality, test many scenarios</div><div><b>➖</b>only as good as the model; complex models need power</div></div>')],
+          [mcq('Why train pilots in a simulator first?', ['Emergencies can be practised safely', 'Real planes are illegal', 'It is more fun'], 'Emergencies can be practised safely'),
+           mcq('A spreadsheet that changes the price to see the profit is doing…', ['what-if analysis', 'data logging', 'encryption'], 'what-if analysis'),
+           tf('A simulation is always 100% accurate.', False, 'It depends on the accuracy of the model and data.')]),
+
+    52: L('Embedded systems are computers built into devices for one job. IoT connects such devices to the internet.',
+          [('Embedded systems', '<p>Microcontroller + memory + I/O inside a device: washing machine, car ABS, microwave, smart meter. Usually real-time, low-power, dedicated.</p>'),
+           ('IoT', '<p>Internet of Things: sensors and devices that exchange data online — smart homes, smart farming (soil sensors), fleet tracking, wearables.</p>'),
+           ('Issues', '<p>Security (weak passwords on devices), privacy, need for connectivity and power, interoperability.</p>')],
+          [sort('Embedded system or general-purpose?', ['Embedded', 'General-purpose'], [('Car engine control unit', 'Embedded'), ('Desktop PC', 'General-purpose'), ('Smart thermostat', 'Embedded'), ('Laptop', 'General-purpose')]),
+           mcq('A farmer gets SMS alerts when soil is dry from sensors in the field. This is…', ['IoT', 'a mainframe', 'desktop publishing'], 'IoT'),
+           tf('Default passwords on IoT devices are a security risk.', True)]),
+
+    53: L('Virtual reality replaces your view with a computer world; augmented reality adds digital objects to the real world.',
+          [('VR vs AR', '<div class="two-col"><div><b>VR</b>fully immersive, headset, e.g. training, games, virtual tours</div><div><b>AR</b>overlay on real view, phone or glasses, e.g. filters, furniture preview, navigation</div></div>'),
+           ('Hardware', '<p>Head-mounted display, motion sensors, controllers, data gloves, cameras.</p>'),
+           ('Mixed reality', '<p>Digital objects that interact with the real environment.</p>')],
+          [sort('VR or AR?', ['VR', 'AR'], [('Headset game in a fully virtual world', 'VR'), ('Phone shows a sofa in your real room', 'AR'), ('Face filters on social media', 'AR'), ('Virtual surgery training room', 'VR')]),
+           mcq('Which device is essential for full VR?', ['Head-mounted display', 'Printer', 'Barcode reader'], 'Head-mounted display'),
+           tf('AR completely replaces what you see.', False)]),
+
+    54: L('Multimedia combines text, images, audio, video and animation. Authoring tools are used to build multimedia products.',
+          [('Elements', '<div class="chips"><span>Text</span><span>Images</span><span>Audio</span><span>Video</span><span>Animation</span><span>Interactivity</span></div>'),
+           ('Authoring', '<p>Tools: PowerPoint, Canva, Adobe Animate, Articulate, web tools (HTML5). Steps: plan (storyboard) → collect media → build → test → publish.</p>'),
+           ('File formats', table(['Media', 'Formats'], [['Image', 'JPEG, PNG, GIF, SVG'], ['Audio', 'MP3, WAV, AAC'], ['Video', 'MP4, AVI, MKV']]))],
+          [match('Match the file to its media type.', [('song.mp3', 'Audio'), ('clip.mp4', 'Video'), ('logo.png', 'Image'), ('page.html', 'Web page')]),
+           order('Order the authoring steps.', ['Plan with a storyboard', 'Collect media', 'Build the product', 'Test', 'Publish']),
+           tf('A storyboard is a plan of screens/scenes before building.', True)]),
+
+    55: L('Multimodal systems let users interact (or AI understand) through several modes: speech, touch, gesture, text, images.',
+          [('Input modes', '<p>Voice, touch, gestures, eye gaze, handwriting, camera. A smartphone combines many.</p>'),
+           ('Multimodal AI', '<p>AI that understands and produces several types of data: describes a photo, answers a spoken question about a chart, creates images from text.</p>'),
+           ('Benefits', '<p>Natural interaction, accessibility, fewer errors (one mode confirms another).</p>')],
+          [mcq('A car where you can speak a destination or tap it on the screen is…', ['multimodal', 'batch', 'single-user'], 'multimodal'),
+           mcq('An AI that answers a question about an uploaded photo is…', ['multimodal AI', 'a spreadsheet', 'an OS'], 'multimodal AI'),
+           tf('Multimodal systems can improve accessibility.', True)]),
+
+    56: L('Key AI technologies: computer vision, natural language processing, speech recognition, recommendation systems.',
+          [('Technologies', table(['Technology', 'Example'], [['Computer vision', 'face unlock, number-plate recognition'], ['NLP', 'translation, chatbots, sentiment analysis'], ['Speech recognition / synthesis', 'voice assistants, dictation'], ['Recommendation systems', 'YouTube/Netflix suggestions'], ['Autonomous systems', 'self-driving cars, drones']])),
+           ('Behind them', '<p>Mostly deep learning: neural networks trained on huge datasets with GPUs.</p>')],
+          [match('Match the technology.', [('Unlocking a phone with your face', 'Computer vision'), ('Translating French to English', 'NLP'), ('"Videos you may like"', 'Recommendation system'), ('Dictating a text message', 'Speech recognition')]),
+           tf('Deep learning uses many-layered neural networks.', True)]),
+
+    57: L('Generative AI creates new content — text, images, audio, code — from patterns learned in large datasets.',
+          [('How it works', '<p><b>Large language models</b> predict the next word; image models turn text prompts into pictures. They are trained on huge amounts of data.</p>'),
+           ('Examples', '<div class="chips"><span>Chatbots (Claude, ChatGPT…)</span><span>Image generators</span><span>Music generators</span><span>Code assistants</span></div>'),
+           ('Limits', '<ul><li><b>Hallucinations</b>: confident but false answers</li><li>Bias from training data</li><li>Copyright questions</li><li>Can be misused (deepfakes)</li></ul>')],
+          [mcq('A chatbot invents a book reference that does not exist. This is called…', ['a hallucination', 'a virus', 'a firewall'], 'a hallucination'),
+           sort('Generative AI or not?', ['Generative', 'Not generative'], [('Writing a poem from a prompt', 'Generative'), ('Calculator adding numbers', 'Not generative'), ('Creating an image of a "lion in Yaoundé"', 'Generative'), ('Sorting a list alphabetically', 'Not generative')]),
+           tf('Generative AI answers should always be checked.', True)]),
+
+    58: L('Use generative AI as an assistant: clear prompts, verification and honesty.',
+          [('Good uses', '<ul><li>Explain a concept simply</li><li>Draft emails, summaries, plans</li><li>Generate practice questions</li><li>Brainstorm ideas, debug code</li></ul>'),
+           ('Prompt formula', '<p class="wt-key">Role + task + context + format + constraints</p><p>"You are a tutor. Explain normalisation to a Lower Sixth student with one example table, in under 150 words."</p>'),
+           ('Rules', '<p>Verify facts, don\'t share personal data, follow school rules on AI use, say when you used it.</p>')],
+          [match('Match the prompt part.', [('You are a chemistry teacher', 'Role'), ('Explain covalent bonding', 'Task'), ('for a student who missed the lesson', 'Context'), ('as 5 bullet points', 'Format')]),
+           sort('Good or bad use?', ['Good use', 'Bad use'], [('Generating revision questions', 'Good use'), ('Submitting an AI essay as your own work', 'Bad use'), ('Asking for an explanation of a hard topic', 'Good use'), ('Pasting your bank details to ask a question', 'Bad use')]),
+           tf('You should verify facts given by generative AI.', True)]),
+
+    59: L('The System Development Life Cycle (SDLC) is a series of stages for building an information system.',
+          [('Stages', flow(['Feasibility', 'Analysis', 'Design', 'Implementation', 'Testing', 'Deployment', 'Maintenance'])),
+           ('Key activities', table(['Stage', 'Activity'], [['Feasibility', 'technical, economic, legal, operational, schedule (TELOS)'], ['Analysis', 'study current system: interviews, questionnaires, observation, documents'], ['Design', 'inputs, outputs, data, processes, interface'], ['Implementation', 'coding, buying hardware'], ['Testing', 'check it works'], ['Deployment', 'changeover, training'], ['Maintenance', 'fix, adapt, improve']]))],
+          [order('Order the SDLC stages.', ['Feasibility study', 'Analysis', 'Design', 'Implementation', 'Testing', 'Deployment', 'Maintenance']),
+           match('Match the fact-finding method.', [('Asking the manager questions face to face', 'Interview'), ('Giving forms to 200 staff', 'Questionnaire'), ('Watching staff at work', 'Observation'), ('Reading existing invoices', 'Document inspection')]),
+           mcq('"Can the school afford it?" is part of…', ['economic feasibility', 'technical feasibility', 'testing'], 'economic feasibility')]),
+
+    60: L('SDLC models organise the stages differently: waterfall, V-model, incremental, spiral, agile.',
+          [('Waterfall', WATERFALL + '<p>Each stage finishes before the next. Simple, clear documents; hard to change requirements late.</p>'),
+           ('Other models', table(['Model', 'Idea'], [['V-model', 'each stage paired with a testing stage'], ['Incremental', 'built and delivered in parts'], ['Spiral', 'repeated cycles with risk analysis'], ['Agile (Scrum)', 'short sprints, frequent feedback, working software early'], ['RAD', 'rapid development with prototypes and user involvement']]))],
+          [match('Match the model.', [('Strict sequence of stages', 'Waterfall'), ('Two-week sprints with user feedback', 'Agile'), ('Risk analysis in each loop', 'Spiral'), ('Each development stage has a matching test stage', 'V-model')]),
+           mcq('Requirements change often. Which model fits best?', ['Agile', 'Waterfall', 'None'], 'Agile'),
+           tf('In the waterfall model, it is easy to go back and change requirements.', False)]),
+
+    61: L('Prototyping builds an early working model so users can try it and give feedback before the final system.',
+          [('Process', flow(['Gather requirements', 'Build prototype', 'User evaluates', 'Refine'])),
+           ('Types', '<ul><li><b>Throw-away</b>: discarded after learning requirements</li><li><b>Evolutionary</b>: refined until it becomes the final system</li></ul>'),
+           ('Pros and cons', '<div class="two-col"><div><b>➕</b>users involved, errors found early, clearer requirements</div><div><b>➖</b>users may expect the prototype to be final, scope creep, poor documentation</div></div>')],
+          [order('Order the prototyping cycle.', ['Gather initial requirements', 'Build a prototype', 'Users test it', 'Refine based on feedback']),
+           mcq('A prototype that is improved until it becomes the final product is…', ['evolutionary', 'throw-away', 'waterfall'], 'evolutionary'),
+           tf('Prototyping helps users clarify what they want.', True)]),
+
+    62: L('Changeover moves from the old system to the new one: direct, parallel, phased or pilot.',
+          [('Strategies', table(['Strategy', 'How', 'Risk / cost'], [['Direct', 'old stops, new starts at once', 'high risk, cheap'], ['Parallel', 'both run together for a while', 'low risk, expensive'], ['Phased', 'one module at a time', 'medium'], ['Pilot', 'one branch/department first', 'medium, real test']]))],
+          [match('Match the changeover.', [('Old system switched off on Friday, new one on Monday', 'Direct'), ('Both systems run for a month and results compared', 'Parallel'), ('Payroll module first, then stock module', 'Phased'), ('One school branch tries it first', 'Pilot')]),
+           mcq('Which is safest for critical data like a bank\'s?', ['Parallel', 'Direct', 'None'], 'Parallel'),
+           mcq('Which is cheapest but riskiest?', ['Direct', 'Parallel', 'Pilot'], 'Direct')]),
+
+    63: L('Data modelling describes the data an organisation needs: entities, attributes, relationships and keys.',
+          [('Key terms', table(['Term', 'Meaning', 'Example'], [['Entity', 'thing we store data about', 'STUDENT'], ['Attribute', 'property of an entity', 'Name, DateOfBirth'], ['Primary key', 'uniquely identifies a record', 'StudentID'], ['Foreign key', 'primary key of another table, used to link', 'ClassID in STUDENT'], ['Relationship', 'link between entities', 'student belongs to class']])),
+           ('Levels', '<p><b>Conceptual</b> (ER model) → <b>logical</b> (tables, keys) → <b>physical</b> (DBMS, data types).</p>')],
+          [match('Match the term.', [('STUDENT', 'Entity'), ('Surname', 'Attribute'), ('StudentID', 'Primary key'), ('ClassID stored in STUDENT', 'Foreign key')]),
+           mcq('Which is the best primary key for a student?', ['Matricule (student number)', 'First name', 'Date of birth'], 'Matricule (student number)', 'It must be unique.'),
+           order('Order the levels of data model.', ['Conceptual', 'Logical', 'Physical'])]),
+
+    64: L('The Entity-Relationship (ER) model shows entities, their attributes and relationships with cardinalities.',
+          [('ER diagram', ER + '<ol><li>Entity: rectangle</li><li>Relationship: diamond</li></ol><p>Attributes: ovals (Chen notation); primary key underlined.</p>'),
+           ('Cardinality', table(['Type', 'Example'], [['1 : 1', 'principal — school'], ['1 : M', 'class — students'], ['M : N', 'students — courses']]))],
+          [label('Name the ER symbols.', ER, ['Entity', 'Relationship']),
+           match('Match the cardinality.', [('One class has many students', '1 : M'), ('Students take many courses; courses have many students', 'M : N'), ('One country has one capital', '1 : 1')]),
+           tf('In Chen notation, attributes are drawn as ovals.', True)]),
+
+    65: L('Design an ER diagram from a scenario, then normalise to remove redundancy.',
+          [('From scenario to ER', '<p>"A teacher teaches many classes; each class has one form teacher; students are in one class."</p><p>Nouns → entities (TEACHER, CLASS, STUDENT); verbs → relationships; identify keys and cardinalities.</p>'),
+           ('Resolving M:N', '<p>An M:N relationship becomes a <b>link (associative) entity</b>: STUDENT — ENROLMENT — COURSE.</p>'),
+           ('Why normalise?', '<p>Avoid <b>redundancy</b> and anomalies: update, insertion and deletion anomalies.</p>')],
+          [mcq('In a scenario, entities are usually…', ['nouns', 'verbs', 'adjectives'], 'nouns'),
+           mcq('How is an M:N relationship implemented?', ['With a link entity/table', 'By deleting one entity', 'With a 1:1 relationship'], 'With a link entity/table'),
+           match('Match the anomaly.', [('Changing an address in many rows', 'Update anomaly'), ('Cannot add a course without a student', 'Insertion anomaly'), ('Deleting the last student loses the course data', 'Deletion anomaly')])]),
+
+    66: L('Normalisation: 1NF removes repeating groups, 2NF removes partial dependencies, 3NF removes transitive dependencies.',
+          [('Normal forms', table(['Form', 'Rule'], [['1NF', 'atomic values, no repeating groups, a primary key'], ['2NF', '1NF + every non-key attribute depends on the WHOLE key'], ['3NF', '2NF + no non-key attribute depends on another non-key attribute']])),
+           ('Memory aid', '<p class="wt-key">"The key, the whole key, and nothing but the key."</p>'),
+           ('ER → relations', '<p>Each entity → a table. 1:M → foreign key on the M side. M:N → new table with both keys as composite primary key.</p>')],
+          [match('Match the rule to the normal form.', [('No repeating groups', '1NF'), ('No partial dependency on part of a composite key', '2NF'), ('No transitive dependency', '3NF')]),
+           mcq('Table ORDER(OrderID, CustomerID, CustomerName). CustomerName depends on CustomerID. This breaks…', ['3NF', '1NF', 'nothing'], '3NF'),
+           mcq('For CLASS 1:M STUDENT, where does the foreign key go?', ['In STUDENT (ClassID)', 'In CLASS (StudentID)', 'In both'], 'In STUDENT (ClassID)')]),
+
+    67: L('Implement the relational model in a DBMS: create tables, choose data types, set keys and relationships.',
+          [('Steps', '<ol><li>Create each table with fields and data types</li><li>Set the primary key</li><li>Create relationships (foreign keys) with referential integrity</li><li>Add validation rules</li><li>Enter data with forms</li></ol>'),
+           ('Data types', table(['Type', 'For'], [['Text / VARCHAR', 'names'], ['Integer / Number', 'quantities'], ['Date/Time', 'dates of birth'], ['Boolean (Yes/No)', 'fees paid?'], ['Currency / Decimal', 'prices']])),
+           ('SQL', '<p><code>CREATE TABLE Student (StudentID INT PRIMARY KEY, Name VARCHAR(50), ClassID INT REFERENCES Class(ClassID));</code></p>')],
+          [match('Choose the data type.', [('Date of birth', 'Date/Time'), ('Has paid fees?', 'Boolean'), ('Phone number like 6xx xxx xxx', 'Text'), ('Number of siblings', 'Integer')]),
+           mcq('Referential integrity ensures…', ['a foreign key always points to an existing record', 'passwords are strong', 'tables are sorted'], 'a foreign key always points to an existing record'),
+           tf('Phone numbers should be stored as text, not numbers.', True, 'They can start with 0 or +, and we never calculate with them.')]),
+
+    68: L('Use the DBMS to sort, filter and query data, often with SQL.',
+          [('SQL SELECT', '<p><code>SELECT Name, Mark FROM Student WHERE Mark &gt;= 10 ORDER BY Mark DESC;</code></p><ul><li>SELECT: columns · FROM: table · WHERE: filter · ORDER BY: sort (ASC/DESC)</li></ul>'),
+           ('More', '<ul><li>Wildcards: <code>WHERE Name LIKE \'A%\'</code></li><li>Aggregates: COUNT, SUM, AVG, MAX, MIN</li><li><code>GROUP BY ClassID</code></li><li>Join: combine tables on matching keys</li></ul>')],
+          [order('Order the clauses of a query.', ['SELECT', 'FROM', 'WHERE', 'ORDER BY']),
+           mcq('Which query lists students with marks of at least 15?', ['SELECT * FROM Student WHERE Mark >= 15;', 'SELECT Mark >= 15 FROM Student;', 'FROM Student SELECT 15;'], 'SELECT * FROM Student WHERE Mark >= 15;'),
+           match('Match the SQL word.', [('ORDER BY', 'Sorts results'), ('WHERE', 'Filters rows'), ('COUNT', 'Counts rows'), ('LIKE \'A%\'', 'Names starting with A')]),
+           mcq('Sort from highest to lowest uses…', ['DESC', 'ASC', 'UP'], 'DESC')]),
+
+    69: L('Software testing finds errors before users do. Different tests check different things.',
+          [('Types', table(['Test', 'Purpose'], [['Unit / module', 'one component alone'], ['Integration', 'components working together'], ['System', 'whole system against requirements'], ['Acceptance (UAT)', 'users confirm it meets their needs'], ['Alpha / beta', 'in-house / real users before release'], ['Regression', 're-test after changes']])),
+           ('Black box vs white box', '<div class="two-col"><div><b>Black box</b>test inputs/outputs without seeing code</div><div><b>White box</b>test paths through the code</div></div>')],
+          [order('Order the usual test levels.', ['Unit testing', 'Integration testing', 'System testing', 'Acceptance testing']),
+           match('Match the test.', [('Users try the system before sign-off', 'Acceptance testing'), ('Testing after fixing a bug to check nothing else broke', 'Regression testing'), ('Testing one function alone', 'Unit testing'), ('Released to selected real users', 'Beta testing')]),
+           sort('Black box or white box?', ['Black box', 'White box'], [('Testing every IF branch in the code', 'White box'), ('Entering inputs and checking outputs only', 'Black box'), ('Checking loop paths', 'White box'), ('User tries the login screen', 'Black box')])]),
+
+    70: L('Module testing checks each module with planned test data: normal, boundary and erroneous.',
+          [('Test data', table(['Type', 'Example (marks 0–20)'], [['Normal (valid)', '12'], ['Boundary (extreme)', '0 and 20 (and just outside: −1, 21)'], ['Erroneous (invalid)', '"abc", 35']])),
+           ('Test plan', table(['Test', 'Data', 'Expected', 'Actual', 'Pass?'], [['1', '12', 'accepted', 'accepted', '✓'], ['2', '21', 'rejected', 'accepted', '✗']])),
+           ('Stubs and drivers', '<p>A <b>driver</b> calls the module being tested; a <b>stub</b> stands in for a module it calls that isn\'t ready.</p>')],
+          [sort('A field accepts ages 11–19. Normal, boundary or erroneous?', ['Normal', 'Boundary', 'Erroneous'], [('15', 'Normal'), ('11', 'Boundary'), ('19', 'Boundary'), ('"ten"', 'Erroneous'), ('45', 'Erroneous')]),
+           mcq('What is a stub?', ['A dummy version of a module not yet written', 'A test report', 'A type of bug'], 'A dummy version of a module not yet written'),
+           tf('A test plan lists expected results before testing.', True)]),
+}

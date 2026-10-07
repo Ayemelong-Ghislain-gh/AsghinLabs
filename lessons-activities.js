@@ -15,7 +15,13 @@
 function runActivities(container, acts, opts) {
   opts = opts || {};
   const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
-  const norm = (s) => String(s).toLowerCase().replace(/[\s.,'’-]+/g, ' ').trim();
+  // Maths answers (digits, no real words): ignore spaces, accept − or -, × or *, and 2,5 = 2.5.
+  // Text answers: ignore case, spaces and punctuation.
+  const norm = (s) => {
+    s = String(s).toLowerCase().replace(/[−–]/g, '-').replace(/×/g, '*').trim();
+    if (/\d/.test(s) && !/[a-z]{3,}/.test(s)) return s.replace(/\s+/g, '').replace(/(\d),(\d)/g, '$1.$2').replace(/^\+/, '').replace(/(\.\d*?)0+$/, '$1').replace(/\.$/, '');
+    return s.replace(/[\s.,'’-]+/g, ' ').trim();
+  };
   let firstTry = 0, finished = 0;
 
   container.innerHTML = '<div class="act-progress"><div class="act-bar"><i></i></div><span></span></div><div class="act-list"></div>';

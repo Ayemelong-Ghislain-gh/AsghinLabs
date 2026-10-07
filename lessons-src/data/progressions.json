@@ -369,7 +369,7 @@
      },
      {
       "n": 3,
-      "title": "Integration activities",
+      "title": "Integration activity",
       "integration": true
      }
     ]
@@ -394,7 +394,7 @@
      },
      {
       "n": 7,
-      "title": "Integration activities",
+      "title": "Integration activity",
       "integration": true
      }
     ]
@@ -414,7 +414,7 @@
      },
      {
       "n": 10,
-      "title": "Integration activities",
+      "title": "Integration activity",
       "integration": true
      }
     ]
@@ -434,7 +434,7 @@
      },
      {
       "n": 13,
-      "title": "Integration activities",
+      "title": "Integration activity",
       "integration": true
      }
     ]
@@ -459,7 +459,7 @@
      },
      {
       "n": 17,
-      "title": "Integration activities",
+      "title": "Integration activity",
       "integration": true
      }
     ]
@@ -479,7 +479,7 @@
      },
      {
       "n": 20,
-      "title": "Integration activities",
+      "title": "Integration activity",
       "integration": true
      }
     ]
@@ -504,7 +504,7 @@
      },
      {
       "n": 35,
-      "title": "Integration activities",
+      "title": "Integration activity",
       "integration": true
      }
     ]
@@ -521,6 +521,11 @@
       "n": 22,
       "title": "Using a browser",
       "integration": false
+     },
+     {
+      "n": 23,
+      "title": "Integration activity",
+      "integration": true
      }
     ]
    },
@@ -528,18 +533,13 @@
     "chapter": "Examining technologies for the disabled",
     "lessons": [
      {
-      "n": 23,
-      "title": "Integration activities",
-      "integration": true
-     },
-     {
       "n": 24,
       "title": "Assistive technologies",
       "integration": false
      },
      {
       "n": 25,
-      "title": "Integration activities",
+      "title": "Integration activity",
       "integration": true
      }
     ]
@@ -559,7 +559,7 @@
      },
      {
       "n": 28,
-      "title": "Integration activities",
+      "title": "Integration activity",
       "integration": true
      }
     ]
@@ -614,7 +614,7 @@
      },
      {
       "n": 41,
-      "title": "Integration activities",
+      "title": "Integration activity",
       "integration": true
      }
     ]
@@ -664,7 +664,7 @@
      },
      {
       "n": 49,
-      "title": "Integration activities",
+      "title": "Integration activity",
       "integration": true
      }
     ]
@@ -689,7 +689,7 @@
      },
      {
       "n": 53,
-      "title": "Integration activities",
+      "title": "Integration activity",
       "integration": true
      }
     ]
@@ -704,7 +704,7 @@
      },
      {
       "n": 55,
-      "title": "Integration activities",
+      "title": "Integration activity",
       "integration": true
      }
     ]
@@ -2429,6 +2429,908 @@
       "n": 103,
       "title": "Hands-on Networking Lab: Subnetting & LAN Simulation",
       "integration": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "class": "Form 5",
+  "subject": "Mathematics",
+  "chapters": [
+   {
+    "chapter": "Coordinate geometry",
+    "lessons": [
+     {
+      "n": 0,
+      "title": "First contact and diagnostic assessment",
+      "integration": true
+     },
+     {
+      "n": 1,
+      "title": "Point dividing a line segment in a given ratio (internal and external division)",
+      "integration": false
+     },
+     {
+      "n": 2,
+      "title": "Distance between two points and midpoint of a line segment",
+      "integration": false
+     },
+     {
+      "n": 3,
+      "title": "Gradient of a line or line segment and collinear points",
+      "integration": false
+     },
+     {
+      "n": 4,
+      "title": "Equation of a straight line given: gradient and a point, two points",
+      "integration": false
+     },
+     {
+      "n": 5,
+      "title": "Parallel and perpendicular lines",
+      "integration": false
+     },
+     {
+      "n": 6,
+      "title": "Graphs of linear functions",
+      "integration": false
+     },
+     {
+      "n": 7,
+      "title": "Graphical solutions of linear simultaneous equations",
+      "integration": false
+     },
+     {
+      "n": 8,
+      "title": "Graphs of quadratic functions",
+      "integration": false
+     },
+     {
+      "n": 9,
+      "title": "Study of the graphs of quadratic functions",
+      "integration": false
+     },
+     {
+      "n": 10,
+      "title": "Solutions to quadratic equations and inequalities using graphs",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Statistics",
+    "lessons": [
+     {
+      "n": 11,
+      "title": "Types of data and Data Collection",
+      "integration": false
+     },
+     {
+      "n": 12,
+      "title": "Frequency distribution table (ungrouped and grouped data)",
+      "integration": false
+     },
+     {
+      "n": 13,
+      "title": "Data display: pictogram and bar chart",
+      "integration": false
+     },
+     {
+      "n": 14,
+      "title": "Data display: line graph and pie chart",
+      "integration": false
+     },
+     {
+      "n": 15,
+      "title": "Data display: histogram and frequency polygon",
+      "integration": false
+     },
+     {
+      "n": 16,
+      "title": "Measures of central tendency (raw data)",
+      "integration": false
+     },
+     {
+      "n": 17,
+      "title": "Measures of central tendency (ungrouped frequency table)",
+      "integration": false
+     },
+     {
+      "n": 18,
+      "title": "Measures of central tendency (grouped data)",
+      "integration": false
+     },
+     {
+      "n": 19,
+      "title": "Cumulative frequency table and curve (ogive)",
+      "integration": false
+     },
+     {
+      "n": 20,
+      "title": "Measures of dispersion (range, quartiles, standard deviation)",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Probability",
+    "lessons": [
+     {
+      "n": 21,
+      "title": "Probability vocabulary and sample space",
+      "integration": false
+     },
+     {
+      "n": 22,
+      "title": "The probability of an event and the probability scale",
+      "integration": false
+     },
+     {
+      "n": 23,
+      "title": "Complementary and compound events",
+      "integration": false
+     },
+     {
+      "n": 24,
+      "title": "Mutually exclusive and independent events",
+      "integration": false
+     },
+     {
+      "n": 25,
+      "title": "Conditional probability",
+      "integration": false
+     },
+     {
+      "n": 26,
+      "title": "Probability tree diagram and successive events",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Euclidean Geometry",
+    "lessons": [
+     {
+      "n": 27,
+      "title": "Geometrical figures and their properties",
+      "integration": false
+     },
+     {
+      "n": 28,
+      "title": "Right-angled triangle and its circumscribed circle",
+      "integration": false
+     },
+     {
+      "n": 29,
+      "title": "Angle properties of polygons: interior and exterior angles",
+      "integration": false
+     },
+     {
+      "n": 30,
+      "title": "Point symmetry of Plane figures",
+      "integration": false
+     },
+     {
+      "n": 31,
+      "title": "Plane figures with line symmetry",
+      "integration": false
+     },
+     {
+      "n": 32,
+      "title": "Properties of plane figures related to symmetry",
+      "integration": false
+     },
+     {
+      "n": 33,
+      "title": "Quadrilaterals and their properties",
+      "integration": false
+     },
+     {
+      "n": 34,
+      "title": "Area of quadrilaterals",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Solid figures",
+    "lessons": [
+     {
+      "n": 35,
+      "title": "The net of cuboids and prisms",
+      "integration": false
+     },
+     {
+      "n": 36,
+      "title": "Surface area of Cuboids and prisms",
+      "integration": false
+     },
+     {
+      "n": 37,
+      "title": "Volume of Cuboids and prisms",
+      "integration": false
+     },
+     {
+      "n": 38,
+      "title": "Surface area of Right circular cylinders",
+      "integration": false
+     },
+     {
+      "n": 39,
+      "title": "Volume of Right circular cylinders",
+      "integration": false
+     },
+     {
+      "n": 40,
+      "title": "Surface area of Right circular cones",
+      "integration": false
+     },
+     {
+      "n": 41,
+      "title": "Volume of Right circular cones",
+      "integration": false
+     },
+     {
+      "n": 42,
+      "title": "Surface area and volume of the frustum of a cone",
+      "integration": false
+     },
+     {
+      "n": 43,
+      "title": "Surface area and volume of pyramids",
+      "integration": false
+     },
+     {
+      "n": 44,
+      "title": "Surface area and volume of the frustum of a pyramid",
+      "integration": false
+     },
+     {
+      "n": 45,
+      "title": "Surface area and volume of sphere, hemispheres and balls",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Introduction to logic",
+    "lessons": [
+     {
+      "n": 46,
+      "title": "Proposition, negation, conjunction, and disjunction",
+      "integration": false
+     },
+     {
+      "n": 47,
+      "title": "Truth value, implications, bi-implications",
+      "integration": false
+     },
+     {
+      "n": 48,
+      "title": "Connectives and truth tables",
+      "integration": false
+     },
+     {
+      "n": 49,
+      "title": "Compound statements and the conditionals",
+      "integration": false
+     },
+     {
+      "n": 50,
+      "title": "Logical equivalence and laws of logic (De Morgan’s)",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Loci",
+    "lessons": [
+     {
+      "n": 51,
+      "title": "Loci in 2 dimensional plane",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Geometrical construction",
+    "lessons": [
+     {
+      "n": 52,
+      "title": "Construction 1: bisectors and perpendiculars",
+      "integration": false
+     },
+     {
+      "n": 53,
+      "title": "Construction 2: special angles (60°, 30°, 90°, 45°)",
+      "integration": false
+     },
+     {
+      "n": 54,
+      "title": "Construction 3: triangles and quadrilaterals",
+      "integration": false
+     },
+     {
+      "n": 55,
+      "title": "Construction 4: the circumscribed circle of a triangle",
+      "integration": false
+     },
+     {
+      "n": 56,
+      "title": "Construction 5: the inscribed circle of a triangle, concentric circles",
+      "integration": false
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "class": "Upper Sixth",
+  "subject": "ICT",
+  "chapters": [
+   {
+    "chapter": "Applying Artificial Intelligence to improve on working and living standards",
+    "lessons": [
+     {
+      "n": 1,
+      "title": "The concept of artificial intelligence",
+      "integration": false
+     },
+     {
+      "n": 2,
+      "title": "AI Ethics and Responsible Use",
+      "integration": false
+     },
+     {
+      "n": 3,
+      "title": "AI Techniques and Intelligent Systems",
+      "integration": false
+     },
+     {
+      "n": 4,
+      "title": "Machine Learning",
+      "integration": false
+     },
+     {
+      "n": 5,
+      "title": "Developing AI Systems",
+      "integration": false
+     },
+     {
+      "n": 6,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Description of computer networking",
+    "lessons": [
+     {
+      "n": 7,
+      "title": "Fundamentals of computer Networks",
+      "integration": false
+     },
+     {
+      "n": 8,
+      "title": "Network Complexity and Operational Challenges",
+      "integration": false
+     },
+     {
+      "n": 9,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Classification of computer network",
+    "lessons": [
+     {
+      "n": 10,
+      "title": "Types of Networks by Coverage Area",
+      "integration": false
+     },
+     {
+      "n": 11,
+      "title": "Choosing the Right Network for an Organization",
+      "integration": false
+     },
+     {
+      "n": 12,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Network Design Strategies",
+    "lessons": [
+     {
+      "n": 13,
+      "title": "Network architecture (peer-to-peer and client/server)",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Configuration of network topology based on the Physical connection of computers",
+    "lessons": [
+     {
+      "n": 14,
+      "title": "Types of physical network topologies",
+      "integration": false
+     },
+     {
+      "n": 15,
+      "title": "Comparing and choosing Network Topologies",
+      "integration": false
+     },
+     {
+      "n": 16,
+      "title": "Integration activity",
+      "integration": true
+     },
+     {
+      "n": 17,
+      "title": "Network equipment",
+      "integration": false
+     },
+     {
+      "n": 18,
+      "title": "Setting Up a Computer Network",
+      "integration": false
+     },
+     {
+      "n": 19,
+      "title": "Selecting Equipment for Organizational Networks",
+      "integration": false
+     },
+     {
+      "n": 20,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Implementation of network security",
+    "lessons": [
+     {
+      "n": 21,
+      "title": "Intranet and Extranet",
+      "integration": false
+     },
+     {
+      "n": 22,
+      "title": "Virtual Private Networks (VPNs) and Privacy",
+      "integration": false
+     },
+     {
+      "n": 23,
+      "title": "Computer and Network Security",
+      "integration": false
+     },
+     {
+      "n": 24,
+      "title": "Data Protection and Access Control",
+      "integration": false
+     },
+     {
+      "n": 25,
+      "title": "Data Validation and Verification Techniques",
+      "integration": false
+     },
+     {
+      "n": 26,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Differentiating modes of data transmission",
+    "lessons": [
+     {
+      "n": 27,
+      "title": "Modes of data transmission",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Identifying different Transmission Types",
+    "lessons": [
+     {
+      "n": 28,
+      "title": "Broadband and Narrowband Transmission",
+      "integration": false
+     },
+     {
+      "n": 29,
+      "title": "Types of data transmission",
+      "integration": false
+     },
+     {
+      "n": 30,
+      "title": "Transmission media (guided and unguided)",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Description of peripheral device control mechanism",
+    "lessons": [
+     {
+      "n": 31,
+      "title": "Peripheral device control mechanisms",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Using common protocols in data transmission",
+    "lessons": [
+     {
+      "n": 32,
+      "title": "Network Protocols and Their Roles in Data Transmission",
+      "integration": false
+     },
+     {
+      "n": 33,
+      "title": "Protocol Suites and the OSI Reference Model",
+      "integration": false
+     },
+     {
+      "n": 34,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Executing different correctness checking methods",
+    "lessons": [
+     {
+      "n": 35,
+      "title": "Error Detection and Data Transfer Checks",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Using social networks and collaborative environments",
+    "lessons": [
+     {
+      "n": 38,
+      "title": "Social Networks and Collaborative Environments",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Using the internet",
+    "lessons": [
+     {
+      "n": 39,
+      "title": "Internet Services and Information Retrieval",
+      "integration": false
+     },
+     {
+      "n": 40,
+      "title": "Internet Communication and Teleworking",
+      "integration": false
+     },
+     {
+      "n": 41,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Learn with the assistance of computers",
+    "lessons": [
+     {
+      "n": 42,
+      "title": "Electronic services: e-commerce, e- health and e-government",
+      "integration": false
+     },
+     {
+      "n": 43,
+      "title": "Applications, Benefits and Challenges of Electronic Services",
+      "integration": false
+     },
+     {
+      "n": 44,
+      "title": "Computer-Assisted Learning (CAL) and E-Learning",
+      "integration": false
+     },
+     {
+      "n": 45,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Develop simple web pages",
+    "lessons": [
+     {
+      "n": 46,
+      "title": "Developing simple web pages using HTML",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Apply common technologies, for web development",
+    "lessons": [
+     {
+      "n": 47,
+      "title": "Styling Web Pages with CSS",
+      "integration": false
+     },
+     {
+      "n": 48,
+      "title": "Creating interactive Web Pages with JavaScript",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Reviewing the history of the internet",
+    "lessons": [
+     {
+      "n": 36,
+      "title": "History and Development of the Internet",
+      "integration": false
+     },
+     {
+      "n": 37,
+      "title": "Internet Connectivity Technologies and Requirements",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Host a website",
+    "lessons": [
+     {
+      "n": 49,
+      "title": "Website Hosting and Content Management Systems",
+      "integration": false
+     },
+     {
+      "n": 50,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Starting a business",
+    "lessons": [
+     {
+      "n": 51,
+      "title": "Identifying business needs solvable with IT",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "Applying project management fundamentals to run sample projects",
+    "lessons": [
+     {
+      "n": 52,
+      "title": "Fundamentals of project management 1",
+      "integration": false
+     },
+     {
+      "n": 53,
+      "title": "Fundamentals of project management 2",
+      "integration": false
+     },
+     {
+      "n": 54,
+      "title": "Project Planning and Work Breakdown Structure (WBS)",
+      "integration": false
+     },
+     {
+      "n": 55,
+      "title": "Project Scheduling Using Gantt and PERT Charts",
+      "integration": false
+     },
+     {
+      "n": 56,
+      "title": "Project Control, Critical Path and Slack Analysis",
+      "integration": false
+     },
+     {
+      "n": 57,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Using formatting, editing features of Word processors for producing documents",
+    "lessons": [
+     {
+      "n": 58,
+      "title": "Producing documents using word processing features",
+      "integration": false
+     },
+     {
+      "n": 59,
+      "title": "Formatting and managing spreadsheet data",
+      "integration": false
+     },
+     {
+      "n": 60,
+      "title": "Cell referencing and basic formulae",
+      "integration": false
+     },
+     {
+      "n": 61,
+      "title": "Advanced functions and charts",
+      "integration": false
+     },
+     {
+      "n": 62,
+      "title": "Linking worksheets",
+      "integration": false
+     },
+     {
+      "n": 63,
+      "title": "What-if-analysis",
+      "integration": false
+     },
+     {
+      "n": 64,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Producing slides that display illustrative and attractive presentations",
+    "lessons": [
+     {
+      "n": 65,
+      "title": "Producing slide presentations",
+      "integration": false
+     },
+     {
+      "n": 66,
+      "title": "Multimedia Presentations, Transitions and Animations",
+      "integration": false
+     },
+     {
+      "n": 67,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Using an RDBMS",
+    "lessons": [
+     {
+      "n": 68,
+      "title": "Creating tables and relationships",
+      "integration": false
+     },
+     {
+      "n": 69,
+      "title": "Queries 1",
+      "integration": false
+     },
+     {
+      "n": 70,
+      "title": "Queries 2",
+      "integration": false
+     },
+     {
+      "n": 71,
+      "title": "Reports and forms",
+      "integration": false
+     },
+     {
+      "n": 72,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Cloud computing",
+    "lessons": [
+     {
+      "n": 73,
+      "title": "Introduction to cloud computing",
+      "integration": false
+     },
+     {
+      "n": 74,
+      "title": "Types of cloud computing services",
+      "integration": false
+     },
+     {
+      "n": 75,
+      "title": "Deployment Models, Security, and Cloud Ethics",
+      "integration": false
+     },
+     {
+      "n": 76,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Green computing",
+    "lessons": [
+     {
+      "n": 77,
+      "title": "Introduction to green computing",
+      "integration": false
+     },
+     {
+      "n": 78,
+      "title": "Responsible Disposal",
+      "integration": false
+     },
+     {
+      "n": 79,
+      "title": "Integration activity",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Algorithms and programming",
+    "lessons": [
+     {
+      "n": 80,
+      "title": "Selection control structure",
+      "integration": false
+     },
+     {
+      "n": 81,
+      "title": "Loop control structure",
+      "integration": false
+     },
+     {
+      "n": 82,
+      "title": "Drawing flowcharts",
+      "integration": false
+     },
+     {
+      "n": 83,
+      "title": "Dry running",
+      "integration": false
+     },
+     {
+      "n": 84,
+      "title": "Writing code 1",
+      "integration": false
+     },
+     {
+      "n": 85,
+      "title": "Writing code 2",
+      "integration": false
+     },
+     {
+      "n": 86,
+      "title": "Writing code 3",
+      "integration": false
+     },
+     {
+      "n": 87,
+      "title": "Integration activity",
+      "integration": true
      }
     ]
    }

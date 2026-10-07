@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Database Normalisation and Functional Dependencies — Upper Sixth Computer Science | AsghinLabs Academy</title>
+  <meta name="description" content="Database Normalisation and Functional Dependencies: a free interactive Computer Science lesson for Upper Sixth (Managing and retrieving information). Short explanations, visuals and activities with instant correction.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.asghinlabs.com/lessons/upper-sixth/computer-science/database-normalisation-and-functional-dependencies">
+  <link rel="apple-touch-icon" href="/images/logo-blue.jpeg">
+  <link rel="icon" href="/images/logo-blue.jpeg" type="image/jpeg">
+  <meta property="og:site_name" content="AsghinLabs">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Database Normalisation and Functional Dependencies — Upper Sixth Computer Science | AsghinLabs Academy">
+  <meta property="og:description" content="Database Normalisation and Functional Dependencies: a free interactive Computer Science lesson for Upper Sixth (Managing and retrieving information). Short explanations, visuals and activities with instant correction.">
+  <meta property="og:url" content="https://www.asghinlabs.com/lessons/upper-sixth/computer-science/database-normalisation-and-functional-dependencies">
+  <meta property="og:image" content="https://www.asghinlabs.com/images/og-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Database Normalisation and Functional Dependencies",
+  "description": "Database Normalisation and Functional Dependencies: a free interactive Computer Science lesson for Upper Sixth (Managing and retrieving information). Short explanations, visuals and activities with instant correction.",
+  "url": "https://www.asghinlabs.com/lessons/upper-sixth/computer-science/database-normalisation-and-functional-dependencies",
+  "learningResourceType": "Interactive lesson",
+  "educationalLevel": "Upper Sixth",
+  "teaches": "Database Normalisation and Functional Dependencies",
+  "about": "Computer Science",
+  "isAccessibleForFree": true,
+  "inLanguage": "en",
+  "provider": {
+    "@type": "Organization",
+    "name": "AsghinLabs Academy",
+    "url": "https://www.asghinlabs.com/academy"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Ayemelong Selobie Ghislain"
+  }
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style-main.css">
+  <link rel="stylesheet" href="/style-lesson.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK679H74R1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FK679H74R1');
+  </script>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/academy.html">
+    <img src="/images/logo-blue.jpeg" alt="AsghinLabs Academy Logo" id="navLogoImg" width="42" height="42">
+    <span>ASGHINLABS <span class="logo-sub">Academy</span></span>
+  </a>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/academy.html#workbooks">Workbooks</a></li>
+    <li><a href="/academy.html#resources">Free Notes</a></li>
+    <li><a href="/academy.html#classes">Classes</a></li>
+    <li><a href="/lessons.html">Interactive Lessons</a></li>
+    <li><a href="/academy.html#enroll">Contact</a></li>
+    <li><a href="/" class="nav-back">← AsghinLabs</a></li>
+  </ul>
+</nav>
+
+<div class="lesson-wrap">
+  <div class="lesson-path"><a href="/lessons#upper-sixth">← Upper Sixth</a> › <span>Computer Science</span> › <span>Managing and retrieving information</span></div>
+  <span class="lesson-badge">🧩 Computer Science · Upper Sixth · Lesson 77</span>
+  <h1>Database Normalisation and Functional Dependencies</h1>
+  <p class="lead">Normalisation uses functional dependencies to remove redundancy: 1NF, 2NF, 3NF and BCNF.</p>
+
+  <div class="lesson-panel" id="learn">
+    <h2>📘 Learn it</h2>
+    <p class="lesson-hint">Short cards. Read them, then check your understanding below.</p>
+    <div id="walk"></div>
+  </div>
+
+  <div class="lesson-panel" id="practice">
+    <h2>✍️ Check your understanding</h2>
+    <p class="lesson-hint">Answer each activity and press <b>Check</b>. Wrong answers turn red. Press <b>Show me</b> if you are stuck.</p>
+    <div id="acts"></div>
+  </div>
+
+  <div class="lesson-pn"><a class="prev" href="/lessons/upper-sixth/computer-science/relational-database-design-and-relationships"><span>← Previous: Lesson 76</span>Relational Database Design and Relationships</a><a class="next" href="/lessons/upper-sixth/computer-science/database-design-stages-and-data-modelling"><span>Next: Lesson 78 →</span>Database Design Stages and Data Modelling</a></div>
+
+  <div class="lesson-panel lesson-next">
+    <h3>Keep learning</h3>
+    <p>Revise this chapter in the AsghinLabs Academy workbooks.</p>
+    <div class="lesson-next-actions">
+      <a class="next-btn primary" href="/academy.html#workbooks">🛒 See the workbooks</a>
+      <a class="next-btn" href="/lessons#upper-sixth">All Upper Sixth lessons →</a>
+    </div>
+    <div class="fb"><a href="https://wa.me/237682402876?text=Hi%20AsghinLabs%20Academy,%20I%20tried%20the%20lesson%20%22Database%20Normalisation%20and%20Functional%20Dependencies%22%20and%20wanted%20to%20say..." target="_blank" rel="noopener">💬 Tell us what to improve on WhatsApp →</a></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links" role="navigation" aria-label="Footer">
+    <a href="/">Home</a> · <a href="/#services">Web &amp; Software</a> · <a href="/academy.html">Academy</a> · <a href="/academy.html#workbooks">Workbooks</a> · <a href="/academy.html#resources">Free Notes</a> · <a href="/lessons.html">Interactive Lessons</a> · <a href="/portfolio.html">Portfolio</a> · <a href="/founder.html">Founder</a>
+  </div>
+  <p class="footer-fr">Développement web, logiciels et automatisation IA à Douala, Cameroun · Cours d'informatique et fascicules GCE.</p>
+  <p>© 2026 AsghinLabs Academy. Douala, Cameroon.</p>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/237682402876?text=Hi%20AsghinLabs%20Academy%2C%20I%27d%20like%20to%20learn%20more." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+<script src="/script-main.js"></script>
+<script src="/lessons-common.js"></script>
+<script src="/lessons-activities.js"></script>
+<script>
+const LESSON = {"cards": [{"title": "Functional dependency", "html": "<p>A → B: each value of A determines exactly one value of B. StudentID → Name.</p>"}, {"title": "Normal forms", "html": "<table class=\"mini\"><tr><th>Form</th><th>Condition</th></tr><tr><td>1NF</td><td>atomic values, no repeating groups</td></tr><tr><td>2NF</td><td>1NF + no partial dependency (non-key depends on whole composite key)</td></tr><tr><td>3NF</td><td>2NF + no transitive dependency (non-key → non-key)</td></tr><tr><td>BCNF</td><td>every determinant is a candidate key</td></tr></table>"}, {"title": "Example", "html": "<p>ORDERLINE(<u>OrderID, ProductID</u>, Qty, ProductName): ProductID → ProductName is <b>partial</b> → move to PRODUCT(<u>ProductID</u>, ProductName).</p><p>STUDENT(<u>ID</u>, ClassID, ClassRoom): ID → ClassID → ClassRoom is <b>transitive</b> → CLASS(<u>ClassID</u>, ClassRoom).</p>"}], "acts": [{"type": "match", "q": "Which normal form does it violate?", "pairs": [["A cell holds \"Maths, Physics, Chemistry\"", "1NF"], ["In (OrderID, ProductID, ProductName), ProductName depends only on ProductID", "2NF"], ["EmpID → DeptID → DeptName in one table", "3NF"]], "why": ""}, {"type": "mcq", "q": "A → B means…", "options": ["each A value determines one B value", "A and B are equal", "B determines A"], "answer": "each A value determines one B value", "why": ""}, {"type": "tf", "q": "A relation with a single-attribute primary key in 1NF is automatically in 2NF.", "answer": true, "why": "Partial dependencies need a composite key."}]};
+runWalkthrough(document.getElementById('walk'), LESSON.cards);
+runActivities(document.getElementById('acts'), LESSON.acts, { slug: "u6-cs-database-normalisation-and-functional-dependencies" });
+viewLesson("u6-cs-database-normalisation-and-functional-dependencies");
+</script>
+</body>
+</html>

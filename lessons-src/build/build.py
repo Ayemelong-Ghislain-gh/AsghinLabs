@@ -88,6 +88,7 @@ PRACTICE_FOR = {
     ('Upper Sixth', 'Computer Science', 45): 'cpu-scheduling',
     ('Upper Sixth', 'Computer Science', 46): 'cpu-scheduling',
     ('Upper Sixth', 'Computer Science', 47): 'cpu-scheduling',
+    ('Upper Sixth', 'ICT', 60): 'cell-referencing',
 }
 
 slugify = lambda t: re.sub(r'-+', '-', re.sub(r'[^a-z0-9]+', '-', t.lower().replace('&', 'and'))).strip('-')[:60].strip('-')
