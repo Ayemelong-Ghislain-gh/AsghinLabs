@@ -39,6 +39,11 @@
     .item p { margin: 4px 0; line-height: 1.6; color: var(--text-light); }
     .item p b { color: var(--text-muted); font-weight: 700; }
     .empty { color: var(--text-muted); padding: 30px 0; text-align: center; }
+    .ai-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; margin: 40px 0 6px; }
+    .ai-head h2 { font-size: 1.4rem; margin: 0; }
+    .p-up { background: rgba(46,230,139,0.15); color: #7ff0b8; } .p-down { background: rgba(255,107,107,0.15); color: #ff8f8f; }
+    .item.down { border-left: 3px solid #ff6b6b; }
+    .item pre { white-space: pre-wrap; font-family: inherit; margin: 4px 0; color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; max-height: 160px; overflow: auto; }
   </style>
 </head>
 <body>
@@ -65,6 +70,15 @@
       <span class="count" id="count"></span>
     </div>
     <div id="list"></div>
+
+    <div class="ai-head"><h2>🤖 AI tutor ratings</h2><span class="sub" style="margin:0">👍 / 👎 from students on tutor answers. A 👎 also removes that answer from the cache.</span></div>
+    <div class="summary" id="aiSummary"></div>
+    <div class="filters">
+      <select id="aiKind" aria-label="Tool"><option value="">All tools</option><option value="chat">💬 Ask a Tutor</option><option value="class">🖍️ Live Class</option><option value="language">🌍 Languages</option></select>
+      <label><input type="checkbox" id="aiDown" checked> Only 👎</label>
+      <span class="count" id="aiCount"></span>
+    </div>
+    <div id="aiList"></div>
   </div>
 </div>
 
@@ -87,6 +101,7 @@
       if (!r.ok) throw new Error('Could not load feedback (' + r.status + ').');
       items = data.items || [];
       try { sessionStorage.setItem('fbKey', key); } catch (e) {}
+      loadRatings();
       $('login').hidden = true; $('main').hidden = false;
       const lessons = [...new Set(items.map(i => i.lesson))].sort();
       const cur = $('fLesson').value;
@@ -122,6 +137,42 @@
         ${i.question ? `<p><b>Question:</b> ${esc(i.question)}</p>` : ''}
       </div>`).join('') : '<p class="empty">No feedback here yet.</p>';
   }
+
+  // ---- AI tutor ratings (from /api/tutor, same password) ----
+  const KIND = { chat: '💬 Ask a Tutor', class: '🖍️ Live Class', language: '🌍 Languages' };
+  let ratings = [];
+  async function loadRatings() {
+    try {
+      const r = await fetch('/api/tutor', { headers: { 'x-admin-key': key }, cache: 'no-store' });
+      const data = await r.json().catch(() => ({}));
+      ratings = r.ok ? (data.items || []) : [];
+    } catch (e) { ratings = []; }
+    renderRatings();
+  }
+  function renderRatings() {
+    const by = {};
+    ratings.forEach(i => { const s = by[i.kind] = by[i.kind] || { up: 0, down: 0 }; s[i.rating === 'up' ? 'up' : 'down']++; });
+    $('aiSummary').innerHTML = Object.keys(KIND).map(k => {
+      const s = by[k] || { up: 0, down: 0 }, t = s.up + s.down || 1;
+      return `<div class="sum-card"><h3>${KIND[k]}</h3>
+        <div class="bar"><i class="b-yes" style="width:${s.up / t * 100}%"></i><i class="b-no" style="width:${s.down / t * 100}%"></i></div>
+        <div class="sum-nums">👍 ${s.up} · 👎 ${s.down}${s.up + s.down ? ` · ${Math.round(s.up / t * 100)}% helpful` : ''}</div></div>`;
+    }).join('');
+    const kind = $('aiKind').value, onlyDown = $('aiDown').checked;
+    const shown = ratings.filter(i => (!kind || i.kind === kind) && (!onlyDown || i.rating === 'down'));
+    $('aiCount').textContent = `${shown.length} of ${ratings.length}`;
+    $('aiList').innerHTML = shown.length ? shown.map(i => `
+      <div class="item${i.rating === 'down' ? ' down' : ''}">
+        <div class="meta"><span class="pill p-${i.rating === 'up' ? 'up' : 'down'}">${i.rating === 'up' ? '👍 Helpful' : '👎 Not helpful'}</span>
+          <span class="pill p-lesson">${KIND[i.kind] || esc(i.kind)}</span>
+          ${i.lesson ? `<span>📘 ${esc(i.lesson)}</span>` : ''}
+          <span>${esc(i.level || '')}</span>
+          <span>· ${new Date(i.at).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}</span></div>
+        <p><b>Question:</b> ${esc(i.question)}</p>
+        <pre>${esc(i.answer)}</pre>
+      </div>`).join('') : '<p class="empty">No ratings here yet.</p>';
+  }
+  ['aiKind', 'aiDown'].forEach(id => $(id).addEventListener('change', renderRatings));
 
   $('summary').addEventListener('click', (e) => { const c = e.target.closest('.sum-card'); if (!c) return; $('fLesson').value = $('fLesson').value === c.dataset.l ? '' : c.dataset.l; render(); });
   ['fLesson', 'fUnd', 'fQ'].forEach(id => $(id).addEventListener('change', render));

@@ -379,3 +379,85 @@ function shareBar() {
     next.insertBefore(box, next.querySelector('.fb') || null);
   }
 }
+
+
+/* =====================================================================
+   "Stuck? Ask the AI tutor" card + WhatsApp Channel button, added to
+   every lesson page. The tutor opens with this lesson already asked.
+   ===================================================================== */
+const ACADEMY_CHANNEL = 'https://whatsapp.com/channel/0029VbE2bN42f3ELs70szW0B';
+
+function lessonContext() {
+  const parts = location.pathname.split('/').filter(Boolean);   // lessons/form-3/mathematics/slug
+  const nice = s => (s || '').split('-').map(w => w === 'ict' ? 'ICT' : w[0].toUpperCase() + w.slice(1)).join(' ');
+  const h1 = document.querySelector('.lesson-wrap h1');
+  return {
+    title: (h1 ? h1.textContent : document.title.split('|')[0]).trim(),
+    level: parts[0] === 'lessons' ? nice(parts[1]) : '',
+    subject: parts[0] === 'lessons' ? nice(parts[2]) : '',
+  };
+}
+
+// The lesson's own content as plain text, so the tutor teaches it the same way.
+function lessonText(c) {
+  const plain = html => {
+    const d = document.createElement('div');
+    d.innerHTML = String(html || '')
+      .replace(/<sup>(.*?)<\/sup>/gi, '^($1)').replace(/<sub>(.*?)<\/sub>/gi, '_($1)')   // 9<sup>1/2</sup> → 9^(1/2)
+      .replace(/<\/(td|th)>/gi, ' | ')
+      .replace(/<\/(tr|p|li|h\d)>|<br\s*\/?>/gi, '\n');
+    return d.textContent.replace(/[ \t]+/g, ' ').replace(/\n\s*\n+/g, '\n').trim();
+  };
+  let body = '';
+  if (typeof LESSON !== 'undefined' && LESSON && Array.isArray(LESSON.cards)) {
+    body = LESSON.cards.map(card => `${card.title}:\n${plain(card.html)}`).join('\n\n');
+  } else {
+    const learn = document.getElementById('learn');
+    body = learn ? learn.innerText : '';
+  }
+  return `Lesson: ${c.title}${c.subject ? ` (${c.level} ${c.subject})` : ''}\n\n${body}`.slice(0, 3800);
+}
+
+function tutorHelp() {
+  const wrap = document.querySelector('.lesson-wrap');
+  if (!wrap || document.getElementById('tutorHelp')) return;
+  const c = lessonContext();
+  const about = `"${c.title}"${c.subject ? ` (${c.level} ${c.subject})` : ''}`;
+  const q = `I'm studying the lesson ${about}. Please explain it to me simply, step by step, with an example.`;
+  const params = obj => new URLSearchParams(Object.assign(c.level ? { level: c.level } : {}, obj)).toString();
+  const box = document.createElement('div');
+  box.className = 'lesson-panel tutor-help';
+  box.id = 'tutorHelp';
+  box.innerHTML = `
+    <div class="th-text">
+      <h3>🤔 Stuck on this lesson?</h3>
+      <p>Ask the free AI tutor. It explains step by step, answers your questions, or teaches it as a live class on the board.</p>
+    </div>
+    <div class="th-actions">
+      <a class="next-btn primary" href="/tutor?${params({ tab: 'ask', q })}">💬 Ask the AI tutor</a>
+      <a class="next-btn" href="/tutor?${params({ tab: 'class', topic: `${c.title}${c.subject ? ` (${c.level} ${c.subject})` : ''}` })}">🖍️ Watch it as a live class</a>
+    </div>`;
+  const anchor = wrap.querySelector('.lesson-pn') || wrap.querySelector('.lesson-next');
+  if (anchor) wrap.insertBefore(box, anchor); else wrap.appendChild(box);
+  box.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    try { localStorage.setItem('tutor-lesson-ctx', JSON.stringify({ title: c.title, text: lessonText(c), at: Date.now() })); }
+    catch (e) { /* storage blocked: the tutor still gets the lesson title */ }
+    if (typeof gtag === 'function') gtag('event', 'lesson_to_tutor', { lesson: location.pathname, action: a.href.includes('tab=class') ? 'class' : 'ask' });
+  }));
+}
+
+function channelButton() {
+  const next = document.querySelector('.lesson-wrap .lesson-next');
+  if (!next || next.querySelector('.channel-btn')) return;
+  const p = document.createElement('p');
+  p.className = 'channel-line';
+  p.innerHTML = `<a class="channel-btn" href="${ACADEMY_CHANNEL}" target="_blank" rel="noopener">📢 Join our WhatsApp Channel</a><span>New lessons, GCE tips and exam reminders, free.</span>`;
+  p.querySelector('a').addEventListener('click', () => { if (typeof gtag === 'function') gtag('event', 'join_channel', { from: 'lesson' }); });
+  const fb = next.querySelector('.fb');
+  next.insertBefore(p, fb || null);
+}
+
+if (document.querySelector('.lesson-wrap')) {
+  if (location.pathname.startsWith('/lessons/')) tutorHelp();   // real lessons, not the lessons index
+  channelButton();
+}

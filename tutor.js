@@ -48,17 +48,48 @@
   const synth = window.speechSynthesis;
   let speakToken = 0;
 
-  function pickVoice(lang) {
-    if (!synth) return null;
-    const voices = synth.getVoices();
-    const base = lang.slice(0, 2);
-    return voices.find(v => v.lang === lang && /google|natural|online/i.test(v.name))
-      || voices.find(v => v.lang === lang)
-      || voices.find(v => v.lang && v.lang.slice(0, 2) === base && /google|natural|online/i.test(v.name))
-      || voices.find(v => v.lang && v.lang.slice(0, 2) === base)
-      || null;
+  // Voice settings, chosen by the student in the 🔊 Voice panel.
+  //   engine "device": the phone/computer's own voices (free, unlimited)
+  //   engine "ai":     Google's natural voices (limited per day, uses more data)
+  const AI_VOICES = [
+    { id: 'Kore', who: 'Woman', desc: 'clear and calm' },
+    { id: 'Aoede', who: 'Woman', desc: 'relaxed and friendly' },
+    { id: 'Leda', who: 'Woman', desc: 'young and bright' },
+    { id: 'Charon', who: 'Man', desc: 'calm teacher' },
+    { id: 'Puck', who: 'Man', desc: 'lively and upbeat' },
+    { id: 'Orus', who: 'Man', desc: 'firm and clear' },
+  ];
+  const voiceSettings = Object.assign(
+    { engine: 'ai', aiVoice: 'Kore', device: {}, rate: 1, pitch: 1 },
+    store.get('tutor-voice-settings', {}),
+  );
+  const saveVoiceSettings = () => store.set('tutor-voice-settings', voiceSettings);
+
+  // Natural-sounding device voices first: Edge "Online (Natural)", Google,
+  // Apple "Enhanced/Premium" voices sound far more human than the defaults.
+  function voiceScore(v) {
+    let score = 0;
+    if (/natural|neural|online|enhanced|premium|wavenet/i.test(v.name)) score += 4;
+    if (/google/i.test(v.name)) score += 2;
+    if (!v.localService) score += 1;
+    if (/compact|espeak/i.test(v.name)) score -= 3;
+    return score;
   }
-  if (synth && synth.onvoiceschanged !== undefined) synth.onvoiceschanged = () => synth.getVoices();
+  function deviceVoices(base) {
+    if (!synth) return [];
+    return synth.getVoices()
+      .filter(v => v.lang && v.lang.slice(0, 2).toLowerCase() === base)
+      .sort((a, b) => voiceScore(b) - voiceScore(a) || a.name.localeCompare(b.name));
+  }
+  function pickVoice(lang) {
+    const base = lang.slice(0, 2).toLowerCase();
+    const list = deviceVoices(base);
+    const chosen = voiceSettings.device[base];
+    return (chosen && list.find(v => v.voiceURI === chosen)) || list[0] || null;
+  }
+  if (synth && synth.onvoiceschanged !== undefined) {
+    synth.onvoiceschanged = () => { synth.getVoices(); if (window.refreshVoicePanel) window.refreshVoicePanel(); };
+  }
 
   // Turns maths and markdown into words a student can follow by ear.
   function speechText(text) {
@@ -88,32 +119,140 @@
       .trim();
   }
 
-  // Speaks text and resolves when finished (or stopped). Long text is split
-  // into sentences because some browsers cut off long utterances.
-  async function speak(text, opts = {}) {
+  // ---- Device voice: long text is split into sentences because some
+  // browsers cut off long utterances.
+  async function speakDevice(clean, token, lang, rate) {
     if (!synth) return;
-    const token = ++speakToken;
-    synth.cancel();
-    const lang = opts.lang || 'en-GB';
     const voice = pickVoice(lang);
-    const clean = opts.raw ? String(text) : speechText(text);
     const chunks = clean.match(/[^.!?。]+[.!?。]*\s*/g) || [clean];
     for (const chunk of chunks) {
       if (token !== speakToken) return;
       if (!chunk.trim()) continue;
       await new Promise(resolve => {
         const u = new SpeechSynthesisUtterance(chunk.trim());
-        u.lang = lang;
+        u.lang = voice ? voice.lang : lang;
         if (voice) u.voice = voice;
-        u.rate = opts.rate || 1;
+        u.rate = rate;
+        u.pitch = voiceSettings.pitch;
         u.onend = u.onerror = resolve;
         // Safety net: never hang the class if the browser never fires onend.
-        setTimeout(resolve, 2500 + chunk.length * 110 / (opts.rate || 1));
+        setTimeout(resolve, 2500 + chunk.length * 110 / rate);
         synth.speak(u);
       });
     }
   }
-  function stopSpeaking() { speakToken++; if (synth) synth.cancel(); }
+
+  // ---- Natural AI voice: audio comes from /api/tutor (task "speak").
+  // Clips are cached, so "Listen again" and prefetched class steps cost nothing extra.
+  const AI_MAX_CHARS = 700;
+  const aiClips = new Map();
+  let aiVoiceOff = false;          // set when today's limit is reached
+
+  // One reusable player, unlocked by the student's first tap: phones
+  // (iPhones especially) block audio that wasn't started by a tap.
+  const player = new Audio();
+  const SILENT_WAV = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA=';
+  document.addEventListener('click', () => { player.src = SILENT_WAV; player.play().catch(() => {}); }, { once: true, capture: true });
+
+  function aiClip(clean) {
+    const key = voiceSettings.aiVoice + '|' + clean;
+    if (!aiClips.has(key)) {
+      const p = fetch('/api/tutor', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ task: 'speak', text: clean, voice: voiceSettings.aiVoice }),
+      })
+        .then(r => r.json().then(d => ({ status: r.status, d })))
+        .then(({ status, d }) => {
+          if (!d.ok) {
+            if (status === 429) { aiVoiceOff = true; toast(d.error); }
+            throw new Error(d.error || 'voice failed');
+          }
+          const bytes = Uint8Array.from(atob(d.audio), c => c.charCodeAt(0));
+          return URL.createObjectURL(new Blob([bytes], { type: d.mime || 'audio/wav' }));
+        });
+      p.catch(() => aiClips.delete(key));
+      aiClips.set(key, p);
+      if (aiClips.size > 60) aiClips.delete(aiClips.keys().next().value);
+    }
+    return aiClips.get(key);
+  }
+
+  // Splits long text into clips of whole sentences, each under the server limit.
+  function aiChunks(clean) {
+    const sentences = clean.match(/[^.!?。]+[.!?。]*\s*/g) || [clean];
+    const out = [];
+    let cur = '';
+    for (const s of sentences) {
+      if ((cur + s).length > 400 && cur) { out.push(cur.trim()); cur = ''; }
+      cur += s;
+    }
+    if (cur.trim()) out.push(cur.trim().slice(0, AI_MAX_CHARS));
+    return out;
+  }
+
+  async function speakAI(clean, token, rate) {
+    const chunks = aiChunks(clean);
+    if (chunks.length > 4) return false;      // very long answers: the device voice saves data
+    for (let i = 0; i < chunks.length; i++) {
+      if (token !== speakToken) return true;
+      let url;
+      try { url = await aiClip(chunks[i]); } catch (e) { return i > 0; }
+      if (chunks[i + 1]) aiClip(chunks[i + 1]).catch(() => {});   // fetch the next clip while this one plays
+      if (token !== speakToken) return true;
+      await new Promise(resolve => {
+        const done = () => { player.onended = player.onerror = player.onpause = null; resolve(); };
+        player.onended = player.onerror = player.onpause = null;
+        player.src = url;
+        player.playbackRate = rate;
+        player.onended = player.onerror = player.onpause = done;
+        player.play().catch(done);
+      });
+    }
+    return true;
+  }
+
+  function prefetchSpeech(text) {
+    if (voiceSettings.engine !== 'ai' || aiVoiceOff) return;
+    const first = aiChunks(speechText(text))[0];
+    if (first) aiClip(first).catch(() => {});
+  }
+
+  // Speaks text and resolves when finished (or stopped).
+  async function speak(text, opts = {}) {
+    const token = ++speakToken;
+    player.pause();
+    if (synth) synth.cancel();
+    const lang = opts.lang || 'en-GB';
+    const clean = opts.raw ? String(text).trim() : speechText(text);
+    if (!clean) return;
+    const rate = (opts.rate || 1) * voiceSettings.rate;
+    if (voiceSettings.engine === 'ai' && !aiVoiceOff) {
+      const done = await speakAI(clean, token, rate);
+      if (done || token !== speakToken) return;
+    }
+    await speakDevice(clean, token, lang, rate);
+  }
+  function stopSpeaking() {
+    speakToken++;
+    player.pause();
+    if (synth) synth.cancel();
+  }
+
+  function toast(message) {
+    let t = document.getElementById('tutorToast');
+    if (!t) {
+      t = document.createElement('div');
+      t.id = 'tutorToast';
+      t.className = 'toast';
+      t.setAttribute('role', 'status');
+      document.body.appendChild(t);
+    }
+    t.textContent = message;
+    t.classList.add('show');
+    clearTimeout(t._timer);
+    t._timer = setTimeout(() => t.classList.remove('show'), 5000);
+  }
 
   /* ---------------- Listening (speech-to-text) ---------------- */
 
@@ -204,24 +343,96 @@
   levelSelect.value = store.get('tutor-level', '');
   levelSelect.addEventListener('change', () => store.set('tutor-level', levelSelect.value));
 
-  async function api(body) {
-    let res;
+  // Lesson the student came from (saved by the lesson page's "Stuck?" buttons).
+  // Its content is sent along so answers follow the same method and notation.
+  let lessonCtx = null;
+  try {
+    const saved = JSON.parse(localStorage.getItem('tutor-lesson-ctx') || 'null');
+    if (saved && Date.now() - saved.at < 2 * 3600 * 1000) lessonCtx = saved;
+  } catch (e) { /* storage blocked */ }
+
+  function withLesson(body) {
+    if (!lessonCtx || !['chat', 'lesson', 'ask'].includes(body.task)) return body;
+    // A live class on another topic doesn't need this lesson.
+    if (body.task === 'lesson' && body.topic && !body.topic.toLowerCase().includes(lessonCtx.title.toLowerCase())) return body;
+    return { ...body, lessonText: lessonCtx.text };
+  }
+
+  async function post(body) {
     try {
-      res = await fetch('/api/tutor', {
+      return await fetch('/api/tutor', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ level: levelSelect.value, ...body }),
+        body: JSON.stringify(withLesson({ level: levelSelect.value, ...body })),
       });
     } catch (e) {
       throw new Error("Can't reach the tutor. Check your internet connection and try again.");
     }
+  }
+
+  async function api(body) {
+    const res = await post(body);
     const data = await res.json().catch(() => ({}));
     if (!res.ok || !data.ok) {
       if (res.status === 413) throw new Error('That file is too big. Please upload a file under 3 MB.');
       throw new Error(data.error || 'Something went wrong. Please try again.');
     }
-    if (window.gtag) gtag('event', 'tutor_' + body.task);
+    if (window.gtag) gtag('event', 'tutor_' + body.task, { cached: !!data.cached });
     return data;
+  }
+
+  // Chat answers arrive word by word: onText(fullTextSoFar) is called as they come.
+  async function apiStream(body, onText) {
+    const res = await post({ ...body, stream: true });
+    const type = res.headers.get('content-type') || '';
+    if (!type.includes('ndjson')) {                       // errors (limit, bad file…) come back as normal JSON
+      const data = await res.json().catch(() => ({}));
+      if (res.status === 413) throw new Error('That file is too big. Please upload a file under 3 MB.');
+      throw new Error(data.error || 'Something went wrong. Please try again.');
+    }
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buf = '', full = '', end = null;
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buf += decoder.decode(value, { stream: true });
+      const lines = buf.split('\n');
+      buf = lines.pop();
+      for (const line of lines) {
+        if (!line.trim()) continue;
+        let msg;
+        try { msg = JSON.parse(line); } catch (e) { continue; }
+        if (msg.t) { full += msg.t; onText(full); }
+        if (msg.error) throw Object.assign(new Error(msg.error), { partial: full });
+        if (msg.done) end = msg;
+      }
+    }
+    if (!full.trim()) throw new Error('Something went wrong. Please try again.');
+    if (window.gtag) gtag('event', 'tutor_chat', { cached: !!(end && end.cached) });
+    return { reply: full.trim(), id: end && end.id, truncated: !end || end.truncated, cached: !!(end && end.cached) };
+  }
+
+  // 👍 / 👎 under an answer. getInfo() → { kind, question, answer, id }
+  function rateButtons(getInfo) {
+    const box = document.createElement('span');
+    box.className = 'rate';
+    const send = rating => {
+      const info = getInfo();
+      fetch('/api/tutor', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ task: 'rate', rating, level: levelSelect.value, lessonTitle: lessonCtx ? lessonCtx.title : '', ...info }),
+      }).catch(() => {});
+      if (window.gtag) gtag('event', 'tutor_rating', { rating, kind: info.kind });
+      box.textContent = rating === 'up' ? '👍 Thanks!' : '👎 Thanks, we will improve it.';
+    };
+    const up = toolButton('👍', () => send('up'));
+    const down = toolButton('👎', () => send('down'));
+    up.title = 'Helpful'; up.setAttribute('aria-label', 'This answer was helpful');
+    down.title = 'Not helpful'; down.setAttribute('aria-label', 'This answer was not helpful');
+    box.append(up, down);
+    return box;
   }
 
   /* ---------------- Shared chat helpers ---------------- */
@@ -310,8 +521,7 @@
   }
   document.querySelectorAll('.mode').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
 
-  function botBubble(text) {
-    const bubble = addBubble(askLog, 'bot', render(text));
+  function addBotTools(bubble, text, question, id) {
     const tools = document.createElement('div');
     tools.className = 'bubble-tools';
     tools.append(
@@ -319,15 +529,21 @@
       toolButton('⏹ Stop', stopSpeaking),
       toolButton('📋 Copy', () => navigator.clipboard && navigator.clipboard.writeText(text)),
     );
+    if (question) tools.append(rateButtons(() => ({ kind: 'chat', question, answer: text, id })));
     bubble.appendChild(tools);
+  }
+
+  function botBubble(text, question, id) {
+    const bubble = addBubble(askLog, 'bot', render(text));
+    addBotTools(bubble, text, question, id);
   }
 
   function renderAskHistory() {
     if (!askMessages.length) return;
     $('askEmpty').hidden = true;
-    askMessages.forEach(m => m.role === 'user'
+    askMessages.forEach((m, i) => m.role === 'user'
       ? addBubble(askLog, 'user', m.content, { attach: m.attach })
-      : botBubble(m.content));
+      : botBubble(m.content, askMessages[i - 1] && askMessages[i - 1].content, m.id));
   }
 
   async function askSendMessage(text) {
@@ -345,19 +561,37 @@
     askInput.value = ''; askInput.style.height = 'auto';
     askBusy = true; askSend.disabled = true;
     const typing = addTyping(askLog);
+    let bubble = null, pending = null;
+    // Re-draw at most once per frame while the answer streams in.
+    const show = full => {
+      pending = full;
+      if (!bubble) { typing.remove(); bubble = addBubble(askLog, 'bot', ''); }
+      requestAnimationFrame(() => {
+        if (pending === null) return;
+        const nearBottom = askLog.scrollHeight - askLog.scrollTop - askLog.clientHeight < 80;
+        bubble.innerHTML = render(pending);
+        pending = null;
+        if (nearBottom) scrollDown(askLog);
+      });
+    };
     try {
-      const { reply } = await api({
+      const { reply, id, truncated } = await apiStream({
         task: 'chat',
         mode: askMode,
         messages: askMessages.map(m => ({ role: m.role, content: m.content })),
         file: askNotes,
-      });
-      typing.remove();
-      askMessages.push({ role: 'assistant', content: reply });
-      botBubble(reply);
-      if ($('askSpeak').checked) speak(reply);
+      }, show);
+      const final = truncated ? `${reply}\n\n_(Answer cut short. Type "continue" to get the rest.)_` : reply;
+      pending = null;
+      if (!bubble) { typing.remove(); bubble = addBubble(askLog, 'bot', ''); }
+      bubble.innerHTML = render(final);
+      addBotTools(bubble, final, text, id);
+      askMessages.push({ role: 'assistant', content: final, id });
+      if ($('askSpeak').checked) speak(final);
     } catch (e) {
+      pending = null;
       typing.remove();
+      if (bubble) bubble.closest('.msg').remove();
       askMessages.pop();
       addError(askLog, e.message);
       askInput.value = text;
@@ -390,6 +624,7 @@
     askMessages = []; askNotes = null;
     store.set('tutor-chat', []);
     showFileChip($('askFileChip'), null);
+    forgetLesson();
     askLog.querySelectorAll('.msg, .error-msg').forEach(n => n.remove());
     $('askEmpty').hidden = false;
     askInput.placeholder = 'Ask a question…';
@@ -415,7 +650,7 @@
   let answered = {};          // check questions already answered
   let waitTurn = null;        // resolves when the student answers a "your turn" question
 
-  const classVoice = $('classVoice'), classAuto = $('classAuto'), classRate = $('classRate');
+  const classVoice = $('classVoice'), classAuto = $('classAuto');
   classVoice.checked = store.get('tutor-voice', true);
   classVoice.addEventListener('change', () => { store.set('tutor-voice', classVoice.checked); if (!classVoice.checked) stopSpeaking(); });
 
@@ -436,7 +671,7 @@
 
   async function teacherSays(text) {
     setCaption(text);
-    if (classVoice.checked) await speak(text, { rate: Number(classRate.value) });
+    if (classVoice.checked) await speak(text);
     else await sleep(Math.min(9000, 1800 + text.length * 45));
   }
 
@@ -493,6 +728,7 @@
       idx = k;
       if (k === -1) {
         drawBoard();
+        prefetchSpeech(lesson.steps[0].say);
         await teacherSays(lesson.intro);
         continue;
       }
@@ -502,11 +738,19 @@
         if (token === runToken) {
           setPlaying(false);
           setCaption('Class finished 🎉 Raise your hand ✋ to ask a question, or start a new class.', 'Teacher');
+          const ask = document.createElement('span');
+          ask.className = 'class-rate';
+          ask.append(' Was this class helpful? ', rateButtons(() => ({
+            kind: 'class', question: lesson.title, id: lesson.id,
+            answer: lesson.steps.map((st, i) => `${i + 1}. ${st.board}`).join('\n'),
+          })));
+          caption.appendChild(ask);
         }
         return;
       }
       const step = lesson.steps[k];
       drawBoard(k);
+      prefetchSpeech(lesson.steps[k + 1] ? lesson.steps[k + 1].say : lesson.summary);
       await teacherSays(step.say);
       if (token !== runToken) return;
       if (step.check && step.check.question && !answered[k]) {
@@ -550,7 +794,7 @@
     $('turnBox').hidden = false;
     $('turnInput').value = '';
     setTimeout(() => $('turnInput').focus({ preventScroll: true }), 100);
-    if (classVoice.checked) speak('Your turn. ' + check.question, { rate: Number(classRate.value), raw: true });
+    if (classVoice.checked) speak('Your turn. ' + check.question, { raw: true });
     return new Promise(resolve => {
       waitTurn = () => { waitTurn = null; resolve(); };
       $('turnBox').dataset.step = String(idx);
@@ -641,7 +885,7 @@
     $('ctlHand').classList.add('raised');
     $('handBox').hidden = false;
     setCaption('Yes? What is your question?', 'Teacher');
-    if (classVoice.checked) speak('Yes? What is your question?', { rate: Number(classRate.value), raw: true });
+    if (classVoice.checked) speak('Yes? What is your question?', { raw: true });
     setTimeout(() => $('handInput').focus({ preventScroll: true }), 100);
   });
   $('handCancel').addEventListener('click', resumeClass);
@@ -678,6 +922,7 @@
   async function startClass(topic) {
     topic = (topic || '').trim();
     if (!topic && !classNotes) { $('classTopic').focus(); return; }
+    $('classForm').querySelector('.send').classList.remove('pulse');
     stopSpeaking();
     // Unlocks speech on mobile browsers, which only allow it after a tap.
     if (synth) synth.speak(new SpeechSynthesisUtterance(''));
@@ -690,7 +935,8 @@
     $('turnBox').hidden = true; $('handBox').hidden = true;
     const stopNotice = slowNotice();
     try {
-      const { data } = await api({ task: 'lesson', topic, file: classNotes });
+      const { data, id } = await api({ task: 'lesson', topic, file: classNotes });
+      if (data) data.id = id;
       stopNotice();
       if (!data || !Array.isArray(data.steps) || !data.steps.length) throw new Error('The tutor could not prepare that class. Try a more specific topic.');
       lesson = data;
@@ -798,6 +1044,11 @@
       toolButton('🔊 Listen again', () => speak(data.reply, langSpeakOpts())),
       toolButton('🐢 Slowly', () => speak(data.reply, { ...langSpeakOpts(), rate: 0.7 })),
       toolButton('🔤 Translate', () => { tr.hidden = !tr.hidden; }),
+      rateButtons(() => ({
+        kind: 'language',
+        question: (langMessages.filter(m => m.role === 'user').pop() || {}).content || '(start)',
+        answer: `${data.reply}\nCorrections: ${(data.corrections || []).map(c => `${c.wrong} → ${c.right}`).join('; ') || 'none'}`,
+      })),
     );
     bubble.appendChild(tools);
     scrollDown(langLog);
@@ -886,7 +1137,163 @@
   autoGrow(langInput); enterToSend(langInput, langForm);
   setupMic($('langMic'), langInput, () => LANG_CODES[langTarget.value], () => langForm.requestSubmit());
 
+  /* =========================================================
+     VOICE SETTINGS PANEL
+     ========================================================= */
+  const voiceDialog = $('voiceDialog');
+  const SAMPLES = {
+    en: "Hello! I'm your AsghinLabs tutor. Let's learn together, step by step.",
+    fr: "Bonjour ! Je suis ton tuteur AsghinLabs. Apprenons ensemble, étape par étape.",
+    es: '¡Hola! Soy tu tutor de AsghinLabs. Aprendamos juntos, paso a paso.',
+  };
+  const LANG_FULL = { en: 'en-GB', fr: 'fr-FR', es: 'es-ES' };
+
+  function showEngine() {
+    const ai = voiceSettings.engine === 'ai';
+    $('vdAi').hidden = !ai;
+    $('vdDevice').hidden = ai;
+    $('pitchRow').hidden = ai;      // AI voices have their own natural pitch
+    voiceDialog.querySelectorAll('input[name="engine"]').forEach(r => { r.checked = r.value === voiceSettings.engine; });
+  }
+
+  function buildAiGrid() {
+    const grid = $('aiVoiceGrid');
+    grid.innerHTML = '';
+    AI_VOICES.forEach(v => {
+      const card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'voice-card' + (v.id === voiceSettings.aiVoice ? ' on' : '');
+      card.setAttribute('aria-pressed', String(v.id === voiceSettings.aiVoice));
+      card.innerHTML = `<span class="vc-icon">${v.who === 'Woman' ? '👩🏾' : '👨🏾'}</span><span class="vc-text"><b></b><small></small></span><span class="vc-play">▶</span>`;
+      card.querySelector('b').textContent = v.id;
+      card.querySelector('small').textContent = `${v.who} · ${v.desc}`;
+      card.onclick = () => {
+        voiceSettings.aiVoice = v.id;
+        saveVoiceSettings();
+        buildAiGrid();
+        speak(SAMPLES.en, { raw: true });
+      };
+      grid.appendChild(card);
+    });
+  }
+
+  window.refreshVoicePanel = function () {
+    ['en', 'fr', 'es'].forEach(base => {
+      const sel = $('devVoice-' + base);
+      const list = deviceVoices(base);
+      sel.innerHTML = '';
+      if (!list.length) {
+        sel.add(new Option('No voice installed for this language', ''));
+        sel.disabled = true;
+        return;
+      }
+      sel.disabled = false;
+      sel.add(new Option('Automatic (best available)', ''));
+      list.forEach(v => sel.add(new Option(`${voiceScore(v) >= 4 ? '⭐ ' : ''}${v.name} (${v.lang})`, v.voiceURI)));
+      sel.value = voiceSettings.device[base] && list.some(v => v.voiceURI === voiceSettings.device[base]) ? voiceSettings.device[base] : '';
+    });
+  };
+
+  function showSliders() {
+    $('voiceRate').value = voiceSettings.rate;
+    $('voicePitch').value = voiceSettings.pitch;
+    $('rateOut').textContent = voiceSettings.rate === 1 ? 'Normal' : `${voiceSettings.rate.toFixed(2)}×`;
+    $('pitchOut').textContent = voiceSettings.pitch === 1 ? 'Normal' : (voiceSettings.pitch < 1 ? 'Deeper' : 'Higher');
+  }
+
+  function openVoicePanel() {
+    stopSpeaking();
+    showEngine();
+    buildAiGrid();
+    window.refreshVoicePanel();
+    showSliders();
+    if (voiceDialog.showModal) voiceDialog.showModal(); else voiceDialog.setAttribute('open', '');
+  }
+  document.querySelectorAll('[data-open-voice]').forEach(b => b.addEventListener('click', openVoicePanel));
+  voiceDialog.addEventListener('close', stopSpeaking);
+  voiceDialog.addEventListener('click', e => { if (e.target === voiceDialog) voiceDialog.close(); });   // tap outside to close
+
+  voiceDialog.querySelectorAll('input[name="engine"]').forEach(r => r.addEventListener('change', () => {
+    voiceSettings.engine = r.value;
+    if (r.value === 'ai') aiVoiceOff = false;   // let the student try again
+    saveVoiceSettings();
+    showEngine();
+    speak(SAMPLES.en, { raw: true });
+  }));
+
+  ['en', 'fr', 'es'].forEach(base => {
+    $('devVoice-' + base).addEventListener('change', e => {
+      voiceSettings.device[base] = e.target.value;
+      saveVoiceSettings();
+      speak(SAMPLES[base], { raw: true, lang: LANG_FULL[base] });
+    });
+  });
+  voiceDialog.querySelectorAll('[data-preview]').forEach(b => b.addEventListener('click', () => {
+    const base = b.dataset.preview;
+    const keep = voiceSettings.engine;
+    voiceSettings.engine = 'device';            // the ▶ next to each language previews the device voice
+    speak(SAMPLES[base], { raw: true, lang: LANG_FULL[base] }).finally(() => { voiceSettings.engine = keep; });
+  }));
+
+  $('voiceRate').addEventListener('input', e => { voiceSettings.rate = Number(e.target.value); showSliders(); });
+  $('voicePitch').addEventListener('input', e => { voiceSettings.pitch = Number(e.target.value); showSliders(); });
+  ['voiceRate', 'voicePitch'].forEach(id => $(id).addEventListener('change', () => {
+    saveVoiceSettings();
+    speak(SAMPLES.en, { raw: true });
+  }));
+  $('voiceTest').addEventListener('click', () => speak(SAMPLES.en, { raw: true }));
+
+  /* ---------------- Lesson the student came from ---------------- */
+  function showLessonChips() {
+    ['askLessonChip', 'classLessonChip'].forEach(id => {
+      const chip = $(id);
+      if (!chip) return;
+      chip.innerHTML = '';
+      chip.hidden = !lessonCtx;
+      if (!lessonCtx) return;
+      const label = document.createElement('span');
+      label.textContent = `📘 Using your lesson: ${lessonCtx.title}`;
+      const x = document.createElement('button');
+      x.type = 'button'; x.textContent = '✕'; x.title = 'Stop using this lesson'; x.setAttribute('aria-label', 'Stop using this lesson');
+      x.onclick = forgetLesson;
+      chip.append(label, x);
+    });
+  }
+  function forgetLesson() {
+    lessonCtx = null;
+    try { localStorage.removeItem('tutor-lesson-ctx'); } catch (e) { /* storage blocked */ }
+    showLessonChips();
+  }
+
   /* ---------------- Start ---------------- */
-  const startTab = new URLSearchParams(location.search).get('tab') || store.get('tutor-tab', 'ask');
+  // Links from lesson pages: /tutor?tab=ask&q=…  or  /tutor?tab=class&topic=…  (+ &level=Form 3)
+  const params = new URLSearchParams(location.search);
+  const startTab = params.get('tab') || store.get('tutor-tab', 'ask');
   openTab(tabs.includes(startTab) ? startTab : 'ask');
+
+  const fromLesson = { q: params.get('q'), topic: params.get('topic'), level: params.get('level') };
+  // The saved lesson only applies when the student just came from it.
+  const lessonTitle = lessonCtx && lessonCtx.title.toLowerCase();
+  if (!lessonCtx || !((fromLesson.q || '') + (fromLesson.topic || '')).toLowerCase().includes(lessonTitle)) lessonCtx = null;
+  showLessonChips();
+  if (fromLesson.q || fromLesson.topic || fromLesson.level) {
+    // Remove the parameters so a refresh doesn't ask the same question again.
+    history.replaceState(null, '', location.pathname + (params.get('tab') ? `?tab=${params.get('tab')}` : ''));
+    if (fromLesson.level && !levelSelect.value && [...levelSelect.options].some(o => o.value === fromLesson.level)) {
+      levelSelect.value = fromLesson.level;
+      store.set('tutor-level', levelSelect.value);
+    }
+    if (fromLesson.q && startTab === 'ask') {
+      setMode('explain');
+      askSendMessage(fromLesson.q.slice(0, 1000));
+    }
+    if (fromLesson.topic && startTab === 'class') {
+      // Sound needs a tap on this page, so the student presses "Start class" themselves.
+      $('classTopic').value = fromLesson.topic.slice(0, 300);
+      const start = $('classForm').querySelector('.send');
+      start.classList.add('pulse');
+      start.focus({ preventScroll: true });
+      $('classSetup').scrollIntoView({ block: 'center' });
+    }
+  }
 })();

@@ -68,6 +68,7 @@
         <option>University / Adult</option>
       </select>
     </label>
+    <button type="button" class="voice-btn" data-open-voice>🔊 Voice settings</button>
   </header>
 
   <div class="tabs" role="tablist" aria-label="Tutor tools">
@@ -104,6 +105,7 @@
           <button class="link-btn" id="askClear">New chat</button>
         </div>
       </div>
+      <div class="file-chip lesson-chip" id="askLessonChip" hidden></div>
       <div class="file-chip" id="askFileChip" hidden></div>
       <form class="input-row" id="askForm">
         <label class="icon-btn" title="Upload notes (PDF or photo)">
@@ -126,6 +128,7 @@
         <label class="icon-btn" title="Teach from my notes (PDF or photo)">📎<input type="file" id="classFile" accept="application/pdf,image/*" hidden></label>
         <button type="submit" class="send">Start class</button>
       </form>
+      <div class="file-chip lesson-chip" id="classLessonChip" hidden></div>
       <div class="file-chip" id="classFileChip" hidden></div>
       <div class="chips">
         <button class="chip" data-topic="Solve x^2 - 5x + 6 = 0 by factorisation">Quadratic equations</button>
@@ -175,11 +178,7 @@
         <div class="ctl-opts">
           <label class="toggle"><input type="checkbox" id="classVoice" checked> 🔊 Voice</label>
           <label class="toggle"><input type="checkbox" id="classAuto" checked> ⏩ Auto-advance</label>
-          <select id="classRate" aria-label="Speaking speed">
-            <option value="0.85">Slow</option>
-            <option value="1" selected>Normal</option>
-            <option value="1.15">Fast</option>
-          </select>
+          <button type="button" class="voice-btn small" data-open-voice>⚙️ Voice &amp; speed</button>
         </div>
       </div>
       <div class="progress"><div id="classProgress"></div></div>
@@ -240,6 +239,7 @@
         </form>
         <div class="composer-opts">
           <label class="toggle"><input type="checkbox" id="langSpeak" checked> 🔊 Speak replies</label>
+          <button type="button" class="voice-btn small" data-open-voice>⚙️ Voice</button>
           <label class="toggle"><input type="checkbox" id="langShowTr"> 🔤 Always show translation</label>
         </div>
       </div>
@@ -247,8 +247,60 @@
   </section>
 
   <p class="tutor-note">The AI tutor can make mistakes — check important answers with your notes or teacher.
-    Voice works best in Chrome. Want a human teacher? <a href="academy.html#classes">Book a class</a>.</p>
+    Voice works best in Chrome or Edge. Want a human teacher? <a href="academy.html#classes">Book a class</a>.<br>
+    📢 New lessons and GCE tips every week: <a href="https://whatsapp.com/channel/0029VbE2bN42f3ELs70szW0B" target="_blank" rel="noopener">join our WhatsApp Channel</a>.</p>
 </main>
+
+<!-- ============ VOICE SETTINGS ============ -->
+<dialog class="voice-dialog" id="voiceDialog" aria-labelledby="voiceDialogTitle">
+  <form method="dialog">
+    <div class="vd-head">
+      <h3 id="voiceDialogTitle">🔊 Tutor voice</h3>
+      <button class="vd-close" value="close" aria-label="Close">✕</button>
+    </div>
+
+    <p class="label">Voice type</p>
+    <div class="engine">
+      <label class="engine-opt">
+        <input type="radio" name="engine" value="ai">
+        <span><b>✨ Natural AI voice</b><small>Sounds most human · uses more mobile data · limited each day</small></span>
+      </label>
+      <label class="engine-opt">
+        <input type="radio" name="engine" value="device">
+        <span><b>📱 My phone's voice</b><small>Free &amp; unlimited · no extra data · quality depends on your phone</small></span>
+      </label>
+    </div>
+
+    <div id="vdAi">
+      <p class="label">Choose your teacher's voice</p>
+      <div class="voice-grid" id="aiVoiceGrid"></div>
+    </div>
+
+    <div id="vdDevice">
+      <p class="label">Choose a voice for each language <span class="muted-s">(⭐ = most natural)</span></p>
+      <div class="dev-voices">
+        <label>English<span class="row"><select id="devVoice-en"></select><button type="button" class="icon-btn" data-preview="en" aria-label="Listen to the English voice">▶</button></span></label>
+        <label>French<span class="row"><select id="devVoice-fr"></select><button type="button" class="icon-btn" data-preview="fr" aria-label="Listen to the French voice">▶</button></span></label>
+        <label>Spanish<span class="row"><select id="devVoice-es"></select><button type="button" class="icon-btn" data-preview="es" aria-label="Listen to the Spanish voice">▶</button></span></label>
+      </div>
+      <p class="hint">💡 Want better free voices? On a computer, open this page in <b>Microsoft Edge</b> (its “Natural” voices sound human). On Android: <b>Settings → Text-to-speech → Google</b>, then download the English and French voices.</p>
+    </div>
+
+    <div class="sliders">
+      <label>Speed <output id="rateOut"></output>
+        <input type="range" id="voiceRate" min="0.7" max="1.3" step="0.05">
+      </label>
+      <label id="pitchRow">Pitch <output id="pitchOut"></output>
+        <input type="range" id="voicePitch" min="0.7" max="1.3" step="0.05">
+      </label>
+    </div>
+
+    <div class="vd-foot">
+      <button type="button" class="link-btn" id="voiceTest">▶ Test the voice</button>
+      <button class="send" value="close">Done</button>
+    </div>
+  </form>
+</dialog>
 
 <footer>
   <p style="font-weight:700; color:var(--text-light); margin-bottom:6px;">AsghinLabs Academy</p>

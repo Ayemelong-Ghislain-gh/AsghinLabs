@@ -555,3 +555,34 @@ details.chapter[open] summary::after { transform: rotate(180deg); }
 /* code blocks inside lesson cards and activities */
 pre.code { background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 10px 12px; margin: 6px 0 12px;
            overflow-x: auto; font-family: ui-monospace, Consolas, monospace; font-size: 0.85rem; line-height: 1.55; color: var(--text-light); white-space: pre; }
+
+/* "Stuck? Ask the AI tutor" card and WhatsApp Channel button (lessons-common.js) */
+.tutor-help {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 20px;
+  border-color: rgba(255, 211, 107, 0.45);
+  background: linear-gradient(135deg, rgba(255, 211, 107, 0.08), rgba(0, 212, 255, 0.05));
+}
+.tutor-help .th-text { flex: 1 1 280px; }
+.tutor-help h3 { margin: 0 0 6px; }
+.tutor-help p { margin: 0; color: var(--text-muted); line-height: 1.55; }
+.tutor-help .th-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.channel-line { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 12px; margin: 0 0 14px; }
+.channel-line span { color: var(--text-muted); font-size: 0.85rem; }
+.channel-btn {
+  display: inline-block;
+  padding: 9px 16px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #052e16;
+  background: #25d366;
+}
+.channel-btn:hover { box-shadow: 0 0 18px rgba(37, 211, 102, 0.45); }
+@media (max-width: 600px) {
+  .tutor-help .th-actions, .tutor-help .th-actions .next-btn { width: 100%; text-align: center; }
+}
