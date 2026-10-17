@@ -1,0 +1,2599 @@
+[
+{
+"exam": "gce-ordinary-level",
+"year": 2020,
+"subject": "French",
+"papers": 2,
+"slug": "french"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2020,
+"subject": "English Language",
+"papers": 2,
+"slug": "english-language"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2020,
+"subject": "History",
+"papers": 2,
+"slug": "history"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2020,
+"subject": "Chemistry",
+"papers": 2,
+"slug": "chemistry"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2020,
+"subject": "Physics",
+"papers": 2,
+"slug": "physics"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2020,
+"subject": "Accounting",
+"papers": 2,
+"slug": "accounting"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2020,
+"subject": "Biology",
+"papers": 2,
+"slug": "biology"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2020,
+"subject": "Geography",
+"papers": 2,
+"slug": "geography"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2020,
+"subject": "Economics",
+"papers": 2,
+"slug": "economics"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2020,
+"subject": "Mathematics",
+"papers": 2,
+"slug": "mathematics"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2020,
+"subject": "Food and Nutrition",
+"papers": 3,
+"slug": "food-and-nutrition"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2020,
+"subject": "Commerce",
+"papers": 2,
+"slug": "commerce"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2020,
+"subject": "Logic",
+"papers": 2,
+"slug": "logic"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2020,
+"subject": "Human Biology",
+"papers": 2,
+"slug": "human-biology"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2020,
+"subject": "Literature in English",
+"papers": 2,
+"slug": "literature-in-english"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2020,
+"subject": "Computer Science",
+"papers": 5,
+"slug": "computer-science"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2020,
+"subject": "Geology",
+"papers": 1,
+"slug": "geology"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2020,
+"subject": "Citizenship Education",
+"papers": 2,
+"slug": "citizenship-education"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2021,
+"subject": "French",
+"papers": 2,
+"slug": "french"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2021,
+"subject": "English Language",
+"papers": 2,
+"slug": "english-language"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2021,
+"subject": "History",
+"papers": 2,
+"slug": "history"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2021,
+"subject": "Chemistry",
+"papers": 2,
+"slug": "chemistry"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2021,
+"subject": "Physics",
+"papers": 2,
+"slug": "physics"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2021,
+"subject": "Accounting",
+"papers": 2,
+"slug": "accounting"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2021,
+"subject": "Biology",
+"papers": 2,
+"slug": "biology"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2021,
+"subject": "Economics",
+"papers": 2,
+"slug": "economics"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2021,
+"subject": "Geography",
+"papers": 2,
+"slug": "geography"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2021,
+"subject": "Food and Nutrition",
+"papers": 3,
+"slug": "food-and-nutrition"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2021,
+"subject": "Mathematics",
+"papers": 2,
+"slug": "mathematics"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2021,
+"subject": "Commerce",
+"papers": 2,
+"slug": "commerce"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2021,
+"subject": "Human Biology",
+"papers": 2,
+"slug": "human-biology"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2021,
+"subject": "Logic",
+"papers": 2,
+"slug": "logic"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2021,
+"subject": "Literature in English",
+"papers": 2,
+"slug": "literature-in-english"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2021,
+"subject": "Computer Science",
+"papers": 5,
+"slug": "computer-science"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2021,
+"subject": "Citizenship Education",
+"papers": 2,
+"slug": "citizenship-education"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2021,
+"subject": "Geology",
+"papers": 2,
+"slug": "geology"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2022,
+"subject": "French",
+"papers": 2,
+"slug": "french"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2022,
+"subject": "English Language",
+"papers": 2,
+"slug": "english-language"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2022,
+"subject": "History",
+"papers": 2,
+"slug": "history"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2022,
+"subject": "Chemistry",
+"papers": 2,
+"slug": "chemistry"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2022,
+"subject": "Physics",
+"papers": 2,
+"slug": "physics"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2022,
+"subject": "Accounting",
+"papers": 2,
+"slug": "accounting"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2022,
+"subject": "Biology",
+"papers": 2,
+"slug": "biology"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2022,
+"subject": "Economics",
+"papers": 2,
+"slug": "economics"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2022,
+"subject": "Geography",
+"papers": 2,
+"slug": "geography"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2022,
+"subject": "Food and Nutrition",
+"papers": 3,
+"slug": "food-and-nutrition"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2022,
+"subject": "Mathematics",
+"papers": 3,
+"slug": "mathematics"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2022,
+"subject": "Commerce",
+"papers": 2,
+"slug": "commerce"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2022,
+"subject": "Human Biology",
+"papers": 2,
+"slug": "human-biology"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2022,
+"subject": "Logic",
+"papers": 2,
+"slug": "logic"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2022,
+"subject": "Literature in English",
+"papers": 2,
+"slug": "literature-in-english"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2022,
+"subject": "Computer Science",
+"papers": 6,
+"slug": "computer-science"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2022,
+"subject": "Citizenship Education",
+"papers": 2,
+"slug": "citizenship-education"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2022,
+"subject": "Geology",
+"papers": 2,
+"slug": "geology"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2023,
+"subject": "French",
+"papers": 2,
+"slug": "french"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2023,
+"subject": "English Language",
+"papers": 2,
+"slug": "english-language"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2023,
+"subject": "History",
+"papers": 2,
+"slug": "history"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2023,
+"subject": "Chemistry",
+"papers": 2,
+"slug": "chemistry"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2023,
+"subject": "Physics",
+"papers": 2,
+"slug": "physics"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2023,
+"subject": "Accounting",
+"papers": 2,
+"slug": "accounting"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2023,
+"subject": "Biology",
+"papers": 2,
+"slug": "biology"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2023,
+"subject": "Economics",
+"papers": 2,
+"slug": "economics"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2023,
+"subject": "Geography",
+"papers": 2,
+"slug": "geography"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2023,
+"subject": "Food and Nutrition",
+"papers": 3,
+"slug": "food-and-nutrition"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2023,
+"subject": "Mathematics",
+"papers": 2,
+"slug": "mathematics"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2023,
+"subject": "Commerce",
+"papers": 2,
+"slug": "commerce"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2023,
+"subject": "Human Biology",
+"papers": 2,
+"slug": "human-biology"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2023,
+"subject": "Logic",
+"papers": 2,
+"slug": "logic"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2023,
+"subject": "Literature in English",
+"papers": 2,
+"slug": "literature-in-english"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2023,
+"subject": "Computer Science",
+"papers": 16,
+"slug": "computer-science"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2023,
+"subject": "Geology",
+"papers": 2,
+"slug": "geology"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2023,
+"subject": "Citizenship Education",
+"papers": 2,
+"slug": "citizenship-education"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2024,
+"subject": "French",
+"papers": 2,
+"slug": "french"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2024,
+"subject": "English Language",
+"papers": 2,
+"slug": "english-language"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2024,
+"subject": "History",
+"papers": 2,
+"slug": "history"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2024,
+"subject": "Chemistry",
+"papers": 2,
+"slug": "chemistry"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2024,
+"subject": "Physics",
+"papers": 2,
+"slug": "physics"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2024,
+"subject": "Accounting",
+"papers": 2,
+"slug": "accounting"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2024,
+"subject": "Biology",
+"papers": 2,
+"slug": "biology"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2024,
+"subject": "ICT",
+"papers": 3,
+"slug": "ict"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2024,
+"subject": "Economics",
+"papers": 2,
+"slug": "economics"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2024,
+"subject": "Geography",
+"papers": 2,
+"slug": "geography"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2024,
+"subject": "Food and Nutrition",
+"papers": 3,
+"slug": "food-and-nutrition"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2024,
+"subject": "Mathematics",
+"papers": 2,
+"slug": "mathematics"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2024,
+"subject": "Commerce",
+"papers": 2,
+"slug": "commerce"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2024,
+"subject": "Human Biology",
+"papers": 2,
+"slug": "human-biology"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2024,
+"subject": "Logic",
+"papers": 2,
+"slug": "logic"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2024,
+"subject": "Literature in English",
+"papers": 2,
+"slug": "literature-in-english"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2024,
+"subject": "Computer Science",
+"papers": 15,
+"slug": "computer-science"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2024,
+"subject": "Geology",
+"papers": 2,
+"slug": "geology"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2024,
+"subject": "Citizenship Education",
+"papers": 2,
+"slug": "citizenship-education"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2025,
+"subject": "Biology",
+"papers": 6,
+"slug": "biology"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2025,
+"subject": "Food and Nutrition",
+"papers": 1,
+"slug": "food-and-nutrition"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2025,
+"subject": "Geology",
+"papers": 35,
+"slug": "geology"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2025,
+"subject": "Human Biology",
+"papers": 4,
+"slug": "human-biology"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2017,
+"subject": "Computer Science",
+"papers": 3,
+"slug": "computer-science"
+},
+{
+"exam": "gce-ordinary-level",
+"year": 2014,
+"subject": "Computer Science",
+"papers": 3,
+"slug": "computer-science"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2020,
+"subject": "French",
+"papers": 3,
+"slug": "french"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2020,
+"subject": "History",
+"papers": 3,
+"slug": "history"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2020,
+"subject": "Geography",
+"papers": 3,
+"slug": "geography"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2020,
+"subject": "Economics",
+"papers": 3,
+"slug": "economics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2020,
+"subject": "Philosophy",
+"papers": 3,
+"slug": "philosophy"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2020,
+"subject": "English Language",
+"papers": 2,
+"slug": "english-language"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2020,
+"subject": "Literature in English",
+"papers": 3,
+"slug": "literature-in-english"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2020,
+"subject": "Computer Science",
+"papers": 3,
+"slug": "computer-science"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2020,
+"subject": "ICT",
+"papers": 4,
+"slug": "ict"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2020,
+"subject": "Information and Communication Technology",
+"papers": 4,
+"slug": "information-and-communication-technology"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2020,
+"subject": "Physics",
+"papers": 6,
+"slug": "physics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2020,
+"subject": "Chemistry",
+"papers": 6,
+"slug": "chemistry"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2020,
+"subject": "Geology",
+"papers": 3,
+"slug": "geology"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2020,
+"subject": "Biology",
+"papers": 7,
+"slug": "biology"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2020,
+"subject": "Accounting",
+"papers": 3,
+"slug": "accounting"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2020,
+"subject": "Further Mathematics",
+"papers": 3,
+"slug": "further-mathematics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2020,
+"subject": "Mathematics with Mechanics",
+"papers": 3,
+"slug": "mathematics-with-mechanics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2020,
+"subject": "Pure Mathematics",
+"papers": 3,
+"slug": "pure-mathematics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2021,
+"subject": "French",
+"papers": 3,
+"slug": "french"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2021,
+"subject": "History",
+"papers": 3,
+"slug": "history"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2021,
+"subject": "Geography",
+"papers": 3,
+"slug": "geography"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2021,
+"subject": "Economics",
+"papers": 3,
+"slug": "economics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2021,
+"subject": "Philosophy",
+"papers": 3,
+"slug": "philosophy"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2021,
+"subject": "English Language",
+"papers": 2,
+"slug": "english-language"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2021,
+"subject": "Literature in English",
+"papers": 3,
+"slug": "literature-in-english"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2021,
+"subject": "Computer Science",
+"papers": 3,
+"slug": "computer-science"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2021,
+"subject": "ICT",
+"papers": 4,
+"slug": "ict"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2021,
+"subject": "Information and Communication Technology",
+"papers": 4,
+"slug": "information-and-communication-technology"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2021,
+"subject": "Physics",
+"papers": 5,
+"slug": "physics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2021,
+"subject": "Chemistry",
+"papers": 8,
+"slug": "chemistry"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2021,
+"subject": "Geology",
+"papers": 3,
+"slug": "geology"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2021,
+"subject": "Biology",
+"papers": 7,
+"slug": "biology"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2021,
+"subject": "Accounting",
+"papers": 3,
+"slug": "accounting"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2021,
+"subject": "Further Mathematics",
+"papers": 3,
+"slug": "further-mathematics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2021,
+"subject": "Mathematics with Mechanics",
+"papers": 3,
+"slug": "mathematics-with-mechanics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2021,
+"subject": "Pure Mathematics",
+"papers": 3,
+"slug": "pure-mathematics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2022,
+"subject": "French",
+"papers": 3,
+"slug": "french"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2022,
+"subject": "History",
+"papers": 3,
+"slug": "history"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2022,
+"subject": "Geography",
+"papers": 3,
+"slug": "geography"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2022,
+"subject": "Economics",
+"papers": 3,
+"slug": "economics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2022,
+"subject": "Philosophy",
+"papers": 3,
+"slug": "philosophy"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2022,
+"subject": "English Language",
+"papers": 2,
+"slug": "english-language"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2022,
+"subject": "Literature in English",
+"papers": 3,
+"slug": "literature-in-english"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2022,
+"subject": "Computer Science",
+"papers": 3,
+"slug": "computer-science"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2022,
+"subject": "ICT",
+"papers": 4,
+"slug": "ict"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2022,
+"subject": "Physics",
+"papers": 6,
+"slug": "physics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2022,
+"subject": "Chemistry",
+"papers": 7,
+"slug": "chemistry"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2022,
+"subject": "Geology",
+"papers": 3,
+"slug": "geology"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2022,
+"subject": "Biology",
+"papers": 7,
+"slug": "biology"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2022,
+"subject": "Accounting",
+"papers": 3,
+"slug": "accounting"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2022,
+"subject": "Further Mathematics",
+"papers": 3,
+"slug": "further-mathematics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2022,
+"subject": "Mathematics with Mechanics",
+"papers": 3,
+"slug": "mathematics-with-mechanics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2022,
+"subject": "Pure Mathematics",
+"papers": 3,
+"slug": "pure-mathematics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2023,
+"subject": "French",
+"papers": 3,
+"slug": "french"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2023,
+"subject": "History",
+"papers": 3,
+"slug": "history"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2023,
+"subject": "Geography",
+"papers": 3,
+"slug": "geography"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2023,
+"subject": "Economics",
+"papers": 3,
+"slug": "economics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2023,
+"subject": "Logic",
+"papers": 3,
+"slug": "logic"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2023,
+"subject": "English Language",
+"papers": 2,
+"slug": "english-language"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2023,
+"subject": "Literature in English",
+"papers": 3,
+"slug": "literature-in-english"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2023,
+"subject": "Computer Science",
+"papers": 4,
+"slug": "computer-science"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2023,
+"subject": "ICT",
+"papers": 7,
+"slug": "ict"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2023,
+"subject": "Physics",
+"papers": 7,
+"slug": "physics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2023,
+"subject": "Chemistry",
+"papers": 7,
+"slug": "chemistry"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2023,
+"subject": "Geology",
+"papers": 3,
+"slug": "geology"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2023,
+"subject": "Biology",
+"papers": 7,
+"slug": "biology"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2023,
+"subject": "Accounting",
+"papers": 3,
+"slug": "accounting"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2023,
+"subject": "Further Mathematics",
+"papers": 3,
+"slug": "further-mathematics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2023,
+"subject": "Mathematics with Mechanics",
+"papers": 2,
+"slug": "mathematics-with-mechanics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2023,
+"subject": "Pure Mathematics",
+"papers": 6,
+"slug": "pure-mathematics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2024,
+"subject": "French",
+"papers": 3,
+"slug": "french"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2024,
+"subject": "History",
+"papers": 3,
+"slug": "history"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2024,
+"subject": "Geography",
+"papers": 4,
+"slug": "geography"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2024,
+"subject": "Economics",
+"papers": 3,
+"slug": "economics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2024,
+"subject": "Philosophy",
+"papers": 3,
+"slug": "philosophy"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2024,
+"subject": "English Language",
+"papers": 2,
+"slug": "english-language"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2024,
+"subject": "Literature in English",
+"papers": 3,
+"slug": "literature-in-english"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2024,
+"subject": "Computer Science",
+"papers": 18,
+"slug": "computer-science"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2024,
+"subject": "ICT",
+"papers": 10,
+"slug": "ict"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2024,
+"subject": "Physics",
+"papers": 6,
+"slug": "physics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2024,
+"subject": "Chemistry",
+"papers": 7,
+"slug": "chemistry"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2024,
+"subject": "Geology",
+"papers": 3,
+"slug": "geology"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2024,
+"subject": "Biology",
+"papers": 2,
+"slug": "biology"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2024,
+"subject": "Accounting",
+"papers": 3,
+"slug": "accounting"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2024,
+"subject": "Further Mathematics",
+"papers": 3,
+"slug": "further-mathematics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2024,
+"subject": "Mathematics with Mechanics",
+"papers": 3,
+"slug": "mathematics-with-mechanics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2024,
+"subject": "Pure Mathematics",
+"papers": 6,
+"slug": "pure-mathematics"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2025,
+"subject": "Computer Science",
+"papers": 2,
+"slug": "computer-science"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2025,
+"subject": "ICT",
+"papers": 3,
+"slug": "ict"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2025,
+"subject": "Geology",
+"papers": 20,
+"slug": "geology"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2025,
+"subject": "Biology",
+"papers": 5,
+"slug": "biology"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2013,
+"subject": "Computer Science",
+"papers": 6,
+"slug": "computer-science"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2013,
+"subject": "ICT",
+"papers": 3,
+"slug": "ict"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2014,
+"subject": "Computer Science",
+"papers": 3,
+"slug": "computer-science"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2014,
+"subject": "ICT",
+"papers": 3,
+"slug": "ict"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2016,
+"subject": "Computer Science",
+"papers": 1,
+"slug": "computer-science"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2017,
+"subject": "Computer Science",
+"papers": 3,
+"slug": "computer-science"
+},
+{
+"exam": "gce-advanced-level",
+"year": 2017,
+"subject": "ICT",
+"papers": 2,
+"slug": "ict"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "Chinois",
+"papers": 1,
+"slug": "chinois"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "Physique-Chimie-Technologie",
+"papers": 1,
+"slug": "physique-chimie-technologie"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "Éducation physique et sportive",
+"papers": 1,
+"slug": "education-physique-et-sportive-1"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "SVTEEHB (Sciences de la vie et de la Terre)",
+"papers": 1,
+"slug": "sciences-de-la-vie-et-terre-education-a-lenvironnement-hygiene-et-biotechnologie"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "Grec ancien",
+"papers": 1,
+"slug": "grec-ancien"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "Espagnol",
+"papers": 1,
+"slug": "espagnol"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "Intensive English",
+"papers": 3,
+"slug": "intensive-english"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "Mathématiques",
+"papers": 1,
+"slug": "mathematiques"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "Informatique",
+"papers": 4,
+"slug": "informatique-2"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "Italien",
+"papers": 1,
+"slug": "italien"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "Allemand",
+"papers": 1,
+"slug": "allemand"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "Citizenship Education",
+"papers": 1,
+"slug": "citizenship-education"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "Géographie",
+"papers": 1,
+"slug": "geographie"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "Éducation à la citoyenneté",
+"papers": 2,
+"slug": "education-a-la-citoyennete"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "Anglais",
+"papers": 1,
+"slug": "anglais"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "Correction et révision de texte",
+"papers": 1,
+"slug": "correction-et-revision-de-texte"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "Musique",
+"papers": 1,
+"slug": "musique-1"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "Drawing",
+"papers": 1,
+"slug": "drawing"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "Langues et cultures nationales",
+"papers": 1,
+"slug": "langues-et-cultures-nationales-1"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "Dessin d'art",
+"papers": 1,
+"slug": "dessin-dart-4"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "Arabe",
+"papers": 1,
+"slug": "arabe"
+},
+{
+"exam": "bepc",
+"year": 2019,
+"subject": "Physical Education and Sports",
+"papers": 1,
+"slug": "physical-education-and-sports"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "Physique-Chimie-Technologie",
+"papers": 2,
+"slug": "physique-chimie-technologie"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "Éducation physique et sportive",
+"papers": 1,
+"slug": "education-physique-et-sportive-1"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "SVTEEHB (Sciences de la vie et de la Terre)",
+"papers": 2,
+"slug": "sciences-de-la-vie-et-terre-education-a-lenvironnement-hygiene-et-biotechnologie"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "Manual Labour",
+"papers": 1,
+"slug": "manual-labour"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "Grec ancien",
+"papers": 1,
+"slug": "grec-ancien"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "Espagnol",
+"papers": 1,
+"slug": "espagnol"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "Dessin d'art",
+"papers": 1,
+"slug": "dessin-dart-5"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "Intensive English",
+"papers": 3,
+"slug": "intensive-english"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "Mathématiques",
+"papers": 2,
+"slug": "mathematiques"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "Informatique",
+"papers": 4,
+"slug": "informatique-2"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "Italien",
+"papers": 1,
+"slug": "italien"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "Allemand",
+"papers": 1,
+"slug": "allemand"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "Citizenship Education",
+"papers": 1,
+"slug": "citizenship-education"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "Éducation à la citoyenneté",
+"papers": 2,
+"slug": "education-a-la-citoyennete"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "Anglais",
+"papers": 1,
+"slug": "anglais"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "Correction et révision de texte",
+"papers": 2,
+"slug": "correction-et-revision-de-texte"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "Musique",
+"papers": 1,
+"slug": "musique-1"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "Histoire",
+"papers": 2,
+"slug": "histoire"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "Chinese",
+"papers": 1,
+"slug": "chinese"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "Langues et cultures nationales",
+"papers": 1,
+"slug": "langues-et-cultures-nationales-1"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "Arabe",
+"papers": 1,
+"slug": "arabe"
+},
+{
+"exam": "bepc",
+"year": 2020,
+"subject": "Physical Education and Sports",
+"papers": 1,
+"slug": "physical-education-and-sports"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "Chinois",
+"papers": 1,
+"slug": "chinois"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "Physique-Chimie-Technologie",
+"papers": 2,
+"slug": "physique-chimie-technologie"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "SVTEEHB (Sciences de la vie et de la Terre)",
+"papers": 2,
+"slug": "sciences-de-la-vie-et-terre-education-a-lenvironnement-hygiene-et-biotechnologie"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "Manual Labour",
+"papers": 1,
+"slug": "manual-labour"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "Grec ancien",
+"papers": 3,
+"slug": "grec-ancien"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "Cultures nationales",
+"papers": 1,
+"slug": "cultures-nationales-1"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "Espagnol",
+"papers": 1,
+"slug": "espagnol"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "Intensive English",
+"papers": 2,
+"slug": "intensive-english"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "Mathématiques",
+"papers": 2,
+"slug": "mathematiques"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "Informatique",
+"papers": 3,
+"slug": "informatique-2"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "Italien",
+"papers": 1,
+"slug": "italien"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "Allemand",
+"papers": 1,
+"slug": "allemand"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "Citizenship Education",
+"papers": 1,
+"slug": "citizenship-education"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "Géographie",
+"papers": 2,
+"slug": "geographie"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "Éducation à la citoyenneté",
+"papers": 2,
+"slug": "education-a-la-citoyennete"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "Anglais",
+"papers": 2,
+"slug": "anglais"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "Correction et révision de texte",
+"papers": 3,
+"slug": "correction-et-revision-de-texte"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "Musique",
+"papers": 1,
+"slug": "musique-1"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "Chinese",
+"papers": 1,
+"slug": "chinese"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "Dessin",
+"papers": 1,
+"slug": "dessin"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "Arabe",
+"papers": 1,
+"slug": "arabe"
+},
+{
+"exam": "bepc",
+"year": 2021,
+"subject": "Physical Education and Sports",
+"papers": 1,
+"slug": "physical-education-and-sports"
+},
+{
+"exam": "bepc",
+"year": 2017,
+"subject": "Informatique",
+"papers": 1,
+"slug": "informatique-2"
+},
+{
+"exam": "bepc",
+"year": 2018,
+"subject": "Informatique",
+"papers": 1,
+"slug": "informatique-2"
+},
+{
+"exam": "bepc",
+"year": 2022,
+"subject": "Informatique",
+"papers": 3,
+"slug": "informatique-2"
+},
+{
+"exam": "bepc",
+"year": 2023,
+"subject": "Travaux pratiques",
+"papers": 1,
+"slug": "travaux-pratiques-1"
+},
+{
+"exam": "bepc",
+"year": 2023,
+"subject": "Informatique",
+"papers": 2,
+"slug": "informatique-2"
+},
+{
+"exam": "bepc",
+"year": 2023,
+"subject": "Travaux pratiques 1",
+"papers": 1,
+"slug": "travaux-pratiques-1-1"
+},
+{
+"exam": "tvee-al-commercial",
+"year": 2024,
+"subject": "Philosophy",
+"papers": 3,
+"slug": "philosophy"
+},
+{
+"exam": "tvee-al-commercial",
+"year": 2024,
+"subject": "Accounting",
+"papers": 3,
+"slug": "accounting"
+},
+{
+"exam": "tvee-al-commercial",
+"year": 2024,
+"subject": "Business Mathematics",
+"papers": 3,
+"slug": "business-mathematics-1"
+},
+{
+"exam": "tvee-al-commercial",
+"year": 2024,
+"subject": "Organisation du travail administratif",
+"papers": 2,
+"slug": "organisation-du-travail-administratif"
+},
+{
+"exam": "tvee-al-commercial",
+"year": 2024,
+"subject": "Marketing",
+"papers": 3,
+"slug": "marketing-1"
+},
+{
+"exam": "tvee-al-commercial",
+"year": 2024,
+"subject": "Information Processing",
+"papers": 2,
+"slug": "information-processing"
+},
+{
+"exam": "tvee-al-commercial",
+"year": 2024,
+"subject": "Law and Government",
+"papers": 3,
+"slug": "law-and-government"
+},
+{
+"exam": "tvee-al-commercial",
+"year": 2024,
+"subject": "Communication professionnelle",
+"papers": 2,
+"slug": "communication-professionnelle"
+},
+{
+"exam": "tvee-al-commercial",
+"year": 2024,
+"subject": "Digital Marketing Practice",
+"papers": 2,
+"slug": "digital-marketing-practice"
+},
+{
+"exam": "tvee-al-commercial",
+"year": 2024,
+"subject": "Commerce",
+"papers": 3,
+"slug": "commerce"
+},
+{
+"exam": "tvee-al-commercial",
+"year": 2024,
+"subject": "Entrepreneurship",
+"papers": 3,
+"slug": "entrepreneurship"
+},
+{
+"exam": "tvee-al-commercial",
+"year": 2024,
+"subject": "Family Life Education and Gerontology",
+"papers": 2,
+"slug": "family-life-education-and-gerontology"
+},
+{
+"exam": "tvee-al-commercial",
+"year": 2024,
+"subject": "Home Economics",
+"papers": 2,
+"slug": "home-economics-1"
+},
+{
+"exam": "tvee-al-commercial",
+"year": 2024,
+"subject": "OHADA Financial Accounting",
+"papers": 2,
+"slug": "ohada-financial-accounting"
+},
+{
+"exam": "tvee-al-commercial",
+"year": 2024,
+"subject": "Business Management",
+"papers": 3,
+"slug": "business-management"
+},
+{
+"exam": "tvee-al-commercial",
+"year": 2024,
+"subject": "Resource Management on Home Studies",
+"papers": 2,
+"slug": "resource-management-on-home-studies"
+},
+{
+"exam": "tvee-al-commercial",
+"year": 2024,
+"subject": "Marketing (2)",
+"papers": 3,
+"slug": "marketing"
+},
+{
+"exam": "tvee-al-industrial",
+"year": 2024,
+"subject": "Site Management",
+"papers": 2,
+"slug": "site-management"
+},
+{
+"exam": "tvee-al-industrial",
+"year": 2024,
+"subject": "Water Supply and Drainage Networks",
+"papers": 2,
+"slug": "water-supply-and-drainage-networks"
+},
+{
+"exam": "tvee-al-industrial",
+"year": 2024,
+"subject": "Applied Mechanics",
+"papers": 3,
+"slug": "applied-mechanics"
+},
+{
+"exam": "tvee-al-industrial",
+"year": 2024,
+"subject": "Construction Processes",
+"papers": 2,
+"slug": "construction-processes"
+},
+{
+"exam": "tvee-al-industrial",
+"year": 2024,
+"subject": "Plumbing Drawing",
+"papers": 3,
+"slug": "plumbing-drawing"
+},
+{
+"exam": "tvee-il-industrial",
+"year": 2024,
+"subject": "Electrical and Electronic Circuit",
+"papers": 3,
+"slug": "electrical-and-electronic-circuit"
+},
+{
+"exam": "tvee-il-industrial",
+"year": 2024,
+"subject": "Pattern Drafting",
+"papers": 3,
+"slug": "pattern-drafting"
+},
+{
+"exam": "tvee-il-commercial",
+"year": 2024,
+"subject": "Sales Methods and Communication",
+"papers": 2,
+"slug": "sales-methods-and-communication"
+},
+{
+"exam": "tvee-il-commercial",
+"year": 2024,
+"subject": "Information Processing",
+"papers": 3,
+"slug": "information-processing"
+},
+{
+"exam": "tvee-il-commercial",
+"year": 2024,
+"subject": "Law and Government",
+"papers": 2,
+"slug": "law-and-government"
+},
+{
+"exam": "tvee-il-commercial",
+"year": 2024,
+"subject": "Digital Marketing Practice",
+"papers": 4,
+"slug": "digital-marketing-practice"
+},
+{
+"exam": "tvee-il-commercial",
+"year": 2024,
+"subject": "Resource Management on Home Studies",
+"papers": 3,
+"slug": "resource-management-on-home-studies"
+},
+{
+"exam": "tvee-il-commercial",
+"year": 2024,
+"subject": "Entrepreneurship",
+"papers": 2,
+"slug": "entrepreneurship"
+},
+{
+"exam": "tvee-il-commercial",
+"year": 2024,
+"subject": "Family Life Education and Gerontology",
+"papers": 3,
+"slug": "family-life-education-and-gerontology"
+},
+{
+"exam": "tvee-il-commercial",
+"year": 2024,
+"subject": "Food Nutrition and Health",
+"papers": 3,
+"slug": "food-nutrition-and-health"
+},
+{
+"exam": "tvee-il-commercial",
+"year": 2024,
+"subject": "Product Mastery",
+"papers": 2,
+"slug": "product-mastery-1"
+},
+{
+"exam": "tvee-il-commercial",
+"year": 2024,
+"subject": "Office and Administrative Management",
+"papers": 3,
+"slug": "office-and-administrative-management"
+},
+{
+"exam": "tvee-il-commercial",
+"year": 2024,
+"subject": "Business Mathematics",
+"papers": 2,
+"slug": "business-mathematics-1"
+},
+{
+"exam": "tvee-il-commercial",
+"year": 2024,
+"subject": "Professional and Communication Techniques",
+"papers": 2,
+"slug": "professional-and-communication-techniques"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2017,
+"subject": "Maintenance, réseau et création de contenus numériques",
+"papers": 1,
+"slug": "maintenance-reseau-et-creation-de-contenus-numeriques"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2017,
+"subject": "Système d'information et base de données",
+"papers": 1,
+"slug": "systeme-dinformation-et-base-de-donnees"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2017,
+"subject": "Programmation",
+"papers": 1,
+"slug": "programmation"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2017,
+"subject": "Informatique",
+"papers": 1,
+"slug": "informatique-2"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2018,
+"subject": "Système d'information et gestion",
+"papers": 1,
+"slug": "systeme-dinformation-et-gestion"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2018,
+"subject": "Travaux pratiques 1",
+"papers": 1,
+"slug": "travaux-pratiques-1-1"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2018,
+"subject": "Économie d'entreprise",
+"papers": 1,
+"slug": "economie-dentreprise-1"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2018,
+"subject": "Travaux pratiques 2",
+"papers": 1,
+"slug": "travaux-pratiques-2"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2018,
+"subject": "Informatique",
+"papers": 1,
+"slug": "informatique-2"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2019,
+"subject": "Maintenance, réseau et création de contenus numériques",
+"papers": 1,
+"slug": "maintenance-reseau-et-creation-de-contenus-numeriques"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2022,
+"subject": "Maintenance, réseau et création de contenus numériques",
+"papers": 1,
+"slug": "maintenance-reseau-et-creation-de-contenus-numeriques"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2022,
+"subject": "Algorithmique et programmation",
+"papers": 2,
+"slug": "algorithmique-et-programmation"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2022,
+"subject": "Système d'information et base de données",
+"papers": 2,
+"slug": "systeme-dinformation-et-base-de-donnees"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2022,
+"subject": "Travaux pratiques 2",
+"papers": 1,
+"slug": "travaux-pratiques-2"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2022,
+"subject": "Informatique",
+"papers": 2,
+"slug": "informatique-2"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2022,
+"subject": "Travaux pratiques",
+"papers": 1,
+"slug": "travaux-pratiques-1"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2023,
+"subject": "Maintenance, réseau et création de contenus numériques",
+"papers": 2,
+"slug": "maintenance-reseau-et-creation-de-contenus-numeriques"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2023,
+"subject": "Algorithmique et programmation",
+"papers": 1,
+"slug": "algorithmique-et-programmation"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2023,
+"subject": "Système d'information et base de données",
+"papers": 1,
+"slug": "systeme-dinformation-et-base-de-donnees"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2023,
+"subject": "Informatique",
+"papers": 2,
+"slug": "informatique-2"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2023,
+"subject": "Travaux pratiques",
+"papers": 2,
+"slug": "travaux-pratiques-1"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2024,
+"subject": "Maintenance, réseau et création de contenus numériques",
+"papers": 1,
+"slug": "maintenance-reseau-et-creation-de-contenus-numeriques"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2024,
+"subject": "Algorithmique et programmation",
+"papers": 1,
+"slug": "algorithmique-et-programmation"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2024,
+"subject": "Système d'information et base de données",
+"papers": 1,
+"slug": "systeme-dinformation-et-base-de-donnees"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2024,
+"subject": "Travaux pratiques",
+"papers": 2,
+"slug": "travaux-pratiques-1"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2024,
+"subject": "Informatique",
+"papers": 2,
+"slug": "informatique-2"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2025,
+"subject": "Maintenance, réseau et création de contenus numériques",
+"papers": 1,
+"slug": "maintenance-reseau-et-creation-de-contenus-numeriques"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2025,
+"subject": "Algorithmique et programmation",
+"papers": 1,
+"slug": "algorithmique-et-programmation"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2025,
+"subject": "Système d'information et base de données",
+"papers": 1,
+"slug": "systeme-dinformation-et-base-de-donnees"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2025,
+"subject": "Travaux pratiques",
+"papers": 1,
+"slug": "travaux-pratiques-1"
+},
+{
+"exam": "probatoire-examen-blanc",
+"year": 2025,
+"subject": "Informatique",
+"papers": 2,
+"slug": "informatique-2"
+},
+{
+"exam": "capiemp",
+"year": 2025,
+"subject": "Information and Communication Technology",
+"papers": 1,
+"slug": "information-and-communication-technology"
+},
+{
+"exam": "capiemp",
+"year": 2025,
+"subject": "ICT",
+"papers": 1,
+"slug": "ict"
+},
+{
+"exam": "baccalaureat-blanc",
+"year": 2017,
+"subject": "Informatique",
+"papers": 1,
+"slug": "informatique-2"
+},
+{
+"exam": "baccalaureat-blanc",
+"year": 2017,
+"subject": "Système d'information et base de données",
+"papers": 1,
+"slug": "systeme-dinformation-et-base-de-donnees"
+},
+{
+"exam": "baccalaureat-blanc",
+"year": 2017,
+"subject": "Économie d'entreprise",
+"papers": 2,
+"slug": "economie-dentreprise-1"
+},
+{
+"exam": "baccalaureat-blanc",
+"year": 2018,
+"subject": "Économie d'entreprise",
+"papers": 1,
+"slug": "economie-dentreprise-1"
+},
+{
+"exam": "baccalaureat-blanc",
+"year": 2018,
+"subject": "Système d'information et base de données",
+"papers": 2,
+"slug": "systeme-dinformation-et-base-de-donnees"
+},
+{
+"exam": "baccalaureat-blanc",
+"year": 2022,
+"subject": "Système d'information et base de données",
+"papers": 3,
+"slug": "systeme-dinformation-et-base-de-donnees"
+},
+{
+"exam": "baccalaureat-blanc",
+"year": 2022,
+"subject": "Programmation",
+"papers": 1,
+"slug": "programmation"
+},
+{
+"exam": "baccalaureat-blanc",
+"year": 2022,
+"subject": "Informatique",
+"papers": 3,
+"slug": "informatique-2"
+},
+{
+"exam": "baccalaureat-blanc",
+"year": 2022,
+"subject": "Réseaux, Internet et sécurité informatique",
+"papers": 1,
+"slug": "reseaux-internet-et-securite-informatique"
+},
+{
+"exam": "baccalaureat-blanc",
+"year": 2023,
+"subject": "Programmation",
+"papers": 1,
+"slug": "programmation"
+},
+{
+"exam": "baccalaureat-blanc",
+"year": 2023,
+"subject": "Informatique",
+"papers": 1,
+"slug": "informatique-2"
+},
+{
+"exam": "baccalaureat-blanc",
+"year": 2023,
+"subject": "Réseaux, Internet et sécurité informatique",
+"papers": 1,
+"slug": "reseaux-internet-et-securite-informatique"
+},
+{
+"exam": "baccalaureat-blanc",
+"year": 2024,
+"subject": "Système d'information et gestion",
+"papers": 1,
+"slug": "systeme-dinformation-et-gestion"
+},
+{
+"exam": "baccalaureat-blanc",
+"year": 2024,
+"subject": "Programmation",
+"papers": 1,
+"slug": "programmation"
+},
+{
+"exam": "baccalaureat-blanc",
+"year": 2024,
+"subject": "Informatique",
+"papers": 3,
+"slug": "informatique-2"
+},
+{
+"exam": "baccalaureat-blanc",
+"year": 2024,
+"subject": "Réseaux, Internet et sécurité informatique",
+"papers": 1,
+"slug": "reseaux-internet-et-securite-informatique"
+},
+{
+"exam": "baccalaureat-blanc",
+"year": 2025,
+"subject": "Système d'information et base de données",
+"papers": 1,
+"slug": "systeme-dinformation-et-base-de-donnees"
+},
+{
+"exam": "baccalaureat-blanc",
+"year": 2025,
+"subject": "Programmation",
+"papers": 1,
+"slug": "programmation"
+},
+{
+"exam": "baccalaureat-blanc",
+"year": 2025,
+"subject": "Informatique",
+"papers": 2,
+"slug": "informatique-2"
+},
+{
+"exam": "baccalaureat-blanc",
+"year": 2025,
+"subject": "Réseaux, Internet et sécurité informatique",
+"papers": 1,
+"slug": "reseaux-internet-et-securite-informatique"
+},
+{
+"exam": "bepc-blanc",
+"year": 2018,
+"subject": "Travaux pratiques 2",
+"papers": 1,
+"slug": "travaux-pratiques-2"
+},
+{
+"exam": "bepc-blanc",
+"year": 2018,
+"subject": "Informatique",
+"papers": 2,
+"slug": "informatique-2"
+},
+{
+"exam": "bepc-blanc",
+"year": 2022,
+"subject": "Travaux pratiques 2",
+"papers": 1,
+"slug": "travaux-pratiques-2"
+},
+{
+"exam": "bepc-blanc",
+"year": 2022,
+"subject": "Informatique",
+"papers": 1,
+"slug": "informatique-2"
+},
+{
+"exam": "bepc-blanc",
+"year": 2022,
+"subject": "Travaux pratiques 1",
+"papers": 1,
+"slug": "travaux-pratiques-1-1"
+},
+{
+"exam": "bepc-blanc",
+"year": 2023,
+"subject": "Travaux pratiques 2",
+"papers": 1,
+"slug": "travaux-pratiques-2"
+},
+{
+"exam": "bepc-blanc",
+"year": 2023,
+"subject": "Informatique",
+"papers": 1,
+"slug": "informatique-2"
+},
+{
+"exam": "bepc-blanc",
+"year": 2023,
+"subject": "Travaux pratiques 1",
+"papers": 1,
+"slug": "travaux-pratiques-1-1"
+},
+{
+"exam": "bepc-blanc",
+"year": 2024,
+"subject": "Informatique",
+"papers": 1,
+"slug": "informatique-2"
+},
+{
+"exam": "bepc-blanc",
+"year": 2024,
+"subject": "Travaux pratiques",
+"papers": 2,
+"slug": "travaux-pratiques-1"
+},
+{
+"exam": "bepc-blanc",
+"year": 2025,
+"subject": "Informatique",
+"papers": 1,
+"slug": "informatique-2"
+},
+{
+"exam": "bepc-blanc",
+"year": 2025,
+"subject": "Travaux pratiques",
+"papers": 2,
+"slug": "travaux-pratiques-1"
+},
+{
+"exam": "mock-o-level-technical",
+"year": 2025,
+"subject": "Computer Science",
+"papers": 3,
+"slug": "computer-science"
+},
+{
+"exam": "mock-o-level-technical",
+"year": 2025,
+"subject": "ICT",
+"papers": 3,
+"slug": "ict"
+},
+{
+"exam": "mock-a-level-technical",
+"year": 2025,
+"subject": "Computer Science",
+"papers": 3,
+"slug": "computer-science"
+}
+]

@@ -104,7 +104,7 @@
     const el = document.getElementById(containerId);
     if (!el || !list || !list.length) return;
     el.innerHTML = `<div class="official-grid">${list.map(o => `
-      <a class="official-card" href="${esc(o.url)}" target="_blank" rel="noopener">
+      <a class="official-card" href="${esc(o.url)}"${/^https?:/.test(o.url) ? ' target="_blank" rel="noopener"' : ''}>
         <span class="oc-kind">${esc(o.kind || '')}</span>
         <strong>${esc(o.title)}</strong>
         <span class="oc-desc">${esc(o.desc || '')}</span>

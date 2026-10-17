@@ -154,6 +154,14 @@ lessons under `/lecons/<classe>/<matière>/…`. The English pages are not touch
 The subsystem chooser (`academy-subsystem.js` + `style-subsystem.css`) is on academy.html, academie.html,
 lessons.html and lecons.html: each `<body>` says `data-subsystem="en|fr"` and `data-subsystem-other="/…"`.
 
+## Past papers and skills pages
+
+`build/build_academy_pages.py` (run by `build.py`) makes `/past-papers` and `/epreuves` from
+`data/minesec-papers.json` (one row per exam, year and subject: `exam`, `year`, `subject`, `papers`, `slug`;
+each opens `https://minesec-distance.schoolfaqs.net/revision/<exam>/<year>/<slug>`), and the skills pages
+`/skills` and `/formations` (course texts are in the same file, in English and French).
+When MINESEC adds a year, add its rows to the JSON and rebuild.
+
 ## Add a practice (step-by-step) lesson
 
 1. Write `practice/<name>.js` (copy an existing one — they use `runWalkthrough()` for the

@@ -39,10 +39,11 @@ const ACADEMY_WORKBOOKS = [];
 const MINESEC_PAPERS = "https://minesec-distance.schoolfaqs.net/revision";
 const ACADEMY_OFFICIAL = {
   papers: [
-    { kind: "Premier cycle · 3e", title: "Épreuves du BEPC", desc: "Sujets officiels par année, toutes matières.", url: `${MINESEC_PAPERS}/bepc`, cta: "Voir les épreuves ↗" },
-    { kind: "Premier cycle · 3e", title: "BEPC blanc", desc: "Épreuves d'entraînement pour se préparer à l'examen.", url: `${MINESEC_PAPERS}/bepc-blanc`, cta: "Voir les épreuves ↗" },
-    { kind: "Second cycle · Première", title: "Probatoire — examens blancs", desc: "Épreuves blanches pour réviser le Probatoire.", url: `${MINESEC_PAPERS}/probatoire-examen-blanc`, cta: "Voir les épreuves ↗" },
-    { kind: "Second cycle · Terminale", title: "Baccalauréat — examens blancs", desc: "Épreuves blanches pour réviser le Bac.", url: `${MINESEC_PAPERS}/baccalaureat-blanc`, cta: "Voir les épreuves ↗" },
+    // Ces cartes ouvrent notre propre bibliothèque (/epreuves), classée par année et par matière.
+    { kind: "Premier cycle · 3e", title: "Épreuves du BEPC", desc: "105 épreuves officielles, 2017–2023, toutes matières.", url: "/epreuves#bepc", cta: "Voir les épreuves →" },
+    { kind: "Premier cycle · 3e", title: "BEPC blanc", desc: "15 épreuves d'entraînement, 2018–2025.", url: "/epreuves#bepc-blanc", cta: "Voir les épreuves →" },
+    { kind: "Second cycle · Première", title: "Probatoire · examens blancs", desc: "40 épreuves blanches, 2017–2025.", url: "/epreuves#probatoire-examen-blanc", cta: "Voir les épreuves →" },
+    { kind: "Second cycle · Terminale", title: "Baccalauréat · examens blancs", desc: "29 épreuves blanches, 2017–2025.", url: "/epreuves#baccalaureat-blanc", cta: "Voir les épreuves →" },
   ],
   progressions: [
     { kind: "MINESEC · 2026-27", title: "Progressions officielles", desc: "Choisissez « Sous-système francophone », puis votre classe et votre matière, pour voir les leçons de l'année trimestre par trimestre.", url: "https://minesec-ige.com/progression-sheets", cta: "Trouver ma progression ↗" },

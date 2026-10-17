@@ -412,6 +412,8 @@ def main():
     urls = sorted({r['url'] for r in recs if r['url']})
     import build_fr                      # sous-système francophone: /lecons/… and lecons.html
     build_sitemap(urls + build_fr.main())
+    import build_academy_pages           # /past-papers, /epreuves, /skills, /formations
+    build_academy_pages.main()
     build_redirects()
     act = sum(r['kind'] == 'activities' for r in recs)
     print(f'Built {act} activity lessons + {len(PRACTICE_PAGES)} practice lessons · '

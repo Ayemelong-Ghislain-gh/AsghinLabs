@@ -46,7 +46,7 @@ def wa(text):
 
 
 NAV = '''<ul class="nav-links" id="navLinks">
-    <li><a href="/academie#epreuves">Épreuves</a></li>
+    <li><a href="/epreuves">Épreuves</a></li>
     <li><a href="/lecons">Leçons interactives</a></li>
     <li><a href="/academie#cahiers">Cahiers</a></li>
     <li><a href="/academie#cours">Cours</a></li>

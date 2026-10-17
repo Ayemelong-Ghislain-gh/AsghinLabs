@@ -85,10 +85,11 @@ const ACADEMY_WORKBOOKS = [
 const MINESEC_PAPERS = "https://minesec-distance.schoolfaqs.net/revision";
 const ACADEMY_OFFICIAL = {
   papers: [
-    { kind: "GCE · Form 5", title: "GCE O Level past papers", desc: "Official papers by year, all subjects.", url: `${MINESEC_PAPERS}/gce-ordinary-level`, cta: "Open the papers ↗" },
-    { kind: "GCE · Upper Sixth", title: "GCE A Level past papers", desc: "Official papers by year, all subjects.", url: `${MINESEC_PAPERS}/gce-advanced-level`, cta: "Open the papers ↗" },
-    { kind: "Technical · Intermediate", title: "TVEE Intermediate Level", desc: "Commercial and industrial papers.", url: `${MINESEC_PAPERS}/tvee-il-commercial`, cta: "Open the papers ↗" },
-    { kind: "Technical · Advanced", title: "TVEE Advanced Level", desc: "Commercial and industrial papers.", url: `${MINESEC_PAPERS}/tvee-al-commercial`, cta: "Open the papers ↗" },
+    // These open our own library page (/past-papers), which lists every paper by year and subject.
+    { kind: "GCE · Form 5", title: "GCE O Level past papers", desc: "277 official papers, 2014–2025, all subjects.", url: "/past-papers#gce-ordinary-level", cta: "See the papers →" },
+    { kind: "GCE · Upper Sixth", title: "GCE A Level past papers", desc: "395 official papers, 2013–2025, all subjects.", url: "/past-papers#gce-advanced-level", cta: "See the papers →" },
+    { kind: "Technical · Intermediate", title: "TVEE Intermediate Level", desc: "Commercial, industrial and mock papers.", url: "/past-papers#tvee-il-commercial", cta: "See the papers →" },
+    { kind: "Technical · Advanced", title: "TVEE Advanced Level", desc: "Commercial, industrial and mock papers.", url: "/past-papers#tvee-al-commercial", cta: "See the papers →" },
   ],
   progressions: [
     { kind: "MINESEC · 2026-27", title: "Official progression sheets", desc: "Choose “English Sub System”, then your class and subject, to see the lessons of the year term by term.", url: "https://minesec-ige.com/progression-sheets", cta: "Find my progression ↗" },

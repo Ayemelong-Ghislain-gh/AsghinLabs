@@ -44,6 +44,30 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.asghinlabs.com/past-papers</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/epreuves</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/skills</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.asghinlabs.com/formations</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.asghinlabs.com/founder</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>

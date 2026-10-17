@@ -109,6 +109,7 @@
 
       <p class="ss-note"><span lang="en">You can switch at any time from the menu.</span> ·
         <span lang="fr">Vous pouvez changer à tout moment depuis le menu.</span></p>
+      <p class="ss-skills"><a href="/skills" lang="en">Not in school? Skills courses →</a><span aria-hidden="true"> · </span><a href="/formations" lang="fr">Pas à l'école ? Formations →</a></p>
     </div>`;
   body.appendChild(dlg);
   body.classList.add('ss-open');
