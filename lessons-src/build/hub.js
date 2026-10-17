@@ -3,18 +3,20 @@
   const buttons = document.querySelectorAll('#hubClasses .hub-filter');
   const sections = document.querySelectorAll('.hub-subject');
   const hasLessons = (s) => !!s.querySelector('.lrow:not(.soon)');
+  const anyReady = [...sections].some(hasLessons);   // no lesson ready yet: "All" shows every class
+  const KEY = document.documentElement.lang === 'fr' ? 'lessonClass-fr' : 'lessonClass';
   function show(c) {
     if (![...buttons].some(b => b.dataset.class === c)) c = 'all';
     buttons.forEach(b => { const on = b.dataset.class === c; b.classList.toggle('active', on); b.setAttribute('aria-selected', on); });
-    sections.forEach(s => { s.hidden = c === 'all' ? !hasLessons(s) : s.dataset.class !== c; });
-    try { localStorage.setItem('lessonClass', c); } catch (e) {}
+    sections.forEach(s => { s.hidden = c === 'all' ? anyReady && !hasLessons(s) : s.dataset.class !== c; });
+    try { localStorage.setItem(KEY, c); } catch (e) {}
   }
   buttons.forEach(btn => btn.addEventListener('click', () => {
     show(btn.dataset.class);
     history.replaceState(null, '', btn.dataset.class === 'all' ? location.pathname : '#' + btn.dataset.class);
   }));
   let start = location.hash.slice(1);
-  if (!start) { try { start = localStorage.getItem('lessonClass') || 'all'; } catch (e) { start = 'all'; } }
+  if (!start) { try { start = localStorage.getItem(KEY) || 'all'; } catch (e) { start = 'all'; } }
   show(start);
 
   // Remember which chapters a student opened

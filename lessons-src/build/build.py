@@ -372,7 +372,7 @@ def build_hub(recs):
 def build_sitemap(urls):
     p = ROOT / 'sitemap.xml'
     s = p.read_text(encoding='utf-8')
-    s = re.sub(r'\s*<url>\s*<loc>https://www\.asghinlabs\.com/(lesson-|lessons/)[^<]*</loc>.*?</url>', '', s, flags=re.S)
+    s = re.sub(r'\s*<url>\s*<loc>https://www\.asghinlabs\.com/(lesson-|lessons/|lecons/)[^<]*</loc>.*?</url>', '', s, flags=re.S)
     add = ''.join(f'  <url>\n    <loc>{SITE + u}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>\n' for u in urls)
     s = s.replace('</urlset>', add + '</urlset>')
     p.write_text(s, encoding='utf-8')
@@ -410,7 +410,8 @@ def main():
                     build_activity(r, seq[k - 1] if k else None, seq[k + 1] if k + 1 < len(seq) else None)
     build_hub(recs)
     urls = sorted({r['url'] for r in recs if r['url']})
-    build_sitemap(urls)
+    import build_fr                      # sous-système francophone: /lecons/… and lecons.html
+    build_sitemap(urls + build_fr.main())
     build_redirects()
     act = sum(r['kind'] == 'activities' for r in recs)
     print(f'Built {act} activity lessons + {len(PRACTICE_PAGES)} practice lessons · '

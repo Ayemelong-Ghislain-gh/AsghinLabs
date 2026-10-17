@@ -137,6 +137,23 @@ Pictures are small inline SVGs; see `box()`, `arrow()`, `marker()`, `flow()` in 
 
 ---
 
+## Sous-système francophone (/lecons)
+
+`build.py` also runs `build/build_fr.py`, which makes the French hub `lecons.html` and the French
+lessons under `/lecons/<classe>/<matière>/…`. The English pages are not touched by it.
+
+- Classes: 6e, 5e, 4e, 3e, Seconde, Première, Terminale (folders `6e … 3e`, `seconde`, `premiere`, `terminale`).
+- Subjects: Informatique (`informatique`), Mathématiques (`mathematiques`).
+- Progressions: `data/progressions-fr.json`, same shape as `progressions.json`
+  (`[{"class": "3e", "subject": "Informatique", "chapters": [...]}]`). Empty list = every class shows "bientôt".
+- Content: `content/<code>_<info|maths>.py`, same `LESSONS = {n: {...}}` format as the English files.
+  Codes: `fr6 fr5 fr4 fr3 fr2nd fr1re frtle` (e.g. `content/fr3_info.py`). Write cards and activities in French.
+- The shared scripts (`lessons-common.js`, `lessons-activities.js`) switch their buttons and messages
+  to French when the page has `<html lang="fr">`, through `_t('English', 'Français')`.
+
+The subsystem chooser (`academy-subsystem.js` + `style-subsystem.css`) is on academy.html, academie.html,
+lessons.html and lecons.html: each `<body>` says `data-subsystem="en|fr"` and `data-subsystem-other="/…"`.
+
 ## Add a practice (step-by-step) lesson
 
 1. Write `practice/<name>.js` (copy an existing one — they use `runWalkthrough()` for the

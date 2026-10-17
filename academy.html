@@ -341,6 +341,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style-main.css">
   <link rel="stylesheet" href="style-academy.css">
+  <link rel="stylesheet" href="style-subsystem.css">
+  <link rel="alternate" hreflang="en" href="https://www.asghinlabs.com/academy">
+  <link rel="alternate" hreflang="fr" href="https://www.asghinlabs.com/academie">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK679H74R1"></script>
@@ -351,7 +354,7 @@
       gtag('config', 'G-FK679H74R1');
   </script>
 </head>
-<body class="academy-page">
+<body class="academy-page" data-subsystem="en" data-subsystem-other="/academie" data-subsystem-ask>
 
 <nav>
   <a class="logo" href="academy.html">
@@ -472,8 +475,17 @@
 <!-- GCE PAST QUESTIONS -->
 <section id="past-questions" class="compact">
   <h2 style="text-align:center;">📝 GCE Past Questions</h2>
-  <div class="section-sub" style="text-align:center;">Practice papers for O Level &amp; A Level candidates</div>
+  <div class="section-sub" style="text-align:center;">Official GCE and TVEE papers, plus our own practice papers with answers</div>
+
+  <div id="officialPapers"></div>
+  <p class="official-note">These papers are published by the Ministry of Secondary Education (MINESEC) on its distance-learning platform and open on their official site.</p>
+
+  <h3 class="official-subhead">✍️ AsghinLabs practice papers</h3>
   <div id="pastQuestionsGallery"></div>
+
+  <h3 class="official-subhead">🗓️ What your class should study this year</h3>
+  <div id="officialProgressions"></div>
+  <p class="official-note">Our interactive lessons follow these harmonised progression sheets: each lesson keeps the same title and number as your scheme of work.</p>
 </section>
 
 <!-- CLASSES & TUTORING (merged: GCE programs + tutoring + apply form) -->
@@ -629,7 +641,7 @@
   <p style="margin-bottom:6px;">Part of <a href="/">AsghinLabs</a> — Web • Software • AI • Automation • Training</p>
   <p style="margin-bottom:18px;">📍 Douala, Cameroon · 📞 <a href="tel:+237682402876">+237 682 402 876</a> · 📧 <a href="mailto:asghinlabs@gmail.com">asghinlabs@gmail.com</a></p>
   <div class="footer-links" role="navigation" aria-label="Footer">
-    <a href="/">Home</a> · <a href="/#services">Web &amp; Software</a> · <a href="academy.html">Academy</a> · <a href="academy.html#workbooks">Workbooks</a> · <a href="academy.html#resources">Free Notes</a> · <a href="portfolio.html">Portfolio</a> · <a href="founder.html">Founder</a>
+    <a href="/">Home</a> · <a href="/#services">Web &amp; Software</a> · <a href="academy.html">Academy</a> · <a href="academy.html#workbooks">Workbooks</a> · <a href="academy.html#resources">Free Notes</a> · <a href="academie.html" data-choose="fr" lang="fr">Académie (sous-système francophone)</a> · <a href="portfolio.html">Portfolio</a> · <a href="founder.html">Founder</a>
   </div>
   <p class="footer-fr">Développement web, logiciels et automatisation IA à Douala, Cameroun · Cours d'informatique et fascicules GCE.</p>
 
@@ -643,5 +655,6 @@
 <script src="academy.js"></script>
 <script src="academy-shop.js"></script>
 <script src="academy-apply.js"></script>
+<script src="academy-subsystem.js"></script>
 </body>
 </html>

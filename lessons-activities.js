@@ -29,11 +29,13 @@ function runActivities(container, acts, opts) {
   const bar = container.querySelector('.act-bar i'), barTxt = container.querySelector('.act-progress span');
   const progress = () => {
     bar.style.width = (finished / acts.length * 100) + '%';
-    barTxt.textContent = `${finished} of ${acts.length} done`;
+    barTxt.textContent = _t(`${finished} of ${acts.length} done`, `${finished} sur ${acts.length} terminée(s)`);
   };
   progress();
 
-  const TITLES = { mcq: 'Choose the right answer', tf: 'True or false?', sort: 'Sort into groups', match: 'Match the pairs', order: 'Put in order', label: 'Label the picture', fill: 'Fill in the blanks' };
+  const TITLES = LFR
+    ? { mcq: 'Choisissez la bonne réponse', tf: 'Vrai ou faux ?', sort: 'Classez dans les groupes', match: 'Reliez les paires', order: 'Remettez dans l\'ordre', label: 'Légendez l\'image', fill: 'Complétez les trous' }
+    : { mcq: 'Choose the right answer', tf: 'True or false?', sort: 'Sort into groups', match: 'Match the pairs', order: 'Put in order', label: 'Label the picture', fill: 'Fill in the blanks' };
 
   function show(i) {
     if (i >= acts.length) return end();
@@ -43,7 +45,7 @@ function runActivities(container, acts, opts) {
     box.innerHTML = `<div class="act-head"><span class="act-num">${i + 1}/${acts.length}</span><span class="act-type">${A.title || TITLES[A.type]}</span></div>` +
       (A.visual ? `<div class="act-visual">${A.visual}</div>` : '') +
       `<p class="act-q">${A.q}</p><div class="act-body"></div>` +
-      `<div class="act-actions"><button type="button" class="lesson-btn primary a-check">Check</button><button type="button" class="lesson-btn a-show" hidden>Show me</button></div>` +
+      `<div class="act-actions"><button type="button" class="lesson-btn primary a-check">${_t('Check', 'Vérifier')}</button><button type="button" class="lesson-btn a-show" hidden>${_t('Show me', 'Montrer')}</button></div>` +
       '<div class="act-msg" aria-live="polite"></div>';
     list.appendChild(box);
     const body = box.querySelector('.act-body'), msg = box.querySelector('.act-msg');
@@ -57,18 +59,18 @@ function runActivities(container, acts, opts) {
       api.lock();
       box.querySelector('.act-actions').remove();
       msg.className = 'act-msg ' + (revealed ? 'shown' : 'ok');
-      msg.innerHTML = (revealed ? '👀 ' : (tries === 1 ? '✅ Correct! ' : '✅ Well done. ')) + (A.why || '');
+      msg.innerHTML = (revealed ? '👀 ' : (tries === 1 ? _t('✅ Correct! ', '✅ Juste ! ') : _t('✅ Well done. ', '✅ Bien joué. '))) + (A.why || '');
       if (typeof trackLesson === 'function') trackLesson(opts.slug || 'lesson', revealed ? 'activity_revealed' : 'activity_correct');
       show(i + 1);
     }
     box.querySelector('.a-check').addEventListener('click', () => {
       const r = api.check();
-      if (r === null) { msg.className = 'act-msg bad'; msg.textContent = 'Answer every part first.'; return; }
+      if (r === null) { msg.className = 'act-msg bad'; msg.textContent = _t('Answer every part first.', 'Répondez d\'abord à toutes les parties.'); return; }
       tries++;
       if (r.ok) return done(false);
       msg.className = 'act-msg bad';
-      msg.innerHTML = '❌ ' + (r.text || 'Not yet.') + (A.hint ? `<br><span class="g-hint">💡 ${A.hint}</span>` : '') +
-        '<br><span class="g-hint">Change what is in red and press Check again' + (tries >= 1 ? ', or press <b>Show me</b>' : '') + '.</span>';
+      msg.innerHTML = '❌ ' + (r.text || _t('Not yet.', 'Pas encore.')) + (A.hint ? `<br><span class="g-hint">💡 ${A.hint}</span>` : '') +
+        '<br><span class="g-hint">' + _t('Change what is in red and press Check again', 'Modifiez ce qui est en rouge et appuyez encore sur Vérifier') + (tries >= 1 ? _t(', or press <b>Show me</b>', ', ou appuyez sur <b>Montrer</b>') : '') + '.</span>';
       box.querySelector('.a-show').hidden = false;
       if (typeof trackLesson === 'function') trackLesson(opts.slug || 'lesson', 'activity_wrong');
     });
@@ -80,8 +82,11 @@ function runActivities(container, acts, opts) {
     const e = document.createElement('div');
     e.className = 'gstep-end act-end';
     const pct = Math.round(firstTry / acts.length * 100);
-    e.innerHTML = `<div>${pct >= 80 ? '🎉 Excellent!' : pct >= 50 ? '👍 Good work!' : '💪 Keep going!'} You got <b>${firstTry} of ${acts.length}</b> right on the first try.</div>` +
-      '<button type="button" class="lesson-btn primary">↺ Try again</button>';
+    e.innerHTML = LFR
+      ? `<div>${pct >= 80 ? '🎉 Excellent !' : pct >= 50 ? '👍 Bon travail !' : '💪 Continuez !'} Vous avez <b>${firstTry} sur ${acts.length}</b> justes du premier coup.</div>` +
+        '<button type="button" class="lesson-btn primary">↺ Recommencer</button>'
+      : `<div>${pct >= 80 ? '🎉 Excellent!' : pct >= 50 ? '👍 Good work!' : '💪 Keep going!'} You got <b>${firstTry} of ${acts.length}</b> right on the first try.</div>` +
+        '<button type="button" class="lesson-btn primary">↺ Try again</button>';
     e.querySelector('button').addEventListener('click', () => {
       runActivities(container, acts, opts);
       container.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -106,14 +111,14 @@ function runActivities(container, acts, opts) {
           if (picked === null) return null;
           const ok = picked === A.answer;
           body.querySelectorAll('.a-opt').forEach((b, k) => { if (opts2[k] === picked) b.classList.toggle('bad', !ok); });
-          return { ok, text: A.wrong && A.wrong[picked] ? A.wrong[picked] : 'That is not the right answer.' };
+          return { ok, text: A.wrong && A.wrong[picked] ? A.wrong[picked] : _t('That is not the right answer.', 'Ce n\'est pas la bonne réponse.') };
         },
         reveal() { picked = A.answer; body.querySelectorAll('.a-opt').forEach((b, k) => b.classList.toggle('on', opts2[k] === A.answer)); },
         lock() { body.querySelectorAll('.a-opt').forEach((b, k) => { b.disabled = true; b.classList.remove('bad'); if (opts2[k] === A.answer) b.classList.add('good'); }); },
       };
     },
     tf(A, body) {
-      return BUILD.mcq({ ...A, options: ['True', 'False'], answer: A.answer ? 'True' : 'False', keep: true }, body);
+      return BUILD.mcq({ ...A, options: [_t('True', 'Vrai'), _t('False', 'Faux')], answer: A.answer ? _t('True', 'Vrai') : _t('False', 'Faux'), keep: true }, body);
     },
     sort(A, body) {
       const items = shuffle(A.items);
@@ -132,7 +137,7 @@ function runActivities(container, acts, opts) {
           if (chosen.some(c => c === null)) return null;
           let wrong = 0;
           rows().forEach((row, k) => { const ok = chosen[k] === items[k][1]; row.classList.toggle('bad', !ok); if (!ok) wrong++; });
-          return { ok: !wrong, text: wrong === 1 ? '1 item is in the wrong group (in red).' : `${wrong} items are in the wrong group (in red).` };
+          return { ok: !wrong, text: wrong === 1 ? _t('1 item is in the wrong group (in red).', '1 élément est dans le mauvais groupe (en rouge).') : _t(`${wrong} items are in the wrong group (in red).`, `${wrong} éléments sont dans le mauvais groupe (en rouge).`) };
         },
         reveal() { rows().forEach((row, k) => { chosen[k] = items[k][1]; row.querySelectorAll('.a-segb').forEach(x => x.classList.toggle('on', x.dataset.g === items[k][1])); }); },
         lock() { rows().forEach(row => { row.classList.remove('bad'); row.classList.add('good'); row.querySelectorAll('.a-segb').forEach(b => { b.disabled = true; }); }); },
@@ -141,7 +146,7 @@ function runActivities(container, acts, opts) {
     match(A, body) {
       const rights = shuffle(A.pairs.map(p => p[1]));
       const lefts = shuffle(A.pairs);
-      body.innerHTML = '<div class="a-match">' + lefts.map(([l]) => `<div class="a-row"><span class="a-item">${l}</span><select class="gin gsel a-sel"><option value="">choose…</option>` +
+      body.innerHTML = '<div class="a-match">' + lefts.map(([l]) => `<div class="a-row"><span class="a-item">${l}</span><select class="gin gsel a-sel"><option value="">${_t('choose…', 'choisir…')}</option>` +
         rights.map(r => `<option value="${esc(r)}">${r}</option>`).join('') + '</select></div>').join('') + '</div>';
       const sels = () => [...body.querySelectorAll('.a-sel')];
       sels().forEach(s => s.addEventListener('change', () => s.closest('.a-row').classList.remove('bad')));
@@ -150,7 +155,7 @@ function runActivities(container, acts, opts) {
           if (sels().some(s => !s.value)) return null;
           let wrong = 0;
           sels().forEach((s, k) => { const ok = s.value === lefts[k][1]; s.closest('.a-row').classList.toggle('bad', !ok); if (!ok) wrong++; });
-          return { ok: !wrong, text: wrong === 1 ? '1 pair is not right (in red).' : `${wrong} pairs are not right (in red).` };
+          return { ok: !wrong, text: wrong === 1 ? _t('1 pair is not right (in red).', '1 paire n\'est pas juste (en rouge).') : _t(`${wrong} pairs are not right (in red).`, `${wrong} paires ne sont pas justes (en rouge).`) };
         },
         reveal() { sels().forEach((s, k) => { s.value = lefts[k][1]; }); },
         lock() { sels().forEach(s => { s.disabled = true; s.closest('.a-row').classList.remove('bad'); s.closest('.a-row').classList.add('good'); }); },
@@ -161,7 +166,7 @@ function runActivities(container, acts, opts) {
       if (cur.every((x, k) => x === A.items[k])) cur = cur.slice().reverse();
       function draw(locked) {
         body.innerHTML = '<ol class="a-order">' + cur.map((t, k) => `<li class="a-row"><span class="a-item">${t}</span>` +
-          (locked ? '' : `<span class="a-moves"><button type="button" class="a-mv" data-k="${k}" data-d="-1" aria-label="Move up" ${k === 0 ? 'disabled' : ''}>▲</button><button type="button" class="a-mv" data-k="${k}" data-d="1" aria-label="Move down" ${k === cur.length - 1 ? 'disabled' : ''}>▼</button></span>`) + '</li>').join('') + '</ol>';
+          (locked ? '' : `<span class="a-moves"><button type="button" class="a-mv" data-k="${k}" data-d="-1" aria-label="${_t('Move up', 'Monter')}" ${k === 0 ? 'disabled' : ''}>▲</button><button type="button" class="a-mv" data-k="${k}" data-d="1" aria-label="${_t('Move down', 'Descendre')}" ${k === cur.length - 1 ? 'disabled' : ''}>▼</button></span>`) + '</li>').join('') + '</ol>';
         body.querySelectorAll('.a-mv').forEach(b => b.addEventListener('click', () => {
           const k = Number(b.dataset.k), j = k + Number(b.dataset.d);
           [cur[k], cur[j]] = [cur[j], cur[k]]; draw(false);
@@ -172,7 +177,7 @@ function runActivities(container, acts, opts) {
         check() {
           let wrong = 0;
           body.querySelectorAll('.a-row').forEach((row, k) => { const ok = cur[k] === A.items[k]; row.classList.toggle('bad', !ok); if (!ok) wrong++; });
-          return { ok: !wrong, text: `${wrong} item${wrong === 1 ? ' is' : 's are'} not in the right place (in red). Use ▲ ▼ to move them.` };
+          return { ok: !wrong, text: _t(`${wrong} item${wrong === 1 ? ' is' : 's are'} not in the right place (in red). Use ▲ ▼ to move them.`, `${wrong} élément${wrong === 1 ? ' n\'est' : 's ne sont'} pas à la bonne place (en rouge). Utilisez ▲ ▼ pour les déplacer.`) };
         },
         reveal() { cur = A.items.slice(); draw(false); },
         lock() { draw(true); body.querySelectorAll('.a-row').forEach(r => r.classList.add('good')); },
@@ -180,7 +185,7 @@ function runActivities(container, acts, opts) {
     },
     label(A, body) {
       const choices = shuffle(A.labels);
-      body.innerHTML = `<div class="a-label-pic">${A.svg}</div><div class="a-match">` + A.labels.map((_, k) => `<div class="a-row"><span class="a-item"><span class="a-marker">${k + 1}</span></span><select class="gin gsel a-sel"><option value="">choose…</option>` +
+      body.innerHTML = `<div class="a-label-pic">${A.svg}</div><div class="a-match">` + A.labels.map((_, k) => `<div class="a-row"><span class="a-item"><span class="a-marker">${k + 1}</span></span><select class="gin gsel a-sel"><option value="">${_t('choose…', 'choisir…')}</option>` +
         choices.map(r => `<option value="${esc(r)}">${r}</option>`).join('') + '</select></div>').join('') + '</div>';
       const sels = () => [...body.querySelectorAll('.a-sel')];
       sels().forEach(s => s.addEventListener('change', () => s.closest('.a-row').classList.remove('bad')));
@@ -189,7 +194,7 @@ function runActivities(container, acts, opts) {
           if (sels().some(s => !s.value)) return null;
           let wrong = 0;
           sels().forEach((s, k) => { const ok = s.value === A.labels[k]; s.closest('.a-row').classList.toggle('bad', !ok); if (!ok) wrong++; });
-          return { ok: !wrong, text: wrong === 1 ? '1 label is not right (in red).' : `${wrong} labels are not right (in red).` };
+          return { ok: !wrong, text: wrong === 1 ? _t('1 label is not right (in red).', '1 légende n\'est pas juste (en rouge).') : _t(`${wrong} labels are not right (in red).`, `${wrong} légendes ne sont pas justes (en rouge).`) };
         },
         reveal() { sels().forEach((s, k) => { s.value = A.labels[k]; }); },
         lock() { sels().forEach(s => { s.disabled = true; s.closest('.a-row').classList.remove('bad'); s.closest('.a-row').classList.add('good'); }); },
@@ -204,7 +209,7 @@ function runActivities(container, acts, opts) {
           if (ins().some(i => !i.value.trim())) return null;
           let wrong = 0;
           ins().forEach(i => { const ok = A.answers[i.dataset.k].some(a => norm(a) === norm(i.value)); i.classList.toggle('bad', !ok); i.classList.toggle('good', ok); if (!ok) wrong++; });
-          return { ok: !wrong, text: wrong === 1 ? '1 word is not right (in red).' : `${wrong} words are not right (in red).` };
+          return { ok: !wrong, text: wrong === 1 ? _t('1 word is not right (in red).', '1 mot n\'est pas juste (en rouge).') : _t(`${wrong} words are not right (in red).`, `${wrong} mots ne sont pas justes (en rouge).`) };
         },
         reveal() { ins().forEach(i => { i.value = A.answers[i.dataset.k][0]; }); },
         lock() { ins().forEach(i => { i.disabled = true; i.classList.remove('bad'); i.classList.add('good'); }); },

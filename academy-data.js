@@ -75,3 +75,22 @@ const ACADEMY_WORKBOOKS = [
     "form-1": 2500, "form-2": 2500, "form-3": 3000, "o-level-complete": 5000, "a-level-complete": 8000,
   }),
 ];
+
+/* ---------------------------------------------------------------------
+   OFFICIAL RESOURCES (English subsystem)
+   Links to the Ministry of Secondary Education's own websites. We link to
+   them instead of copying their files, so students always get the
+   official, up-to-date papers and progression sheets.
+   --------------------------------------------------------------------- */
+const MINESEC_PAPERS = "https://minesec-distance.schoolfaqs.net/revision";
+const ACADEMY_OFFICIAL = {
+  papers: [
+    { kind: "GCE · Form 5", title: "GCE O Level past papers", desc: "Official papers by year, all subjects.", url: `${MINESEC_PAPERS}/gce-ordinary-level`, cta: "Open the papers ↗" },
+    { kind: "GCE · Upper Sixth", title: "GCE A Level past papers", desc: "Official papers by year, all subjects.", url: `${MINESEC_PAPERS}/gce-advanced-level`, cta: "Open the papers ↗" },
+    { kind: "Technical · Intermediate", title: "TVEE Intermediate Level", desc: "Commercial and industrial papers.", url: `${MINESEC_PAPERS}/tvee-il-commercial`, cta: "Open the papers ↗" },
+    { kind: "Technical · Advanced", title: "TVEE Advanced Level", desc: "Commercial and industrial papers.", url: `${MINESEC_PAPERS}/tvee-al-commercial`, cta: "Open the papers ↗" },
+  ],
+  progressions: [
+    { kind: "MINESEC · 2026-27", title: "Official progression sheets", desc: "Choose “English Sub System”, then your class and subject, to see the lessons of the year term by term.", url: "https://minesec-ige.com/progression-sheets", cta: "Find my progression ↗" },
+  ],
+};

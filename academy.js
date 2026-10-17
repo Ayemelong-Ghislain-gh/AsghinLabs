@@ -3,8 +3,13 @@
    Content comes from academy-data.js.
    ===================================================================== */
 (function () {
+  // The francophone page (academie.html) has <html lang="fr">: same code, French words.
+  const FR = document.documentElement.lang === 'fr';
+  const t = (en, fr) => (FR ? fr : en);
+
   const LEVEL_ORDER = ['Form 1', 'Form 2', 'Form 3', 'Form 4', 'Form 5', 'O Level',
-    'Lower Sixth', 'Upper Sixth', 'A Level'];
+    'Lower Sixth', 'Upper Sixth', 'A Level',
+    '6e', '5e', '4e', '3e', 'BEPC', 'Seconde', 'Première', 'Probatoire', 'Terminale', 'Baccalauréat'];
 
   const esc = (s) => String(s == null ? '' : s)
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -12,7 +17,7 @@
   function groupByLevel(items) {
     const groups = new Map();
     items.forEach(item => {
-      const level = item.level || 'General';
+      const level = item.level || t('General', 'Général');
       if (!groups.has(level)) groups.set(level, []);
       groups.get(level).push(item);
     });
@@ -31,21 +36,21 @@
     const meta = [item.pages ? `${item.pages} pages` : '', item.size || '', 'PDF']
       .filter(Boolean).join(' · ');
     const cover = item.cover
-      ? `<img src="${esc(item.cover)}" alt="Cover of ${esc(item.title)}" loading="lazy" width="600" height="776">`
-      : `<div class="note-cover-fallback"><span>📄</span><strong>${esc(item.subject || 'Notes')}</strong><em>${esc(item.level || '')}</em></div>`;
+      ? `<img src="${esc(item.cover)}" alt="${t('Cover of', 'Couverture de')} ${esc(item.title)}" loading="lazy" width="600" height="776">`
+      : `<div class="note-cover-fallback"><span>📄</span><strong>${esc(item.subject || t('Notes', 'Fiches'))}</strong><em>${esc(item.level || '')}</em></div>`;
     return `
       <article class="note-card">
-        <button type="button" class="note-cover" data-read="${listKey}:${index}" aria-label="Read ${esc(item.title)} online">
+        <button type="button" class="note-cover" data-read="${listKey}:${index}" aria-label="${t('Read', 'Lire')} ${esc(item.title)} ${t('online', 'en ligne')}">
           ${cover}
-          <span class="note-cover-hint">📖 Read online</span>
+          <span class="note-cover-hint">📖 ${t('Read online', 'Lire en ligne')}</span>
         </button>
         <div class="note-body">
           <span class="academy-file-subject">${esc(item.subject || '')}${item.level ? ' · ' + esc(item.level) : ''}</span>
           <h4>${esc(item.title)}</h4>
-          <p class="note-meta">${esc(meta)} · Free</p>
+          <p class="note-meta">${esc(meta)} · ${t('Free', 'Gratuit')}</p>
           <div class="note-actions">
-            <button type="button" class="note-btn primary" data-read="${listKey}:${index}">📖 Read online</button>
-            <a class="note-btn" href="${esc(item.file)}" download="${esc(fileName(item.file))}">⬇ Download</a>
+            <button type="button" class="note-btn primary" data-read="${listKey}:${index}">📖 ${t('Read online', 'Lire en ligne')}</button>
+            <a class="note-btn" href="${esc(item.file)}" download="${esc(fileName(item.file))}">⬇ ${t('Download', 'Télécharger')}</a>
           </div>
         </div>
       </article>`;
@@ -82,10 +87,32 @@
       </div>`).join('');
   }
 
-  renderList('notesGallery', 'notes', '🗂️', 'No notes uploaded yet — check back soon.',
-    'Complete programs and lesson notes will be added here as they\'re ready.');
-  renderList('pastQuestionsGallery', 'past', '🧾', 'Past questions are coming soon.',
-    'Message us on WhatsApp if you need a specific paper now.');
+  renderList('notesGallery', 'notes', '🗂️',
+    t('No notes uploaded yet — check back soon.', 'Les premières fiches arrivent bientôt.'),
+    t('Complete programs and lesson notes will be added here as they\'re ready.',
+      'Les cours et fiches de révision seront ajoutés ici dès qu\'ils sont prêts.'));
+  renderList('pastQuestionsGallery', 'past', '🧾',
+    t('Past questions are coming soon.', 'Nos sujets corrigés arrivent bientôt.'),
+    t('Message us on WhatsApp if you need a specific paper now.',
+      'Écrivez-nous sur WhatsApp si vous cherchez une épreuve précise.'));
+
+  /* ================= OFFICIAL RESOURCES =================
+     Links to the Ministry's own sites (past papers, progression sheets).
+     The lists live in academy-data.js / academy-data-fr.js (ACADEMY_OFFICIAL). */
+  const OFFICIAL = typeof ACADEMY_OFFICIAL !== 'undefined' ? ACADEMY_OFFICIAL : {};
+  function renderOfficial(containerId, list) {
+    const el = document.getElementById(containerId);
+    if (!el || !list || !list.length) return;
+    el.innerHTML = `<div class="official-grid">${list.map(o => `
+      <a class="official-card" href="${esc(o.url)}" target="_blank" rel="noopener">
+        <span class="oc-kind">${esc(o.kind || '')}</span>
+        <strong>${esc(o.title)}</strong>
+        <span class="oc-desc">${esc(o.desc || '')}</span>
+        <span class="oc-go">${esc(o.cta || t('Open ↗', 'Ouvrir ↗'))}</span>
+      </a>`).join('')}</div>`;
+  }
+  renderOfficial('officialPapers', OFFICIAL.papers);
+  renderOfficial('officialProgressions', OFFICIAL.progressions);
 
   /* ================= PDF READER =================
      Uses PDF.js so PDFs open inside the page on every device — including
@@ -111,16 +138,16 @@
   reader.className = 'pdf-reader';
   reader.setAttribute('role', 'dialog');
   reader.setAttribute('aria-modal', 'true');
-  reader.setAttribute('aria-label', 'Document reader');
+  reader.setAttribute('aria-label', t('Document reader', 'Lecteur de documents'));
   reader.innerHTML = `
     <div class="pdf-reader-bar">
-      <button type="button" class="pdf-reader-close" aria-label="Close reader">✕</button>
+      <button type="button" class="pdf-reader-close" aria-label="${t('Close reader', 'Fermer le lecteur')}">✕</button>
       <div class="pdf-reader-title"></div>
       <div class="pdf-reader-page" aria-live="polite"></div>
       <div class="pdf-reader-actions">
-        <button type="button" class="pdf-zoom" data-zoom="-1" aria-label="Zoom out">−</button>
-        <button type="button" class="pdf-zoom" data-zoom="1" aria-label="Zoom in">+</button>
-        <a class="pdf-reader-download" href="#" download>⬇ <span>Download</span></a>
+        <button type="button" class="pdf-zoom" data-zoom="-1" aria-label="${t('Zoom out', 'Réduire')}">−</button>
+        <button type="button" class="pdf-zoom" data-zoom="1" aria-label="${t('Zoom in', 'Agrandir')}">+</button>
+        <a class="pdf-reader-download" href="#" download>⬇ <span>${t('Download', 'Télécharger')}</span></a>
       </div>
     </div>
     <div class="pdf-reader-body" tabindex="0">
@@ -223,7 +250,7 @@
     dlEl.setAttribute('download', fileName(item.file));
     pageEl.textContent = '';
     pagesEl.innerHTML = '';
-    statusEl.innerHTML = '<div class="pdf-spinner"></div>Opening document…';
+    statusEl.innerHTML = '<div class="pdf-spinner"></div>' + t('Opening document…', 'Ouverture du document…');
     statusEl.style.display = 'block';
     reader.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -242,9 +269,9 @@
       layoutPages(pageRatio);
       bodyEl.scrollTop = 0;
     } catch (e) {
-      statusEl.innerHTML = `The reader couldn't open this file on your device.<br>
-        <a class="note-btn primary" href="${esc(item.file)}" target="_blank" rel="noopener">Open the PDF</a>
-        <a class="note-btn" href="${esc(item.file)}" download>⬇ Download</a>`;
+      statusEl.innerHTML = `${t("The reader couldn't open this file on your device.", "Le lecteur n'a pas pu ouvrir ce fichier sur votre appareil.")}<br>
+        <a class="note-btn primary" href="${esc(item.file)}" target="_blank" rel="noopener">${t('Open the PDF', 'Ouvrir le PDF')}</a>
+        <a class="note-btn" href="${esc(item.file)}" download>⬇ ${t('Download', 'Télécharger')}</a>`;
     }
   }
 
