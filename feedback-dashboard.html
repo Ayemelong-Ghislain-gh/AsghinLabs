@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lesson Feedback | AsghinLabs Academy</title>
+  <title>Admin Dashboard | AsghinLabs</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" href="images/logo-blue.jpeg" type="image/jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,12 +44,25 @@
     .p-up { background: rgba(46,230,139,0.15); color: #7ff0b8; } .p-down { background: rgba(255,107,107,0.15); color: #ff8f8f; }
     .item.down { border-left: 3px solid #ff6b6b; }
     .item pre { white-space: pre-wrap; font-family: inherit; margin: 4px 0; color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; max-height: 160px; overflow: auto; }
+    .app-roles { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 14px; }
+    .app-roles .sum-card { flex: 1 1 180px; }
+    .app-roles .big { font-size: 1.6rem; font-weight: 800; color: var(--brand-primary); }
+    .item.st-new { border-left: 3px solid var(--brand-primary); }
+    .item.st-shortlisted, .item.st-trial { border-left: 3px solid #2ee68b; }
+    .item.st-rejected { opacity: 0.6; }
+    .app-top { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+    .app-top h3 { margin: 0; font-size: 1.05rem; }
+    .app-top select { font-family: inherit; font-size: 0.85rem; color: var(--text-light); padding: 6px 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: #050816; }
+    .item a { color: var(--brand-primary); }
+    .app-note { display: flex; gap: 8px; margin-top: 10px; }
+    .app-note input { flex: 1; font-family: inherit; font-size: 0.88rem; color: var(--text-light); padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); }
+    .saved { font-size: 0.8rem; color: #7ff0b8; align-self: center; }
   </style>
 </head>
 <body>
 <div class="dash">
-  <h1>💬 Lesson feedback</h1>
-  <p class="sub">What students say after each interactive lesson. Private page, not shown on Google.</p>
+  <h1>🔐 Admin dashboard</h1>
+  <p class="sub">Team applications, lesson feedback and AI tutor ratings. Private page, not shown on Google.</p>
 
   <div class="lesson-panel login" id="login">
     <label class="fb-field">Dashboard password
@@ -59,6 +72,16 @@
   </div>
 
   <div id="main" hidden>
+    <div class="ai-head" style="margin-top:0"><h2>🙋 Team applications</h2><span class="sub" style="margin:0">From the Join us page (asghinlabs.com/join). Each one is also sent to WhatsApp.</span></div>
+    <div class="app-roles" id="appSummary"></div>
+    <div class="filters">
+      <select id="appRole" aria-label="Role"><option value="">All roles</option><option>Developer &amp; client getter</option><option>Content creator &amp; brand seller</option><option>Academy tutor &amp; ambassador</option></select>
+      <select id="appStatus" aria-label="Status"><option value="">All statuses</option><option value="new">🆕 New</option><option value="shortlisted">⭐ Shortlisted</option><option value="called">📞 Called</option><option value="trial">🚀 On trial</option><option value="rejected">✖ Not now</option></select>
+      <span class="count" id="appCount"></span>
+    </div>
+    <div id="appList"></div>
+
+    <div class="ai-head"><h2>💬 Lesson feedback</h2><span class="sub" style="margin:0">What students say after each interactive lesson.</span></div>
     <div class="summary" id="summary"></div>
     <div class="filters">
       <select id="fLesson" aria-label="Lesson"><option value="">All lessons</option></select>
@@ -102,6 +125,7 @@
       items = data.items || [];
       try { sessionStorage.setItem('fbKey', key); } catch (e) {}
       loadRatings();
+      loadApps();
       $('login').hidden = true; $('main').hidden = false;
       const lessons = [...new Set(items.map(i => i.lesson))].sort();
       const cur = $('fLesson').value;
@@ -173,6 +197,67 @@
       </div>`).join('') : '<p class="empty">No ratings here yet.</p>';
   }
   ['aiKind', 'aiDown'].forEach(id => $(id).addEventListener('change', renderRatings));
+
+  // ---- Team applications (from /api/applications, same password) ----
+  const STATUS = { new: '🆕 New', shortlisted: '⭐ Shortlisted', called: '📞 Called', trial: '🚀 On trial', rejected: '✖ Not now' };
+  const ROLE_ICON = { 'Developer & client getter': '💻', 'Content creator & brand seller': '🎬', 'Academy tutor & ambassador': '📚' };
+  let apps = [];
+  async function loadApps() {
+    try {
+      const r = await fetch('/api/applications', { headers: { 'x-admin-key': key }, cache: 'no-store' });
+      const data = await r.json().catch(() => ({}));
+      apps = r.ok ? (data.items || []) : [];
+    } catch (e) { apps = []; }
+    renderApps();
+  }
+  const waLink = (p) => { let d = String(p || '').replace(/\D/g, ''); if (d.length === 9) d = '237' + d; return d ? 'https://wa.me/' + d : ''; };
+  const safeUrl = (u) => /^https?:\/\//i.test(u || '') ? u : '';
+  function renderApps() {
+    $('appSummary').innerHTML = Object.keys(ROLE_ICON).map(role => {
+      const list = apps.filter(a => a.role === role);
+      const fresh = list.filter(a => a.status === 'new').length;
+      return `<div class="sum-card"><h3>${ROLE_ICON[role]} ${esc(role)}</h3><div class="big">${list.length}</div><div class="sum-nums">${fresh} new · ${list.filter(a => a.status === 'shortlisted').length} shortlisted</div></div>`;
+    }).join('');
+    const role = $('appRole').value, st = $('appStatus').value;
+    const shown = apps.filter(a => (!role || a.role === role) && (!st || a.status === st));
+    $('appCount').textContent = `${shown.length} of ${apps.length}`;
+    $('appList').innerHTML = shown.length ? shown.map(a => {
+      const wa = waLink(a.phone), work = safeUrl(a.work);
+      return `<div class="item st-${esc(a.status)}" data-id="${esc(a.id)}">
+        <div class="app-top"><h3>${ROLE_ICON[a.role] || ''} ${esc(a.name)}</h3>
+          <select class="app-st" aria-label="Status">${Object.keys(STATUS).map(k => `<option value="${k}"${a.status === k ? ' selected' : ''}>${STATUS[k]}</option>`).join('')}</select></div>
+        <div class="meta"><span class="pill p-lesson">${esc(a.role)}</span><span>📍 ${esc(a.city || '—')}</span>
+          <span>📱 ${wa ? `<a href="${wa}" target="_blank" rel="noopener">${esc(a.phone)}</a>` : esc(a.phone)}</span>
+          <span>⏱️ ${esc(a.hours || '—')}</span>
+          <span>· ${new Date(a.at).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}</span></div>
+        ${a.work ? `<p><b>Work:</b> ${work ? `<a href="${esc(work)}" target="_blank" rel="noopener">${esc(a.work)}</a>` : esc(a.work)}</p>` : ''}
+        <p><b>Pitch:</b> ${esc(a.pitch)}</p>
+        ${a.why ? `<p><b>Why AsghinLabs:</b> ${esc(a.why)}</p>` : ''}
+        <div class="app-note"><input class="app-note-in" placeholder="Private note (e.g. call Tuesday)" value="${esc(a.note || '')}"><button type="button" class="lesson-btn app-note-save">Save</button><span class="saved"></span></div>
+      </div>`;
+    }).join('') : '<p class="empty">No applications here yet.</p>';
+  }
+  async function patchApp(id, change, card) {
+    const flag = card.querySelector('.saved');
+    flag.textContent = 'Saving…';
+    try {
+      const r = await fetch('/api/applications', { method: 'PATCH', headers: { 'x-admin-key': key, 'Content-Type': 'application/json' }, body: JSON.stringify(Object.assign({ id }, change)) });
+      const data = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error();
+      const i = apps.findIndex(a => a.id === id); if (i > -1) apps[i] = data.item;
+      flag.textContent = '✓ Saved';
+      if (change.status) setTimeout(renderApps, 600);
+    } catch (e) { flag.textContent = '⚠ Not saved'; flag.style.color = '#ff8f8f'; }
+  }
+  $('appList').addEventListener('change', (e) => {
+    if (!e.target.classList.contains('app-st')) return;
+    const card = e.target.closest('.item'); patchApp(card.dataset.id, { status: e.target.value }, card);
+  });
+  $('appList').addEventListener('click', (e) => {
+    if (!e.target.classList.contains('app-note-save')) return;
+    const card = e.target.closest('.item'); patchApp(card.dataset.id, { note: card.querySelector('.app-note-in').value }, card);
+  });
+  ['appRole', 'appStatus'].forEach(id => $(id).addEventListener('change', renderApps));
 
   $('summary').addEventListener('click', (e) => { const c = e.target.closest('.sum-card'); if (!c) return; $('fLesson').value = $('fLesson').value === c.dataset.l ? '' : c.dataset.l; render(); });
   ['fLesson', 'fUnd', 'fQ'].forEach(id => $(id).addEventListener('change', render));

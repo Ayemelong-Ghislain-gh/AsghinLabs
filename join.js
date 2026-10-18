@@ -1,6 +1,7 @@
-// Join-the-team form: builds a WhatsApp message to the AsghinLabs business
-// number (same approach as the Academy apply form), so applications land
-// in one inbox without needing a backend.
+// Join-the-team form: each application goes two places —
+//   1. saved to /api/applications, shown on the admin dashboard
+//      (feedback-dashboard → "Team applications")
+//   2. a WhatsApp message to the AsghinLabs business number, ready to send.
 (function () {
   const form = document.getElementById('joinForm');
   const feedback = document.getElementById('joinFeedback');
@@ -38,6 +39,21 @@
     if (why) msg += `\nWhy AsghinLabs:\n${why}`;
 
     if (typeof gtag === 'function') gtag('event', 'join_application', { role: seat });
+
+    // 1) Save a copy to the admin dashboard. Not awaited, so WhatsApp still
+    //    opens straight away (browsers block pop-ups opened after a wait);
+    //    keepalive lets the request finish even if the page is left.
+    try {
+      fetch('/api/applications', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        keepalive: true,
+        body: JSON.stringify({ role: seat, name, city, phone, work, pitch, hours, why,
+          website: document.getElementById('joinWebsite').value }),
+      }).catch(() => {});
+    } catch (err) { /* the WhatsApp copy below still goes out */ }
+
+    // 2) Open WhatsApp with the same application, ready to send.
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
     feedback.textContent = '✨ Opening WhatsApp with your application… just press send.';
     feedback.style.color = '#2ee68b';
