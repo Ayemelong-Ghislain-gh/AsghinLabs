@@ -162,6 +162,20 @@ each opens `https://minesec-distance.schoolfaqs.net/revision/<exam>/<year>/<slug
 `/skills` and `/formations` (course texts are in the same file, in English and French).
 When MINESEC adds a year, add its rows to the JSON and rebuild.
 
+## Past-paper answers (/papers/...)
+
+`build/build_papers.py` (run by `build.py`) makes one answers page per file in `data/solutions/`,
+for example `data/solutions/gce-ordinary-level-2024-computer-science-paper-1.json` →
+`/papers/gce-ordinary-level/2024/computer-science/paper-1`. Each question gets A–D buttons,
+"See answer" and "Ask AI tutor". The library (/past-papers, /epreuves) shows "✅ Answers" on that subject.
+
+- Write answers in our own words; never copy the question text into the JSON (use a short `topic`).
+- `"check": true` on a question = a teacher should confirm that answer (not shown to students).
+- `"pages_permitted": false` (default) → a button opens the official paper on the MINESEC platform.
+  Set it to `true`, with `"pages": [...]`, only for a paper whose owner (printed on the paper: GCE Board,
+  MINESEC delegation, TRU…) has given written permission; the pages then load from `PAPERS_HOST`.
+- `tools/convert_papers.py` turns a PDF into light page images (one WebP per page, nothing edited).
+
 ## Add a practice (step-by-step) lesson
 
 1. Write `practice/<name>.js` (copy an existing one — they use `runWalkthrough()` for the

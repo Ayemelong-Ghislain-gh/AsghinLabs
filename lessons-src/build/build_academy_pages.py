@@ -72,9 +72,9 @@ T = {
         pp_stats=('papers', 'subjects', 'exams', 'years'),
         pp_search='🔎 Search a subject: e.g. Computer Science, Physics, Accounting',
         pp_quick=['Mathematics', 'Computer Science', 'ICT', 'Physics', 'Chemistry', 'Biology', 'English', 'French', 'Economics'],
-        pp_all='All exams', pp_paper=('paper', 'papers'), pp_open='Open ↗', pp_subjects=('subject', 'subjects'),
+        pp_all='All exams', pp_answers='Answers', pp_paper=('paper', 'papers'), pp_open='Open ↗', pp_subjects=('subject', 'subjects'),
         pp_empty='No paper found for that search. <a class="inline-link" href="{wa}" target="_blank" rel="noopener">Ask us on WhatsApp →</a>',
-        pp_note='Papers © Ministry of Secondary Education (MINESEC). They are hosted on its distance-learning platform, which may ask you to sign in for some papers. AsghinLabs only sorts them so you find yours faster.',
+        pp_note='Each paper belongs to the body that set it (the GCE Board, MINESEC or its regional delegations, as printed on the paper). They are hosted on the MINESEC distance-learning platform, which may ask you to sign in for some papers. AsghinLabs sorts them so you find yours faster, and adds its own answers where you see ✅.',
         pp_help_h='Stuck on a question?', pp_help_p='Ask the free AI tutor to explain it step by step, or get help from a teacher before the exam.',
         pp_help=[('/tutor', '💬 Ask the AI tutor'), ('/academy#classes', '🎓 GCE revision classes')],
         pp_other='Francophone subsystem? <a href="/epreuves" data-choose="fr" lang="fr">Épreuves du BEPC, Probatoire et Bac →</a>',
@@ -144,9 +144,9 @@ T = {
         pp_stats=('épreuves', 'matières', 'examens', 'années'),
         pp_search='🔎 Chercher une matière : ex. Informatique, Mathématiques, Anglais',
         pp_quick=['Informatique', 'Mathématiques', 'Programmation', 'Physique', 'SVT', 'Anglais', 'Histoire', 'Géographie', 'Travaux pratiques'],
-        pp_all='Tous les examens', pp_paper=('épreuve', 'épreuves'), pp_open='Ouvrir ↗', pp_subjects=('matière', 'matières'),
+        pp_all='Tous les examens', pp_answers='Corrigé', pp_paper=('épreuve', 'épreuves'), pp_open='Ouvrir ↗', pp_subjects=('matière', 'matières'),
         pp_empty='Aucune épreuve trouvée pour cette recherche. <a class="inline-link" href="{wa}" target="_blank" rel="noopener">Demandez-nous sur WhatsApp →</a>',
-        pp_note='Épreuves © Ministère des Enseignements Secondaires (MINESEC). Elles sont hébergées sur sa plateforme d\'enseignement à distance, qui peut demander une connexion pour certaines épreuves. AsghinLabs les classe seulement, pour que vous trouviez la vôtre plus vite.',
+        pp_note='Chaque épreuve appartient à l\'organisme qui l\'a conçue (MINESEC, ses délégations régionales, l\'Office du Bac…, comme indiqué sur l\'épreuve). Elles sont hébergées sur la plateforme d\'enseignement à distance du MINESEC, qui peut demander une connexion pour certaines épreuves. AsghinLabs les classe pour que vous trouviez la vôtre plus vite, et ajoute ses corrigés là où vous voyez ✅.',
         pp_help_h='Bloqué sur une question ?', pp_help_p='Demandez au tuteur IA gratuit de l\'expliquer étape par étape, ou faites-vous accompagner par un enseignant avant l\'examen.',
         pp_help=[('/tutor', '💬 Demander au tuteur IA'), ('/academie#cours', '🎓 Préparation aux examens')],
         pp_other='Sous-système anglophone ? <a href="/past-papers" data-choose="en" lang="en">GCE &amp; TVEE past papers →</a>',
@@ -281,6 +281,20 @@ def footer(L):
 '''
 
 
+def load_solutions():
+    """(exam, year, subject-address) → [(paper name, page url)] for subjects with AsghinLabs answers."""
+    out = {}
+    for f in sorted((DATA / 'solutions').glob('*.json')) if (DATA / 'solutions').exists() else []:
+        d = json.loads(f.read_text(encoding='utf-8'))
+        n = re.search(r'\d+', d['paper']).group()
+        out.setdefault((d['exam'], int(d['year']), d['subject_slug']), []).append(
+            (d['paper'], f"/papers/{d['exam']}/{d['year']}/{d['subject_slug']}/paper-{n}"))
+    return out
+
+
+SOLUTIONS = {}
+
+
 def write(url, text):
     (ROOT / (url.lstrip('/') + '.html')).write_text(text, encoding='utf-8')
 
@@ -321,9 +335,15 @@ def build_papers(lang, rows):
                      f'      <summary><span class="pp-y">{y}</span><span class="pp-yc">{plural(sum(r["papers"] for r in rs), L["pp_paper"])} · {plural(len(rs), L["pp_subjects"])}</span></summary>\n'
                      '      <div class="pp-grid">\n')
             for r in rs:
-                secs += (f'        <a class="pp-sub" href="{MINESEC}/{slug}/{y}/{esc(r["slug"])}" target="_blank" rel="noopener" '
-                         f'data-search="{esc((r["subject"] + " " + name + " " + str(y)).lower())}">'
-                         f'<strong>{esc(r["subject"])}</strong><span>{plural(r["papers"], L["pp_paper"])}</span><em>{L["pp_open"]}</em></a>\n')
+                search = esc((r["subject"] + " " + name + " " + str(y)).lower())
+                inner = f'<strong>{esc(r["subject"])}</strong><span>{plural(r["papers"], L["pp_paper"])}</span><em>{L["pp_open"]}</em>'
+                sols = SOLUTIONS.get((slug, y, r['slug']), [])
+                if not sols:
+                    secs += f'        <a class="pp-sub" href="{MINESEC}/{slug}/{y}/{esc(r["slug"])}" target="_blank" rel="noopener" data-search="{search}">{inner}</a>\n'
+                else:   # this subject has AsghinLabs answers: card with two links
+                    ans = ''.join(f'<a class="pp-ans" href="{u}">✅ {L["pp_answers"]} · {esc(p)}</a>' for p, u in sols)
+                    secs += (f'        <div class="pp-sub has-sol" data-search="{search} {L["pp_answers"].lower()}">'
+                             f'<a class="pp-main" href="{MINESEC}/{slug}/{y}/{esc(r["slug"])}" target="_blank" rel="noopener">{inner}</a>{ans}</div>\n')
             secs += '      </div>\n    </details>\n'
         secs += '  </section>\n'
 
@@ -461,6 +481,8 @@ def build_skills(lang):
 
 
 def main():
+    global SOLUTIONS
+    SOLUTIONS = load_solutions()
     rows = json.loads((DATA / 'minesec-papers.json').read_text(encoding='utf-8'))
     n_en, n_fr = build_papers('en', rows), build_papers('fr', rows)
     build_skills('en')

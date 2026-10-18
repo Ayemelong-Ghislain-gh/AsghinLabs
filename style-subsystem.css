@@ -360,3 +360,12 @@ details.pp-year[open] > summary::after { transform: rotate(180deg); }
 body.pp-page { overflow-x: clip; }
 .sk-lang { margin-top: 14px; font-size: 0.9rem; }
 .sk-lang a { color: var(--brand-primary); font-weight: 700; text-decoration: none; }
+
+/* Library card for a subject that has AsghinLabs answers */
+.pp-sub.has-sol { display: flex; flex-direction: column; gap: 8px; border-color: rgba(46, 230, 139, 0.35); }
+.pp-sub.has-sol .pp-main { display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto; column-gap: 8px; color: var(--text-light); text-decoration: none; }
+.pp-sub.has-sol .pp-main strong { font-size: 0.92rem; line-height: 1.3; }
+.pp-sub.has-sol .pp-main span { grid-row: 2; color: var(--text-muted); font-size: 0.78rem; }
+.pp-sub.has-sol .pp-main em { grid-row: 1 / 3; grid-column: 2; align-self: center; font-style: normal; font-weight: 700; font-size: 0.8rem; color: var(--brand-primary); }
+.pp-ans { padding: 6px 10px; border-radius: 10px; background: rgba(46, 230, 139, 0.12); color: rgb(46, 230, 139); font-size: 0.8rem; font-weight: 700; text-decoration: none; }
+.pp-ans:hover { background: rgba(46, 230, 139, 0.22); }

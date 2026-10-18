@@ -1,0 +1,59 @@
+/* ========== PAST-PAPER ANSWERS PAGE (/papers/...) ========== */
+.pv-wrap { max-width: 980px; margin: 0 auto; padding: 120px 16px 40px; }
+.pv-back { color: var(--brand-primary); text-decoration: none; font-weight: 700; font-size: 0.9rem; }
+.pv-h1 { font-size: clamp(1.8rem, 4.5vw, 2.6rem); line-height: 1.15; margin: 14px 0 6px; }
+.pv-h1 span { display: block; font-size: 0.55em; font-weight: 600; color: var(--text-muted); margin-top: 6px; }
+.pv-meta { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 18px; }
+.pv-source { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; padding: 18px; border-radius: 18px;
+  border: 1px solid var(--border-glow); background: linear-gradient(160deg, rgba(0, 212, 255, 0.08), transparent 70%); margin-bottom: 26px; }
+.pv-owner { color: var(--text-muted); font-size: 0.86rem; line-height: 1.6; margin: 0; flex: 1 1 260px; }
+
+.pv-pages { display: grid; gap: 14px; margin-bottom: 30px; }
+.pv-page { margin: 0; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); }
+.pv-page img { display: block; width: 100%; height: auto; }
+.pv-page figcaption { background: var(--card-bg); color: var(--text-muted); font-size: 0.75rem; text-align: center; padding: 6px; }
+
+.pv-bar { position: sticky; top: 91px; z-index: 30; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 12px 0;
+  background: rgba(5, 8, 22, 0.92); backdrop-filter: blur(10px); }
+.pv-score { flex: 1 1 auto; font-weight: 700; color: var(--brand-primary); }
+.pv-all, .pv-reset { padding: 8px 14px; border-radius: 30px; font: inherit; font-size: 0.82rem; font-weight: 700; cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.16); background: transparent; color: var(--text-light); }
+.pv-all:hover, .pv-reset:hover { border-color: var(--brand-primary); color: var(--brand-primary); }
+
+.pv-grid { display: grid; gap: 10px; }
+.pv-q { padding: 14px 16px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.09); background: var(--card-bg); scroll-margin-top: 160px; }
+.pv-q.open { border-color: rgba(0, 212, 255, 0.35); }
+.pv-q-head { display: flex; gap: 12px; align-items: baseline; margin-bottom: 10px; }
+.pv-n { flex: none; min-width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px; font-weight: 800;
+  background: rgba(0, 212, 255, 0.12); color: var(--brand-primary); }
+.pv-topic { font-weight: 600; line-height: 1.4; }
+.pv-q-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.pv-choice { width: 42px; height: 38px; border-radius: 10px; font: inherit; font-weight: 800; cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.18); background: rgba(255, 255, 255, 0.03); color: var(--text-light); }
+.pv-choice:hover { border-color: var(--brand-primary); }
+.pv-choice.good { background: rgba(46, 230, 139, 0.2); border-color: rgb(46, 230, 139); color: rgb(46, 230, 139); }
+.pv-choice.bad { background: rgba(255, 90, 90, 0.15); border-color: #ff6b6b; color: #ff8a8a; }
+.pv-see { margin-left: auto; padding: 9px 14px; border-radius: 30px; font: inherit; font-size: 0.84rem; font-weight: 700; cursor: pointer;
+  border: none; background: var(--brand-primary); color: #050816; }
+.pv-tutor { padding: 8px 14px; border-radius: 30px; font-size: 0.84rem; font-weight: 700; text-decoration: none;
+  border: 1px solid rgba(255, 196, 0, 0.5); color: rgb(255, 196, 0); }
+.pv-tutor:hover { background: rgba(255, 196, 0, 0.1); }
+.pv-feedback { margin: 8px 0 0; font-size: 0.88rem; min-height: 0; }
+.pv-feedback:empty { display: none; }
+.pv-feedback.ok { color: rgb(46, 230, 139); } .pv-feedback.no { color: #ff8a8a; }
+.pv-answer { margin-top: 10px; padding: 12px 14px; border-radius: 12px; background: rgba(46, 230, 139, 0.07); border-left: 3px solid rgb(46, 230, 139); }
+.pv-answer strong { color: rgb(46, 230, 139); }
+.pv-answer p { margin: 6px 0 0; color: var(--text-light); line-height: 1.6; font-size: 0.93rem; }
+body.pv-body { overflow-x: clip; }
+@media (max-width: 640px) {
+  .pv-wrap { padding-top: 105px; }
+  .pv-bar { top: 84px; }
+  .pv-see { margin-left: 0; }
+  .pv-choice { width: 46px; height: 42px; }
+}
+@media (max-width: 640px) {
+  .pv-q-actions { display: grid; grid-template-columns: repeat(4, 1fr); }
+  body[data-mcq="0"] .pv-q-actions { grid-template-columns: 1fr 1fr; }
+  .pv-choice { width: auto; }
+  .pv-see, .pv-tutor { grid-column: span 2; text-align: center; }
+}
