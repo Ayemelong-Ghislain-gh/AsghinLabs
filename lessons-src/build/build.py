@@ -377,6 +377,53 @@ def build_sitemap(urls):
     s = s.replace('</urlset>', add + '</urlset>')
     p.write_text(s, encoding='utf-8')
 
+# Old copies of the Form 1 CS lessons that used to sit at the site root
+# (lesson-f1-cs-NN-….html). They redirect to the real lesson pages so Google
+# does not see duplicates. Safe to delete the old files themselves.
+LEGACY_ROOT_LESSONS = {
+    "lesson-f1-cs-01-introduction-to-computer-science": "introduction-to-computer-science",
+    "lesson-f1-cs-02-history-of-computers": "history-of-computers",
+    "lesson-f1-cs-03-classification-of-computers": "classification-of-computers",
+    "lesson-f1-cs-04-introduction-to-artificial-intelligence": "introduction-to-artificial-intelligence",
+    "lesson-f1-cs-05-applications-and-ethics-of-artificial-intelligen": "applications-and-ethics-of-artificial-intelligence",
+    "lesson-f1-cs-06-the-use-of-appropriate-prompts-to-generate-ai-re": "the-use-of-appropriate-prompts-to-generate-ai-responses",
+    "lesson-f1-cs-08-decomposition": "decomposition",
+    "lesson-f1-cs-09-pattern-recognition": "pattern-recognition",
+    "lesson-f1-cs-10-abstraction": "abstraction",
+    "lesson-f1-cs-13-components-of-the-computing-environment-and-role": "components-of-the-computing-environment-and-role",
+    "lesson-f1-cs-14-users-of-the-computing-environment-and-notions-o": "users-of-the-computing-environment-and-notions-on-data-and-i",
+    "lesson-f1-cs-16-computer-laboratory-equipment-and-devices": "computer-laboratory-equipment-and-devices",
+    "lesson-f1-cs-17-computer-laboratory-designs": "computer-laboratory-designs",
+    "lesson-f1-cs-18-behaviours-to-adopt-in-a-computer-laboratory": "behaviours-to-adopt-in-a-computer-laboratory",
+    "lesson-f1-cs-20-types-of-personal-computer": "types-of-personal-computer",
+    "lesson-f1-cs-21-components-of-a-computer": "components-of-a-computer",
+    "lesson-f1-cs-22-keyboard-mouse-and-touch-screen-manipulations": "keyboard-mouse-and-touch-screen-manipulations",
+    "lesson-f1-cs-24-application-of-computers": "application-of-computers",
+    "lesson-f1-cs-25-application-of-embedded-systems-and-iot": "application-of-embedded-systems-and-iot",
+    "lesson-f1-cs-26-notions-on-generative-ai": "notions-on-generative-ai",
+    "lesson-f1-cs-27-ai-assisted-creation": "ai-assisted-creation",
+    "lesson-f1-cs-29-introducing-ethics": "introducing-ethics",
+    "lesson-f1-cs-30-computer-ethics": "computer-ethics",
+    "lesson-f1-cs-31-ethical-ways-of-using-technology": "ethical-ways-of-using-technology",
+    "lesson-f1-cs-33-block-programming-environment": "block-programming-environment",
+    "lesson-f1-cs-34-pseudocodes-and-block-programming": "pseudocodes-and-block-programming",
+    "lesson-f1-cs-35-write-programs-in-a-block-programming-environmen": "write-programs-in-a-block-programming-environment",
+    "lesson-f1-cs-37-peripheral-devices": "peripheral-devices",
+    "lesson-f1-cs-38-computer-ports": "computer-ports",
+    "lesson-f1-cs-39-the-boot-process": "the-boot-process",
+    "lesson-f1-cs-40-system-software": "system-software",
+    "lesson-f1-cs-41-application-software": "application-software",
+    "lesson-f1-cs-43-features-of-a-gui": "features-of-a-gui",
+    "lesson-f1-cs-44-operations-on-files-and-folders": "operations-on-files-and-folders",
+    "lesson-f1-cs-46-features-of-a-word-processor": "features-of-a-word-processor",
+    "lesson-f1-cs-47-features-of-a-spreadsheet": "features-of-a-spreadsheet",
+    "lesson-f1-cs-48-features-of-a-graphic-software": "features-of-a-graphic-software",
+    "lesson-f1-cs-50-introduction-to-the-internet": "introduction-to-the-internet",
+    "lesson-f1-cs-51-web-browsers-and-search-engines": "web-browsers-and-search-engines",
+    "lesson-f1-cs-53-common-dangers-in-a-workplace-electricity-shocks": "common-dangers-in-a-workplace-electricity-shocks-fire-flood",
+    "lesson-f1-cs-54-computer-related-health-issues": "computer-related-health-issues"
+}
+
 
 def build_redirects():
     """Old addresses (lesson-xyz.html at the site root) keep working."""
@@ -391,6 +438,9 @@ def build_redirects():
     for key in PRACTICE_PAGES:
         for src in (f'/lesson-{key}', f'/lesson-{key}.html'):
             legacy.append({'source': src, 'destination': practice_url(key), 'permanent': True})
+    for name, slug in LEGACY_ROOT_LESSONS.items():
+        for src in (f'/{name}', f'/{name}.html'):
+            legacy.append({'source': src, 'destination': f'/lessons/form-1/computer-science/{slug}', 'permanent': True})
     v['redirects'] = keep + legacy
     p.write_text(json.dumps(v, indent=2) + '\n', encoding='utf-8')
 

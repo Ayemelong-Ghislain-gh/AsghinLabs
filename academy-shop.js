@@ -81,7 +81,7 @@
   }
 
   function renderGrid() {
-    const list = BOOKS.filter(b => activeSubject === 'All' || b.subject === activeSubject);
+    const list = BOOKS.filter(b => activeSubject === 'All' ? !b.hideInAll : b.subject === activeSubject);
     grid.innerHTML = list.map(b => `
       <article class="wb-card${b.pack ? ' is-pack' : ''}" data-id="${b.id}">
         <div class="wb-cover">
@@ -157,7 +157,7 @@
   function renderPanel() {
     const ids = Object.keys(cart);
     if (!ids.length) {
-      itemsEl.innerHTML = `<p class="order-empty">${t('Your order is empty. Add a workbook to get started.', 'Votre commande est vide. Ajoutez un cahier pour commencer.')}</p>`;
+      itemsEl.innerHTML = `<p class="order-empty">${t('Your order is empty. Add a workbook or notes to get started.', 'Votre commande est vide. Ajoutez un cahier pour commencer.')}</p>`;
       totalEl.textContent = '';
       return;
     }
@@ -198,7 +198,7 @@
     const n = count();
     bar.classList.toggle('show', n > 0);
     document.body.classList.toggle('has-order-bar', n > 0);
-    bar.querySelector('.ob-count').textContent = FR ? `${n} cahier${n === 1 ? '' : 's'}` : `${n} workbook${n === 1 ? '' : 's'}`;
+    bar.querySelector('.ob-count').textContent = FR ? `${n} article${n === 1 ? '' : 's'}` : `${n} item${n === 1 ? '' : 's'}`;
     bar.querySelector('.ob-total').textContent = money(total()) + (hasUnpriced() ? ' +' : '');
     refreshCards();
     if (panel.classList.contains('open')) renderPanel();
@@ -230,10 +230,10 @@
     const note = panel.querySelector('#orderNote').value.trim();
     const delivery = (panel.querySelector('input[name="orderDelivery"]:checked') || {}).value || 'Delivery';
 
-    if (!count()) { feedback.textContent = t('Add at least one workbook first.', "Ajoutez d'abord au moins un cahier."); feedback.style.color = '#ffaa66'; return; }
+    if (!count()) { feedback.textContent = t('Add at least one item first.', "Ajoutez d'abord au moins un cahier."); feedback.style.color = '#ffaa66'; return; }
     if (!name || !phone) { feedback.textContent = t('✏️ Please add your name and phone number.', '✏️ Indiquez votre nom et votre numéro de téléphone.'); feedback.style.color = '#ffaa66'; return; }
 
-    let msg = t(`Hello AsghinLabs Academy 👋, I'd like to order these workbooks:\n\n`,
+    let msg = t(`Hello AsghinLabs Academy 👋, I'd like to order:\n\n`,
       `Bonjour AsghinLabs Academy 👋, je souhaite commander ces cahiers (sous-système francophone) :\n\n`);
     Object.entries(cart).forEach(([id, q]) => {
       const b = byId[id];
@@ -244,6 +244,7 @@
     if (town) msg += t(`Town/School: ${town}\n`, `Ville/Établissement : ${town}\n`);
     msg += t(`Receive by: ${delivery}\n`, `Réception : ${delivery === 'Pickup' ? 'Retrait' : 'Livraison'}\n`);
     if (note) msg += t(`Note: ${note}\n`, `Remarque : ${note}\n`);
+    if (Object.keys(cart).some(id => id.startsWith('notes-'))) msg += t('(PDF notes: please send them on WhatsApp)\n', '(Notes PDF : à envoyer sur WhatsApp)\n');
 
     track('send_order', Object.keys(cart).join(','));
     window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');

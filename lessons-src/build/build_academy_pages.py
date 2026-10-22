@@ -67,14 +67,14 @@ T = {
         pp_title='GCE & TVEE Past Papers: every official paper, by year | AsghinLabs Academy',
         pp_h1='GCE &amp; TVEE past papers',
         pp_tag='📝 Free · Official papers · English subsystem',
-        pp_lead='Every official paper published by the Ministry of Secondary Education, sorted by exam, year and subject. Pick yours and it opens on the ministry\'s platform.',
-        pp_desc='{n} official GCE O Level, A Level and TVEE past papers ({y0}–{y1}), sorted by exam, year and subject. Free, from the MINESEC platform.',
+        pp_lead='Every official paper published by the Ministry of Secondary Education, sorted by exam, year and subject. Pick yours and read it right here, page by page, with an AI tutor for every page.',
+        pp_desc='{n} official GCE O Level, A Level and TVEE past papers ({y0}–{y1}), sorted by exam, year and subject. Free to read page by page, with an AI tutor and answers.',
         pp_stats=('papers', 'subjects', 'exams', 'years'),
         pp_search='🔎 Search a subject: e.g. Computer Science, Physics, Accounting',
         pp_quick=['Mathematics', 'Computer Science', 'ICT', 'Physics', 'Chemistry', 'Biology', 'English', 'French', 'Economics'],
-        pp_all='All exams', pp_answers='Answers', pp_paper=('paper', 'papers'), pp_open='Open ↗', pp_subjects=('subject', 'subjects'),
+        pp_all='All exams', pp_answers='Answers', pp_paper=('paper', 'papers'), pp_open='Open →', pp_subjects=('subject', 'subjects'),
         pp_empty='No paper found for that search. <a class="inline-link" href="{wa}" target="_blank" rel="noopener">Ask us on WhatsApp →</a>',
-        pp_note='Each paper belongs to the body that set it (the GCE Board, MINESEC or its regional delegations, as printed on the paper). They are hosted on the MINESEC distance-learning platform, which may ask you to sign in for some papers. AsghinLabs sorts them so you find yours faster, and adds its own answers where you see ✅.',
+        pp_note='Each paper belongs to the body that set it (the GCE Board, MINESEC or its regional delegations, as printed on the paper). They are shown unedited, with permission, to help students revise. AsghinLabs adds its own answers, checked by our teachers, where you see ✅.',
         pp_help_h='Stuck on a question?', pp_help_p='Ask the free AI tutor to explain it step by step, or get help from a teacher before the exam.',
         pp_help=[('/tutor', '💬 Ask the AI tutor'), ('/academy#classes', '🎓 GCE revision classes')],
         pp_other='Francophone subsystem? <a href="/epreuves" data-choose="fr" lang="fr">Épreuves du BEPC, Probatoire et Bac →</a>',
@@ -139,14 +139,14 @@ T = {
         pp_title='Épreuves du BEPC, Probatoire et Bac : toutes les épreuves officielles | AsghinLabs Academy',
         pp_h1='Épreuves officielles',
         pp_tag='📝 Gratuit · Épreuves officielles · Sous-système francophone',
-        pp_lead='Toutes les épreuves publiées par le Ministère des Enseignements Secondaires, classées par examen, par année et par matière. Choisissez la vôtre : elle s\'ouvre sur la plateforme du ministère.',
-        pp_desc='{n} épreuves officielles du BEPC, du BEPC blanc, du Probatoire et du Bac blanc ({y0}–{y1}), classées par examen, année et matière. Gratuit, depuis la plateforme du MINESEC.',
+        pp_lead='Toutes les épreuves publiées par le Ministère des Enseignements Secondaires, classées par examen, par année et par matière. Choisissez la vôtre et lisez-la ici, page par page, avec un tuteur IA pour chaque page.',
+        pp_desc='{n} épreuves officielles du BEPC, du BEPC blanc, du Probatoire et du Bac blanc ({y0}–{y1}), classées par examen, année et matière. Lecture gratuite page par page, avec tuteur IA et corrigés.',
         pp_stats=('épreuves', 'matières', 'examens', 'années'),
         pp_search='🔎 Chercher une matière : ex. Informatique, Mathématiques, Anglais',
         pp_quick=['Informatique', 'Mathématiques', 'Programmation', 'Physique', 'SVT', 'Anglais', 'Histoire', 'Géographie', 'Travaux pratiques'],
-        pp_all='Tous les examens', pp_answers='Corrigé', pp_paper=('épreuve', 'épreuves'), pp_open='Ouvrir ↗', pp_subjects=('matière', 'matières'),
+        pp_all='Tous les examens', pp_answers='Corrigé', pp_paper=('épreuve', 'épreuves'), pp_open='Ouvrir →', pp_subjects=('matière', 'matières'),
         pp_empty='Aucune épreuve trouvée pour cette recherche. <a class="inline-link" href="{wa}" target="_blank" rel="noopener">Demandez-nous sur WhatsApp →</a>',
-        pp_note='Chaque épreuve appartient à l\'organisme qui l\'a conçue (MINESEC, ses délégations régionales, l\'Office du Bac…, comme indiqué sur l\'épreuve). Elles sont hébergées sur la plateforme d\'enseignement à distance du MINESEC, qui peut demander une connexion pour certaines épreuves. AsghinLabs les classe pour que vous trouviez la vôtre plus vite, et ajoute ses corrigés là où vous voyez ✅.',
+        pp_note='Chaque épreuve appartient à l\'organisme qui l\'a conçue (MINESEC, ses délégations régionales, l\'Office du Bac…, comme indiqué sur l\'épreuve). Elles sont reproduites sans modification, avec autorisation, pour aider les élèves à réviser. AsghinLabs ajoute ses corrigés, vérifiés par nos enseignants, là où vous voyez ✅.',
         pp_help_h='Bloqué sur une question ?', pp_help_p='Demandez au tuteur IA gratuit de l\'expliquer étape par étape, ou faites-vous accompagner par un enseignant avant l\'examen.',
         pp_help=[('/tutor', '💬 Demander au tuteur IA'), ('/academie#cours', '🎓 Préparation aux examens')],
         pp_other='Sous-système anglophone ? <a href="/past-papers" data-choose="en" lang="en">GCE &amp; TVEE past papers →</a>',
@@ -283,13 +283,23 @@ def footer(L):
 
 def load_solutions():
     """(exam, year, subject-address) → [(paper name, page url)] for subjects with AsghinLabs answers."""
+    import build_papers as P                     # imported here: build_papers imports this file
+    by_slug = {e['slug']: e for e in P.all_papers()}
     out = {}
-    for f in sorted((DATA / 'solutions').glob('*.json')) if (DATA / 'solutions').exists() else []:
-        d = json.loads(f.read_text(encoding='utf-8'))
-        n = re.search(r'\d+', d['paper']).group()
-        out.setdefault((d['exam'], int(d['year']), d['subject_slug']), []).append(
-            (d['paper'], f"/papers/{d['exam']}/{d['year']}/{d['subject_slug']}/paper-{n}"))
+    for slug, d in P.load_solutions().items():
+        e = by_slug.get(slug)
+        if e:
+            out.setdefault((e['exam'], e['year'], e['subject_slug']), []).append((d['paper'], P.paper_url(e)))
     return out
+
+
+def has_pages():
+    """(exam, year, subject-address) of subjects whose papers are on our own pages."""
+    import build_papers as P
+    return {(e['exam'], e['year'], e['subject_slug']) for e in P.all_papers()}
+
+
+PAGES = set()
 
 
 SOLUTIONS = {}
@@ -338,12 +348,16 @@ def build_papers(lang, rows):
                 search = esc((r["subject"] + " " + name + " " + str(y)).lower())
                 inner = f'<strong>{esc(r["subject"])}</strong><span>{plural(r["papers"], L["pp_paper"])}</span><em>{L["pp_open"]}</em>'
                 sols = SOLUTIONS.get((slug, y, r['slug']), [])
+                key = (slug, y, r['slug'])
+                # our own page for this subject when its papers are converted, else the MINESEC platform
+                href = (f'href="/papers/{slug}/{y}/{esc(r["slug"])}"' if key in PAGES
+                        else f'href="{MINESEC}/{slug}/{y}/{esc(r["slug"])}" target="_blank" rel="noopener"')
                 if not sols:
-                    secs += f'        <a class="pp-sub" href="{MINESEC}/{slug}/{y}/{esc(r["slug"])}" target="_blank" rel="noopener" data-search="{search}">{inner}</a>\n'
+                    secs += f'        <a class="pp-sub" {href} data-search="{search}">{inner}</a>\n'
                 else:   # this subject has AsghinLabs answers: card with two links
-                    ans = ''.join(f'<a class="pp-ans" href="{u}">✅ {L["pp_answers"]} · {esc(p)}</a>' for p, u in sols)
+                    ans = ''.join(f'<a class="pp-ans" href="{u}#answers">✅ {L["pp_answers"]} · {esc(p)}</a>' for p, u in sols)
                     secs += (f'        <div class="pp-sub has-sol" data-search="{search} {L["pp_answers"].lower()}">'
-                             f'<a class="pp-main" href="{MINESEC}/{slug}/{y}/{esc(r["slug"])}" target="_blank" rel="noopener">{inner}</a>{ans}</div>\n')
+                             f'<a class="pp-main" {href}>{inner}</a>{ans}</div>\n')
             secs += '      </div>\n    </details>\n'
         secs += '  </section>\n'
 
@@ -481,8 +495,8 @@ def build_skills(lang):
 
 
 def main():
-    global SOLUTIONS
-    SOLUTIONS = load_solutions()
+    global SOLUTIONS, PAGES
+    SOLUTIONS, PAGES = load_solutions(), has_pages()
     rows = json.loads((DATA / 'minesec-papers.json').read_text(encoding='utf-8'))
     n_en, n_fr = build_papers('en', rows), build_papers('fr', rows)
     build_skills('en')

@@ -25,7 +25,7 @@ def encode(im):
     mid = sum(hist[60:200]) / max(1, sum(hist))          # share of mid-grey pixels: high for scans and photos
     out = []
     if mid < 0.10:
-        b = io.BytesIO(); grey.quantize(4).convert('L').save(b, 'WEBP', lossless=True, quality=100, method=6); out.append(b.getvalue())
+        b = io.BytesIO(); grey.quantize(4).convert('L').save(b, 'WEBP', lossless=True, quality=100, method=4); out.append(b.getvalue())
     b = io.BytesIO(); grey.save(b, 'WEBP', quality=45, method=6); out.append(b.getvalue())
     if mid < 0.10 and len(out[0]) <= len(out[1]) * 1.25:
         return out[0]                                     # sharper text, prefer it unless much bigger

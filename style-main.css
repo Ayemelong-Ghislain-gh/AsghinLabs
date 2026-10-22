@@ -1330,3 +1330,9 @@ footer a:hover { color: var(--brand-primary); }
 .buttons { gap: 12px; }
 .buttons button, .buttons .hero-academy-link { padding: 14px 24px; white-space: nowrap; }
 .hero-academy-link:hover { border-color: var(--brand-primary); color: var(--brand-primary); }
+
+/* Language switch in the menu + "learn more" links in the service panels */
+.nav-lang { border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 20px; padding: 4px 12px !important; font-size: 0.85rem; }
+.svc-panel-more { margin: 0 0 18px; display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.svc-panel-more a { color: var(--brand-primary); font-weight: 600; text-decoration: none; }
+.svc-panel-more a:hover { text-decoration: underline; }

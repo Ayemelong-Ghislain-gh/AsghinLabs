@@ -1265,13 +1265,25 @@
     showLessonChips();
   }
 
+  /* ---------------- Past-paper page pictures ---------------- */
+  // /tutor?tab=ask&img=https://papers.asghinlabs.com/…/p2.webp&q=… attaches that page, like an upload.
+  const PAPER_IMG = /^https:\/\/papers\.asghinlabs\.com\/[\w\-\/]+\.webp$/;
+  async function attachPaperPage(url) {
+    const res = await fetch(url, { mode: 'cors' });
+    if (!res.ok) throw new Error('page ' + res.status);
+    const blob = await res.blob();
+    const name = 'paper-page-' + url.split('/').pop().replace('.webp', '') + '.webp';
+    askNotes = await readNotes(new File([blob], name, { type: blob.type || 'image/webp' }));
+    showFileChip($('askFileChip'), askNotes, () => { askNotes = null; showFileChip($('askFileChip'), null); });
+  }
+
   /* ---------------- Start ---------------- */
   // Links from lesson pages: /tutor?tab=ask&q=…  or  /tutor?tab=class&topic=…  (+ &level=Form 3)
   const params = new URLSearchParams(location.search);
   const startTab = params.get('tab') || store.get('tutor-tab', 'ask');
   openTab(tabs.includes(startTab) ? startTab : 'ask');
 
-  const fromLesson = { q: params.get('q'), topic: params.get('topic'), level: params.get('level') };
+  const fromLesson = { q: params.get('q'), topic: params.get('topic'), level: params.get('level'), img: params.get('img') };
   // The saved lesson only applies when the student just came from it.
   const lessonTitle = lessonCtx && lessonCtx.title.toLowerCase();
   if (!lessonCtx || !((fromLesson.q || '') + (fromLesson.topic || '')).toLowerCase().includes(lessonTitle)) lessonCtx = null;
@@ -1285,7 +1297,10 @@
     }
     if (fromLesson.q && startTab === 'ask') {
       setMode('explain');
-      askSendMessage(fromLesson.q.slice(0, 1000));
+      const ask = () => askSendMessage(fromLesson.q.slice(0, 1000));
+      // Past-paper pages send the page picture along (only from our own paper site).
+      if (fromLesson.img && PAPER_IMG.test(fromLesson.img)) attachPaperPage(fromLesson.img).then(ask, ask);
+      else ask();
     }
     if (fromLesson.topic && startTab === 'class') {
       // Sound needs a tap on this page, so the student presses "Start class" themselves.

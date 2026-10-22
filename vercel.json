@@ -17,6 +17,11 @@
       "permanent": false
     },
     {
+      "source": "/papers/gce-ordinary-level/2024/computer-science/paper-1",
+      "destination": "/papers/gce-ordinary-level/2024/computer-science/computer-science-1-2024-2",
+      "permanent": true
+    },
+    {
       "source": "/lesson-algorithms-order",
       "destination": "/lessons/form-1/computer-science/introduction-to-algorithms",
       "permanent": true
@@ -144,6 +149,416 @@
     {
       "source": "/lesson-cpu-scheduling.html",
       "destination": "/lessons/upper-sixth/computer-science/cpu-scheduling",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-01-introduction-to-computer-science",
+      "destination": "/lessons/form-1/computer-science/introduction-to-computer-science",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-01-introduction-to-computer-science.html",
+      "destination": "/lessons/form-1/computer-science/introduction-to-computer-science",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-02-history-of-computers",
+      "destination": "/lessons/form-1/computer-science/history-of-computers",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-02-history-of-computers.html",
+      "destination": "/lessons/form-1/computer-science/history-of-computers",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-03-classification-of-computers",
+      "destination": "/lessons/form-1/computer-science/classification-of-computers",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-03-classification-of-computers.html",
+      "destination": "/lessons/form-1/computer-science/classification-of-computers",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-04-introduction-to-artificial-intelligence",
+      "destination": "/lessons/form-1/computer-science/introduction-to-artificial-intelligence",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-04-introduction-to-artificial-intelligence.html",
+      "destination": "/lessons/form-1/computer-science/introduction-to-artificial-intelligence",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-05-applications-and-ethics-of-artificial-intelligen",
+      "destination": "/lessons/form-1/computer-science/applications-and-ethics-of-artificial-intelligence",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-05-applications-and-ethics-of-artificial-intelligen.html",
+      "destination": "/lessons/form-1/computer-science/applications-and-ethics-of-artificial-intelligence",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-06-the-use-of-appropriate-prompts-to-generate-ai-re",
+      "destination": "/lessons/form-1/computer-science/the-use-of-appropriate-prompts-to-generate-ai-responses",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-06-the-use-of-appropriate-prompts-to-generate-ai-re.html",
+      "destination": "/lessons/form-1/computer-science/the-use-of-appropriate-prompts-to-generate-ai-responses",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-08-decomposition",
+      "destination": "/lessons/form-1/computer-science/decomposition",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-08-decomposition.html",
+      "destination": "/lessons/form-1/computer-science/decomposition",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-09-pattern-recognition",
+      "destination": "/lessons/form-1/computer-science/pattern-recognition",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-09-pattern-recognition.html",
+      "destination": "/lessons/form-1/computer-science/pattern-recognition",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-10-abstraction",
+      "destination": "/lessons/form-1/computer-science/abstraction",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-10-abstraction.html",
+      "destination": "/lessons/form-1/computer-science/abstraction",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-13-components-of-the-computing-environment-and-role",
+      "destination": "/lessons/form-1/computer-science/components-of-the-computing-environment-and-role",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-13-components-of-the-computing-environment-and-role.html",
+      "destination": "/lessons/form-1/computer-science/components-of-the-computing-environment-and-role",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-14-users-of-the-computing-environment-and-notions-o",
+      "destination": "/lessons/form-1/computer-science/users-of-the-computing-environment-and-notions-on-data-and-i",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-14-users-of-the-computing-environment-and-notions-o.html",
+      "destination": "/lessons/form-1/computer-science/users-of-the-computing-environment-and-notions-on-data-and-i",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-16-computer-laboratory-equipment-and-devices",
+      "destination": "/lessons/form-1/computer-science/computer-laboratory-equipment-and-devices",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-16-computer-laboratory-equipment-and-devices.html",
+      "destination": "/lessons/form-1/computer-science/computer-laboratory-equipment-and-devices",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-17-computer-laboratory-designs",
+      "destination": "/lessons/form-1/computer-science/computer-laboratory-designs",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-17-computer-laboratory-designs.html",
+      "destination": "/lessons/form-1/computer-science/computer-laboratory-designs",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-18-behaviours-to-adopt-in-a-computer-laboratory",
+      "destination": "/lessons/form-1/computer-science/behaviours-to-adopt-in-a-computer-laboratory",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-18-behaviours-to-adopt-in-a-computer-laboratory.html",
+      "destination": "/lessons/form-1/computer-science/behaviours-to-adopt-in-a-computer-laboratory",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-20-types-of-personal-computer",
+      "destination": "/lessons/form-1/computer-science/types-of-personal-computer",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-20-types-of-personal-computer.html",
+      "destination": "/lessons/form-1/computer-science/types-of-personal-computer",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-21-components-of-a-computer",
+      "destination": "/lessons/form-1/computer-science/components-of-a-computer",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-21-components-of-a-computer.html",
+      "destination": "/lessons/form-1/computer-science/components-of-a-computer",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-22-keyboard-mouse-and-touch-screen-manipulations",
+      "destination": "/lessons/form-1/computer-science/keyboard-mouse-and-touch-screen-manipulations",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-22-keyboard-mouse-and-touch-screen-manipulations.html",
+      "destination": "/lessons/form-1/computer-science/keyboard-mouse-and-touch-screen-manipulations",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-24-application-of-computers",
+      "destination": "/lessons/form-1/computer-science/application-of-computers",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-24-application-of-computers.html",
+      "destination": "/lessons/form-1/computer-science/application-of-computers",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-25-application-of-embedded-systems-and-iot",
+      "destination": "/lessons/form-1/computer-science/application-of-embedded-systems-and-iot",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-25-application-of-embedded-systems-and-iot.html",
+      "destination": "/lessons/form-1/computer-science/application-of-embedded-systems-and-iot",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-26-notions-on-generative-ai",
+      "destination": "/lessons/form-1/computer-science/notions-on-generative-ai",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-26-notions-on-generative-ai.html",
+      "destination": "/lessons/form-1/computer-science/notions-on-generative-ai",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-27-ai-assisted-creation",
+      "destination": "/lessons/form-1/computer-science/ai-assisted-creation",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-27-ai-assisted-creation.html",
+      "destination": "/lessons/form-1/computer-science/ai-assisted-creation",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-29-introducing-ethics",
+      "destination": "/lessons/form-1/computer-science/introducing-ethics",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-29-introducing-ethics.html",
+      "destination": "/lessons/form-1/computer-science/introducing-ethics",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-30-computer-ethics",
+      "destination": "/lessons/form-1/computer-science/computer-ethics",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-30-computer-ethics.html",
+      "destination": "/lessons/form-1/computer-science/computer-ethics",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-31-ethical-ways-of-using-technology",
+      "destination": "/lessons/form-1/computer-science/ethical-ways-of-using-technology",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-31-ethical-ways-of-using-technology.html",
+      "destination": "/lessons/form-1/computer-science/ethical-ways-of-using-technology",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-33-block-programming-environment",
+      "destination": "/lessons/form-1/computer-science/block-programming-environment",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-33-block-programming-environment.html",
+      "destination": "/lessons/form-1/computer-science/block-programming-environment",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-34-pseudocodes-and-block-programming",
+      "destination": "/lessons/form-1/computer-science/pseudocodes-and-block-programming",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-34-pseudocodes-and-block-programming.html",
+      "destination": "/lessons/form-1/computer-science/pseudocodes-and-block-programming",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-35-write-programs-in-a-block-programming-environmen",
+      "destination": "/lessons/form-1/computer-science/write-programs-in-a-block-programming-environment",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-35-write-programs-in-a-block-programming-environmen.html",
+      "destination": "/lessons/form-1/computer-science/write-programs-in-a-block-programming-environment",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-37-peripheral-devices",
+      "destination": "/lessons/form-1/computer-science/peripheral-devices",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-37-peripheral-devices.html",
+      "destination": "/lessons/form-1/computer-science/peripheral-devices",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-38-computer-ports",
+      "destination": "/lessons/form-1/computer-science/computer-ports",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-38-computer-ports.html",
+      "destination": "/lessons/form-1/computer-science/computer-ports",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-39-the-boot-process",
+      "destination": "/lessons/form-1/computer-science/the-boot-process",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-39-the-boot-process.html",
+      "destination": "/lessons/form-1/computer-science/the-boot-process",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-40-system-software",
+      "destination": "/lessons/form-1/computer-science/system-software",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-40-system-software.html",
+      "destination": "/lessons/form-1/computer-science/system-software",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-41-application-software",
+      "destination": "/lessons/form-1/computer-science/application-software",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-41-application-software.html",
+      "destination": "/lessons/form-1/computer-science/application-software",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-43-features-of-a-gui",
+      "destination": "/lessons/form-1/computer-science/features-of-a-gui",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-43-features-of-a-gui.html",
+      "destination": "/lessons/form-1/computer-science/features-of-a-gui",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-44-operations-on-files-and-folders",
+      "destination": "/lessons/form-1/computer-science/operations-on-files-and-folders",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-44-operations-on-files-and-folders.html",
+      "destination": "/lessons/form-1/computer-science/operations-on-files-and-folders",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-46-features-of-a-word-processor",
+      "destination": "/lessons/form-1/computer-science/features-of-a-word-processor",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-46-features-of-a-word-processor.html",
+      "destination": "/lessons/form-1/computer-science/features-of-a-word-processor",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-47-features-of-a-spreadsheet",
+      "destination": "/lessons/form-1/computer-science/features-of-a-spreadsheet",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-47-features-of-a-spreadsheet.html",
+      "destination": "/lessons/form-1/computer-science/features-of-a-spreadsheet",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-48-features-of-a-graphic-software",
+      "destination": "/lessons/form-1/computer-science/features-of-a-graphic-software",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-48-features-of-a-graphic-software.html",
+      "destination": "/lessons/form-1/computer-science/features-of-a-graphic-software",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-50-introduction-to-the-internet",
+      "destination": "/lessons/form-1/computer-science/introduction-to-the-internet",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-50-introduction-to-the-internet.html",
+      "destination": "/lessons/form-1/computer-science/introduction-to-the-internet",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-51-web-browsers-and-search-engines",
+      "destination": "/lessons/form-1/computer-science/web-browsers-and-search-engines",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-51-web-browsers-and-search-engines.html",
+      "destination": "/lessons/form-1/computer-science/web-browsers-and-search-engines",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-53-common-dangers-in-a-workplace-electricity-shocks",
+      "destination": "/lessons/form-1/computer-science/common-dangers-in-a-workplace-electricity-shocks-fire-flood",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-53-common-dangers-in-a-workplace-electricity-shocks.html",
+      "destination": "/lessons/form-1/computer-science/common-dangers-in-a-workplace-electricity-shocks-fire-flood",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-54-computer-related-health-issues",
+      "destination": "/lessons/form-1/computer-science/computer-related-health-issues",
+      "permanent": true
+    },
+    {
+      "source": "/lesson-f1-cs-54-computer-related-health-issues.html",
+      "destination": "/lessons/form-1/computer-science/computer-related-health-issues",
       "permanent": true
     }
   ],

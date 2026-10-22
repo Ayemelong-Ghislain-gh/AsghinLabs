@@ -1,9 +1,14 @@
 /* =====================================================================
-   Past-paper answers page (/papers/...): try A-D, See answer, score.
+   Past-paper pages (/papers/...): tutor buttons, then try A-D, See answer, score.
    Progress is remembered on this phone/computer for each paper.
    ===================================================================== */
 (function () {
   const T = window.PV_TEXT || {};
+  const track = (name, extra) => { if (typeof gtag === 'function') gtag('event', name, Object.assign({ paper: location.pathname }, extra || {})); };
+  document.querySelectorAll('.pv-page-tutor').forEach(a => a.addEventListener('click', () => track('paper_page_tutor', { page: a.dataset.page })));
+  document.querySelectorAll('.pv-tutor-all').forEach(a => a.addEventListener('click', () => track('paper_ask_tutor_all')));
+  document.querySelectorAll('[data-request-answers]').forEach(a => a.addEventListener('click', () => track('paper_request_answers')));
+
   const cards = [...document.querySelectorAll('.pv-q')];
   if (!cards.length) return;
   const KEY = 'pv:' + location.pathname;
@@ -12,7 +17,6 @@
   let state = {};
   try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
-  const track = (name, extra) => { if (typeof gtag === 'function') gtag('event', name, Object.assign({ paper: location.pathname }, extra || {})); };
 
   function show(card, on) {
     card.querySelector('.pv-answer').hidden = !on;

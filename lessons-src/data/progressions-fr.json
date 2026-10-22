@@ -1,1 +1,464 @@
-[]
+[
+ {
+  "class": "Première",
+  "subject": "SVTEEHB",
+  "series": "D",
+  "chapters": [
+   {
+    "chapter": "Identité biologique des organismes",
+    "lessons": [
+     {
+      "n": 1,
+      "title": "Cellules animale et végétale vues au microscope optique",
+      "integration": false
+     },
+     {
+      "n": 2,
+      "title": "Ultrastructures et rôles des organites cellulaires",
+      "integration": false
+     },
+     {
+      "n": 3,
+      "title": "Structure et composition chimique d’un chromosome",
+      "integration": false
+     },
+     {
+      "n": 4,
+      "title": "L’ADN, support de l’information génétique",
+      "integration": false
+     },
+     {
+      "n": 5,
+      "title": "Division cellulaire : la mitose",
+      "integration": false
+     },
+     {
+      "n": 6,
+      "title": "Cycle cellulaire et rôles de la mitose",
+      "integration": false
+     },
+     {
+      "n": 7,
+      "title": "Apprentissage de l’intégration",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Le renouvellement moléculaire et le code génétique",
+    "lessons": [
+     {
+      "n": 8,
+      "title": "Le renouvellement permanent des molécules des cellules",
+      "integration": false
+     },
+     {
+      "n": 9,
+      "title": "La biosynthèse des protéines : la transcription",
+      "integration": false
+     },
+     {
+      "n": 10,
+      "title": "La biosynthèse des protéines : la traduction",
+      "integration": false
+     },
+     {
+      "n": 11,
+      "title": "La biosynthèse des protéines : le devenir des protéines synthétisées",
+      "integration": false
+     },
+     {
+      "n": 12,
+      "title": "Apprentissage de l’intégration",
+      "integration": true
+     },
+     {
+      "n": 13,
+      "title": "Génie génétique : caractéristiques des plantes transgéniques",
+      "integration": false
+     },
+     {
+      "n": 14,
+      "title": "Génie génétique : technique d’obtention des plantes transgéniques",
+      "integration": false
+     },
+     {
+      "n": 15,
+      "title": "Apprentissage de l’intégration",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "La catalyse enzymatique",
+    "lessons": [
+     {
+      "n": 16,
+      "title": "Relation entre l’équipement enzymatique d’une cellule et ses réactions",
+      "integration": false
+     },
+     {
+      "n": 17,
+      "title": "Caractéristiques de l’activité enzymatique",
+      "integration": false
+     },
+     {
+      "n": 18,
+      "title": "Relation entre structure et fonction de la protéine",
+      "integration": false
+     },
+     {
+      "n": 19,
+      "title": "Quelques applications de la catalyse enzymatique dans l’agro-alimentaire",
+      "integration": false
+     },
+     {
+      "n": 20,
+      "title": "Apprentissage de l’intégration",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "L’énergétique biologique",
+    "lessons": [
+     {
+      "n": 21,
+      "title": "Évaluation de la dépense énergétique d’un animal",
+      "integration": false
+     },
+     {
+      "n": 22,
+      "title": "Facteurs de variation de la dépense énergétique",
+      "integration": false
+     },
+     {
+      "n": 23,
+      "title": "Le métabolisme de base",
+      "integration": false
+     },
+     {
+      "n": 24,
+      "title": "Les apports énergétiques",
+      "integration": false
+     },
+     {
+      "n": 25,
+      "title": "Dépenses énergétiques produites par la respiration",
+      "integration": false
+     },
+     {
+      "n": 26,
+      "title": "Le mécanisme de la respiration et sa localisation cellulaire",
+      "integration": false
+     },
+     {
+      "n": 27,
+      "title": "Dépenses énergétiques produites par la fermentation",
+      "integration": false
+     },
+     {
+      "n": 28,
+      "title": "Les mécanismes de la fermentation et leur localisation cellulaire",
+      "integration": false
+     },
+     {
+      "n": 29,
+      "title": "Rendement énergétique de la respiration et de la fermentation",
+      "integration": false
+     },
+     {
+      "n": 30,
+      "title": "Apprentissage de l’intégration",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "La conversion de l’énergie lumineuse en énergie chimique",
+    "lessons": [
+     {
+      "n": 31,
+      "title": "Le captage de l’énergie lumineuse par les végétaux verts",
+      "integration": false
+     },
+     {
+      "n": 32,
+      "title": "Mécanisme de la photosynthèse : la phase chimique",
+      "integration": false
+     },
+     {
+      "n": 33,
+      "title": "Mécanisme de la photosynthèse : la phase photochimique",
+      "integration": false
+     },
+     {
+      "n": 34,
+      "title": "Importance de la photosynthèse, ses réactions et le programme génétique",
+      "integration": false
+     },
+     {
+      "n": 35,
+      "title": "Apprentissage de l’intégration",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Le flux d’énergie et les cycles du carbone et de l’azote dans les écosystèmes",
+    "lessons": [
+     {
+      "n": 36,
+      "title": "Organisation d’un écosystème",
+      "integration": false
+     },
+     {
+      "n": 37,
+      "title": "Le flux et la dissipation de l’énergie dans un écosystème",
+      "integration": false
+     },
+     {
+      "n": 38,
+      "title": "Le cycle du carbone : principaux réservoirs et cycle naturel",
+      "integration": false
+     },
+     {
+      "n": 39,
+      "title": "Le cycle du carbone : modifications par les activités humaines",
+      "integration": false
+     },
+     {
+      "n": 40,
+      "title": "Le cycle biogéochimique de l’azote",
+      "integration": false
+     },
+     {
+      "n": 41,
+      "title": "Apprentissage de l’intégration",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Le soi et le non-soi",
+    "lessons": [
+     {
+      "n": 42,
+      "title": "Le soi",
+      "integration": false
+     },
+     {
+      "n": 43,
+      "title": "Le non-soi",
+      "integration": false
+     },
+     {
+      "n": 44,
+      "title": "Les principales cellules immunitaires",
+      "integration": false
+     }
+    ]
+   },
+   {
+    "chapter": "La déficience du système immunitaire : le VIH/Sida",
+    "lessons": [
+     {
+      "n": 45,
+      "title": "Le virus et son mode d’action",
+      "integration": false
+     },
+     {
+      "n": 46,
+      "title": "La multiplication du virus, ses conséquences et les moyens de lutte contre le VIH/Sida",
+      "integration": false
+     },
+     {
+      "n": 47,
+      "title": "Apprentissage de l’intégration",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Quelques problèmes liés à la santé reproductive des adolescents",
+    "lessons": [
+     {
+      "n": 48,
+      "title": "La sexualité précoce et ses conséquences",
+      "integration": false
+     },
+     {
+      "n": 49,
+      "title": "Les mutilations génitales et leurs conséquences sur la santé",
+      "integration": false
+     },
+     {
+      "n": 50,
+      "title": "La prise des stupéfiants et ses conséquences sur la santé reproductive",
+      "integration": false
+     },
+     {
+      "n": 51,
+      "title": "Apprentissage de l’intégration",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Éducation nutritionnelle",
+    "lessons": [
+     {
+      "n": 52,
+      "title": "L’alimentation équilibrée : définition et répartition de l’apport alimentaire",
+      "integration": false
+     },
+     {
+      "n": 53,
+      "title": "L’alimentation équilibrée : un menu équilibré",
+      "integration": false
+     },
+     {
+      "n": 54,
+      "title": "Les conséquences de la mauvaise alimentation et de l’inactivité physique",
+      "integration": false
+     },
+     {
+      "n": 55,
+      "title": "Apprentissage de l’intégration",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Le rayonnement solaire et ses influences à la surface de la Terre",
+    "lessons": [
+     {
+      "n": 56,
+      "title": "L’origine de l’énergie reçue par la planète Terre",
+      "integration": false
+     },
+     {
+      "n": 57,
+      "title": "Le devenir du rayonnement solaire : notion d’albédo",
+      "integration": false
+     },
+     {
+      "n": 58,
+      "title": "Le devenir du rayonnement solaire : constante solaire et bilan radiatif",
+      "integration": false
+     },
+     {
+      "n": 59,
+      "title": "L’effet de serre",
+      "integration": false
+     },
+     {
+      "n": 60,
+      "title": "Apprentissage de l’intégration",
+      "integration": true
+     },
+     {
+      "n": 61,
+      "title": "Les causes de l’inégale répartition de l’énergie solaire",
+      "integration": false
+     },
+     {
+      "n": 62,
+      "title": "Les mouvements atmosphériques",
+      "integration": false
+     },
+     {
+      "n": 63,
+      "title": "Les mouvements océaniques",
+      "integration": false
+     },
+     {
+      "n": 64,
+      "title": "Apprentissage de l’intégration",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "Le phénomène d’altération des roches et ses conséquences",
+    "lessons": [
+     {
+      "n": 65,
+      "title": "L’altération des roches",
+      "integration": false
+     },
+     {
+      "n": 66,
+      "title": "Le devenir des produits d’altération",
+      "integration": false
+     },
+     {
+      "n": 67,
+      "title": "La sédimentation",
+      "integration": false
+     },
+     {
+      "n": 68,
+      "title": "Diagenèse et roches sédimentaires",
+      "integration": false
+     },
+     {
+      "n": 69,
+      "title": "Séries et cycles sédimentaires",
+      "integration": false
+     },
+     {
+      "n": 70,
+      "title": "La chronologie relative et ses principes",
+      "integration": false
+     },
+     {
+      "n": 71,
+      "title": "La reconstitution des milieux sédimentaires",
+      "integration": false
+     },
+     {
+      "n": 72,
+      "title": "Apprentissage de l’intégration",
+      "integration": true
+     }
+    ]
+   },
+   {
+    "chapter": "La structure et l’énergie internes de la Terre",
+    "lessons": [
+     {
+      "n": 73,
+      "title": "Éléments de sismologie : origine et types d’ondes sismiques",
+      "integration": false
+     },
+     {
+      "n": 74,
+      "title": "Éléments de sismologie : comportement des ondes à l’intérieur du globe",
+      "integration": false
+     },
+     {
+      "n": 75,
+      "title": "La structure interne de la Terre : discontinuités et enveloppes",
+      "integration": false
+     },
+     {
+      "n": 76,
+      "title": "La structure interne de la Terre : composition chimique et densité",
+      "integration": false
+     },
+     {
+      "n": 77,
+      "title": "L’énergie interne de la Terre",
+      "integration": false
+     },
+     {
+      "n": 78,
+      "title": "Apprentissage de l’intégration",
+      "integration": true
+     }
+    ]
+   }
+  ]
+ }
+]

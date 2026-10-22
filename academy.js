@@ -33,8 +33,11 @@
   }
 
   function fileCard(item, index, listKey) {
-    const meta = [item.pages ? `${item.pages} pages` : '', item.size || '', 'PDF']
-      .filter(Boolean).join(' · ');
+    const meta = item.sample
+      ? t(`Free sample · ${item.pages} of ${item.fullPages} pages`, `Extrait gratuit · ${item.pages} pages sur ${item.fullPages}`)
+      : [item.pages ? `${item.pages} pages` : '', item.size || '', 'PDF', t('Free', 'Gratuit')].filter(Boolean).join(' · ');
+    const full = (item.order && typeof ACADEMY_WORKBOOKS !== 'undefined') ? ACADEMY_WORKBOOKS.find(b => b.id === item.order) : null;
+    const price = full && full.price ? ' · ' + full.price.toLocaleString('en-US').replace(/,/g, ' ') + ' FCFA' : '';
     const cover = item.cover
       ? `<img src="${esc(item.cover)}" alt="${t('Cover of', 'Couverture de')} ${esc(item.title)}" loading="lazy" width="600" height="776">`
       : `<div class="note-cover-fallback"><span>📄</span><strong>${esc(item.subject || t('Notes', 'Fiches'))}</strong><em>${esc(item.level || '')}</em></div>`;
@@ -47,10 +50,12 @@
         <div class="note-body">
           <span class="academy-file-subject">${esc(item.subject || '')}${item.level ? ' · ' + esc(item.level) : ''}</span>
           <h4>${esc(item.title)}</h4>
-          <p class="note-meta">${esc(meta)} · ${t('Free', 'Gratuit')}</p>
+          <p class="note-meta">${esc(meta)}</p>
           <div class="note-actions">
-            <button type="button" class="note-btn primary" data-read="${listKey}:${index}">📖 ${t('Read online', 'Lire en ligne')}</button>
-            <a class="note-btn" href="${esc(item.file)}" download="${esc(fileName(item.file))}">⬇ ${t('Download', 'Télécharger')}</a>
+            <button type="button" class="note-btn${full ? '' : ' primary'}" data-read="${listKey}:${index}">📖 ${item.sample ? t('Read the sample', 'Lire l’extrait') : t('Read online', 'Lire en ligne')}</button>
+            ${full
+              ? `<button type="button" class="note-btn primary" data-buy="${esc(full.id)}">🛒 ${t('Get the full notes', 'Les notes complètes')}${price}</button>`
+              : `<a class="note-btn" href="${esc(item.file)}" download="${esc(fileName(item.file))}">⬇ ${t('Download', 'Télécharger')}</a>`}
           </div>
         </div>
       </article>`;

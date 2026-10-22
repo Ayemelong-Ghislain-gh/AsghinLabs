@@ -10,7 +10,8 @@ Data
       [{"class": "3e", "subject": "Informatique",
         "chapters": [{"chapter": "…", "lessons": [{"n": 1, "title": "…", "integration": false}]}]}]
   lessons-src/content/<code>_<subj>.py    LESSONS = {n: {...}} exactly like the English content files
-      code: fr6 fr5 fr4 fr3 fr2nd fr1re frtle · subj: info maths     e.g. content/fr3_info.py
+      code: fr6 fr5 fr4 fr3 fr2nd fr1re frtle · subj: info maths svt     e.g. content/fr3_info.py
+  A progression may carry "series": "D" (e.g. Première D SVTEEHB); it is shown next to the class.
 
 Until a class has its progression, the hub shows that class with "bientôt".
 """
@@ -28,10 +29,15 @@ LABEL = {'6e': '6<sup>e</sup>', '5e': '5<sup>e</sup>', '4e': '4<sup>e</sup>', '3
 EXAM = {'3e': 'BEPC', 'Première': 'Probatoire', 'Terminale': 'Baccalauréat'}
 CLASS_DIR = {'6e': '6e', '5e': '5e', '4e': '4e', '3e': '3e', 'Seconde': 'seconde', 'Première': 'premiere', 'Terminale': 'terminale'}
 CLASS_FILE = {'6e': 'fr6', '5e': 'fr5', '4e': 'fr4', '3e': 'fr3', 'Seconde': 'fr2nd', 'Première': 'fr1re', 'Terminale': 'frtle'}
-SUBJECTS = ['Mathématiques', 'Informatique']
-SUBJ_DIR = {'Informatique': 'informatique', 'Mathématiques': 'mathematiques'}
-SUBJ_FILE = {'Informatique': 'info', 'Mathématiques': 'maths'}
-ICON = {'Informatique': '💻', 'Mathématiques': '📐'}
+SUBJECTS = ['Mathématiques', 'Informatique', 'SVTEEHB']
+SUBJ_DIR = {'Informatique': 'informatique', 'Mathématiques': 'mathematiques', 'SVTEEHB': 'svteehb'}
+SUBJ_FILE = {'Informatique': 'info', 'Mathématiques': 'maths', 'SVTEEHB': 'svt'}
+ICON = {'Informatique': '💻', 'Mathématiques': '📐', 'SVTEEHB': '🧬'}
+
+
+def series_of(r):
+    """' D' for a Première D progression, '' otherwise."""
+    return (' ' + r['series']) if r.get('series') else ''
 WA = 'https://wa.me/237682402876?text='
 
 
@@ -110,7 +116,7 @@ def catalogue():
                     continue
                 n = l['n']
                 nint = int(re.match(r'\d+', str(n)).group())
-                r = dict(cls=cls, subj=subj, chapter=ch['chapter'], n=n, title=l['title'])
+                r = dict(cls=cls, subj=subj, chapter=ch['chapter'], n=n, title=l['title'], series=p.get('series', ''))
                 if n in content or nint in content:
                     name = slugify(l['title'])
                     while name in used:
@@ -127,14 +133,15 @@ def catalogue():
 def build_activity(r, prev, nxt):
     d, title, url = r['data'], r['title'], r['url']
     cls, subj = r['cls'], r['subj']
-    desc = d.get('desc') or f"{title} : leçon interactive gratuite de {subj} en {cls} ({r['chapter']}), sous-système francophone. Explications courtes, schémas et activités corrigées immédiatement."
-    head = frenchify_head(B.make_head(f"{title} — {subj} {cls} | AsghinLabs Academy", desc, url, ld_for(title, desc, url, cls, subj)))
+    ser = series_of(r)
+    desc = d.get('desc') or f"{title} : leçon interactive gratuite de {subj} en {cls}{ser} ({r['chapter']}), sous-système francophone. Explications courtes, schémas et activités corrigées immédiatement."
+    head = frenchify_head(B.make_head(f"{title} — {subj} {cls}{ser} | AsghinLabs Academy", desc, url, ld_for(title, desc, url, cls + ser, subj)))
     link = lambda x, side: '' if not x else (
         f'<a class="{side}" href="{x["url"]}"><span>' + (f'← Précédente : leçon {x["n"]}' if side == 'prev' else f'Suivante : leçon {x["n"]} →') + f'</span>{html.escape(x["title"])}</a>')
     anchor = CLASS_DIR[cls]
     body = f'''<div class="lesson-wrap">
   <div class="lesson-path"><a href="/lecons#{anchor}">← {LABEL[cls]}</a> › <span>{subj}</span> › <span>{html.escape(r['chapter'])}</span></div>
-  <span class="lesson-badge">🧩 {subj} · {LABEL[cls]} · Leçon {r['n']}</span>
+  <span class="lesson-badge">🧩 {subj} · {LABEL[cls]}{ser} · {'Séance' if subj == 'SVTEEHB' else 'Leçon'} {r['n']}</span>
   <h1>{html.escape(title)}</h1>
   <p class="lead">{d.get('lead', '')}</p>
 
@@ -204,7 +211,8 @@ def build_hub(recs):
         for subj in SUBJECTS:
             if subj not in by.get(c, {}):
                 continue
-            secs += f'    <h3 class="hub-level">{ICON[subj]} {subj}</h3>\n    <div class="chapters">\n'
+            ser = next((series_of(x) for ch in by[c][subj].values() for x in ch), '')
+            secs += f'    <h3 class="hub-level">{ICON[subj]} {subj}{(" — " + LABEL[c] + ser) if ser else ""}</h3>\n    <div class="chapters">\n'
             for k, (chap, rows) in enumerate(by[c][subj].items()):
                 n_ready = sum(1 for x in rows if x['kind'] != 'soon')
                 secs += (f'      <details class="chapter" data-search="{html.escape((chap + " " + c + " " + subj).lower())}">\n'
@@ -222,10 +230,10 @@ def build_hub(recs):
         secs += '  </section>'
 
     desc = ("Leçons interactives gratuites pour le sous-système francophone, de la 6e à la Terminale : "
-            "Informatique et Mathématiques, d'après les progressions officielles du MINESEC. Préparation au BEPC, au Probatoire et au Bac.")
+            "Informatique, Mathématiques et SVT, d'après les progressions officielles du MINESEC. Préparation au BEPC, au Probatoire et au Bac.")
     items = [{"@type": "ListItem", "position": i + 1, "url": SITE + x['url'], "name": x['title']}
              for i, x in enumerate(x for x in recs if x['kind'] == 'activities')]
-    ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Leçons interactives : Informatique et Mathématiques",
+    ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Leçons interactives : Informatique, Mathématiques et SVT",
           "description": desc, "url": SITE + "/lecons", "inLanguage": "fr",
           "isPartOf": {"@type": "Organization", "name": "AsghinLabs Academy", "url": SITE + "/academie"},
           "mainEntity": {"@type": "ItemList", "itemListElement": items}}
@@ -238,7 +246,7 @@ def build_hub(recs):
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Leçons interactives : Informatique et Mathématiques, 6e à Terminale | AsghinLabs Academy</title>
+  <title>Leçons interactives : Informatique, Mathématiques et SVT, 6e à Terminale | AsghinLabs Academy</title>
   <meta name="description" content="{html.escape(desc, quote=True)}">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="{SITE}/lecons">
@@ -249,7 +257,7 @@ def build_hub(recs):
   <meta property="og:site_name" content="AsghinLabs">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Leçons interactives : Informatique et Mathématiques | AsghinLabs Academy">
+  <meta property="og:title" content="Leçons interactives : Informatique, Mathématiques et SVT | AsghinLabs Academy">
   <meta property="og:description" content="{html.escape(desc, quote=True)}">
   <meta property="og:url" content="{SITE}/lecons">
   <meta property="og:image" content="{SITE}/images/og-cover.jpg">
@@ -294,7 +302,7 @@ def build_hub(recs):
   <p class="lead">{lead}</p>
 
   <div class="hub-search" role="search">
-    <input type="search" id="lessonSearch" placeholder="🔎 Chercher une leçon : ex. binaire, Thalès, tableur" aria-label="Chercher une leçon" autocomplete="off">
+    <input type="search" id="lessonSearch" placeholder="🔎 Chercher une leçon : ex. mitose, ADN, binaire, Thalès" aria-label="Chercher une leçon" autocomplete="off">
   </div>
   <p class="hub-empty" id="hubEmpty" hidden>Aucune leçon trouvée pour cette recherche. <a class="inline-link" href="{wa("Bonjour AsghinLabs Academy, j'aimerais une leçon interactive sur...")}" target="_blank" rel="noopener">Demander cette leçon sur WhatsApp →</a></p>
   {tabs}

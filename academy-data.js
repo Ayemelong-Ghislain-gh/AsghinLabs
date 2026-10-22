@@ -15,16 +15,24 @@ const ACADEMY_WHATSAPP = "237682402876";
       the card look much better (images/academy/notes/…).
    Visitors can read every PDF right on the site, or download it.
    --------------------------------------------------------------------- */
+// Free SAMPLES only (cover, contents and the first lessons). The complete
+// notes are sold in the shop below: "order" is the id of the matching
+// product in ACADEMY_WORKBOOKS, so the card shows a "Get the full notes" button.
+const NOTES_SAMPLE = (slug, title, subject, level, pages, fullPages, order) => ({
+  file: `files/academy/notes/samples/${slug}-notes-sample.pdf`,
+  cover: `images/academy/notes/${slug}-notes.jpg`,
+  title, subject, level, pages, fullPages, order, sample: true,
+});
 const ACADEMY_NOTES = [
-  {
-    file: "files/academy/notes/computer-science-lower-sixth-complete-notes.pdf",
-    cover: "images/academy/notes/cs-lower-sixth-notes.jpg",
-    title: "Computer Science — Complete Lesson Notes",
-    subject: "Computer Science",
-    level: "Lower Sixth",
-    pages: 380,
-    size: "2.6 MB",
-  },
+  NOTES_SAMPLE("maths-lower-sixth", "Mathematics — Full Lesson Notes", "Mathematics", "Lower Sixth", 29, 275, "notes-maths-l6"),
+  NOTES_SAMPLE("biology-lower-sixth", "Biology — Full Lesson Notes", "Biology", "Lower Sixth", 25, 217, "notes-bio-l6"),
+  NOTES_SAMPLE("physics-lower-sixth", "Physics — Full Lesson Notes", "Physics", "Lower Sixth", 23, 96, "notes-phy-l6"),
+  NOTES_SAMPLE("chemistry-lower-sixth", "Chemistry — Full Lesson Notes", "Chemistry", "Lower Sixth", 25, 154, "notes-chem-l6"),
+  NOTES_SAMPLE("computer-science-lower-sixth", "Computer Science — Full Lesson Notes", "Computer Science", "Lower Sixth", 18, 380, "notes-cs-l6"),
+  NOTES_SAMPLE("maths-upper-sixth", "Pure Maths with Mechanics — Full Lesson Notes", "Mathematics", "Upper Sixth", 29, 249, "notes-maths-u6"),
+  NOTES_SAMPLE("biology-upper-sixth", "Biology — Full Lesson Notes", "Biology", "Upper Sixth", 24, 133, "notes-bio-u6"),
+  NOTES_SAMPLE("physics-upper-sixth", "Physics — Full Lesson Notes", "Physics", "Upper Sixth", 24, 101, "notes-phy-u6"),
+  NOTES_SAMPLE("chemistry-upper-sixth", "Chemistry — Full Lesson Notes", "Chemistry", "Upper Sixth", 24, 137, "notes-chem-u6"),
 ];
 
 const ACADEMY_PAST_QUESTIONS = [
@@ -67,7 +75,38 @@ function buildWorkbooks(subject, code, slugs, prices = {}) {
 
 // Computer Science runs Form 1 → A Level. At A Level it splits into
 // Computer Science and ICT, so ICT only has an A Level workbook.
+// A Level lesson notes (PDF, sent on WhatsApp). Single-level books (hideInAll)
+// only show under the "A Level Notes (PDF)" filter, so "All" stays short.
+// Prices: 3 000 FCFA per subject
+// per level, 5 000 FCFA for both levels of one subject, 20 000 FCFA for all 5 subjects.
+const NOTES_PRICE = { level: 3000, both: 5000, all: 20000 };
+const NOTES_SUBJECTS = [
+  // [code, subject, image slug, Upper Sixth title]
+  ["maths", "Mathematics", "maths", "Pure Maths with Mechanics"],
+  ["bio", "Biology", "biology", "Biology"],
+  ["phy", "Physics", "physics", "Physics"],
+  ["chem", "Chemistry", "chemistry", "Chemistry"],
+  ["cs", "Computer Science", "computer-science", "Computer Science"],
+];
+const ACADEMY_LESSON_NOTES = [
+  {
+    id: "notes-all", subject: "A Level Notes (PDF)", level: "A Level",
+    title: "Complete A Level Notes Package", stage: "Maths, Biology, Physics, Chemistry & Computer Science · Lower + Upper Sixth · PDF",
+    price: NOTES_PRICE.all, cover: "images/academy/notes/a-level-notes-package.jpg", status: "available", pack: true, packLabel: "⭐ Best value · 5 subjects",
+  },
+  ...NOTES_SUBJECTS.flatMap(([code, subject, img, u6title]) => [
+    { id: `notes-${code}-both`, subject: "A Level Notes (PDF)", level: "A Level", title: `${subject} — Lower + Upper Sixth`,
+      stage: "Both years of the progression · PDF", price: NOTES_PRICE.both, cover: `images/academy/notes/${img}-upper-sixth-notes.jpg`,
+      status: "available", pack: true, packLabel: "⭐ 2 years" },
+    { id: `notes-${code}-l6`, subject: "A Level Notes (PDF)", level: "Lower Sixth", title: `${subject} — Lower Sixth`,
+      stage: "Every lesson of the progression · PDF", price: NOTES_PRICE.level, hideInAll: true, cover: `images/academy/notes/${img}-lower-sixth-notes.jpg`, status: "available" },
+    { id: `notes-${code}-u6`, subject: "A Level Notes (PDF)", level: "Upper Sixth", title: `${u6title} — Upper Sixth`,
+      stage: "Every lesson of the progression · PDF", price: NOTES_PRICE.level, hideInAll: true, cover: `images/academy/notes/${img}-upper-sixth-notes.jpg`, status: "available" },
+  ]),
+];
+
 const ACADEMY_WORKBOOKS = [
+  ...ACADEMY_LESSON_NOTES,
   ...buildWorkbooks("Computer Science", "cs", ["form-1", "form-2", "form-3", "o-level-complete", "a-level-complete"]),
   ...buildWorkbooks("ICT", "ict", ["a-level-complete"]),
   // Mathematics has its own prices.

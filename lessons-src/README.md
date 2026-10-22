@@ -158,23 +158,44 @@ lessons.html and lecons.html: each `<body>` says `data-subsystem="en|fr"` and `d
 
 `build/build_academy_pages.py` (run by `build.py`) makes `/past-papers` and `/epreuves` from
 `data/minesec-papers.json` (one row per exam, year and subject: `exam`, `year`, `subject`, `papers`, `slug`;
-each opens `https://minesec-distance.schoolfaqs.net/revision/<exam>/<year>/<slug>`), and the skills pages
+each opens our subject page `/papers/<exam>/<year>/<slug>`, or the MINESEC platform for a subject not converted yet), and the skills pages
 `/skills` and `/formations` (course texts are in the same file, in English and French).
 When MINESEC adds a year, add its rows to the JSON and rebuild.
 
-## Past-paper answers (/papers/...)
+## Past-paper pages (/papers/...)
 
-`build/build_papers.py` (run by `build.py`) makes one answers page per file in `data/solutions/`,
-for example `data/solutions/gce-ordinary-level-2024-computer-science-paper-1.json` →
-`/papers/gce-ordinary-level/2024/computer-science/paper-1`. Each question gets A–D buttons,
-"See answer" and "Ask AI tutor". The library (/past-papers, /epreuves) shows "✅ Answers" on that subject.
+Every official paper is shown on our own pages, unedited, with the owners' permission
+(keep their written permission on file).
 
-- Write answers in our own words; never copy the question text into the JSON (use a short `topic`).
-- `"check": true` on a question = a teacher should confirm that answer (not shown to students).
-- `"pages_permitted": false` (default) → a button opens the official paper on the MINESEC platform.
-  Set it to `true`, with `"pages": [...]`, only for a paper whose owner (printed on the paper: GCE Board,
-  MINESEC delegation, TRU…) has given written permission; the pages then load from `PAPERS_HOST`.
-- `tools/convert_papers.py` turns a PDF into light page images (one WebP per page, nothing edited).
+- `/papers/<exam>/<year>/<subject>` lists that subject's papers (a small picture of each first page).
+- `/papers/<exam>/<year>/<subject>/<paper>` shows the paper page by page (`<paper>` is its MINESEC
+  address, e.g. `sw-biology-1-2025`). Each page has "Ask AI tutor about this page", which opens
+  `/tutor` with that page attached. The top buttons are "See answers" (or "Request the answers" on
+  WhatsApp when we have none yet) and "Ask AI tutor".
+
+The page pictures are **not** in this repository. They live in a separate repository,
+`asghinlabs-papers`, published free by Cloudflare Pages at `https://papers.asghinlabs.com`
+(`PAPERS_HOST` in `build/build_papers.py`). That keeps this site small and fast.
+
+To add or redo papers:
+1. `python lessons-src/tools/convert_papers.py --batch <list.tsv> <images>` turns PDFs into page
+   pictures (1000 px wide WebP, nothing cropped or edited).
+2. `python lessons-src/tools/index_papers.py "<MINESEC Past Papers>/index.csv" <images>` writes
+   `data/paper-files.json` (papers, page heights, and which identical PDFs share one set of pictures).
+3. `python lessons-src/tools/publish_papers.py <images> <asghinlabs-papers folder>`, then push that
+   repository; Cloudflare Pages publishes it in about a minute.
+4. Rebuild this site (`python lessons-src/build/build.py`) and push.
+
+### Answers
+
+`build/build_papers.py` adds answers to a paper when `data/solutions/` has a file whose
+`source_page` is that paper's MINESEC address. Each question gets A–D buttons (multiple choice),
+"See answer" and "Ask AI tutor". The library shows "✅ Answers" on that subject.
+
+- Answers must be correct (a condition of the permission). Write them in our own words; never copy
+  the question text into the JSON (use a short `topic`).
+- `"check": true` on a question = still being checked: students see "being checked", not the answer.
+  Remove it once a teacher has confirmed the answer.
 
 ## Add a practice (step-by-step) lesson
 

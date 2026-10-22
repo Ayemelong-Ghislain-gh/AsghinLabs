@@ -57,3 +57,33 @@ body.pv-body { overflow-x: clip; }
   .pv-choice { width: auto; }
   .pv-see, .pv-tutor { grid-column: span 2; text-align: center; }
 }
+
+/* ---- every past paper: page pictures + buttons ---- */
+.pv-h2 { font-size: 1.4rem; margin: 10px 0 12px; }
+.pv-actions { display: flex; flex-wrap: wrap; gap: 10px; flex: 1 1 100%; }
+.pv-actions .apply-btn { margin: 0; }
+.pv-tutor-all { display: inline-flex; align-items: center; padding: 12px 20px; border-radius: 40px; font-weight: 700; text-decoration: none;
+  border: 1px solid rgba(255, 196, 0, 0.55); color: rgb(255, 196, 0); }
+.pv-tutor-all:hover { background: rgba(255, 196, 0, 0.1); }
+.pv-page { scroll-margin-top: 100px; }
+.pv-page figcaption { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 12px; }
+.pv-page-tutor { padding: 7px 14px; border-radius: 30px; font-size: 0.8rem; font-weight: 700; text-decoration: none;
+  background: rgba(255, 196, 0, 0.12); border: 1px solid rgba(255, 196, 0, 0.5); color: rgb(255, 196, 0); }
+.pv-page-tutor:hover { background: rgba(255, 196, 0, 0.22); }
+.pv-noans { padding: 20px; border-radius: 18px; border: 1px dashed rgba(255, 255, 255, 0.2); background: var(--card-bg); margin: 10px 0 30px; }
+.pv-noans p { color: var(--text-muted); line-height: 1.6; margin: 0 0 14px; }
+.pv-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; margin: 10px 0 30px; }
+.pv-card { display: flex; flex-direction: column; gap: 4px; padding: 16px; border-radius: 16px; text-decoration: none; color: var(--text-light);
+  border: 1px solid rgba(255, 255, 255, 0.09); background: var(--card-bg); transition: border-color .2s, transform .2s; }
+.pv-card:hover { border-color: var(--brand-primary); transform: translateY(-2px); }
+.pv-card span { color: var(--text-muted); font-size: 0.85rem; }
+.pv-card em { color: var(--brand-primary); font-style: normal; font-weight: 700; font-size: 0.85rem; margin-top: 6px; }
+@media (max-width: 640px) {
+  .pv-actions .apply-btn, .pv-tutor-all { flex: 1 1 100%; justify-content: center; text-align: center; }
+  .pv-page figcaption { justify-content: center; }
+}
+.pv-wrap section { padding: 0; }            /* the site-wide section padding is for the home page */
+.pv-questions { margin-top: 10px; }
+#answers { scroll-margin-top: 100px; }
+.pv-card img { display: block; width: calc(100% + 32px); margin: -16px -16px 10px; height: 120px; object-fit: cover; object-position: top;
+  border-radius: 16px 16px 0 0; background: #fff; }
