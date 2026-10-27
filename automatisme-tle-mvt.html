@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Automatisme – Tle MVT – Leçon interactive</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f6f7fb;--card:#fff;--text:#1b2033;--muted:#5d647a;--accent:#2f5bea;--at:#fff;--ok:#16794a;--okbg:#e3f5ec;--bad:#b3261e;--badbg:#fdeaea;--line:#dfe3ee;--note:#fff6d6;--notet:#5a4500}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#12141c;--card:#1b1f2c;--text:#eceef6;--muted:#a1a8bf;--accent:#7b9bff;--at:#10142a;--ok:#6fdca5;--okbg:#17332a;--bad:#ff9b94;--badbg:#3a1c1b;--line:#2c3246;--note:#3a3216;--notet:#f3dc8a}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#12141c;--card:#1b1f2c;--text:#eceef6;--muted:#a1a8bf;--accent:#7b9bff;--at:#10142a;--ok:#6fdca5;--okbg:#17332a;--bad:#ff9b94;--badbg:#3a1c1b;--line:#2c3246;--note:#3a3216;--notet:#f3dc8a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:760px;margin:0 auto;padding:18px 14px 48px}
+h1{font-size:1.5rem;margin:.2em 0}h2{font-size:1.25rem;margin:0 0 .5em}h3{font-size:1.02rem;margin:1em 0 .3em}
+p{margin:.5em 0}.muted{color:var(--muted)}
+.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:12px 0 4px}.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin:12px 0}
+.step{display:none}.step.on{display:block}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--accent);color:var(--at);border:0;border-radius:10px;padding:10px 18px;font-weight:600}
+.btn.g{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.note{background:var(--note);color:var(--notet);border-radius:10px;padding:10px 14px;margin:12px 0}
+.def{border-left:4px solid var(--accent);padding:4px 12px;margin:10px 0;background:var(--bg);border-radius:0 8px 8px 0}
+.blocks{display:flex;align-items:stretch;gap:6px;flex-wrap:wrap;margin:10px 0}
+.blk{flex:1;min-width:140px;border:2px solid var(--line);border-radius:12px;padding:12px;text-align:center;background:var(--card);color:var(--text)}
+.blk.on{border-color:var(--accent);background:var(--bg)}
+.ar{align-self:center;color:var(--muted);font-size:1.3rem}
+.opt{display:block;width:100%;text-align:left;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:7px 0}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.ok{background:var(--okbg)!important;border-color:var(--ok)!important;color:var(--ok)!important}
+.bad{background:var(--badbg)!important;border-color:var(--bad)!important;color:var(--bad)!important}
+.fb{display:none;margin-top:6px;font-size:.95rem}.fb.show{display:block}
+table{border-collapse:collapse;width:100%;font-size:.95rem}th,td{border:1px solid var(--line);padding:6px 8px;text-align:center}th{background:var(--bg)}
+tr.hl td{background:var(--okbg);color:var(--ok);font-weight:700}
+.wrap{overflow-x:auto}
+select{font:inherit;padding:6px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--text)}
+.mrow{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:8px 0;border-bottom:1px solid var(--line)}
+.lamp{width:56px;height:56px;border-radius:50%;border:3px solid var(--line);margin:auto;transition:.2s}.lamp.on{background:#ffd23f;box-shadow:0 0 22px #ffd23f;border-color:#e0a800}
+.tg{border:2px solid var(--line);border-radius:99px;padding:8px 16px;background:var(--card);color:var(--text);font-weight:700}.tg.on{background:var(--accent);color:var(--at);border-color:var(--accent)}
+.gs{border:2px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 auto;max-width:420px;background:var(--card)}
+.gs.on{border-color:var(--ok);background:var(--okbg)}.gs b{display:inline-block;min-width:28px}
+.tr{text-align:center;color:var(--muted);font-size:.9rem;margin:2px 0}
+textarea{width:100%;min-height:76px;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--card);color:var(--text);font:inherit}
+.score{font-size:2.2rem;font-weight:700;color:var(--accent)}
+</style>
+</head>
+<body>
+<main>
+<p class="muted" style="margin:0">AsghinLabs Academy · Sous-système francophone · Technique</p>
+<h1>L’automatisme – Classe de Tle MVT</h1>
+<div class="bar"><i id="pb"></i></div>
+<p class="muted" id="pl" style="margin:0 0 4px"></p>
+
+<section class="step on card">
+<h2>1. Introduction : pourquoi l’automatisme ?</h2>
+<p>Quand vous approchez d’un portail électrique, il s’ouvre. Dans une voiture, les essuie-glaces se déclenchent seuls quand il pleut, et le régulateur maintient la vitesse. Tout cela se fait <b>sans que l’homme agisse en permanence</b> : c’est de l’automatisme.</p>
+<div class="def"><b>Définition.</b> Un <b>automatisme</b> est un ensemble de moyens techniques (capteurs, circuits de commande, actionneurs) qui exécutent <b>tout seuls</b> une suite d’opérations, selon un programme défini à l’avance.</div>
+<h3>Objectifs de la leçon</h3>
+<p>À la fin, vous saurez : (1) décrire la structure d’un système automatisé, (2) distinguer capteurs, pré-actionneurs et actionneurs, (3) utiliser les fonctions logiques ET, OU, NON, (4) lire et interpréter un GRAFCET.</p>
+<h3>Pourquoi automatiser ?</h3>
+<p>• Plus de <b>sécurité</b> (ABS, airbag) • Plus de <b>confort</b> (climatisation automatique) • Plus de <b>précision et de rapidité</b> • <b>Économie</b> de carburant et d’énergie (injection électronique) • Suppression des tâches pénibles ou répétitives.</p>
+<div class="note">💡 Question de départ : citez deux automatismes que vous avez déjà vus dans une voiture ou à la maison.</div>
+</section>
+
+<section class="step card">
+<h2>2. Structure d’un système automatisé</h2>
+<p>Tout système automatisé se compose de <b>trois parties</b>. Cliquez sur chaque bloc pour voir son rôle.</p>
+<div class="blocks">
+<button class="blk" id="b0" onclick="blk(0)"><b>PARTIE COMMANDE</b><br>(PC)</button><span class="ar">⇄</span>
+<button class="blk" id="b1" onclick="blk(1)"><b>PARTIE OPÉRATIVE</b><br>(PO)</button><span class="ar">⇄</span>
+<button class="blk" id="b2" onclick="blk(2)"><b>RELATION / DIALOGUE</b><br>(PR)</button>
+</div>
+<div class="def" id="bd">👆 Cliquez sur un bloc.</div>
+<h3>Exemple : le portail automatique</h3>
+<p><b>PO</b> : moteur, vérin, portail, capteurs de fin de course. <b>PC</b> : carte électronique ou automate qui décide. <b>PR</b> : télécommande, bouton, voyant de signalisation.</p>
+<div class="note">📌 À retenir : la PC <b>donne des ordres</b> à la PO ; la PO <b>renvoie des informations</b> (comptes rendus) à la PC ; l’opérateur dialogue avec la PC grâce à la PR.</div>
+</section>
+
+<section class="step card">
+<h2>3. Capteurs, pré-actionneurs, actionneurs</h2>
+<div class="def"><b>Capteur</b> : détecte une grandeur physique (position, vitesse, pression, température, pluie…) et la transforme en <b>signal électrique</b> envoyé à la PC.<br>
+<b>Pré-actionneur</b> : reçoit l’ordre de faible puissance de la PC et <b>commande</b> l’actionneur avec plus de puissance (relais, contacteur, distributeur).<br>
+<b>Actionneur</b> : <b>transforme l’énergie</b> en travail utile (moteur, vérin, lampe, électrovanne).</div>
+<h3>Types de signaux</h3>
+<p><b>TOR</b> (tout ou rien) : 2 états, 0 ou 1 (ex. contact de porte).<br><b>Analogique</b> : varie de façon continue (ex. température du liquide de refroidissement).<br><b>Numérique</b> : suite de valeurs codées en binaire.</p>
+<h3>🎯 Activité : classez chaque composant</h3>
+<div id="m"></div>
+<div class="note">📌 Chaîne de l’information : <b>Capteur → PC → Pré-actionneur → Actionneur</b>.</div>
+</section>
+
+<section class="step card">
+<h2>4. Les fonctions logiques de base</h2>
+<p>La PC raisonne avec des variables à <b>deux états</b> : 0 (faux, absent) ou 1 (vrai, présent). Trois fonctions suffisent à construire un automatisme.</p>
+<div class="def"><b>ET</b> (a·b) : sortie = 1 <b>si a ET b</b> valent 1. <b>OU</b> (a+b) : sortie = 1 si <b>a OU b</b> (ou les deux) vaut 1. <b>NON</b> (ā) : sortie = <b>l’inverse</b> de a.</div>
+<h3>🎮 Simulateur</h3>
+<div class="row" id="gt"></div>
+<p id="gx" class="muted"></p>
+<div class="row" id="tg"></div>
+<div class="lamp" id="lp"></div>
+<p style="text-align:center"><b id="lt"></b></p>
+<div class="wrap"><table id="tt"></table></div>
+<div class="note">📌 Exemples auto : démarreur actif si <b>embrayage enfoncé ET clé sur « start »</b> (ET) ; plafonnier allumé si <b>porte avant ouverte OU porte arrière ouverte</b> (OU) ; voyant « frein à main » allumé si <b>frein à main NON desserré</b> (NON).</div>
+</section>
+
+<section class="step card">
+<h2>5. Le GRAFCET</h2>
+<p>Le <b>GRAFCET</b> (GRAphe Fonctionnel de Commande des Étapes et Transitions) décrit le fonctionnement d’un automatisme <b>étape par étape</b>.</p>
+<div class="def"><b>Étape</b> : un état stable du système (carré numéroté ; l’étape <b>initiale</b> est en double carré). <b>Action</b> : ce que le système fait pendant l’étape. <b>Transition</b> : passage d’une étape à la suivante. <b>Réceptivité</b> : condition à remplir pour franchir la transition.</div>
+<h3>Règle de franchissement</h3>
+<p>Une transition est franchie si : (1) l’étape précédente est <b>active</b> ET (2) la réceptivité est <b>vraie</b>. Alors l’étape suivante devient active et la précédente se désactive.</p>
+<h3>🎮 Simulation : portail automatique</h3>
+<p class="muted">Étape active en vert. Essayez d’appuyer sur les événements, dans le bon ordre !</p>
+<div id="gr"></div>
+<div class="row" id="ge"></div>
+<p id="gm" style="min-height:3em"></p>
+<div class="row"><button class="btn g" onclick="gReset()">↺ Réinitialiser</button></div>
+<div class="note">📌 Ordre du cycle : 0 → 1 → 2 → 3 → 0. Si l’événement ne correspond pas à la réceptivité de l’étape active, <b>rien ne se passe</b>.</div>
+</section>
+
+<section class="step card">
+<h2>6. Application automobile</h2>
+<p>L’automobile moderne est pleine d’automatismes. Exemple : <b>essuie-glace automatique</b>.</p>
+<div class="wrap"><table>
+<tr><th>Élément</th><th>Rôle</th><th>Composant</th></tr>
+<tr><td>Capteur</td><td>Détecte l’eau sur le pare-brise</td><td>Capteur de pluie</td></tr>
+<tr><td>PC</td><td>Décide de la vitesse</td><td>Calculateur de confort</td></tr>
+<tr><td>Pré-actionneur</td><td>Alimente le moteur</td><td>Relais d’essuie-glace</td></tr>
+<tr><td>Actionneur</td><td>Balaie le pare-brise</td><td>Moteur d’essuie-glace</td></tr>
+<tr><td>PR</td><td>Mode de fonctionnement</td><td>Commodo (AUTO / 0 / 1 / 2)</td></tr>
+</table></div>
+<h3>Autres exemples</h3>
+<p>• <b>ABS</b> : capteurs de vitesse de roue → calculateur → électrovannes → pression de freinage modulée.<br>
+• <b>Régulation du moteur</b> : sonde lambda, capteur de température → calculateur → injecteurs.<br>
+• <b>Climatisation</b> : capteur de température → calculateur → relais → compresseur.</p>
+<div class="note">⚠️ Pour le dépannage, on suit la chaîne : <b>capteur → PC → pré-actionneur → actionneur</b>, pour trouver quel maillon est défaillant.</div>
+</section>
+
+<section class="step card">
+<h2>7. Exercices et bilan</h2>
+<div id="q"></div>
+<div class="card" id="res" style="display:none">
+<div class="score" id="sc"></div><p id="vd"></p>
+<h3>Ce qu’il faut retenir</h3>
+<p>• Système automatisé = <b>PC + PO + PR</b>.<br>• Chaîne : <b>capteur → PC → pré-actionneur → actionneur</b>.<br>• Fonctions logiques : <b>ET, OU, NON</b>.<br>• GRAFCET : <b>étapes, actions, transitions, réceptivités</b>.</p>
+<p><b>Votre avis sur la leçon ?</b></p>
+<textarea placeholder="Écrivez ici votre remarque…"></textarea>
+<div class="row"><button class="btn" onclick="document.getElementById('fo').className='fb show'">Envoyer</button><button class="btn g" onclick="location.reload()">Recommencer</button></div>
+<p class="fb" id="fo">Merci pour votre retour ! 🙌</p>
+<p class="muted">Leçon AsghinLabs Academy · asghinlabs.com · WhatsApp +237 682 402 876</p>
+</div>
+</section>
+
+<div class="row"><button class="btn g" id="pv" onclick="go(-1)">← Précédent</button><button class="btn" id="nx" onclick="go(1)">Suivant →</button></div>
+</main>
+<script>
+var cur=0,S=document.querySelectorAll(".step");
+function go(d){cur=Math.max(0,Math.min(S.length-1,cur+d));show()}
+function show(){S.forEach(function(s,i){s.classList.toggle("on",i===cur)});
+pb.style.width=((cur+1)/S.length*100)+"%";pl.textContent="Partie "+(cur+1)+" sur "+S.length;
+pv.style.visibility=cur?"visible":"hidden";nx.style.display=cur===S.length-1?"none":"";window.scrollTo(0,0)}
+var BD=["<b>Partie commande (PC)</b> : le « cerveau ». Elle reçoit les informations des capteurs et des opérateurs, applique le programme et envoie les ordres. Exemples : automate programmable, calculateur, carte à microcontrôleur.","<b>Partie opérative (PO)</b> : le « corps ». Elle agit sur la matière ou le produit. Elle contient les <b>actionneurs</b>, les <b>pré-actionneurs</b> et les <b>capteurs</b>. Exemples : moteur, vérin, relais, capteur de position.","<b>Partie relation (PR)</b> : le « dialogue homme-machine ». Elle permet de donner des consignes (boutons, télécommande, commodo) et de recevoir des signalisations (voyants, afficheur, buzzer)."];
+function blk(i){for(var k=0;k<3;k++)document.getElementById("b"+k).classList.toggle("on",k===i);bd.innerHTML=BD[i]}
+var M=[["Capteur de pluie",0],["Relais de climatisation",1],["Compresseur de climatisation",2],["Sonde lambda",0],["Vérin du portail",2],["Contacteur du ventilateur",1]],L=["Capteur","Pré-actionneur","Actionneur"];
+(function(){var h="";M.forEach(function(x,i){h+='<div class="mrow"><span>'+x[0]+'</span><span><select id="s'+i+'"><option value="">Choisir…</option><option value="0">Capteur</option><option value="1">Pré-actionneur</option><option value="2">Actionneur</option></select> <button class="btn g" style="padding:5px 12px" onclick="mk('+i+')">Vérifier</button></span><span class="fb" id="mf'+i+'"></span></div>'});m.innerHTML=h})();
+function mk(i){var v=document.getElementById("s"+i).value,f=document.getElementById("mf"+i);if(v==="")return;f.className="fb show "+(+v===M[i][1]?"ok":"bad");f.style.background="none";f.textContent=+v===M[i][1]?"✔ Correct":"✘ C’est un "+L[M[i][1]].toLowerCase()}
+var G="ET",A=0,B=0,GX={ET:"Exemple : le démarreur ne tourne que si l’embrayage est enfoncé (a) ET la clé est sur « start » (b).",OU:"Exemple : le plafonnier s’allume si la porte avant (a) OU la porte arrière (b) est ouverte.",NON:"Exemple : le voyant s’allume si le frein à main (a) n’est PAS desserré (sortie = NON a)."};
+function out(){return G==="ET"?A&B:G==="OU"?A|B:1-A}
+function gate(){var h="";["ET","OU","NON"].forEach(function(g){h+='<button class="btn'+(g===G?"":" g")+'" onclick="G=\''+g+'\';gate()">'+g+"</button>"});gt.innerHTML=h;
+var t='<button class="tg'+(A?" on":"")+'" onclick="A=1-A;gate()">a = '+A+"</button>";if(G!=="NON")t+='<button class="tg'+(B?" on":"")+'" onclick="B=1-B;gate()">b = '+B+"</button>";tg.innerHTML=t;
+var o=out();lp.className="lamp"+(o?" on":"");lt.textContent="Sortie S = "+o;gx.textContent=GX[G];
+var r=G==="NON"?[[0],[1]]:[[0,0],[0,1],[1,0],[1,1]],T="<tr><th>a</th>"+(G==="NON"?"":"<th>b</th>")+"<th>S</th></tr>";
+r.forEach(function(x){var a=x[0],b=x[1],s=G==="ET"?a&b:G==="OU"?a|b:1-a,hl=G==="NON"?a===A:(a===A&&b===B);T+='<tr'+(hl?' class="hl"':"")+"><td>"+a+"</td>"+(G==="NON"?"":"<td>"+b+"</td>")+"<td>"+s+"</td></tr>"});tt.innerHTML=T}
+gate();
+var GS=[["0","Repos : moteur arrêté","m","Appui sur la télécommande (m)"],["1","Ouverture : le moteur ouvre le portail (KM1)","fco","Portail totalement ouvert (fco)"],["2","Temporisation de 10 s portail ouvert","t","10 s écoulées (t)"],["3","Fermeture : le moteur ferme le portail (KM2)","fcf","Portail totalement fermé (fcf)"]],st=0;
+function gDraw(){var h="";GS.forEach(function(s,i){h+='<div class="gs'+(i===st?" on":"")+'"><b>'+(i===0?"[0]":i)+"</b> "+s[1]+'</div><div class="tr">▼ réceptivité : '+GS[i][2]+"</div>"});gr.innerHTML=h.replace(/(<div class="tr">[^<]*<\/div>)$/,'<div class="tr">▲ retour à l’étape 0 si '+GS[3][2]+"</div>");
+var e="";GS.forEach(function(s,i){e+='<button class="btn g" onclick="gEv('+i+')">'+s[3]+"</button>"});ge.innerHTML=e}
+function gEv(i){if(i===st){st=(st+1)%4;gm.className="";gm.innerHTML="✔ Transition franchie : l’étape <b>"+st+"</b> est maintenant active."}else{gm.innerHTML="✘ Pas de transition : l’étape <b>"+st+"</b> est active et attend « <b>"+GS[st][2]+"</b> ». Cet événement ne change rien."}gDraw()}
+function gReset(){st=0;gm.textContent="";gDraw()}
+gDraw();
+var Q=[["Quelle partie du système automatisé reçoit les informations des capteurs et donne les ordres ?",["La partie opérative","La partie commande","La partie relation"],1,"C’est la partie commande (PC)."],
+["Le moteur d’essuie-glace est un…",["Capteur","Pré-actionneur","Actionneur"],2,"Il transforme l’énergie électrique en mouvement : c’est un actionneur."],
+["Un relais qui alimente un moteur à partir d’un faible signal est un…",["Pré-actionneur","Capteur","Voyant"],0,"Le relais commande la puissance : pré-actionneur."],
+["Le démarreur tourne si l’embrayage est enfoncé ET si la clé est sur « start ». Que vaut S si a = 1 et b = 0 ?",["1","0","On ne peut pas savoir"],1,"Avec ET, il faut a = 1 ET b = 1. Ici S = 0."],
+["Le plafonnier s’allume si une porte OU l’autre est ouverte. a = 1, b = 1 : que vaut S ?",["0","1","Impossible"],1,"Avec OU, S = 1 dès qu’une entrée vaut 1."],
+["Quelle est la fonction du capteur de vitesse de roue de l’ABS ?",["Freiner la roue","Détecter la vitesse et informer le calculateur","Commander l’électrovanne"],1,"C’est un capteur : il détecte et informe la PC."],
+["Dans un GRAFCET, qu’est-ce qu’une réceptivité ?",["Une action du système","Une condition pour franchir une transition","Une étape initiale"],1,"La réceptivité est la condition associée à la transition."],
+["Quelles sont les deux conditions pour franchir une transition ?",["Étape précédente active et réceptivité vraie","Étape suivante active et réceptivité fausse","Aucune condition"],0,"Étape précédente active ET réceptivité vraie."]],sc=0,dn=0;
+(function(){var h="";Q.forEach(function(x,i){h+='<div style="margin-bottom:16px"><b>'+(i+1)+". "+x[0]+"</b>";x[1].forEach(function(t,j){h+='<button class="opt" onclick="pk(this,'+i+","+j+')">'+t+"</button>"});h+='<div class="fb" id="qf'+i+'"></div></div>'});q.innerHTML=h})();
+function pk(b,i,j){var o=b.parentNode.querySelectorAll(".opt");o.forEach(function(z){z.disabled=true});o[Q[i][2]].classList.add("ok");if(j===Q[i][2])sc++;else b.classList.add("bad");
+var f=document.getElementById("qf"+i);f.className="fb show";f.textContent=(j===Q[i][2]?"✔ Correct. ":"✘ Pas tout à fait. ")+Q[i][3];dn++;
+if(dn===Q.length){res.style.display="block";document.getElementById("sc").textContent=sc+" / "+Q.length;vd.textContent=sc>=7?"Excellent ! Vous maîtrisez la leçon. 🎉":sc>=5?"Bien ! Revoyez les parties où vous avez hésité.":"Courage ! Relisez la leçon puis recommencez."}}
+show();
+</script>
+</body>
+</html>

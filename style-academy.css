@@ -959,3 +959,89 @@ body.has-order-bar .whatsapp-float { bottom: 96px; }
   color: var(--text-light); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: 0.25s;
 }
 .lesson-chips a:hover { border-color: var(--brand-primary); color: var(--brand-primary); }
+
+/* ---- Search + request notes (academy-search.js) ---- */
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.wb-search {
+  position: relative;
+  max-width: 620px;
+  margin: 0 auto 18px;
+}
+.wb-search input {
+  width: 100%;
+  padding: 15px 46px 15px 48px;
+  border-radius: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-light);
+  font: inherit;
+  font-size: 1rem;
+}
+.wb-search input::placeholder { color: var(--text-muted); }
+.wb-search input:focus { outline: none; border-color: var(--brand-primary); box-shadow: 0 0 0 3px var(--brand-glow); }
+.wb-search input::-webkit-search-cancel-button { display: none; }
+.wb-search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); font-size: 1.05rem; pointer-events: none; }
+.wb-search-clear {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  width: 32px; height: 32px; border-radius: 50%; border: none;
+  background: rgba(255, 255, 255, 0.1); color: var(--text-light); cursor: pointer; font-size: 0.9rem;
+}
+.wb-filters.is-dimmed { opacity: 0.45; }
+.wb-search-info { text-align: center; color: var(--text-muted); font-size: 0.92rem; margin: -18px 0 22px; min-height: 1px; }
+.wb-request-line { text-align: center; color: var(--text-muted); margin: 26px auto 0; font-size: 0.95rem; }
+.link-btn {
+  background: none; border: none; padding: 0; font: inherit; cursor: pointer;
+  color: var(--brand-primary); font-weight: 700; text-decoration: underline; text-underline-offset: 3px;
+}
+.search-empty {
+  grid-column: 1 / -1;
+  max-width: 560px;
+  margin: 10px auto 30px;
+  text-align: center;
+  padding: 30px 24px;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+}
+.search-empty-icon { font-size: 2.2rem; margin-bottom: 6px; }
+.search-empty p { margin: 6px 0; color: var(--text-muted); }
+.search-empty p strong { color: var(--text-light); }
+.search-empty .apply-btn { margin-top: 14px; display: inline-block; border: none; cursor: pointer; font: inherit; font-weight: 700; }
+.req-intro { color: var(--text-muted); margin: 0 0 14px; font-size: 0.93rem; }
+.order-form select {
+  width: 100%; padding: 12px 14px; border-radius: 10px; font: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.15); background: #0b1024; color: var(--text-light);
+}
+.hero-search {
+  display: flex;
+  gap: 8px;
+  max-width: 520px;
+  margin: 18px 0 4px;
+}
+.academy-hero-text .hero-search + .hero-secondary { margin-top: 12px; }
+.hero-search input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 20px;
+  border-radius: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--text-light);
+  font: inherit;
+}
+.hero-search input:focus { outline: none; border-color: var(--brand-primary); box-shadow: 0 0 0 3px var(--brand-glow); }
+.hero-search button {
+  padding: 0 22px;
+  border-radius: 40px;
+  border: none;
+  background: var(--brand-primary);
+  color: #050816;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+@media (max-width: 520px) {
+  .hero-search button { padding: 0 16px; }
+  .wb-search input { font-size: 0.95rem; }
+}
+.note-card[hidden], .academy-level-group[hidden], .wb-search-clear[hidden] { display: none !important; }

@@ -96,6 +96,40 @@
     t('No notes uploaded yet — check back soon.', 'Les premières fiches arrivent bientôt.'),
     t('Complete programs and lesson notes will be added here as they\'re ready.',
       'Les cours et fiches de révision seront ajoutés ici dès qu\'ils sont prêts.'));
+  // Search box above the free samples (uses academy-search.js).
+  (function sampleSearch() {
+    const gallery = document.getElementById('notesGallery');
+    const S = window.AcademySearch;
+    if (!gallery || !S || !LISTS.notes.length) return;
+    const box = document.createElement('div');
+    box.className = 'wb-search';
+    box.setAttribute('role', 'search');
+    box.innerHTML = `
+      <label for="sampleSearch" class="visually-hidden">${t('Search the free samples', 'Rechercher dans les extraits')}</label>
+      <span class="wb-search-icon" aria-hidden="true">🔎</span>
+      <input id="sampleSearch" type="search" autocomplete="off" placeholder="${t('Search samples: e.g. ICT Lower Sixth, physics', 'Rechercher un extrait')}">`;
+    gallery.parentNode.insertBefore(box, gallery);
+    const empty = document.createElement('div');
+    gallery.parentNode.insertBefore(empty, gallery.nextSibling);
+    box.querySelector('input').addEventListener('input', e => {
+      const q = e.target.value.trim();
+      let shown = 0;
+      gallery.querySelectorAll('.academy-level-group').forEach(g => {
+        let n = 0;
+        g.querySelectorAll('.note-card').forEach(card => {
+          const btn = card.querySelector('[data-read]');
+          const item = LISTS.notes[+btn.dataset.read.split(':')[1]];
+          const ok = S.match(item, q);
+          card.hidden = !ok;
+          if (ok) n++;
+        });
+        g.hidden = !n;
+        shown += n;
+      });
+      empty.innerHTML = q && !shown ? S.noResults(q, t('sample', 'extrait')) : '';
+    });
+  })();
+
   renderList('pastQuestionsGallery', 'past', '🧾',
     t('Past questions are coming soon.', 'Nos sujets corrigés arrivent bientôt.'),
     t('Message us on WhatsApp if you need a specific paper now.',

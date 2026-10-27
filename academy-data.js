@@ -28,11 +28,14 @@ const ACADEMY_NOTES = [
   NOTES_SAMPLE("biology-lower-sixth", "Biology — Full Lesson Notes", "Biology", "Lower Sixth", 25, 217, "notes-bio-l6"),
   NOTES_SAMPLE("physics-lower-sixth", "Physics — Full Lesson Notes", "Physics", "Lower Sixth", 23, 96, "notes-phy-l6"),
   NOTES_SAMPLE("chemistry-lower-sixth", "Chemistry — Full Lesson Notes", "Chemistry", "Lower Sixth", 25, 154, "notes-chem-l6"),
-  NOTES_SAMPLE("computer-science-lower-sixth", "Computer Science — Full Lesson Notes", "Computer Science", "Lower Sixth", 18, 380, "notes-cs-l6"),
+  NOTES_SAMPLE("computer-science-lower-sixth", "Computer Science — Full Lesson Notes", "Computer Science", "Lower Sixth", 22, 201, "notes-cs-l6"),
   NOTES_SAMPLE("maths-upper-sixth", "Pure Maths with Mechanics — Full Lesson Notes", "Mathematics", "Upper Sixth", 29, 249, "notes-maths-u6"),
   NOTES_SAMPLE("biology-upper-sixth", "Biology — Full Lesson Notes", "Biology", "Upper Sixth", 24, 133, "notes-bio-u6"),
   NOTES_SAMPLE("physics-upper-sixth", "Physics — Full Lesson Notes", "Physics", "Upper Sixth", 24, 101, "notes-phy-u6"),
   NOTES_SAMPLE("chemistry-upper-sixth", "Chemistry — Full Lesson Notes", "Chemistry", "Upper Sixth", 24, 137, "notes-chem-u6"),
+  NOTES_SAMPLE("computer-science-upper-sixth", "Computer Science — Full Lesson Notes", "Computer Science", "Upper Sixth", 20, 208, "notes-cs-u6"),
+  NOTES_SAMPLE("ict-lower-sixth", "ICT — Full Lesson Notes", "ICT", "Lower Sixth", 20, 190, "notes-ict-l6"),
+  NOTES_SAMPLE("ict-upper-sixth", "ICT — Full Lesson Notes", "ICT", "Upper Sixth", 24, 159, "notes-ict-u6"),
 ];
 
 const ACADEMY_PAST_QUESTIONS = [
@@ -77,6 +80,7 @@ function buildWorkbooks(subject, code, slugs, prices = {}) {
 // Computer Science and ICT, so ICT only has an A Level workbook.
 // A Level lesson notes (PDF, sent on WhatsApp). Single-level books (hideInAll)
 // only show under the "A Level Notes (PDF)" filter, so "All" stays short.
+// ICT is sold per level and per subject (not part of the 5-subject package).
 // Prices: 3 000 FCFA per subject
 // per level, 5 000 FCFA for both levels of one subject, 20 000 FCFA for all 5 subjects.
 const NOTES_PRICE = { level: 3000, both: 5000, all: 20000 };
@@ -87,6 +91,7 @@ const NOTES_SUBJECTS = [
   ["phy", "Physics", "physics", "Physics"],
   ["chem", "Chemistry", "chemistry", "Chemistry"],
   ["cs", "Computer Science", "computer-science", "Computer Science"],
+  ["ict", "ICT", "ict", "ICT"],
 ];
 const ACADEMY_LESSON_NOTES = [
   {

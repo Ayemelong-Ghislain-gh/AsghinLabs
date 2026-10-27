@@ -49,6 +49,42 @@
   }
   let activeSubject = 'All';
   const filterEl = document.getElementById('workbookFilters');
+
+  // ---------- Search (academy-search.js) ----------
+  const S = window.AcademySearch;
+  let query = '';
+  let searchInfo = null;
+  if (S && filterEl) {
+    const box = document.createElement('div');
+    box.className = 'wb-search';
+    box.setAttribute('role', 'search');
+    box.innerHTML = `
+      <label for="wbSearch" class="visually-hidden">${t('Search notes and workbooks', 'Rechercher des notes et cahiers')}</label>
+      <span class="wb-search-icon" aria-hidden="true">🔎</span>
+      <input id="wbSearch" type="search" autocomplete="off" placeholder="${t('Search: e.g. CSC Upper Sixth, ICT, Form 2 maths, chemistry notes', 'Rechercher : ex. maths, cahier 3e')}">
+      <button type="button" class="wb-search-clear" aria-label="${t('Clear search', 'Effacer')}" hidden>✕</button>`;
+    filterEl.parentNode.insertBefore(box, filterEl);
+    searchInfo = document.createElement('p');
+    searchInfo.className = 'wb-search-info';
+    searchInfo.setAttribute('aria-live', 'polite');
+    filterEl.parentNode.insertBefore(searchInfo, grid);
+    const reqLine = document.createElement('p');
+    reqLine.className = 'wb-request-line';
+    reqLine.innerHTML = t(`Can’t find the notes you need? <button type="button" class="link-btn" data-request-notes="">📩 Request notes</button> and we’ll prepare them.`,
+      `Vous ne trouvez pas vos notes ? <button type="button" class="link-btn" data-request-notes="">📩 Demandez-les</button>, nous les préparons.`);
+    grid.parentNode.insertBefore(reqLine, grid.nextSibling);
+    const input = box.querySelector('input');
+    const clear = box.querySelector('.wb-search-clear');
+    let timer = null;
+    input.addEventListener('input', () => {
+      query = input.value.trim();
+      clear.hidden = !query;
+      renderGrid();
+      clearTimeout(timer);
+      if (query && typeof gtag === 'function') timer = setTimeout(() => gtag('event', 'search', { search_term: query }), 1200);
+    });
+    clear.addEventListener('click', () => { input.value = ''; input.dispatchEvent(new Event('input')); input.focus(); });
+  }
   if (filterEl) {
     filterEl.innerHTML = subjects.map(s =>
       `<button type="button" class="wb-filter${s === 'All' ? ' active' : ''}" data-subject="${esc(s)}" aria-pressed="${s === 'All'}">${esc(s === 'All' ? t('All subjects', 'Toutes les matières') : s)}</button>`
@@ -57,6 +93,8 @@
       const btn = e.target.closest('.wb-filter');
       if (!btn) return;
       activeSubject = btn.dataset.subject;
+      const si = document.getElementById('wbSearch');
+      if (si && si.value) { si.value = ''; query = ''; const c = document.querySelector('.wb-search-clear'); if (c) c.hidden = true; }
       filterEl.querySelectorAll('.wb-filter').forEach(b => {
         const on = b === btn;
         b.classList.toggle('active', on);
@@ -81,7 +119,21 @@
   }
 
   function renderGrid() {
-    const list = BOOKS.filter(b => activeSubject === 'All' ? !b.hideInAll : b.subject === activeSubject);
+    // While searching, look through everything (all subjects, single-level notes too).
+    const list = query
+      ? BOOKS.filter(b => S.match(b, query))
+      : BOOKS.filter(b => activeSubject === 'All' ? !b.hideInAll : b.subject === activeSubject);
+    if (filterEl) filterEl.classList.toggle('is-dimmed', !!query);
+    if (searchInfo) {
+      searchInfo.innerHTML = query && list.length
+        ? t(`${list.length} result${list.length === 1 ? '' : 's'} for “${esc(query)}” · <button type="button" class="link-btn" data-request-notes="">Not what you need? Request notes</button>`,
+            `${list.length} résultat${list.length === 1 ? '' : 's'} pour « ${esc(query)} » · <button type="button" class="link-btn" data-request-notes="">Pas ce qu’il vous faut ? Demandez</button>`)
+        : '';
+    }
+    if (query && !list.length) {
+      grid.innerHTML = S.noResults(query, t('notes or workbooks', 'notes ou cahiers'));
+      return;
+    }
     grid.innerHTML = list.map(b => `
       <article class="wb-card${b.pack ? ' is-pack' : ''}" data-id="${b.id}">
         <div class="wb-cover">
