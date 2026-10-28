@@ -203,7 +203,12 @@ def build_hub(recs):
     for c in CLASSES:
         exam = f' <span class="hub-exam">{EXAM[c]}</span>' if c in EXAM else ''
         secs += f'\n  <section class="hub-subject" data-class="{CLASS_DIR[c]}" id="{CLASS_DIR[c]}">\n    <h2>{LABEL[c]}{exam}</h2>\n'
-        if c not in by:
+        if c in ('6e','5e'):
+            _n, _u, _l = (('319','6eme','6'),('334','5eme','5'))[c=='5e']
+            secs += ('    <p class="hub-soon" style="background:#eef6ff;border-left:4px solid #2563eb;padding:12px 14px;border-radius:8px;">'
+                     f'🆕 <b>{_l}<sup>e</sup> — 9 matières, {_n} leçons interactives</b> (voix, sons, étoiles, tuteur IA), d\'après la progression officielle 2026-27. '
+                     f'<a class="inline-link" href="/lecons/{_u}/">Ouvrir les leçons de {_l}ème →</a></p>\n')
+        if c not in by and c not in ('6e','5e'):
             ask = wa(f"Bonjour AsghinLabs Academy, je suis en {c} (sous-système francophone) et j'aimerais une leçon interactive sur...")
             secs += ('    <p class="hub-soon">' + ' · '.join(f'{ICON[s]} {s}' for s in SUBJECTS) +
                      f' : les leçons de {LABEL[c]} sont en préparation, d\'après la progression officielle. '

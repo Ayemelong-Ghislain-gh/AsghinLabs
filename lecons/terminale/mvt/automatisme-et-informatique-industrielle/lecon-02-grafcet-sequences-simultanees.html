@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GRAFCET comportant des séquences simultanées – AsghinLabs Academy · Tle MVT · Automatisme et informatique industrielle</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f6f7fb;--card:#fff;--text:#1b2033;--muted:#5d647a;--accent:#2f5bea;--at:#fff;--ok:#16794a;--okbg:#e3f5ec;--bad:#b3261e;--badbg:#fdeaea;--line:#dfe3ee;--note:#fff6d6;--notet:#5a4500;--ink:#1b2033;--warn:#b25e00;--warnbg:#fff0dd;--cold:#1b6fb3;--coldbg:#e2f0fb}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#12141c;--card:#1b1f2c;--text:#eceef6;--muted:#a1a8bf;--accent:#7b9bff;--at:#10142a;--ok:#6fdca5;--okbg:#17332a;--bad:#ff9b94;--badbg:#3a1c1b;--line:#2c3246;--note:#3a3216;--notet:#f3dc8a;--ink:#eceef6;--warn:#ffc27a;--warnbg:#3b2a12;--cold:#8cc8f5;--coldbg:#15283a}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#12141c;--card:#1b1f2c;--text:#eceef6;--muted:#a1a8bf;--accent:#7b9bff;--at:#10142a;--ok:#6fdca5;--okbg:#17332a;--bad:#ff9b94;--badbg:#3a1c1b;--line:#2c3246;--note:#3a3216;--notet:#f3dc8a;--ink:#eceef6;--warn:#ffc27a;--warnbg:#3b2a12;--cold:#8cc8f5;--coldbg:#15283a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:780px;margin:0 auto;padding:18px 16px 56px}
+h1{font-size:1.45rem;margin:.2em 0}h2{font-size:1.2rem;margin:0 0 .5em}h3{font-size:1rem;margin:1.1em 0 .3em}
+p{margin:.5em 0}ul,ol{margin:.4em 0;padding-left:1.3em}li{margin:.25em 0}
+.muted{color:var(--muted)}.small{font-size:.9rem}
+.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:12px 0 4px}.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin:12px 0}
+.step{display:none}.step.on{display:block}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--accent);color:var(--at);border:0;border-radius:10px;padding:10px 18px;font-weight:600}
+.btn.g{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn.s{padding:6px 12px;font-size:.92rem}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.note{background:var(--note);color:var(--notet);border-radius:10px;padding:10px 14px;margin:12px 0}
+.def{border-left:4px solid var(--accent);padding:6px 12px;margin:10px 0;background:var(--bg);border-radius:0 8px 8px 0}
+.warn{background:var(--warnbg);color:var(--warn);border-radius:10px;padding:10px 14px;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:10px}
+.flip{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:left;color:var(--text);min-height:130px}
+.flip .big{font-size:1.7rem}.flip b{display:block;margin:.2em 0}.flip .back{display:none}.flip.open .back{display:block}.flip.open .front{display:none}
+.opt{display:block;width:100%;text-align:left;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:7px 0}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt.ok,.ok{background:var(--okbg)!important;border-color:var(--ok)!important;color:var(--ok)!important}
+.opt.bad,.bad{background:var(--badbg)!important;border-color:var(--bad)!important;color:var(--bad)!important}
+.fb{display:none;margin-top:6px;font-size:.95rem}.fb.show{display:block}
+.sortrow{padding:10px 0;border-bottom:1px solid var(--line)}
+.sortrow .row{margin-top:6px}
+select{font:inherit;padding:5px 8px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--text);max-width:100%}
+.fillrow{padding:10px 0;border-bottom:1px solid var(--line);line-height:2.2}
+table{border-collapse:collapse;width:100%;font-size:.95rem}th,td{border:1px solid var(--line);padding:6px 8px;text-align:left}th{background:var(--bg)}
+.wrap{overflow-x:auto}
+textarea{width:100%;min-height:80px;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--card);color:var(--text);font:inherit}
+.score{font-size:2.2rem;font-weight:700;color:var(--accent)}
+code,.code{font-family:ui-monospace,Consolas,monospace;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:.92em}
+pre.code{display:block;padding:10px 12px;overflow-x:auto;white-space:pre;line-height:1.45}
+/* simulateurs */
+.sim{border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--bg);margin:10px 0}
+.sim .scroll{overflow-x:auto}
+.sim svg{display:block;margin:0 auto;height:auto}
+.st-box{fill:var(--card);stroke:var(--ink);stroke-width:1.6}
+.st-on .st-box{fill:var(--okbg);stroke:var(--ok);stroke-width:2.6}
+.st-fz .st-box{stroke:var(--cold);stroke-dasharray:4 3}
+.st-num{fill:var(--ink);font:600 17px system-ui,sans-serif;text-anchor:middle;dominant-baseline:central}
+.st-on .st-num{fill:var(--ok)}
+.st-dot{fill:var(--ok);display:none}.st-on .st-dot{display:block}
+.act-box{fill:var(--card);stroke:var(--ink);stroke-width:1.2}
+.st-on .act-box{fill:var(--okbg);stroke:var(--ok)}
+.act-txt{fill:var(--ink);font:14px system-ui,sans-serif;dominant-baseline:central}
+.st-on .act-txt{fill:var(--ok);font-weight:600}
+.tr-bar{stroke:var(--ink);stroke-width:3.2}
+.tr-ok .tr-bar{stroke:var(--accent)}
+.tr-txt{fill:var(--ink);font:16px system-ui,sans-serif;dominant-baseline:central}
+.tr-ok .tr-txt{fill:var(--accent);font-weight:700}
+.tr-id{fill:var(--muted);font:12px system-ui,sans-serif;dominant-baseline:central}
+.lk{stroke:var(--ink);stroke-width:1.6;fill:none}
+.ar{fill:var(--ink)}
+.gl{fill:var(--muted);font:600 13px system-ui,sans-serif}
+.gframe{fill:none;stroke:var(--line);stroke-width:1.5;stroke-dasharray:6 4}
+.inputs{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.tg{border:2px solid var(--line);border-radius:99px;padding:6px 14px;background:var(--card);color:var(--text);font-weight:600}
+.tg.on{background:var(--accent);color:var(--at);border-color:var(--accent)}
+.mo{border:2px solid var(--accent);border-radius:10px;padding:6px 14px;background:var(--card);color:var(--accent);font-weight:600;user-select:none;touch-action:manipulation}
+.mo:active,.mo.down{background:var(--accent);color:var(--at)}
+.msg{min-height:3.2em;margin:6px 0}
+.msg.warnmsg{color:var(--warn)}
+.acts{font-size:.95rem}
+.mission{background:var(--card);border:1px dashed var(--accent);border-radius:10px;padding:8px 14px;margin:10px 0}
+/* ordonner */
+.ord{margin-top:8px}
+.ord .pool,.ord .done{display:flex;flex-direction:column;gap:6px;margin:8px 0}
+.ord .done .opt{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+/* figures / explorateur */
+.fig svg{display:block;margin:8px auto;max-width:100%;height:auto}
+.fbx{fill:var(--card);stroke:var(--ink);stroke-width:1.5}
+.fbx.hl{fill:var(--okbg);stroke:var(--ok)}
+.fbx.cd{fill:var(--coldbg);stroke:var(--cold)}
+.fbx.wn{fill:var(--warnbg);stroke:var(--warn)}
+.ftx{fill:var(--ink);font:14px system-ui,sans-serif;text-anchor:middle;dominant-baseline:central}
+.ftx.l{text-anchor:start}.ftx.sm{font-size:12px}.ftx.b{font-weight:700}
+.far{stroke:var(--ink);stroke-width:1.6;fill:none}
+.fah{fill:var(--ink)}
+.xb{cursor:pointer}
+.xb.sel .fbx{stroke:var(--accent);stroke-width:3}
+.xdesc{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-top:8px;min-height:4.5em}
+/* ladder */
+.lw{stroke:var(--ink);stroke-width:2;fill:none}
+.lw.on{stroke:var(--ok);stroke-width:3}
+.ls{stroke:var(--ink);stroke-width:2.4;fill:none}
+.ls.on{stroke:var(--ok)}
+.lt{fill:var(--ink);font:13px system-ui,sans-serif;text-anchor:middle}
+.lt.on{fill:var(--ok);font-weight:700}
+.lbox{fill:var(--card);stroke:var(--ink);stroke-width:1.8}
+.lbox.on{fill:var(--okbg);stroke:var(--ok)}
+.lamp{display:inline-block;width:14px;height:14px;border-radius:50%;border:2px solid var(--line);vertical-align:-2px;margin-right:4px}
+.lamp.on{background:#ffd23f;border-color:#e0a800;box-shadow:0 0 8px #ffd23f}
+.outs{display:flex;gap:16px;flex-wrap:wrap;margin:6px 0;font-size:.95rem}
+/* regulation */
+.rg-ctl{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.rg-ctl input[type=range]{width:180px}
+.rg-val{font-weight:700;min-width:3.4em;display:inline-block}
+.pl-v{fill:none;stroke:var(--accent);stroke-width:2.4}
+.pl-c{fill:none;stroke:var(--ok);stroke-width:1.8;stroke-dasharray:6 4}
+.pl-u{fill:none;stroke:var(--warn);stroke-width:1.6}
+.pl-ax{stroke:var(--line);stroke-width:1}
+.pl-tx{fill:var(--muted);font:11px system-ui,sans-serif}
+</style>
+</head>
+<body>
+<main>
+<p class="muted small" style="margin:0" id="kicker"></p>
+<h1 id="ttl"></h1>
+<div class="bar"><i id="pb"></i></div>
+<p class="muted small" id="pl" style="margin:0 0 4px"></p>
+<div id="steps"></div>
+<div class="row"><button class="btn g" id="pv" onclick="go(-1)">← Précédent</button><button class="btn" id="nx" onclick="go(1)">Suivant →</button></div>
+</main>
+<script type="application/json" id="data">{"num": "02", "slug": "grafcet-sequences-simultanees", "kicker": "AsghinLabs Academy · Tle MVT · Automatisme et informatique industrielle", "title": "GRAFCET comportant des séquences simultanées", "intro": "Dans une cabine de peinture automobile, la ventilation et le chauffage fonctionnent en même temps. Dans un banc de contrôle, on peut tester les freins et les feux en parallèle. Quand un système doit faire plusieurs choses à la fois, on utilise des séquences simultanées.", "objectifs": ["Reconnaître et dessiner une divergence et une convergence en ET (double trait).", "Expliquer la différence entre une sélection de séquence (OU) et des séquences simultanées (ET).", "Prévoir l'évolution d'un GRAFCET à branches parallèles, avec synchronisation.", "Repérer les erreurs de représentation les plus fréquentes."], "prerequis": "la leçon 1 : sélection de séquence (divergence en OU) et les règles d'évolution du GRAFCET.", "sections": [{"type": "text", "title": "1. Rappel : un seul chemin, ou plusieurs à la fois ?", "html": "\n<p>Dans la leçon précédente, tu as vu la <b>sélection de séquence<\/b> : à un endroit du GRAFCET, le système choisit <b>un seul chemin<\/b> parmi plusieurs (trait horizontal <b>simple<\/b>, divergence en <b>OU<\/b>).<\/p>\n<p>Il existe une autre situation : le système doit exécuter <b>plusieurs séquences en même temps<\/b>, qui sont indépendantes l'une de l'autre. C'est le cas dans ces exemples d'atelier :<\/p>\n<ul>\n<li>cabine de peinture : <b>ventiler<\/b> et <b>chauffer<\/b> en parallèle ;<\/li>\n<li>banc de contrôle : tester les <b>freins<\/b> pendant qu'on vérifie les <b>feux<\/b> ;<\/li>\n<li>station de lavage : <b>laver<\/b> le véhicule pendant qu'on <b>prépare<\/b> le produit de rinçage.<\/li>\n<\/ul>\n<div class=\"note\">💡 Question pour réfléchir : si les deux séquences durent des temps différents, quand peut-on passer à l'étape suivante ?<\/div>\n"}, {"type": "text", "title": "2. Définition et représentation", "html": "\n<div class=\"def\"><b>Séquences simultanées<\/b> (ou parallélisme) : à un endroit du GRAFCET, le franchissement d'une transition <b>active plusieurs séquences en même temps<\/b>. Chaque branche évolue ensuite <b>indépendamment<\/b> des autres.<\/div>\n<h3>Divergence en ET<\/h3>\n<p>Une <b>transition<\/b> est suivie d'un <b>double trait horizontal<\/b>. Sous le double trait, chaque branche commence par une <b>étape<\/b>.<\/p>\n<p class=\"muted small\">Ordre : transition → double trait → étapes.<\/p>\n<h3>Convergence en ET (synchronisation)<\/h3>\n<p>Chaque branche se termine par une <b>étape<\/b>. Les branches se rejoignent sur un <b>double trait horizontal<\/b>, suivi d'une <b>transition<\/b>.<\/p>\n<p class=\"muted small\">Ordre : étapes → double trait → transition.<\/p>\n<div class=\"wrap\"><table>\n<tr><th><\/th><th>Sélection (OU)<\/th><th>Simultanées (ET)<\/th><\/tr>\n<tr><td><b>Trait<\/b><\/td><td>Simple<\/td><td>Double<\/td><\/tr>\n<tr><td><b>Divergence<\/b><\/td><td>Étape → trait → transitions<\/td><td>Transition → double trait → étapes<\/td><\/tr>\n<tr><td><b>Convergence<\/b><\/td><td>Transitions → trait → étape<\/td><td>Étapes → double trait → transition<\/td><\/tr>\n<tr><td><b>Branches exécutées<\/b><\/td><td>Une seule<\/td><td>Toutes, en même temps<\/td><\/tr>\n<\/table><\/div>\n"}, {"type": "flip", "title": "3. Comment ça se franchit ?", "intro": "Les règles d'évolution s'appliquent aussi aux séquences simultanées. Touche chaque carte.", "cards": [{"icon": "🔀", "front": "Divergence en ET", "back": "Quand la transition est franchie, <b>toutes<\/b> les étapes situées sous le double trait deviennent actives <b>en même temps<\/b>."}, {"icon": "🔗", "front": "Convergence en ET", "back": "La transition située sous le double trait n'est franchie que si <b>toutes les étapes<\/b> situées au-dessus sont actives <b>ET<\/b> si la réceptivité est vraie."}, {"icon": "⏳", "front": "La branche la plus lente décide", "back": "Une branche qui finit en premier <b>attend<\/b> les autres sur sa dernière étape. C'est pour cela qu'on parle de <b>synchronisation<\/b>."}, {"icon": "🚫", "front": "Pas de conflit entre branches", "back": "Les branches n'ont pas besoin d'avoir des réceptivités exclusives : <b>toutes<\/b> sont exécutées. L'exclusivité ne concerne que la sélection (OU)."}]}, {"type": "grafcet", "title": "4. Simulation : la cabine de peinture", "intro": "<p>Après la fermeture des portes, la cabine lance <b>en même temps<\/b> la ventilation (étape 2) et le chauffage (étape 3). La cabine ne rouvre ses portes que lorsque <b>les deux<\/b> opérations sont terminées.<\/p>", "missions": ["Appuie sur dcy puis sur pf. Combien d'étapes sont actives ? Quelles actions fonctionnent ?", "Appuie sur fv. Qu'arrive-t-il à la branche de gauche ? Est-ce que la cabine rouvre déjà ses portes ?", "Appuie maintenant sur fc. Que se passe-t-il à la synchronisation (t5) ? Termine le cycle avec po.", "Recommence en appuyant d'abord sur fc, puis sur fv : le résultat final est-il le même ?"], "spec": {"w": 690, "h": 690, "steps": [{"id": 0, "x": 300, "y": 40, "init": true, "act": "Cabine au repos"}, {"id": 1, "x": 300, "y": 140, "act": "Fermer les portes"}, {"id": 2, "x": 210, "y": 280, "act": "Ventilateur", "side": "l"}, {"id": 3, "x": 420, "y": 280, "act": "Résistances chauffantes"}, {"id": 4, "x": 210, "y": 400, "act": "Attente chauffage", "side": "l"}, {"id": 5, "x": 420, "y": 400, "act": "Attente ventilation"}, {"id": 6, "x": 300, "y": 545, "act": "Ouvrir les portes"}], "trans": [{"id": "t1", "x": 300, "y": 90, "from": [0], "to": [1], "r": "dcy", "label": "dcy"}, {"id": "t2", "x": 300, "y": 205, "from": [1], "to": [2, 3], "r": "pf", "label": "pf"}, {"id": "t3", "x": 210, "y": 340, "from": [2], "to": [4], "r": "fv", "label": "fv", "side": "l"}, {"id": "t4", "x": 420, "y": 340, "from": [3], "to": [5], "r": "fc", "label": "fc"}, {"id": "t5", "x": 300, "y": 492, "from": [4, 5], "to": [6], "r": "1", "label": "1"}, {"id": "t6", "x": 300, "y": 605, "from": [6], "to": [0], "r": "po", "label": "po"}], "lines": [[300, 61, 300, 123], [300, 157, 300, 238], [210, 238, 210, 263], [420, 238, 420, 263], [210, 297, 210, 383], [420, 297, 420, 383], [210, 417, 210, 458], [420, 417, 420, 458], [300, 458, 300, 528], [300, 562, 300, 650], [300, 650, 668, 650], [668, 650, 668, 10], [668, 10, 300, 10], [300, 10, 300, 19]], "bars": [[210, 238, 420, 238], [210, 458, 420, 458]], "arrows": [[300, 19, "d"]], "notes": [{"x": 12, "y": 232, "t": "divergence en ET"}, {"x": 12, "y": 252, "t": "(double trait)"}, {"x": 12, "y": 452, "t": "convergence en ET"}, {"x": 12, "y": 472, "t": "(synchronisation)"}], "inputs": [{"id": "dcy", "label": "dcy : départ cycle", "type": "momentary"}, {"id": "pf", "label": "pf : portes fermées", "type": "momentary"}, {"id": "fv", "label": "fv : fin de ventilation", "type": "momentary"}, {"id": "fc", "label": "fc : fin de chauffage", "type": "momentary"}, {"id": "po", "label": "po : portes ouvertes", "type": "momentary"}]}, "after": "<div class=\"note\">📌 La transition t5 a pour réceptivité « 1 » (toujours vraie) : elle est franchie <b>dès que les étapes 4 et 5 sont actives toutes les deux<\/b>. Elle ne dépend plus que de la synchronisation.<\/div>"}, {"type": "order", "title": "5. Exercice : franchir une synchronisation", "intro": "Dans la cabine de peinture, remets dans l'ordre ce qui se passe à la convergence en ET.", "items": ["La ventilation se termine : l'étape 4 devient active (l'étape 5 est encore inactive).", "Le chauffage se termine à son tour : l'étape 5 devient active.", "Les étapes 4 et 5 sont toutes les deux actives : la transition t5 est validée.", "La réceptivité de t5 est vraie : t5 est franchie.", "Les étapes 4 et 5 sont désactivées et l'étape 6 est activée."], "e": "La transition située sous le double trait n'est franchie que lorsque toutes les étapes précédentes sont actives."}, {"type": "text", "title": "6. Erreurs fréquentes à éviter", "html": "\n<ul>\n<li><b>Mauvais trait<\/b> : mettre un trait simple (OU) là où les branches doivent s'exécuter ensemble, ou l'inverse.<\/li>\n<li><b>Branche qui part sans transition<\/b> : après un double trait de divergence, on a des <b>étapes<\/b> (pas de transitions). Avant le double trait, on a une <b>transition<\/b>.<\/li>\n<li><b>Branche qui ne se termine pas sur une étape<\/b> avant le double trait de convergence.<\/li>\n<li><b>Oublier la synchronisation<\/b> : si on rejoint les branches avec un trait simple, la séquence suivante peut démarrer dès qu'une seule branche est finie, alors que l'autre travaille encore.<\/li>\n<li><b>Mélanger les deux logiques<\/b> dans une même zone sans réfléchir : une sélection à l'intérieur d'une branche est possible, mais elle doit être complète (divergence et convergence au sein de la branche).<\/li>\n<\/ul>\n<div class=\"warn\">⚠️ Vérifie toujours l'<b>alternance<\/b> : étape → transition → étape, même avec les doubles traits.<\/div>\n"}, {"type": "sort", "title": "7. Exercice : OU ou ET ?", "intro": "Pour chaque situation, choisis la bonne structure.", "categories": ["Sélection (OU)", "Séquences simultanées (ET)"], "items": [{"t": "Le portique de lavage choisit entre le programme éco et le programme complet.", "c": 0, "e": "Un seul chemin est exécuté, selon le choix : sélection."}, {"t": "Après la fermeture des portes de la cabine, la ventilation et le chauffage démarrent ensemble.", "c": 1, "e": "Deux séquences en même temps : séquences simultanées."}, {"t": "Pendant le gonflage des pneus, le voyant « cycle en cours » et le ventilateur de l'atelier fonctionnent en parallèle.", "c": 1, "e": "Plusieurs actions indépendantes en même temps."}, {"t": "Si le véhicule est léger, on utilise le rouleau de freinage léger ; sinon, le rouleau lourd.", "c": 0, "e": "Le choix dépend du type de véhicule : sélection (réceptivités exclusives)."}, {"t": "Le banc de contrôle teste les feux et les freins en même temps et attend la fin des deux tests.", "c": 1, "e": "Parallélisme avec synchronisation à la fin."}, {"t": "Le système répète le gonflage tant que la pression n'est pas atteinte.", "c": 0, "e": "Reprise de séquence : c'est un cas de sélection (OU)."}]}, {"type": "fill", "title": "8. Exercice : complète les règles", "intro": "Choisis la bonne réponse, puis vérifie.", "items": [{"before": "Une divergence en ET est précédée d'une", "options": ["étape", "transition"], "answer": 1, "after": "et suivie d'étapes.", "e": "Transition → double trait → étapes."}, {"before": "Une convergence en ET est précédée d'", "options": ["étapes", "transitions"], "answer": 0, "after": "et suivie d'une transition.", "e": "Étapes → double trait → transition."}, {"before": "Pour franchir la transition de synchronisation, il faut que", "options": ["toutes les étapes précédentes soient actives", "une seule étape soit active", "aucune étape ne soit active"], "answer": 0, "after": ", et que la réceptivité soit vraie.", "e": "La transition est validée quand toutes les étapes précédentes sont actives."}, {"before": "Les réceptivités des branches d'une divergence en ET doivent être", "options": ["exclusives", "sans importance : toutes les branches démarrent ensemble"], "answer": 1, "after": ".", "e": "Il n'y a qu'une transition avant le double trait : toutes les branches démarrent ensemble."}]}, {"type": "text", "title": "9. Applications en maintenance automobile", "html": "\n<ul>\n<li><b>Cabine de peinture<\/b> : ventilation, chauffage et éclairage fonctionnent en parallèle pendant le séchage.<\/li>\n<li><b>Banc d'essai de freinage et d'éclairage<\/b> : plusieurs contrôles en même temps, puis un résultat global quand tous sont finis.<\/li>\n<li><b>Ligne de lavage<\/b> : lavage de la carrosserie et lavage des jantes en même temps.<\/li>\n<li><b>Préparation d'un véhicule<\/b> : le gonflage des pneus et la vérification des niveaux peuvent se faire en parallèle.<\/li>\n<\/ul>\n<h3>Méthode<\/h3>\n<ol>\n<li>Repérer les tâches <b>indépendantes<\/b> qui peuvent se faire en même temps.<\/li>\n<li>Écrire la séquence de <b>chaque branche<\/b> (une étape par action).<\/li>\n<li>Placer la <b>transition<\/b> de départ, puis le <b>double trait<\/b> de divergence.<\/li>\n<li>Terminer chaque branche sur une <b>étape<\/b> d'attente.<\/li>\n<li>Placer le <b>double trait<\/b> de convergence, puis la transition de synchronisation.<\/li>\n<\/ol>\n"}, {"type": "mcq", "title": "10. Quiz final", "intro": "Neuf questions pour vérifier que tu as bien compris.", "questions": [{"q": "Combien de branches sont exécutées après une divergence en ET ?", "o": ["Aucune", "Une seule", "Toutes les branches, en même temps"], "a": 2, "e": "Le franchissement de la transition active toutes les étapes situées sous le double trait."}, {"q": "Comment représente-t-on une divergence en ET ?", "o": ["Un trait simple sous une transition", "Un trait simple sous une étape", "Un double trait sous une transition"], "a": 2, "e": "Transition → double trait → étapes."}, {"q": "Qu'y a-t-il juste au-dessus d'un double trait de convergence ?", "o": ["Des étapes", "Des transitions", "Des actions"], "a": 0, "e": "Chaque branche se termine par une étape."}, {"q": "Quand la transition située sous une convergence en ET est-elle franchie ?", "o": ["Quand toutes les étapes précédentes sont actives et la réceptivité vraie", "Dès qu'une branche est terminée", "Quand aucune étape n'est active"], "a": 0, "e": "Règle de franchissement : transition validée + réceptivité vraie."}, {"q": "Cabine de peinture : la ventilation est finie, le chauffage non. Que fait le GRAFCET ?", "o": ["Il attend sur l'étape 4 que le chauffage se termine", "Il rouvre les portes", "Il revient à l'étape 0"], "a": 0, "e": "La branche terminée attend l'autre : c'est la synchronisation."}, {"q": "Quelle différence entre le trait simple et le trait double ?", "o": ["Simple : ET ; double : OU", "Simple : un seul chemin (OU) ; double : plusieurs chemins en même temps (ET)", "Aucune"], "a": 1, "e": "Simple = OU, double = ET."}, {"q": "Les réceptivités des branches d'une divergence en ET doivent-elles être exclusives ?", "o": ["Oui, mais seulement à la convergence", "Non : toutes les branches démarrent avec la même transition", "Oui, toujours"], "a": 1, "e": "L'exclusivité concerne seulement la sélection (OU)."}, {"q": "Qu'arrive-t-il si on remplace le double trait de convergence par un trait simple ?", "o": ["Rien", "La suite peut démarrer dès qu'une seule branche est finie", "Le GRAFCET ne peut plus démarrer"], "a": 1, "e": "On perd la synchronisation : l'autre branche peut rester active."}, {"q": "Quelle structure faut-il pour « laver la carrosserie et les jantes en même temps » ?", "o": ["Une reprise de séquence", "Une sélection de séquence", "Des séquences simultanées"], "a": 2, "e": "Les deux tâches sont indépendantes et simultanées."}]}, {"type": "summary", "title": "À retenir", "points": ["<b>Séquences simultanées<\/b> : plusieurs séquences s'exécutent en même temps, de façon indépendante.", "<b>Divergence en ET<\/b> : transition → <b>double trait<\/b> → étapes (toutes les branches démarrent).", "<b>Convergence en ET<\/b> : étapes → <b>double trait<\/b> → transition (synchronisation).", "La transition de convergence est franchie quand <b>toutes<\/b> les étapes précédentes sont actives et la réceptivité vraie.", "<b>Trait simple = OU<\/b> (un seul chemin) ; <b>trait double = ET<\/b> (tous les chemins).", "Chaque branche doit se terminer sur une <b>étape<\/b> avant la convergence."], "note": "✍️ Dans ton cahier : recopie le GRAFCET de la cabine de peinture et marque en couleur les deux branches parallèles et la transition de synchronisation."}]}</script>
+<script>
+var D=JSON.parse(document.getElementById('data').textContent);
+var steps=[],cur=0,score=0,total=0,NS='http://www.w3.org/2000/svg';
+function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e}
+function card(title){var s=el('section','step card');if(title)s.appendChild(el('h2',null,title));return s}
+function graded(ok){total++;if(ok)score++}
+function mkS(parent,n,a,t){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(t!=null)e.textContent=t;if(parent)parent.appendChild(e);return e}
+function isOn(s){return s.classList.contains('on')}
+var B={};
+
+B.intro=function(){
+  var s=card('Objectifs de la leçon');
+  s.appendChild(el('p',null,D.intro||''));
+  var ul=el('ul');D.objectifs.forEach(function(o){ul.appendChild(el('li',null,o))});s.appendChild(ul);
+  if(D.prerequis){s.appendChild(el('div','note','📚 <b>Prérequis :</b> '+D.prerequis))}
+  if(D.remarque){s.appendChild(el('div','warn','ℹ️ '+D.remarque))}
+  s.appendChild(el('p','muted small','Cette leçon est interactive : lis, clique, essaie, puis vérifie tes réponses. Tu peux revenir en arrière à tout moment.'));
+  return s};
+B.text=function(x){var s=card(x.title);s.appendChild(el('div',null,x.html));return s};
+B.flip=function(x){
+  var s=card(x.title);if(x.intro)s.appendChild(el('p',null,x.intro));
+  var g=el('div','grid');
+  x.cards.forEach(function(c){var b=el('button','flip','<div class="front"><div class="big">'+(c.icon||'💡')+'</div><b>'+c.front+'</b><span class="muted small">Touche pour voir</span></div><div class="back"><b>'+c.front+'</b>'+c.back+'</div>');
+    b.onclick=function(){b.classList.toggle('open')};g.appendChild(b)});
+  s.appendChild(g);if(x.after)s.appendChild(el('div',null,x.after));return s};
+B.sort=function(x){
+  var s=card(x.title);if(x.intro)s.appendChild(el('p',null,x.intro));
+  x.items.forEach(function(it){
+    var r=el('div','sortrow');r.appendChild(el('div',null,it.t));
+    var row=el('div','row'),fb=el('div','fb');
+    x.categories.forEach(function(c,ci){var b=el('button','opt s',c);b.style.width='auto';b.style.margin='0';
+      b.onclick=function(){var ok=ci===it.c;row.querySelectorAll('button').forEach(function(z){z.disabled=true});
+        b.classList.add(ok?'ok':'bad');if(!ok)row.children[it.c].classList.add('ok');
+        fb.className='fb show';fb.textContent=(ok?'✔ Correct. ':'✘ Pas tout à fait. ')+(it.e||'');graded(ok)};row.appendChild(b)});
+    r.appendChild(row);r.appendChild(fb);s.appendChild(r)});
+  return s};
+B.fill=function(x){
+  var s=card(x.title);if(x.intro)s.appendChild(el('p',null,x.intro));
+  x.items.forEach(function(it){
+    var r=el('div','fillrow');r.appendChild(el('span',null,it.before+' '));
+    var sel=el('select');sel.appendChild(new Option('Choisir…',''));it.options.forEach(function(o,i){sel.appendChild(new Option(o,i))});
+    r.appendChild(sel);r.appendChild(el('span',null,' '+(it.after||'')+' '));
+    var b=el('button','btn g s','Vérifier'),fb=el('div','fb');
+    b.onclick=function(){if(sel.value==='')return;var ok=+sel.value===it.answer;sel.disabled=true;b.disabled=true;
+      sel.className=ok?'ok':'bad';fb.className='fb show';fb.textContent=(ok?'✔ Correct. ':'✘ La bonne réponse : '+it.options[it.answer]+'. ')+(it.e||'');graded(ok)};
+    r.appendChild(b);r.appendChild(fb);s.appendChild(r)});
+  return s};
+B.mcq=function(x){
+  var s=card(x.title);if(x.intro)s.appendChild(el('p',null,x.intro));
+  x.questions.forEach(function(q,qi){
+    var w=el('div');w.style.margin='0 0 16px';w.appendChild(el('b',null,(qi+1)+'. '+q.q));
+    var fb=el('div','fb');
+    q.o.forEach(function(t,j){var b=el('button','opt',t);
+      b.onclick=function(){var os=w.querySelectorAll('.opt');os.forEach(function(z){z.disabled=true});os[q.a].classList.add('ok');
+        var ok=j===q.a;if(!ok)b.classList.add('bad');fb.className='fb show';fb.textContent=(ok?'✔ Correct. ':'✘ Pas tout à fait. ')+q.e;graded(ok)};w.appendChild(b)});
+    w.appendChild(fb);s.appendChild(w)});
+  return s};
+B.summary=function(x){
+  var s=card(x.title||'À retenir');var ul=el('ul');x.points.forEach(function(p){ul.appendChild(el('li',null,p))});s.appendChild(ul);
+  if(x.note)s.appendChild(el('div','note',x.note));return s};
+
+/* ---------- Remettre dans l'ordre ---------- */
+B.order=function(x){
+  var s=card(x.title);if(x.intro)s.appendChild(el('p',null,x.intro));
+  x.items.forEach(function(it){});
+  var n=x.items.length,idx=[],i;for(i=0;i<n;i++)idx.push(i);
+  var seed=n*7+3,j,tmp;for(i=n-1;i>0;i--){seed=(seed*1103515245+12345)&0x7fffffff;j=seed%(i+1);tmp=idx[i];idx[i]=idx[j];idx[j]=tmp}
+  if(idx.every(function(v,k){return v===k}))idx.reverse();
+  var done=el('div','done'),pool=el('div','pool'),fb=el('div','fb'),next=0,err=0;
+  s.appendChild(el('p','muted small','Touche les étapes dans le bon ordre, de la première à la dernière.'));
+  s.appendChild(done);s.appendChild(pool);s.appendChild(fb);
+  idx.forEach(function(k){var b=el('button','opt',x.items[k]);
+    b.onclick=function(){
+      if(k===next){next++;b.disabled=true;var d=el('div','opt',next+'. '+x.items[k]);done.appendChild(d);b.remove();
+        if(next===n){fb.className='fb show';fb.textContent=(err?'✔ Terminé, avec '+err+' erreur(s). ':'✔ Parfait, sans erreur ! ')+(x.e||'');graded(!err)}}
+      else{err++;b.classList.add('bad');setTimeout(function(){b.classList.remove('bad')},500)}};
+    pool.appendChild(b)});
+  return s};
+
+/* ---------- Explorateur de schéma ---------- */
+B.explorer=function(x){
+  var s=card(x.title);if(x.intro)s.appendChild(el('div',null,x.intro));
+  var S=x.spec,host=el('div','sim');var sc=el('div','scroll');
+  var svg=mkS(null,'svg',{viewBox:'0 0 '+S.w+' '+S.h});svg.style.width='100%';svg.style.minWidth=(S.min||520)+'px';svg.style.maxWidth=S.w+'px';
+  (S.arrows||[]).forEach(function(a){mkS(svg,'line',{x1:a[0],y1:a[1],x2:a[2],y2:a[3],class:'far'});
+    var dx=a[2]-a[0],dy=a[3]-a[1],L=Math.sqrt(dx*dx+dy*dy)||1,ux=dx/L,uy=dy/L,px=-uy,py=ux;
+    if(a[4]!=='n'){mkS(svg,'polygon',{points:[a[2],a[3],a[2]-9*ux+4*px,a[3]-9*uy+4*py,a[2]-9*ux-4*px,a[3]-9*uy-4*py].join(' '),class:'fah'})}
+    if(a[4]==='b'){mkS(svg,'polygon',{points:[a[0],a[1],a[0]+9*ux+4*px,a[1]+9*uy+4*py,a[0]+9*ux-4*px,a[1]+9*uy-4*py].join(' '),class:'fah'})}});
+  (S.texts||[]).forEach(function(t){mkS(svg,'text',{x:t.x,y:t.y,class:'ftx sm'+(t.l?' l':'')+(t.b?' b':'')},t.t)});
+  var dsc=el('div','xdesc','<span class="muted">👆 Touche un bloc du schéma pour lire son rôle.</span>'),gs=[];
+  S.boxes.forEach(function(b){
+    var g=mkS(svg,'g',{class:'xb'});gs.push(g);
+    mkS(g,'rect',{x:b.x,y:b.y,width:b.w,height:b.h,rx:6,class:'fbx'+(b.c?' '+b.c:'')});
+    var lines=b.label.split('|'),lh=17,y0=b.y+b.h/2-(lines.length-1)*lh/2;
+    lines.forEach(function(l,i){mkS(g,'text',{x:b.x+b.w/2,y:y0+i*lh,class:'ftx'+(i===0?' b':'')},l)});
+    g.addEventListener('click',function(){gs.forEach(function(z){z.classList.remove('sel')});g.classList.add('sel');dsc.innerHTML='<b>'+b.label.replace(/\|/g,' ')+'</b><br>'+b.desc});
+    g.setAttribute('tabindex','0');g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();g.dispatchEvent(new Event('click'))}})});
+  sc.appendChild(svg);host.appendChild(sc);host.appendChild(el('p','muted small','↔ Sur téléphone, fais glisser le schéma si besoin.'));host.appendChild(dsc);s.appendChild(host);
+  if(x.after)s.appendChild(el('div',null,x.after));return s};
+
+/* ---------- Simulateur GRAFCET ---------- */
+B.grafcet=function(x){
+  var s=card(x.title);if(x.intro)s.appendChild(el('div',null,x.intro));
+  (x.missions||[]).forEach(function(m){s.appendChild(el('div','mission','🎯 '+m))});
+  var S=x.spec,active={},vars={},prev={},cnt={},tim={},SM={};
+  S.steps.forEach(function(st){st.g=st.g||'G1';SM[st.id]=st;if(st.init)active[st.id]=1;if(st.cond)st.cfn=new Function('v','return !!('+st.cond.replace(/\b([A-Za-z_]\w*)\b/g,'v.$1')+')')});
+  S.trans.forEach(function(t){t.g=t.g||'G1';t.fn=new Function('v','return !!('+t.r.replace(/\b([A-Za-z_]\w*)\b/g,'v.$1')+')')});
+  function initAll(){active={};S.steps.forEach(function(st){if(st.init)active[st.id]=1});vars={};
+    S.inputs.forEach(function(i){vars[i.id]=i.init?1:0;if(i.edges){vars['up_'+i.id]=0;vars['down_'+i.id]=0}});
+    (S.mems||[]).forEach(function(m){vars[m]=0});(S.counters||[]).forEach(function(c){cnt[c.id]=0;vars[c.id]=0});(S.timers||[]).forEach(function(t){tim[t.id]=0;vars[t.id]=0});
+    prev={};for(var k in active)prev[k]=1}
+  initAll();
+  var host=el('div','sim');
+  var svg=mkS(null,'svg',{viewBox:'0 0 '+S.w+' '+S.h});svg.style.width='100%';svg.style.minWidth='560px';svg.style.maxWidth=S.w+'px';
+  (S.frames||[]).forEach(function(f){mkS(svg,'rect',{x:f.x,y:f.y,width:f.w,height:f.h,rx:8,class:'gframe'});if(f.t)mkS(svg,'text',{x:f.x+8,y:f.y+16,class:'gl'},f.t)});
+  (S.lines||[]).forEach(function(l){mkS(svg,'line',{x1:l[0],y1:l[1],x2:l[2],y2:l[3],class:'lk'})});
+  (S.bars||[]).forEach(function(l){var h=l[1]===l[3];mkS(svg,'line',{x1:l[0],y1:l[1]-(h?2.5:0),x2:l[2],y2:l[3]-(h?2.5:0),class:'lk'});mkS(svg,'line',{x1:l[0],y1:l[1]+(h?2.5:0),x2:l[2],y2:l[3]+(h?2.5:0),class:'lk'})});
+  (S.arrows||[]).forEach(function(a){var X=a[0],Y=a[1],d=a[2],p=d==='d'?[X-4,Y-8,X+4,Y-8,X,Y]:d==='l'?[X+8,Y-4,X+8,Y+4,X,Y]:d==='r'?[X-8,Y-4,X-8,Y+4,X,Y]:[X-4,Y+8,X+4,Y+8,X,Y];mkS(svg,'polygon',{points:p.join(' '),class:'ar'})});
+  (S.notes||[]).forEach(function(n){mkS(svg,'text',{x:n.x,y:n.y,class:'tr-id','text-anchor':n.a||'start'},n.t)});
+  var sg={},ag={},tg={};
+  S.steps.forEach(function(st){
+    var g=mkS(svg,'g',{});sg[st.id]=g;
+    if(st.init)mkS(g,'rect',{x:st.x-21,y:st.y-21,width:42,height:42,class:'st-box'});
+    mkS(g,'rect',{x:st.x-17,y:st.y-17,width:34,height:34,class:'st-box'});
+    if(st.macro){mkS(g,'line',{x1:st.x-17,y1:st.y-10,x2:st.x+17,y2:st.y-10,class:'lk'});mkS(g,'line',{x1:st.x-17,y1:st.y+10,x2:st.x+17,y2:st.y+10,class:'lk'})}
+    mkS(g,'text',{x:st.x,y:st.y,class:'st-num','font-size':(String(st.label||st.id).length>2?13:17)},String(st.label||st.id));
+    mkS(g,'circle',{cx:st.x+11,cy:st.y+(st.macro?14:11),r:3.5,class:'st-dot'});
+    if(st.act){var a=mkS(svg,'g',{});ag[st.id]=a;var w=Math.max(80,st.act.length*7.4+18),side=st.side||'r',ax=side==='r'?st.x+17:st.x-17,bx=side==='r'?st.x+30:st.x-30-w;
+      mkS(a,'line',{x1:ax,y1:st.y,x2:side==='r'?bx:bx+w,y2:st.y,class:'lk'});
+      mkS(a,'rect',{x:bx,y:st.y-13,width:w,height:26,class:'act-box'});
+      mkS(a,'text',{x:bx+8,y:st.y,class:'act-txt'},st.act)}});
+  S.trans.forEach(function(t){
+    var g=mkS(svg,'g',{});tg[t.id]=g;
+    mkS(g,'line',{x1:t.x-10,y1:t.y,x2:t.x+10,y2:t.y,class:'tr-bar'});
+    var side=t.side||'r',tx=side==='r'?t.x+16:t.x-16;
+    mkS(g,'text',{x:tx,y:t.y,class:'tr-txt','text-anchor':side==='r'?'start':'end'},t.label);
+    mkS(g,'text',{x:side==='r'?t.x-14:t.x+14,y:t.y,class:'tr-id','text-anchor':side==='r'?'end':'start'},t.id)});
+  var sc=el('div','scroll');sc.appendChild(svg);host.appendChild(sc);host.appendChild(el('p','muted small','↔ Sur téléphone, fais glisser le schéma si besoin.'));
+  var inp=el('div','inputs'),btns={};
+  var msg=el('div','msg','Appuie sur une entrée pour faire évoluer le GRAFCET.'),acts=el('div','acts');
+  S.inputs.forEach(function(i){
+    var b=el('button',i.type==='momentary'?'mo':'tg',i.type==='momentary'?'⚡ '+i.label:i.label+' = '+vars[i.id]);btns[i.id]=b;
+    b.onclick=function(){
+      var m=[];
+      if(i.type==='momentary'){vars[i.id]=1;m=stab(1);vars[i.id]=0;m=m.concat(stab(25));show(m,'« '+i.label+' » est vrai')}
+      else{var old=vars[i.id];vars[i.id]=1-old;b.textContent=i.label+' = '+vars[i.id];b.classList.toggle('on',!!vars[i.id]);
+        if(i.edges){var pk=(vars[i.id]?'up_':'down_')+i.id;vars[pk]=1;m=stab(1);vars[pk]=0;m=m.concat(stab(25))}else m=stab(25);
+        show(m,i.label+' passe à '+vars[i.id])}
+      draw()};
+    if(i.type!=='momentary'&&vars[i.id])b.classList.add('on');inp.appendChild(b)});
+  host.appendChild(inp);host.appendChild(msg);host.appendChild(acts);
+  var rs=el('div','row');var rb=el('button','btn g s','↺ Réinitialiser');rs.appendChild(rb);host.appendChild(rs);
+  s.appendChild(host);if(x.after)s.appendChild(el('div',null,x.after));
+  function key(){return Object.keys(active).sort().join(',')}
+  function frozenG(){var f={};(S.forces||[]).forEach(function(o){if(o.mode==='freeze'&&active[o.when])f[o.g]=1});return f}
+  function vx(){var o={};for(var k in vars)o[k]=vars[k];S.steps.forEach(function(st){o['X'+st.id]=active[st.id]?1:0});return o}
+  function enabled(){var fz=frozenG(),V=vx();return S.trans.filter(function(t){return !fz[t.g]&&t.from.every(function(z){return active[z]})&&t.fn(V)})}
+  function track(){
+    (S.timers||[]).forEach(function(t){if(!active[t.step]){tim[t.id]=0;vars[t.id]=0}});
+    for(var k in active){if(!prev[k]){var st=SM[k];
+      (S.counters||[]).forEach(function(c){if(String(c.step)===k)cnt[c.id]++;if(String(c.reset)===k)cnt[c.id]=0;vars[c.id]=cnt[c.id]>=c.preset?1:0});
+      if(st){(st.set||[]).forEach(function(m){vars[m]=1});(st.reset||[]).forEach(function(m){vars[m]=0})}}}
+    prev={};for(var k2 in active)prev[k2]=1}
+  function applyForces(msgs){
+    (S.forces||[]).forEach(function(f){if(f.mode==='freeze'||!active[f.when])return;
+      var want={};if(f.mode==='init')S.steps.forEach(function(st){if(st.g===f.g&&st.init)want[st.id]=1});else if(f.mode==='steps')(f.steps||[]).forEach(function(z){want[z]=1});
+      var cur2={};S.steps.forEach(function(st){if(st.g===f.g&&active[st.id])cur2[st.id]=1});
+      if(Object.keys(want).sort().join()!==Object.keys(cur2).sort().join()){
+        for(var k in cur2)delete active[k];for(var w in want)active[w]=1;
+        msgs.push('⚠ <b>Forçage</b> : le GRAFCET '+f.g+' est forcé '+(f.mode==='init'?'à sa situation initiale':f.mode==='empty'?'à vide (aucune étape active)':'à la situation {'+(f.steps||[]).join(', ')+'}'))}})}
+  function stab(max){
+    var guard=0,msgs=[];
+    while(guard++<max){
+      var before=key();applyForces(msgs);track();
+      var en=enabled();
+      if(en.length){
+        var rm={},add={},used={},conflict=[];
+        en.forEach(function(t){t.from.forEach(function(z){if(used[z])conflict.push(used[z]+' et '+t.id);used[z]=t.id;rm[z]=1});t.to.forEach(function(z){add[z]=1})});
+        for(var z in rm)delete active[z];for(var z2 in add)active[z2]=1;
+        en.forEach(function(t){msgs.push('✔ <b>'+t.id+'</b> franchie : étape '+t.from.map(lab).join(' + ')+' → étape '+t.to.map(lab).join(' + '))});
+        if(conflict.length)msgs.push('⚠️ <b>Conflit</b> : '+conflict.join(', ')+' sont franchies en même temps. Les réceptivités ne sont pas exclusives : plusieurs branches deviennent actives !');
+        track()}
+      if(key()===before)break}
+    return msgs}
+  function lab(z){return SM[z]?(SM[z].label||SM[z].id):z}
+  function show(m,cause){
+    if(m.length){msg.innerHTML=m.join('<br>');msg.className='msg'+(m.join('').indexOf('Conflit')>-1||m.join('').indexOf('Forçage')>-1?' warnmsg':'')}
+    else if(cause){msg.className='msg';msg.innerHTML='Aucune transition franchie ('+cause+') : l\'étape précédente n\'est pas active ou la réceptivité n\'est pas vraie.'}}
+  function draw(){
+    var fz=frozenG(),V=vx();
+    S.steps.forEach(function(st){var c=(active[st.id]?'st-on':'')+(fz[st.g]?' st-fz':'');sg[st.id].setAttribute('class',c);
+      if(ag[st.id])ag[st.id].setAttribute('class',active[st.id]&&(!st.cfn||st.cfn(V))?'st-on':'')});
+    S.trans.forEach(function(t){var v=!fz[t.g]&&t.from.every(function(z){return active[z]})&&t.fn(V);tg[t.id].setAttribute('class',v?'tr-ok':'')});
+    var a=S.steps.filter(function(st){return active[st.id]&&st.act&&(!st.cfn||st.cfn(V))}).map(function(st){return st.act+(st.info?' ('+st.info+')':'')});
+    var ids=S.steps.filter(function(st){return active[st.id]}).map(function(st){return st.label||st.id});
+    var h='<b>Étapes actives :</b> '+(ids.join(', ')||'aucune')+(a.length?'<br><b>Actions en cours :</b> '+a.join(' · '):'');
+    var fl=Object.keys(fz);if(fl.length)h+='<br><b>❄ Figé :</b> '+fl.join(', ');
+    if((S.timers||[]).length)h+='<br>'+S.timers.map(function(t){return '⏱ '+t.id+' : '+(tim[t.id]).toFixed(1)+' / '+t.delay+' s'+(vars[t.id]?' ✔':'')}).join(' · ');
+    if((S.counters||[]).length)h+='<br>'+S.counters.map(function(c){return '🔢 '+c.id+' : '+cnt[c.id]+' / '+c.preset+(vars[c.id]?' ✔':'')}).join(' · ');
+    if((S.mems||[]).length)h+='<br><b>Mémoires :</b> '+S.mems.map(function(m){return m+' = '+vars[m]}).join(' · ');
+    acts.innerHTML=h}
+  rb.onclick=function(){initAll();S.inputs.forEach(function(i){if(i.type!=='momentary'){btns[i.id].textContent=i.label+' = '+vars[i.id];btns[i.id].classList.toggle('on',!!vars[i.id])}});
+    msg.className='msg';msg.textContent='Situation initiale rétablie.';draw()};
+  if((S.timers||[]).length){setInterval(function(){
+    if(!isOn(s))return;var ch=false;
+    S.timers.forEach(function(t){var was=vars[t.id];if(active[t.step])tim[t.id]=Math.min(t.delay,tim[t.id]+0.1);else tim[t.id]=0;
+      vars[t.id]=(active[t.step]&&tim[t.id]>=t.delay-0.001)?1:0;if(vars[t.id]!==was)ch=true});
+    if(ch){var m=stab(25);show(m,null)}draw()},100)}
+  stab(25);draw();return s};
+
+/* ---------- Automate : schéma à contacts (Ladder) ---------- */
+B.ladder=function(x){
+  var s=card(x.title);if(x.intro)s.appendChild(el('div',null,x.intro));
+  (x.missions||[]).forEach(function(m){s.appendChild(el('div','mission','🎯 '+m))});
+  var S=x.spec,vars={},st={},wires=[],texts=[],lamps={};
+  Object.keys(S.init||{}).forEach(function(k){vars[k]=S.init[k]});
+  S.inputs.forEach(function(i){if(vars[i.id]==null)vars[i.id]=0});
+  function lay(n){var w,h,i;
+    if(n.k==='ser'){w=0;h=0;n.c.forEach(function(c){var z=lay(c);w+=z.w;h=Math.max(h,z.h)})}
+    else if(n.k==='par'){w=0;h=0;n.c.forEach(function(c){var z=lay(c);w=Math.max(w,z.w);h+=z.h});w+=24}
+    else if(n.k==='no'||n.k==='nc'){w=96;h=58}
+    else if(n.k==='ton'||n.k==='tof'||n.k==='ctu'){w=150;h=64}
+    else{w=100;h=58}
+    n._w=w;n._h=h;return {w:w,h:h}}
+  function W(g,x1,y1,x2,y2,node,key){var l=mkS(g,'line',{x1:x1,y1:y1,x2:x2,y2:y2,class:'lw'});wires.push({e:l,n:node,k:key})}
+  function drw(g,n,X,Y,Wd){ // Wd: largeur imposée (pour les branches)
+    var by=Y+29;
+    if(n.k==='ser'){var cx=X;n.c.forEach(function(c,i){var cw=(i===n.c.length-1&&Wd)?Wd-(cx-X):c._w;drw(g,c,cx,Y,cw);cx+=c._w})}
+    else if(n.k==='par'){var inner=(Wd||n._w)-24,cy=Y,first=null,last=null;
+      n.c.forEach(function(c,i){drw(g,c,X+12,cy,inner);var b=cy+29;if(i===0)first=b;last=b;cy+=c._h});
+      W(g,X,first,X+12,first,n,'in');W(g,X+12+inner,first,X+(Wd||n._w),first,n,'out');
+      W(g,X+12,first,X+12,last,n,'in');W(g,X+12+inner,first,X+12+inner,last,n,'out')}
+    else if(n.k==='no'||n.k==='nc'){var wd=Wd||n._w,a=X+wd/2-11,b2=X+wd/2+11;
+      W(g,X,by,a,by,n,'in');W(g,b2,by,X+wd,by,n,'out');
+      n._s1=mkS(g,'line',{x1:a,y1:by-14,x2:a,y2:by+14,class:'ls'});n._s2=mkS(g,'line',{x1:b2,y1:by-14,x2:b2,y2:by+14,class:'ls'});
+      if(n.k==='nc')n._s3=mkS(g,'line',{x1:a-2,y1:by+13,x2:b2+2,y2:by-13,class:'ls'});
+      n._t=mkS(g,'text',{x:X+wd/2,y:by-22,class:'lt'},n.v)}
+    else{var wd2=Wd||n._w;
+      if(n.k==='coil'||n.k==='set'||n.k==='rst'){var cxx=X+wd2/2;W(g,X,by,cxx-14,by,n,'in');W(g,cxx+14,by,X+wd2,by,n,'out');
+        n._c=mkS(g,'circle',{cx:cxx,cy:by,r:14,class:'lbox'});mkS(g,'text',{x:cxx,y:by+4,class:'lt'},n.k==='set'?'S':n.k==='rst'?'R':'');
+        n._t=mkS(g,'text',{x:cxx,y:by-22,class:'lt'},n.v)}
+      else{W(g,X,by,X+16,by,n,'in');W(g,X+wd2-16,by,X+wd2,by,n,'out');
+        n._c=mkS(g,'rect',{x:X+16,y:Y+3,width:wd2-32,height:52,rx:4,class:'lbox'});
+        mkS(g,'text',{x:X+wd2/2,y:Y+19,class:'lt'},(n.k==='ton'?'TON ':n.k==='tof'?'TOF ':'CTU ')+n.v);
+        n._d=mkS(g,'text',{x:X+wd2/2,y:Y+40,class:'lt'},'');}}}
+  var rungsY=[],totalW=0,Hh=24;
+  S.rungs.forEach(function(r){var a=lay(r.tree),o=r.out;lay(o);var h=Math.max(a.h,o._h);r._h=h;r._w=a.w+o._w;totalW=Math.max(totalW,r._w)});
+  var VW=totalW+80,H=Hh;S.rungs.forEach(function(r){H+=r._h+14});H+=10;
+  var svg=mkS(null,'svg',{viewBox:'0 0 '+VW+' '+H});svg.style.width='100%';svg.style.minWidth='560px';svg.style.maxWidth=VW+'px';
+  var yy=Hh-8;
+  mkS(svg,'line',{x1:30,y1:yy,x2:30,y2:H-6,class:'lw on'});mkS(svg,'line',{x1:VW-30,y1:yy,x2:VW-30,y2:H-6,class:'lw'});
+  var yc=Hh;
+  S.rungs.forEach(function(r,i){var g=mkS(svg,'g',{});var tw=r.tree._w,ow=VW-60-tw;
+    drw(g,r.tree,30,yc,null);
+    var w0=r.out._w,ox=30+tw+(ow-w0);
+    W(g,30+tw,yc+29,ox,yc+29,r.out,'in');drw(g,r.out,ox,yc,w0);
+    mkS(g,'text',{x:6,y:yc+34,class:'lt','text-anchor':'start',style:'fill:var(--muted);font-size:11px'},'R'+(i+1));
+    yc+=r._h+14});
+  var host=el('div','sim');var sc=el('div','scroll');sc.appendChild(svg);host.appendChild(sc);
+  host.appendChild(el('p','muted small','↔ Sur téléphone, fais glisser le schéma si besoin. Le trait vert = le courant « passe ».'));
+  var inp=el('div','inputs');
+  S.inputs.forEach(function(i){var b;
+    if(i.type==='push'){b=el('button','mo','⏺ '+i.label+' (maintenir)');
+      var dn=function(e){e.preventDefault();vars[i.id]=1;b.classList.add('down');scan(0)},up=function(){if(vars[i.id]){vars[i.id]=0;b.classList.remove('down');scan(0)}};
+      b.addEventListener('pointerdown',dn);b.addEventListener('pointerup',up);b.addEventListener('pointerleave',up);b.addEventListener('pointercancel',up);
+      b.addEventListener('keydown',function(e){if(e.key===' '||e.key==='Enter'){e.preventDefault();if(!vars[i.id])dn(e)}});b.addEventListener('keyup',function(e){if(e.key===' '||e.key==='Enter')up()})}
+    else{b=el('button','tg',i.label+' = '+vars[i.id]);if(vars[i.id])b.classList.add('on');
+      b.onclick=function(){vars[i.id]=1-vars[i.id];b.textContent=i.label+' = '+vars[i.id];b.classList.toggle('on',!!vars[i.id]);scan(0)}}
+    inp.appendChild(b)});
+  host.appendChild(inp);
+  var outs=el('div','outs');(S.outputs||[]).forEach(function(o){var d=el('span',null,'<span class="lamp"></span>'+o.label);lamps[o.id]=d.firstChild;outs.appendChild(d)});host.appendChild(outs);
+  var rb=el('button','btn g s','↺ Réinitialiser');rb.onclick=function(){vars={};Object.keys(S.init||{}).forEach(function(k){vars[k]=S.init[k]});S.inputs.forEach(function(i){if(vars[i.id]==null)vars[i.id]=0});st={};refreshToggles();scan(0)};
+  function refreshToggles(){var bi=inp.children;S.inputs.forEach(function(i,ix){if(i.type!=='push'){bi[ix].textContent=i.label+' = '+vars[i.id];bi[ix].classList.toggle('on',!!vars[i.id])}})}
+  var r2=el('div','row');r2.appendChild(rb);host.appendChild(r2);s.appendChild(host);if(x.after)s.appendChild(el('div',null,x.after));
+  function ev(n,inp2){var p;
+    if(n.k==='ser'){p=inp2;n.c.forEach(function(c){p=ev(c,p)})}
+    else if(n.k==='par'){p=false;n.c.forEach(function(c){if(ev(c,inp2))p=true})}
+    else if(n.k==='no')p=inp2&&!!vars[n.v];
+    else if(n.k==='nc')p=inp2&&!vars[n.v];
+    else p=inp2;
+    n._in=inp2;n._p=p;return p}
+  function apply(o,p,dt){var q=st[o.v]||(st[o.v]={el:0,c:0,pe:false});
+    if(o.k==='coil')vars[o.v]=p?1:0;
+    else if(o.k==='set'){if(p)vars[o.v]=1}
+    else if(o.k==='rst'){if(p)vars[o.v]=0}
+    else if(o.k==='ton'){if(p)q.el=Math.min(o.pt,q.el+dt);else q.el=0;vars[o.v]=(p&&q.el>=o.pt-0.001)?1:0}
+    else if(o.k==='tof'){if(p){vars[o.v]=1;q.el=0}else if(vars[o.v]){q.el+=dt;if(q.el>=o.pt-0.001){vars[o.v]=0;q.el=0}}}
+    else if(o.k==='ctu'){if(p&&!q.pe)q.c++;q.pe=p;if(o.rst&&vars[o.rst])q.c=0;vars[o.v]=q.c>=o.pv?1:0}
+    o._out=p}
+  function scan(dt){S.rungs.forEach(function(r){var p=ev(r.tree,true);apply(r.out,p,dt);r.out._in=p});paint()}
+  function paint(){
+    wires.forEach(function(w){var on=w.k==='in'?w.n._in:w.n._p;if(w.n.k==='coil'||w.n.k==='set'||w.n.k==='rst'||w.n.k==='ton'||w.n.k==='tof'||w.n.k==='ctu')on=w.k==='in'?w.n._in:w.n._in;w.e.setAttribute('class','lw'+(on?' on':''))});
+    function col(n){if(n.c&&n.k!=='coil'&&n.k!=='set'&&n.k!=='rst'&&n.k!=='ton'&&n.k!=='tof'&&n.k!=='ctu'){n.c.forEach(col);return}
+      if(n.k==='no'||n.k==='nc'){var on=n._in&&n._p;[n._s1,n._s2,n._s3,n._t].forEach(function(e){if(e)e.setAttribute('class',(e===n._t?'lt':'ls')+(on?' on':''))})}
+      else{var oo=n._in;if(n._c)n._c.setAttribute('class','lbox'+(oo?' on':''));
+        if(n._d){var q=st[n.v]||{el:0,c:0};n._d.textContent=n.k==='ctu'?('CV='+q.c+' / '+n.pv+(vars[n.v]?'  ✔':'')):(q.el.toFixed(1)+' / '+n.pt+' s'+(vars[n.v]?'  ✔':''))}}}
+    S.rungs.forEach(function(r){col(r.tree);col(r.out)});
+    (S.outputs||[]).forEach(function(o){lamps[o.id].className='lamp'+(vars[o.id]?' on':'')})}
+  setInterval(function(){if(isOn(s))scan(0.1)},100);
+  scan(0);return s};
+
+/* ---------- Régulation : boucle ouverte / fermée ---------- */
+B.regul=function(x){
+  var s=card(x.title);if(x.intro)s.appendChild(el('div',null,x.intro));
+  (x.missions||[]).forEach(function(m){s.appendChild(el('div','mission','🎯 '+m))});
+  var P=x.spec,v=P.v0,u=P.c0/P.K,I=u,t=0,pert=0,mode=0,cons=P.c0,hist=[];
+  var host=el('div','sim');
+  var ctl=el('div','rg-ctl');
+  var bm=el('button','tg','Boucle OUVERTE'),bp=el('button','tg',P.pertLabel+' : NON');
+  var lab=el('label',null,'Consigne : <span class="rg-val" id="cv">'+cons+'</span> '+P.unit+' ');var rg=el('input');rg.type='range';rg.min=P.cmin;rg.max=P.cmax;rg.value=cons;lab.appendChild(rg);
+  ctl.appendChild(bm);ctl.appendChild(bp);ctl.appendChild(lab);host.appendChild(ctl);
+  var W=640,H=250,L=44,R=W-12,T=12,Bm=H-26;
+  var svg=mkS(null,'svg',{viewBox:'0 0 '+W+' '+H});svg.style.width='100%';svg.style.minWidth='520px';svg.style.maxWidth=W+'px';
+  var sc=el('div','scroll');sc.appendChild(svg);host.appendChild(sc);
+  var info=el('div','acts');host.appendChild(info);
+  var key=el('p','muted small','<span style="color:var(--accent)">━</span> '+P.vLabel+' &nbsp; <span style="color:var(--ok)">╌</span> consigne &nbsp; <span style="color:var(--warn)">━</span> '+P.uLabel);host.appendChild(key);
+  var r2=el('div','row');var rb=el('button','btn g s','↺ Recommencer');r2.appendChild(rb);host.appendChild(r2);s.appendChild(host);if(x.after)s.appendChild(el('div',null,x.after));
+  var vmin=P.cmin-40,vmax=P.cmax+30;
+  function Y(val){return Bm-(val-vmin)/(vmax-vmin)*(Bm-T)}
+  function X(i){return L+i/(P.win-1)*(R-L)}
+  function render(){
+    while(svg.firstChild)svg.removeChild(svg.firstChild);
+    for(var g=Math.ceil(vmin/20)*20;g<=vmax;g+=20){mkS(svg,'line',{x1:L,y1:Y(g),x2:R,y2:Y(g),class:'pl-ax'});mkS(svg,'text',{x:L-6,y:Y(g)+4,class:'pl-tx','text-anchor':'end'},String(g))}
+    mkS(svg,'text',{x:L,y:H-6,class:'pl-tx'},'temps (dernières '+Math.round(P.win*P.dt*P.sub)+' s)');
+    function poly(cls,k){var pts=hist.map(function(h,i){return X(i+(P.win-hist.length))+','+Y(h[k])}).join(' ');if(hist.length>1)mkS(svg,'polyline',{points:pts,class:cls})}
+    poly('pl-c',2);poly('pl-u',3);poly('pl-v',1)}
+  function step(){var errv=cons-v;
+    for(var k=0;k<P.sub;k++){
+      if(mode===0){u=Math.max(0,Math.min(100,cons/P.K))}
+      else{I+=P.Ki*errv*P.dt;u=Math.max(0,Math.min(100,P.Kp*errv+I));if(u>=100&&I>100)I=100;if(u<=0&&I<0)I=0}
+      var pp=pert?P.pert:0;v+=P.dt*(P.K*u-pp-v)/P.tau;errv=cons-v;t+=P.dt}
+    hist.push([t,v,cons,vmin+(u/100)*(vmax-vmin)]);if(hist.length>P.win)hist.shift()}
+  function upd(){info.innerHTML='<b>'+P.vLabel+' :</b> '+v.toFixed(1)+' '+P.unit+' &nbsp; <b>Écart (consigne − mesure) :</b> '+(cons-v).toFixed(1)+' '+P.unit+' &nbsp; <b>'+P.uLabel+' :</b> '+u.toFixed(0)+' %'}
+  bm.onclick=function(){mode=1-mode;bm.textContent=mode?'Boucle FERMÉE (régulation)':'Boucle OUVERTE';bm.classList.toggle('on',!!mode);I=u};
+  bp.onclick=function(){pert=1-pert;bp.textContent=P.pertLabel+' : '+(pert?'OUI':'NON');bp.classList.toggle('on',!!pert)};
+  rg.oninput=function(){cons=+rg.value;lab.querySelector('.rg-val').textContent=cons};
+  rb.onclick=function(){v=P.v0;u=P.c0/P.K;I=u;t=0;hist=[];pert=0;mode=0;cons=P.c0;rg.value=cons;lab.querySelector('.rg-val').textContent=cons;bm.textContent='Boucle OUVERTE';bm.classList.remove('on');bp.textContent=P.pertLabel+' : NON';bp.classList.remove('on')};
+  setInterval(function(){if(!isOn(s))return;step();render();upd()},100);
+  step();render();upd();return s};
+
+function buildResult(){
+  var s=card('Ton résultat');
+  var sc=el('div','score');s.appendChild(sc);var vd=el('p');s.appendChild(vd);
+  s.appendChild(el('p','muted small','Le score compte les exercices corrigés (tri, compléter, ordonner, quiz) auxquels tu as répondu.'));
+  s.appendChild(el('h3',null,'Ton avis sur cette leçon'));
+  var ta=el('textarea');ta.placeholder='Ce qui est clair, ce qui est difficile, ce que tu veux revoir…';s.appendChild(ta);
+  var r=el('div','row');var send=el('button','btn','Envoyer mon avis sur WhatsApp');r.appendChild(send);s.appendChild(r);
+  send.onclick=function(){var t='Avis sur la leçon « '+D.title+' » (AsghinLabs Academy) :\n'+(ta.value||'(sans commentaire)')+'\nMon score : '+score+'/'+total;
+    window.open('https://wa.me/237682402876?text='+encodeURIComponent(t),'_blank')};
+  s.appendChild(el('p','muted small','🔗 asghinlabs.com · WhatsApp +237 682 402 876 · AsghinLabs Academy'));
+  var r2=el('div','row');var rs=el('button','btn g','Recommencer la leçon');rs.onclick=function(){location.reload()};r2.appendChild(rs);s.appendChild(r2);
+  s._refresh=function(){sc.textContent=total?score+' / '+total:'—';
+    vd.textContent=!total?'Fais les exercices pour obtenir ton score.':score/total>=0.8?'Excellent ! Tu maîtrises cette leçon. 🎉':score/total>=0.5?'Bien ! Relis les parties où tu as hésité, puis recommence les exercices.':'Courage ! Reprends la leçon calmement, puis refais les exercices.'};
+  return s}
+
+document.getElementById('kicker').textContent=D.kicker;document.getElementById('ttl').textContent=D.title;
+steps.push(B.intro());
+D.sections.forEach(function(x){steps.push(B[x.type](x))});
+var res=buildResult();steps.push(res);
+var root=document.getElementById('steps');steps.forEach(function(s){root.appendChild(s)});
+function go(d){cur=Math.max(0,Math.min(steps.length-1,cur+d));show()}
+function show(){steps.forEach(function(s,i){s.classList.toggle('on',i===cur)});
+  if(cur===steps.length-1)res._refresh();
+  document.getElementById('pb').style.width=((cur+1)/steps.length*100)+'%';
+  document.getElementById('pl').textContent='Partie '+(cur+1)+' sur '+steps.length;
+  document.getElementById('pv').style.visibility=cur?'visible':'hidden';
+  document.getElementById('nx').style.display=cur===steps.length-1?'none':'';window.scrollTo(0,0)}
+show();
+</script>
+</body>
+</html>
