@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Préparation aux examens | AsghinLabs Academy</title>
+  <!-- Private page: only students who paid receive this link. Never link it from the site or the sitemap. -->
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+  <link rel="icon" href="/images/logo-blue.jpeg" type="image/jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/prep/prep.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <img src="/images/logo-blue.jpeg" alt="">
+    <div class="brand">AsghinLabs Academy<small>Préparation aux examens officiels</small></div>
+    <div class="right" id="who"></div>
+  </header>
+
+  <!-- Login -->
+  <section id="login" class="card" style="max-width:460px;margin:30px auto">
+    <h2>Votre espace de préparation</h2>
+    <p class="muted">Entrez le code d’accès personnel reçu sur WhatsApp après votre inscription.</p>
+    <form id="loginForm">
+      <label class="f" for="code">Code d’accès</label>
+      <input type="text" id="code" autocomplete="off" autocapitalize="characters" placeholder="ex. ACA-7K2Q-9M4X" required>
+      <div class="err" id="loginErr"></div>
+      <button class="btn primary" style="width:100%;margin-top:14px" id="loginBtn">Entrer</button>
+    </form>
+    <p class="small muted" style="margin-top:16px">Pas encore de code ? Écrivez-nous sur WhatsApp : <a href="https://wa.me/237682402876">+237 682 402 876</a></p>
+  </section>
+
+  <!-- App -->
+  <main id="app" class="hide">
+    <div class="tabs" id="trackTabs"></div>
+    <div class="tabs" id="viewTabs">
+      <button class="tab on" data-view="topics">📚 Sujets par chapitre</button>
+      <button class="tab" data-view="papers">📝 Sujets par épreuve</button>
+      <button class="tab" data-view="train">🎯 Entraînement ciblé</button>
+      <button class="tab" data-view="mock">⏱️ Examen blanc</button>
+      <button class="tab" data-view="progress">📈 Mes progrès</button>
+    </div>
+    <div id="view"></div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+<script src="/prep/student.js"></script>
+</body>
+</html>

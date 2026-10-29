@@ -571,11 +571,31 @@
           "value": "public, max-age=604800"
         }
       ]
+    },
+    {
+      "source": "/prep/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        }
+      ]
     }
   ],
   "cleanUrls": true,
   "functions": {
     "api/tutor.js": {
+      "maxDuration": 60
+    },
+    "api/prep.js": {
       "maxDuration": 60
     }
   }

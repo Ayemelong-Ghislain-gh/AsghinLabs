@@ -198,7 +198,7 @@ def build_hub(recs):
 
     tabs = ('<div class="hub-filters class-tabs" id="hubClasses" role="tablist" aria-label="Choisissez votre classe">'
             '<button type="button" class="hub-filter active" data-class="all">Toutes les classes</button>' +
-            ''.join(f'<button type="button" class="hub-filter" data-class="{CLASS_DIR[c]}">{LABEL[c]} <span class="tab-n">{ready(c) or "bientôt"}</span></button>' for c in CLASSES) + '</div>')
+            ''.join(f'<button type="button" class="hub-filter" data-class="{CLASS_DIR[c]}">{LABEL[c]} <span class="tab-n">{ready(c) or {"6e": "319", "5e": "334"}.get(c) or "bientôt"}</span></button>' for c in CLASSES) + '</div>')
     secs = ''
     for c in CLASSES:
         exam = f' <span class="hub-exam">{EXAM[c]}</span>' if c in EXAM else ''

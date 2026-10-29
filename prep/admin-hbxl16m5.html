@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam Prep — Teacher | AsghinLabs</title>
+  <!-- Private teacher page. Never link it anywhere. Password = FEEDBACK_ADMIN_KEY. -->
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+  <link rel="icon" href="/images/logo-blue.jpeg" type="image/jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/prep/prep.css">
+  <style>
+    .grid2 { display: grid; gap: 0 14px; grid-template-columns: 1fr; }
+    @media (min-width: 720px) { .grid2 { grid-template-columns: 1fr 1fr; } }
+    .checks { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+    .checks label { display: flex; gap: 8px; align-items: center; font-size: 0.92rem; }
+    .thumbs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .thumbs div { position: relative; }
+    .thumbs img { width: 110px; height: 150px; object-fit: cover; border-radius: 8px; background: #fff; }
+    .thumbs button { position: absolute; top: 4px; right: 4px; width: 28px; height: 28px; border-radius: 50%; border: 0; background: rgba(0,0,0,0.75); color: #fff; cursor: pointer; }
+    .msgbox { white-space: pre-wrap; overflow-wrap: anywhere; background: rgba(0,0,0,0.3); border-radius: 12px; padding: 12px; font-size: 0.9rem; }
+    .topic-row { display: flex; gap: 8px; margin-bottom: 8px; }
+    .topic-row input { flex: 1; }
+    table.t { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    table.t td, table.t th { padding: 8px 6px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    .scroll { overflow-x: auto; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <img src="/images/logo-blue.jpeg" alt="">
+    <div class="brand">Exam Prep — Teacher<small>Private · AsghinLabs Academy</small></div>
+    <div class="right"><a href="/prep/9y3znsgt" target="_blank" rel="noopener">Student page ↗</a></div>
+  </header>
+
+  <section id="login" class="card" style="max-width:420px;margin:30px auto">
+    <h2>Teacher login</h2>
+    <p class="muted small">Same password as the feedback dashboard.</p>
+    <form id="loginForm"><input type="password" id="key" placeholder="Password" required>
+      <div class="err" id="loginErr"></div><button class="btn primary" style="width:100%;margin-top:12px">Open</button></form>
+  </section>
+
+  <main id="app" class="hide">
+    <div class="tabs" id="tabs">
+      <button class="tab on" data-tab="students">👥 Students & codes</button>
+      <button class="tab" data-tab="questions">📝 Past questions</button>
+      <button class="tab" data-tab="tracks">📚 Programmes & chapters</button>
+    </div>
+    <div id="view"></div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+<script src="/prep/admin.js"></script>
+</body>
+</html>
