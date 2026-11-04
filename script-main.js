@@ -370,3 +370,22 @@
   updateCubeTransform();
   animate();
 })();
+
+// Conversion tracking: WhatsApp, phone and email clicks -> GA4 events
+(function () {
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a || typeof window.gtag !== 'function') return;
+    var href = a.getAttribute('href') || '';
+    var name = null;
+    if (/wa\.me|api\.whatsapp\.com|whatsapp:/i.test(href)) name = 'whatsapp_click';
+    else if (/^tel:/i.test(href)) name = 'phone_click';
+    else if (/^mailto:/i.test(href)) name = 'email_click';
+    if (!name) return;
+    window.gtag('event', name, {
+      page_path: location.pathname,
+      link_text: (a.textContent || '').trim().slice(0, 80),
+      transport_type: 'beacon'
+    });
+  }, true);
+})();

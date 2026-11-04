@@ -20,7 +20,7 @@ SITE = 'https://www.asghinlabs.com'
 WA = '237682402876'
 PHONE = '+237 682 402 876'
 EMAIL = 'asghinlabs@gmail.com'
-TODAY = '2026-10-22'
+TODAY = '2026-11-04'
 
 
 def wa(text):
@@ -80,7 +80,8 @@ def strip_tags(s):
 T = {
     'en': dict(
         nav=[('/', 'Home'), ('/website-design-douala', 'Websites'), ('/flyer-design-douala', 'Flyers'),
-             ('/logo-design-douala', 'Logos'), ('/ai-automation-cameroon', 'AI'), ('/portfolio', 'Portfolio')],
+             ('/online-shop-cameroon', 'Online shops'), ('/logo-design-douala', 'Logos'), ('/ai-automation-cameroon', 'AI'),
+             ('/school-management-software-cameroon', 'Schools'), ('/portfolio', 'Portfolio')],
         academy=('/academy', 'Academy'), lang_label='FR', lang_title='Version française',
         home=('/', 'Home'), menu='Menu',
         cta_title="Let's talk about your project",
@@ -93,7 +94,8 @@ T = {
     ),
     'fr': dict(
         nav=[('/fr', 'Accueil'), ('/creation-site-web-douala', 'Sites web'), ('/conception-flyers-douala', 'Flyers'),
-             ('/creation-logo-douala', 'Logos'), ('/automatisation-ia-cameroun', 'IA'), ('/portfolio', 'Réalisations')],
+             ('/boutique-en-ligne-cameroun', 'Boutiques'), ('/creation-logo-douala', 'Logos'), ('/automatisation-ia-cameroun', 'IA'),
+             ('/logiciel-gestion-scolaire-cameroun', 'Écoles'), ('/portfolio', 'Réalisations')],
         academy=('/academie', 'Academy'), lang_label='EN', lang_title='English version',
         home=('/fr', 'Accueil'), menu='Menu',
         cta_title='Parlons de votre projet',
@@ -109,10 +111,12 @@ T = {
 FOOTER_SERVICES = [
     ('/website-design-douala', 'Website design Douala'), ('/flyer-design-douala', 'Flyer &amp; pamphlet design'),
     ('/logo-design-douala', 'Logo design'), ('/ai-automation-cameroon', 'AI &amp; automation'),
-    ('/website-cost-cameroon', 'Website cost in Cameroon'),
+    ('/website-cost-cameroon', 'Website cost in Cameroon'), ('/online-shop-cameroon', 'Online shop Cameroon'),
+    ('/school-management-software-cameroon', 'School management software'),
     ('/creation-site-web-douala', 'Création site web Douala'), ('/conception-flyers-douala', 'Flyers et dépliants'),
     ('/creation-logo-douala', 'Création de logo'), ('/automatisation-ia-cameroun', 'Automatisation IA'),
-    ('/combien-coute-un-site-web-cameroun', 'Prix d’un site web au Cameroun'), ('/fr', 'AsghinLabs en français'),
+    ('/combien-coute-un-site-web-cameroun', 'Prix d’un site web au Cameroun'), ('/boutique-en-ligne-cameroun', 'Boutique en ligne Cameroun'),
+    ('/logiciel-gestion-scolaire-cameroun', 'Logiciel de gestion scolaire'), ('/fr', 'AsghinLabs en français'),
 ]
 
 FLYERS = [
@@ -241,7 +245,7 @@ def page_web(lang):
               ('Mon site apparaîtra-t-il sur Google ?', 'Chaque site est construit pour être lu par Google : titres clairs, descriptions, pages rapides et sitemap. Nous vous guidons aussi pour créer votre fiche Google Business Profile gratuite, qui aide à apparaître sur Google Maps.')]),
         service=dict(name='Website design and development' if en else 'Création de site web', type='Web design',
                      offer=('75000', 'Starter website (1–3 pages)' if en else 'Site vitrine simple (1 à 3 pages)')),
-        related=['flyers', 'logos', 'ai'],
+        related=['shop', 'flyers', 'ai'],
     )
 
 
@@ -423,15 +427,169 @@ def page_ai(lang):
     )
 
 
+def page_shop(lang):
+    en = lang == 'en'
+    q = wa("Hi AsghinLabs, I'd like an online shop for my business. Here is what I sell:" if en else
+           "Bonjour AsghinLabs, je voudrais une boutique en ligne pour mon activité. Voici ce que je vends :")
+    return dict(
+        slug='/online-shop-cameroon' if en else '/boutique-en-ligne-cameroun',
+        alt='/boutique-en-ligne-cameroun' if en else '/online-shop-cameroon',
+        title='Online Shop Creation in Cameroon — WhatsApp &amp; Mobile Money | AsghinLabs' if en else
+              'Boutique en ligne au Cameroun : commandes WhatsApp et Mobile Money | AsghinLabs',
+        desc='Sell online in Cameroon: a product catalogue with a cart that sends orders to your WhatsApp, payment by MTN MoMo or Orange Money, built in Douala for shops across Cameroon.' if en else
+             'Vendez en ligne au Cameroun : catalogue de produits, panier qui envoie la commande sur votre WhatsApp, paiement MTN MoMo ou Orange Money. Conçu à Douala pour les boutiques de tout le Cameroun.',
+        crumb='Online shop' if en else 'Boutique en ligne',
+        tag='✦ E-commerce · Cameroon ✦' if en else '✦ E-commerce · Cameroun ✦',
+        h1='Your shop, open online 24/7' if en else 'Votre boutique ouverte en ligne 24h/24',
+        lead=('Show all your products with photos and prices, let customers fill a cart, and receive every order on WhatsApp with the customer’s name, address and total — ready for Mobile Money payment and delivery.' if en else
+              'Présentez tous vos produits avec photos et prix, laissez vos clients remplir un panier et recevez chaque commande sur WhatsApp avec le nom, l’adresse et le total du client, prête pour le paiement Mobile Money et la livraison.'),
+        price=None, wa=q,
+        hero_list=(['Orders arrive on your WhatsApp, already written', 'Customers pay by MTN MoMo or Orange Money', 'Works perfectly on phones',
+                    'Share any product link on Facebook, TikTok or WhatsApp Status', 'You can update prices and products yourself'] if en else
+                   ['Les commandes arrivent sur votre WhatsApp, déjà rédigées', 'Paiement par MTN MoMo ou Orange Money', 'Parfait sur téléphone',
+                    'Partagez chaque produit sur Facebook, TikTok ou le statut WhatsApp', 'Vous modifiez vous-même prix et produits']),
+        body=[
+            section('What your online shop includes' if en else 'Ce que contient votre boutique', '', cards([
+                ('🛍️', 'Product catalogue' if en else 'Catalogue de produits',
+                 'Categories, search, photos, prices, retail and wholesale prices if you need them.' if en else
+                 'Catégories, recherche, photos, prix, prix détail et prix de gros si besoin.'),
+                ('🛒', 'Cart to WhatsApp' if en else 'Panier vers WhatsApp',
+                 'The customer picks products and the full order (items, quantities, total, address) is sent to your WhatsApp.' if en else
+                 'Le client choisit ses produits et la commande complète (articles, quantités, total, adresse) est envoyée sur votre WhatsApp.'),
+                ('📱', 'Mobile Money' if en else 'Mobile Money',
+                 'Clear MTN MoMo and Orange Money payment instructions at checkout, so customers know exactly how to pay.' if en else
+                 'Des instructions de paiement MTN MoMo et Orange Money claires à la commande, pour que le client sache comment payer.'),
+                ('🚚', 'Delivery zones' if en else 'Zones de livraison',
+                 'Delivery fees by neighbourhood or town, or pick-up at your shop.' if en else
+                 'Frais de livraison par quartier ou par ville, ou retrait en boutique.'),
+            ])),
+            section('An online shop we built' if en else 'Une boutique que nous avons réalisée',
+                    'Open it and try ordering.' if en else 'Ouvrez-la et essayez de commander.', cards([
+                ('🛒', 'Stacy Xholani — Provisions &amp; More',
+                 'Provisions store in Douala: catalogue with search, retail and wholesale prices, gas delivery and a cart that sends the order to WhatsApp. English and French.' if en else
+                 'Magasin de provisions à Douala : catalogue avec recherche, prix détail et gros, livraison de gaz et panier qui envoie la commande sur WhatsApp. Français et anglais.',
+                 'https://stacy-xholani-website.vercel.app/', 'View the shop →' if en else 'Voir la boutique →'),
+                ('👞', 'J-VIC CHAKA — Shoe maker',
+                 'Shoe collections with a WhatsApp order button on every product.' if en else
+                 'Collections de chaussures avec un bouton de commande WhatsApp sur chaque produit.',
+                 'https://jvic-chaka.vercel.app/', 'View the site →' if en else 'Voir le site →'),
+            ]), alt=True),
+            section('Who it is for' if en else 'Pour qui ?', '', cards([
+                ('🏪', 'Shops &amp; supermarkets' if en else 'Boutiques et supérettes', 'Provisions, cosmetics, clothes, shoes, phones and accessories.' if en else 'Provisions, cosmétiques, vêtements, chaussures, téléphones et accessoires.'),
+                ('📦', 'Facebook &amp; TikTok sellers' if en else 'Vendeurs Facebook et TikTok', 'Stop answering “how much?” in comments: send one link with all your prices.' if en else 'Arrêtez de répondre « c’est combien ? » en commentaires : envoyez un seul lien avec tous vos prix.'),
+                ('🍽️', 'Restaurants &amp; caterers' if en else 'Restaurants et traiteurs', 'Menu online, orders by WhatsApp, delivery or pick-up.' if en else 'Menu en ligne, commandes par WhatsApp, livraison ou à emporter.'),
+                ('🏭', 'Wholesalers' if en else 'Grossistes', 'Separate wholesale prices and minimum quantities.' if en else 'Prix de gros séparés et quantités minimales.'),
+            ])),
+            section('How it works' if en else 'Comment ça se passe', '', steps([
+                ('Send your product list' if en else 'Envoyez votre liste de produits', 'Names, prices and photos (we can help with the photos).' if en else 'Noms, prix et photos (nous pouvons aider pour les photos).'),
+                ('Agree on the price' if en else 'Fixons le prix', 'A clear quote with the number of products, features and delivery date.' if en else 'Un devis clair avec le nombre de produits, les fonctions et le délai.'),
+                ('We build and you test' if en else 'Nous construisons, vous testez', 'You place test orders and ask for changes before launch.' if en else 'Vous passez des commandes test et demandez des changements avant la mise en ligne.'),
+                ('Launch and sell' if en else 'Mise en ligne et ventes', 'We connect your domain, show you how to add products and share your shop link.' if en else 'Nous branchons votre domaine, vous montrons comment ajouter des produits et partager votre lien.'),
+            ]), alt=True),
+        ],
+        faq=([('Do I need a bank account or card payments?', 'No. Most Cameroonian customers pay by MTN MoMo or Orange Money. The shop shows your payment numbers and the order arrives on WhatsApp, where you confirm payment and delivery.'),
+              ('Can I add or change products myself?', 'Yes. We show you how to update prices, photos and products, or we can do it for you.'),
+              ('How much does an online shop cost?', 'It depends on the number of products and features. Simple websites start at 75 000 FCFA; we give you a clear quote for your shop after a short chat on WhatsApp.'),
+              ('Can I share my products on Facebook and TikTok?', 'Yes. Every product and category has its own link you can post on Facebook, TikTok, Instagram or your WhatsApp Status.')] if en else
+             [('Faut-il un compte bancaire ou le paiement par carte ?', 'Non. La plupart des clients au Cameroun paient par MTN MoMo ou Orange Money. La boutique affiche vos numéros de paiement et la commande arrive sur WhatsApp, où vous confirmez le paiement et la livraison.'),
+              ('Puis-je ajouter ou modifier mes produits moi-même ?', 'Oui. Nous vous montrons comment changer les prix, les photos et les produits, ou nous le faisons pour vous.'),
+              ('Combien coûte une boutique en ligne ?', 'Cela dépend du nombre de produits et des fonctions. Les sites simples commencent à 75 000 FCFA ; nous vous donnons un devis clair pour votre boutique après un court échange sur WhatsApp.'),
+              ('Puis-je partager mes produits sur Facebook et TikTok ?', 'Oui. Chaque produit et chaque catégorie a son propre lien à publier sur Facebook, TikTok, Instagram ou votre statut WhatsApp.')]),
+        service=dict(name='Online shop creation' if en else 'Création de boutique en ligne', type='E-commerce website', offer=None),
+        related=['web', 'flyers', 'ai'],
+    )
+
+
+def page_school(lang):
+    en = lang == 'en'
+    q = wa("Hi AsghinLabs, I'd like a demo of your school management software for my school." if en else
+           "Bonjour AsghinLabs, je voudrais une démonstration de votre logiciel de gestion scolaire pour mon établissement.")
+    return dict(
+        slug='/school-management-software-cameroon' if en else '/logiciel-gestion-scolaire-cameroun',
+        alt='/logiciel-gestion-scolaire-cameroun' if en else '/school-management-software-cameroon',
+        title='School Management Software in Cameroon — Marks &amp; Report Cards | AsghinLabs' if en else
+              'Logiciel de gestion scolaire au Cameroun — notes et bulletins | AsghinLabs',
+        desc='Online school management software for Cameroonian schools, English and French sub-systems: students, classes, subjects, marks and automatic report cards. Ask for a free demo.' if en else
+             'Logiciel de gestion scolaire en ligne pour les établissements du Cameroun, sous-systèmes francophone et anglophone : élèves, classes, matières, notes et bulletins automatiques. Démo gratuite.',
+        crumb='School software' if en else 'Logiciel de gestion scolaire',
+        tag='✦ For schools · Cameroon ✦' if en else '✦ Pour les établissements · Cameroun ✦',
+        h1='Report cards in minutes, not weeks' if en else 'Des bulletins en quelques minutes, pas en plusieurs semaines',
+        lead=('An online system built for Cameroonian schools: teachers enter marks, averages and ranks are calculated automatically, and report cards are ready to print — for the English and French sub-systems.' if en else
+              'Un système en ligne pensé pour les établissements du Cameroun : les enseignants saisissent les notes, les moyennes et les rangs sont calculés automatiquement et les bulletins sont prêts à imprimer, pour les sous-systèmes francophone et anglophone.'),
+        price=None, wa=q,
+        hero_list=(['English and French sub-systems', 'Works online — no installation, on phone or computer', 'Each staff member has their own account and role',
+                    'Built by a qualified teacher who knows school work', 'Free demo for your school'] if en else
+                   ['Sous-systèmes francophone et anglophone', 'En ligne, sans installation, sur téléphone ou ordinateur', 'Chaque membre du personnel a son compte et son rôle',
+                    'Conçu par un enseignant qui connaît le travail scolaire', 'Démonstration gratuite pour votre établissement']),
+        body=[
+            section('What it does' if en else 'Ce que fait le logiciel', '', cards([
+                ('🏫', 'School account' if en else 'Compte établissement', 'Your school’s own space, run by the principal or an administrator.' if en else 'L’espace de votre établissement, géré par le chef d’établissement ou un administrateur.'),
+                ('👩‍🏫', 'Staff roles' if en else 'Rôles du personnel', 'Separate access for administrators and teachers.' if en else 'Des accès séparés pour l’administration et les enseignants.'),
+                ('🧑‍🎓', 'Students &amp; classes' if en else 'Élèves et classes', 'Register students, classes and subjects once and reuse them every term.' if en else 'Enregistrez élèves, classes et matières une seule fois et réutilisez-les à chaque trimestre.'),
+                ('📝', 'Marks entry' if en else 'Saisie des notes', 'Teachers enter marks for their own subjects and classes.' if en else 'Chaque enseignant saisit les notes de ses matières et de ses classes.'),
+                ('📄', 'Automatic report cards' if en else 'Bulletins automatiques', 'Averages, ranks and report cards produced automatically, ready to print.' if en else 'Moyennes, rangs et bulletins produits automatiquement, prêts à imprimer.'),
+                ('🗓️', 'Coming next' if en else 'Bientôt', 'Automatic timetable generator and more tools requested by schools.' if en else 'Générateur automatique d’emploi du temps et d’autres outils demandés par les établissements.'),
+            ])),
+            section('Why schools choose it' if en else 'Pourquoi les établissements le choisissent', '', cards([
+                ('⏱️', 'Save days of work' if en else 'Des jours de travail en moins', 'No more copying marks by hand and calculating averages on paper or Excel.' if en else 'Plus besoin de recopier les notes à la main et de calculer les moyennes sur papier ou Excel.'),
+                ('✅', 'Fewer mistakes' if en else 'Moins d’erreurs', 'Calculations are automatic, so parents receive correct report cards.' if en else 'Les calculs sont automatiques : les parents reçoivent des bulletins justes.'),
+                ('🇨🇲', 'Made for Cameroon' if en else 'Fait pour le Cameroun', 'Designed around the Cameroonian school system, in English and French.' if en else 'Conçu autour du système scolaire camerounais, en français et en anglais.'),
+            ]), alt=True),
+            section('How to start' if en else 'Comment commencer', '', steps([
+                ('Ask for a demo' if en else 'Demandez une démo', 'We show you the system on WhatsApp video or at your school.' if en else 'Nous vous présentons le système par appel vidéo WhatsApp ou dans votre établissement.'),
+                ('Get a clear price' if en else 'Recevez un prix clair', 'Priced for your school size, agreed before we start.' if en else 'Un prix adapté à la taille de votre établissement, fixé avant de commencer.'),
+                ('We set up your school' if en else 'Nous configurons votre établissement', 'Classes, subjects and staff accounts, with training for your team.' if en else 'Classes, matières et comptes du personnel, avec une formation de votre équipe.'),
+                ('Print your report cards' if en else 'Imprimez vos bulletins', 'Teachers enter marks, you print correct report cards on time.' if en else 'Les enseignants saisissent les notes, vous imprimez des bulletins justes à temps.'),
+            ])),
+            section('Already using it?' if en else 'Vous l’utilisez déjà ?', '', cards([
+                ('🔑', 'Log in to School OS' if en else 'Connexion à School OS',
+                 'Principals, administrators and teachers of schools already set up can log in here.' if en else
+                 'Chefs d’établissement, administrateurs et enseignants des établissements déjà configurés se connectent ici.',
+                 'https://school.asghinlabs.com', 'Log in →' if en else 'Se connecter →'),
+            ]), alt=True),
+            section('We also build school websites' if en else 'Nous créons aussi des sites d’écoles', '', cards([
+                ('🌐', 'School website' if en else 'Site web d’école',
+                 'News, admissions, fees information, gallery and contact, in English and French.' if en else
+                 'Actualités, inscriptions, frais de scolarité, galerie et contact, en français et en anglais.',
+                 '/website-design-douala' if en else '/creation-site-web-douala', 'See websites →' if en else 'Voir les sites web →'),
+            ])),
+        ],
+        faq=([('Does it work for both the English and French sub-systems?', 'Yes. The system supports both sub-systems, so bilingual schools can use one tool.'),
+              ('Do we need to install anything?', 'No. It runs online in a web browser, on a computer or a phone.'),
+              ('How much does it cost?', 'The price depends on the size of your school. Ask for a free demo on WhatsApp and we will give you a clear price.'),
+              ('Who built it?', 'AsghinLabs, a Douala software studio founded by a qualified Computer Science teacher, so it is built around how schools really work.')] if en else
+             [('Fonctionne-t-il pour les sous-systèmes francophone et anglophone ?', 'Oui. Le système gère les deux sous-systèmes, les établissements bilingues utilisent donc un seul outil.'),
+              ('Faut-il installer quelque chose ?', 'Non. Il fonctionne en ligne dans un navigateur, sur ordinateur ou sur téléphone.'),
+              ('Combien coûte-t-il ?', 'Le prix dépend de la taille de votre établissement. Demandez une démonstration gratuite sur WhatsApp et nous vous donnerons un prix clair.'),
+              ('Qui l’a conçu ?', 'AsghinLabs, un studio logiciel de Douala fondé par un enseignant d’informatique diplômé : le logiciel suit le fonctionnement réel des établissements.')]),
+        service=dict(name='School management software' if en else 'Logiciel de gestion scolaire', type='School management software', offer=None),
+        related=['web', 'ai', 'flyers'],
+    )
+
+
+def payment_block(lang):
+    en = lang == 'en'
+    return section('How payment works' if en else 'Comment se passe le paiement',
+                   'Simple and safe for both sides.' if en else 'Simple et sûr pour les deux parties.', cards([
+        ('📝', 'Written quote' if en else 'Devis écrit', 'You receive the price, what is included and the delivery date in writing before anything starts.' if en else 'Vous recevez par écrit le prix, ce qui est inclus et le délai avant tout démarrage.'),
+        ('💳', 'Deposit to start' if en else 'Acompte pour démarrer', 'Usually 50% to start the work and the balance at delivery, once you are happy with the result.' if en else 'En général 50 % pour démarrer et le solde à la livraison, une fois satisfait du résultat.'),
+        ('📱', 'Mobile Money or cash' if en else 'Mobile Money ou espèces', 'Pay by MTN MoMo, Orange Money or cash in Douala. You get a receipt for every payment.' if en else 'Payez par MTN MoMo, Orange Money ou en espèces à Douala. Un reçu pour chaque paiement.'),
+    ]), alt=True)
+
+
 RELATED = {
     'en': {'web': ('🌐', 'Website design', 'Showcase sites, online shops and web apps from 75 000 FCFA.', '/website-design-douala'),
            'flyers': ('📄', 'Flyers &amp; pamphlets', 'Flyers, pamphlets, posters and banners. Design from 5 000 FCFA, printing on request.', '/flyer-design-douala'),
            'logos': ('✏️', 'Logo design', 'Logos and brand identity kits.', '/logo-design-douala'),
-           'ai': ('🤖', 'AI &amp; automation', 'AI assistants and automations that save your team time.', '/ai-automation-cameroon')},
+           'ai': ('🤖', 'AI &amp; automation', 'AI assistants and automations that save your team time.', '/ai-automation-cameroon'),
+           'shop': ('🛒', 'Online shop', 'Sell online with WhatsApp orders and Mobile Money payment.', '/online-shop-cameroon'),
+           'school': ('🏫', 'School software', 'Marks and automatic report cards for Cameroonian schools.', '/school-management-software-cameroon')},
     'fr': {'web': ('🌐', 'Création de site web', 'Sites vitrines, boutiques en ligne et applications dès 75 000 FCFA.', '/creation-site-web-douala'),
            'flyers': ('📄', 'Flyers et dépliants', 'Flyers, dépliants, affiches et kakémonos. Conception dès 5 000 FCFA, impression sur demande.', '/conception-flyers-douala'),
            'logos': ('✏️', 'Création de logo', 'Logos et identités visuelles.', '/creation-logo-douala'),
-           'ai': ('🤖', 'Automatisation IA', 'Assistants IA et automatisations qui font gagner du temps.', '/automatisation-ia-cameroun')},
+           'ai': ('🤖', 'Automatisation IA', 'Assistants IA et automatisations qui font gagner du temps.', '/automatisation-ia-cameroun'),
+           'shop': ('🛒', 'Boutique en ligne', 'Vendez en ligne avec commandes WhatsApp et paiement Mobile Money.', '/boutique-en-ligne-cameroun'),
+           'school': ('🏫', 'Logiciel scolaire', 'Notes et bulletins automatiques pour les établissements du Cameroun.', '/logiciel-gestion-scolaire-cameroun')},
 }
 
 
@@ -597,13 +755,14 @@ def page_guide(lang):
 
 
 PAGES = [page_web('en'), page_web('fr'), page_flyers('en'), page_flyers('fr'), page_logos('en'), page_logos('fr'),
-         page_ai('en'), page_ai('fr'), page_fr_home(), page_guide('en'), page_guide('fr')]
+         page_ai('en'), page_ai('fr'), page_shop('en'), page_shop('fr'), page_school('en'), page_school('fr'), page_fr_home(), page_guide('en'), page_guide('fr')]
 
 
 # --------------------------------------------------------------- render
 def lang_of(p):
     return 'en' if p['slug'] in ('/website-design-douala', '/flyer-design-douala', '/logo-design-douala',
-                                 '/ai-automation-cameroon', '/website-cost-cameroon') else 'fr'
+                                 '/ai-automation-cameroon', '/website-cost-cameroon',
+                                 '/online-shop-cameroon', '/school-management-software-cameroon') else 'fr'
 
 
 def jsonld(p, lang):
@@ -692,6 +851,8 @@ def render(p):
 </section>'''
 
     body = '\n'.join(p.get('body', []))
+    if p.get('kind') not in ('home', 'article'):
+        body += '\n' + payment_block(lang)
     faq = ''
     if p.get('faq'):
         faq = section('Frequently asked questions' if lang == 'en' else 'Questions fréquentes', '', faq_html(p['faq']), sid='faq')
