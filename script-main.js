@@ -373,6 +373,9 @@
 
 // Conversion tracking: WhatsApp, phone and email clicks -> GA4 events
 (function () {
+  // Also report to the Analytics property the owner can access (G-FZ0MNQ7QTG).
+  // gtag sends later events to every configured ID, so clicks reach both.
+  if (typeof window.gtag === 'function') window.gtag('config', 'G-FZ0MNQ7QTG');
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href]');
     if (!a || typeof window.gtag !== 'function') return;
