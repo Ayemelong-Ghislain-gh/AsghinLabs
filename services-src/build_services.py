@@ -1000,6 +1000,10 @@ def render(p):
         if p.get('kind') == 'home':
             card_title = 'Pourquoi nous choisir'
         second = ('See our work' if lang == 'en' else 'Voir nos réalisations')
+        if p.get('kind') == 'tool':
+            first = f'<a class="svc-btn wa" href="#check">{"✅ Start the free check ↓" if lang == "en" else "✅ Commencer l’audit gratuit ↓"}</a>'
+        else:
+            first = f'<a class="svc-btn wa" href="{p["wa"]}" target="_blank" rel="noopener">{t["cta_wa"]}</a>'
         hero = f'''<section class="svc-hero">
   <div>
     {crumbs}<span class="tag">{p["tag"]}</span>
@@ -1007,7 +1011,7 @@ def render(p):
     <p class="lead">{p["lead"]}</p>
     {price}
     <div class="svc-actions">
-      <a class="svc-btn wa" href="{p["wa"]}" target="_blank" rel="noopener">{t["cta_wa"]}</a>
+      {first}
       <a class="svc-btn ghost" href="/portfolio">{second}</a>
     </div>
   </div>
