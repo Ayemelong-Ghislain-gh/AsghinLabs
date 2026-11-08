@@ -132,3 +132,41 @@ a.svc-card { display: block; text-decoration: none; color: inherit; }
   .svc-btn { width: 100%; justify-content: center; }
   .svc-article h2 { font-size: 1.45rem; }
 }
+
+/* ---------- Free website check (interactive score) ---------- */
+.chk { max-width: 760px; display: grid; gap: 14px; }
+.chk-q {
+  border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px;
+  padding: 14px 18px; margin: 0; display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center;
+  background: rgba(255, 255, 255, 0.03);
+}
+.chk-q legend { padding: 0; float: left; width: 100%; color: #fff; font-weight: 600; line-height: 1.5; margin-bottom: 4px; }
+.chk-n {
+  display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%;
+  background: var(--brand-primary); color: #04121a; font-size: 0.85rem; margin-right: 6px;
+}
+.chk-q label {
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer; color: var(--text-muted);
+  padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.15); min-height: 44px;
+}
+.chk-q label:has(input:checked) { border-color: var(--brand-primary); color: #fff; background: rgba(0, 212, 255, 0.08); }
+.chk-q input { accent-color: var(--brand-primary); width: 18px; height: 18px; }
+.chk-biz { display: grid; gap: 8px; color: var(--text-muted); margin-top: 6px; }
+.chk-biz input {
+  padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.25); color: #fff; font-size: 1rem;
+}
+.chk-go { justify-self: start; border: 0; cursor: pointer; font-size: 1rem; }
+.chk-err { color: #ffaa66; min-height: 1.2em; margin: 0; }
+.chk-result {
+  max-width: 760px; margin-top: 28px; padding: 26px; border-radius: 18px;
+  border: 1px solid var(--border-glow); background: rgba(0, 212, 255, 0.05);
+}
+.chk-score { display: flex; align-items: baseline; gap: 10px; color: var(--text-muted); }
+.chk-score strong { font-size: 3rem; color: #fff; line-height: 1; }
+.chk-bar { height: 10px; border-radius: 999px; background: rgba(255, 255, 255, 0.1); overflow: hidden; margin: 14px 0; }
+.chk-bar span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #ff7a59, #ffd166, #2ee68b); transition: width 0.8s ease; }
+.chk-band { color: #fff; font-size: 1.05rem; line-height: 1.6; }
+.chk-result h3 { margin: 18px 0 8px; }
+.chk-tips { color: var(--text-muted); line-height: 1.7; padding-left: 20px; margin-bottom: 20px; }
+.chk-tips li { margin-bottom: 8px; }

@@ -20,7 +20,7 @@ SITE = 'https://www.asghinlabs.com'
 WA = '237682402876'
 PHONE = '+237 682 402 876'
 EMAIL = 'asghinlabs@gmail.com'
-TODAY = '2026-11-04'
+TODAY = '2026-11-08'
 
 
 def wa(text):
@@ -112,11 +112,11 @@ FOOTER_SERVICES = [
     ('/website-design-douala', 'Website design Douala'), ('/flyer-design-douala', 'Flyer &amp; pamphlet design'),
     ('/logo-design-douala', 'Logo design'), ('/ai-automation-cameroon', 'AI &amp; automation'),
     ('/website-cost-cameroon', 'Website cost in Cameroon'), ('/online-shop-cameroon', 'Online shop Cameroon'),
-    ('/school-management-software-cameroon', 'School management software'),
+    ('/school-management-software-cameroon', 'School management software'), ('/free-website-check', 'Free website check'),
     ('/creation-site-web-douala', 'Création site web Douala'), ('/conception-flyers-douala', 'Flyers et dépliants'),
     ('/creation-logo-douala', 'Création de logo'), ('/automatisation-ia-cameroun', 'Automatisation IA'),
     ('/combien-coute-un-site-web-cameroun', 'Prix d’un site web au Cameroun'), ('/boutique-en-ligne-cameroun', 'Boutique en ligne Cameroun'),
-    ('/logiciel-gestion-scolaire-cameroun', 'Logiciel de gestion scolaire'), ('/fr', 'AsghinLabs en français'),
+    ('/logiciel-gestion-scolaire-cameroun', 'Logiciel de gestion scolaire'), ('/audit-site-web-gratuit', 'Audit gratuit de site web'), ('/fr', 'AsghinLabs en français'),
 ]
 
 FLYERS = [
@@ -245,7 +245,7 @@ def page_web(lang):
               ('Mon site apparaîtra-t-il sur Google ?', 'Chaque site est construit pour être lu par Google : titres clairs, descriptions, pages rapides et sitemap. Nous vous guidons aussi pour créer votre fiche Google Business Profile gratuite, qui aide à apparaître sur Google Maps.')]),
         service=dict(name='Website design and development' if en else 'Création de site web', type='Web design',
                      offer=('75000', 'Starter website (1–3 pages)' if en else 'Site vitrine simple (1 à 3 pages)')),
-        related=['shop', 'flyers', 'ai'],
+        related=['check', 'shop', 'ai'],
     )
 
 
@@ -496,7 +496,7 @@ def page_shop(lang):
               ('Combien coûte une boutique en ligne ?', 'Cela dépend du nombre de produits et des fonctions. Les sites simples commencent à 75 000 FCFA ; nous vous donnons un devis clair pour votre boutique après un court échange sur WhatsApp.'),
               ('Puis-je partager mes produits sur Facebook et TikTok ?', 'Oui. Chaque produit et chaque catégorie a son propre lien à publier sur Facebook, TikTok, Instagram ou votre statut WhatsApp.')]),
         service=dict(name='Online shop creation' if en else 'Création de boutique en ligne', type='E-commerce website', offer=None),
-        related=['web', 'flyers', 'ai'],
+        related=['check', 'web', 'ai'],
     )
 
 
@@ -583,13 +583,15 @@ RELATED = {
            'logos': ('✏️', 'Logo design', 'Logos and brand identity kits.', '/logo-design-douala'),
            'ai': ('🤖', 'AI &amp; automation', 'AI assistants and automations that save your team time.', '/ai-automation-cameroon'),
            'shop': ('🛒', 'Online shop', 'Sell online with WhatsApp orders and Mobile Money payment.', '/online-shop-cameroon'),
-           'school': ('🏫', 'School software', 'Marks and automatic report cards for Cameroonian schools.', '/school-management-software-cameroon')},
+           'school': ('🏫', 'School software', 'Marks and automatic report cards for Cameroonian schools.', '/school-management-software-cameroon'),
+           'check': ('✅', 'Free website check', 'Get your online presence score in 1 minute, with your top 3 fixes.', '/free-website-check')},
     'fr': {'web': ('🌐', 'Création de site web', 'Sites vitrines, boutiques en ligne et applications dès 75 000 FCFA.', '/creation-site-web-douala'),
            'flyers': ('📄', 'Flyers et dépliants', 'Flyers, dépliants, affiches et kakémonos. Conception dès 5 000 FCFA, impression sur demande.', '/conception-flyers-douala'),
            'logos': ('✏️', 'Création de logo', 'Logos et identités visuelles.', '/creation-logo-douala'),
            'ai': ('🤖', 'Automatisation IA', 'Assistants IA et automatisations qui font gagner du temps.', '/automatisation-ia-cameroun'),
            'shop': ('🛒', 'Boutique en ligne', 'Vendez en ligne avec commandes WhatsApp et paiement Mobile Money.', '/boutique-en-ligne-cameroun'),
-           'school': ('🏫', 'Logiciel scolaire', 'Notes et bulletins automatiques pour les établissements du Cameroun.', '/logiciel-gestion-scolaire-cameroun')},
+           'school': ('🏫', 'Logiciel scolaire', 'Notes et bulletins automatiques pour les établissements du Cameroun.', '/logiciel-gestion-scolaire-cameroun'),
+           'check': ('✅', 'Audit gratuit de site web', 'Votre score de présence en ligne en 1 minute, avec vos 3 priorités.', '/audit-site-web-gratuit')},
 }
 
 
@@ -750,19 +752,181 @@ def page_guide(lang):
         tag='✦ Guide ✦',
         h1='How much does a website cost in Cameroon?' if en else 'Combien coûte un site web au Cameroun ?',
         lead=None, price=None, wa=q, hero_list=None, article=art,
-        faq=None, service=None, related=['web', 'flyers', 'logos'],
+        faq=None, service=None, related=['check', 'web', 'flyers'],
+    )
+
+
+CHECK_QUESTIONS = {
+    'en': [
+        ('gbp', 15, 'Is your business on Google Maps (Google Business Profile)?',
+         'Create and verify your free Google Business Profile, so people near you find you on Google Maps.'),
+        ('reviews', 10, 'Do you have at least 10 Google reviews?',
+         'Ask happy customers for a Google review. Send them your review link on WhatsApp after each sale.'),
+        ('site', 20, 'Do you have your own website (not only Facebook or Instagram)?',
+         'Get your own website: it works 24/7, appears on Google and belongs to you, not to a social network.'),
+        ('mobile', 10, 'Does your website open quickly on a phone with mobile data?',
+         'Make your site light and mobile-first: most of your visitors use a phone on mobile data.'),
+        ('whatsapp', 15, 'Can customers reach you on WhatsApp in one click from your website or profile?',
+         'Add a WhatsApp button everywhere. Customers in Cameroon prefer chatting to filling in forms.'),
+        ('prices', 10, 'Are your products or services shown online with prices (or starting prices)?',
+         'Show your products and at least starting prices. People leave when they cannot guess the cost.'),
+        ('bilingual', 10, 'Is your information available in both French and English?',
+         'Publish in French and English to reach customers across the whole country.'),
+        ('fresh', 10, 'Have you posted on social media or on your Google profile in the last 2 weeks?',
+         'Post at least once a week (new products, offers, customer photos) so people see you are active.'),
+    ],
+    'fr': [
+        ('gbp', 15, 'Votre entreprise est-elle sur Google Maps (fiche Google Business Profile) ?',
+         'Créez et validez votre fiche Google gratuite pour apparaître sur Google Maps auprès des clients proches.'),
+        ('reviews', 10, 'Avez-vous au moins 10 avis Google ?',
+         'Demandez un avis Google à vos clients satisfaits : envoyez-leur votre lien d’avis sur WhatsApp après chaque vente.'),
+        ('site', 20, 'Avez-vous votre propre site web (pas seulement Facebook ou Instagram) ?',
+         'Ayez votre propre site : il travaille 24h/24, apparaît sur Google et vous appartient, contrairement à un réseau social.'),
+        ('mobile', 10, 'Votre site s’ouvre-t-il rapidement sur téléphone avec des données mobiles ?',
+         'Rendez votre site léger et pensé pour le mobile : la plupart de vos visiteurs sont sur téléphone.'),
+        ('whatsapp', 15, 'Vos clients peuvent-ils vous écrire sur WhatsApp en un clic depuis votre site ou votre fiche ?',
+         'Ajoutez un bouton WhatsApp partout : au Cameroun, les clients préfèrent discuter plutôt que remplir un formulaire.'),
+        ('prices', 10, 'Vos produits ou services sont-ils en ligne avec des prix (ou des prix de départ) ?',
+         'Montrez vos produits et au moins des prix de départ : les clients partent quand ils ne devinent pas le coût.'),
+        ('bilingual', 10, 'Vos informations sont-elles disponibles en français et en anglais ?',
+         'Publiez en français et en anglais pour toucher les clients de tout le pays.'),
+        ('fresh', 10, 'Avez-vous publié sur les réseaux sociaux ou sur votre fiche Google ces 2 dernières semaines ?',
+         'Publiez au moins une fois par semaine (nouveautés, offres, photos clients) pour montrer que vous êtes actif.'),
+    ],
+}
+
+
+def check_tool(lang):
+    en = lang == 'en'
+    qs = CHECK_QUESTIONS[lang]
+    yes, no = ('Yes', 'No') if en else ('Oui', 'Non')
+    rows = ''.join(
+        f'<fieldset class="chk-q" data-key="{k}" data-w="{w}"><legend><span class="chk-n">{i + 1}</span> {q}</legend>'
+        f'<label><input type="radio" name="chk_{k}" value="1"> {yes}</label>'
+        f'<label><input type="radio" name="chk_{k}" value="0"> {no}</label></fieldset>'
+        for i, (k, w, q, tip) in enumerate(qs))
+    tips = json.dumps({k: tip for k, w, q, tip in qs}, ensure_ascii=False)
+    labels = json.dumps({k: q for k, w, q, tip in qs}, ensure_ascii=False)
+    L = json.dumps(dict(
+        need='Please answer all 8 questions.' if en else 'Merci de répondre aux 8 questions.',
+        score='Your score' if en else 'Votre score',
+        bands=(['Your business is almost invisible online. Good news: the fixes below are quick.',
+                'You have a start, but customers are slipping away. Fix these first:',
+                'Good! A few changes will bring you more customers:',
+                'Excellent online presence. Let us keep it growing.'] if en else
+               ['Votre entreprise est presque invisible en ligne. Bonne nouvelle : les corrections ci-dessous sont rapides.',
+                'Vous avez une base, mais des clients vous échappent. Corrigez d’abord ceci :',
+                'Bien ! Quelques changements vous apporteront plus de clients :',
+                'Excellente présence en ligne. Continuons à la faire grandir.']),
+        top='Your top priorities' if en else 'Vos priorités',
+        wa_intro=("Hi AsghinLabs, I did the free website check." if en else
+                  "Bonjour AsghinLabs, j'ai fait la vérification gratuite de mon site."),
+        wa_biz='Business' if en else 'Entreprise',
+        wa_score='Score' if en else 'Score',
+        wa_missing='Missing' if en else 'À améliorer',
+        wa_end=("Can you help me fix this?" if en else "Pouvez-vous m'aider à corriger cela ?"),
+    ), ensure_ascii=False)
+    biz_label = 'Your business name (optional)' if en else 'Nom de votre entreprise (facultatif)'
+    btn = 'See my score' if en else 'Voir mon score'
+    wa_btn = '💬 Get my free check on WhatsApp' if en else '💬 Recevoir ma vérification gratuite sur WhatsApp'
+    return f"""<form class="chk" id="chkForm" novalidate>
+  {rows}
+  <label class="chk-biz">{biz_label}<input type="text" id="chkBiz" maxlength="80" autocomplete="organization"></label>
+  <button type="submit" class="svc-btn wa chk-go">{btn} →</button>
+  <p class="chk-err" id="chkErr" role="alert"></p>
+</form>
+<div class="chk-result" id="chkResult" hidden>
+  <div class="chk-score"><span id="chkScoreLabel"></span><strong id="chkScore">0</strong><small>/100</small></div>
+  <div class="chk-bar"><span id="chkBar"></span></div>
+  <p class="chk-band" id="chkBand"></p>
+  <h3 id="chkTopTitle"></h3>
+  <ol class="chk-tips" id="chkTips"></ol>
+  <a class="svc-btn wa" id="chkWa" href="#" target="_blank" rel="noopener">{wa_btn}</a>
+</div>
+<script>
+(function () {{
+  var TIPS = {tips}, LABELS = {labels}, L = {L}, WA = '{WA}';
+  var form = document.getElementById('chkForm');
+  form.addEventListener('submit', function (e) {{
+    e.preventDefault();
+    var qs = form.querySelectorAll('.chk-q'), score = 0, missing = [];
+    for (var i = 0; i < qs.length; i++) {{
+      var q = qs[i], k = q.getAttribute('data-key'), sel = q.querySelector('input:checked');
+      if (!sel) {{ document.getElementById('chkErr').textContent = L.need; q.scrollIntoView({{behavior: 'smooth', block: 'center'}}); return; }}
+      if (sel.value === '1') score += +q.getAttribute('data-w'); else missing.push({{k: k, w: +q.getAttribute('data-w')}});
+    }}
+    document.getElementById('chkErr').textContent = '';
+    missing.sort(function (a, b) {{ return b.w - a.w; }});
+    var band = score < 40 ? 0 : score < 65 ? 1 : score < 90 ? 2 : 3;
+    document.getElementById('chkScoreLabel').textContent = L.score;
+    document.getElementById('chkScore').textContent = score;
+    document.getElementById('chkBar').style.width = score + '%';
+    document.getElementById('chkBand').textContent = L.bands[band];
+    document.getElementById('chkTopTitle').textContent = missing.length ? L.top : '';
+    var ol = document.getElementById('chkTips'); ol.innerHTML = '';
+    missing.slice(0, 3).forEach(function (m) {{ var li = document.createElement('li'); li.textContent = TIPS[m.k]; ol.appendChild(li); }});
+    var biz = document.getElementById('chkBiz').value.trim();
+    var msg = L.wa_intro + '\\n\\n' + (biz ? L.wa_biz + ': ' + biz + '\\n' : '') + L.wa_score + ': ' + score + '/100';
+    if (missing.length) msg += '\\n' + L.wa_missing + ':\\n' + missing.map(function (m) {{ return '- ' + LABELS[m.k]; }}).join('\\n');
+    msg += '\\n\\n' + L.wa_end;
+    document.getElementById('chkWa').href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
+    var res = document.getElementById('chkResult'); res.hidden = false;
+    res.scrollIntoView({{behavior: 'smooth', block: 'start'}});
+    if (typeof gtag === 'function') gtag('event', 'website_check_complete', {{score: score, page_path: location.pathname}});
+  }});
+}})();
+</script>"""
+
+
+def page_check(lang):
+    en = lang == 'en'
+    q = wa("Hi AsghinLabs, I'd like a free check of my website and online presence." if en else
+           "Bonjour AsghinLabs, je voudrais une vérification gratuite de mon site et de ma présence en ligne.")
+    return dict(
+        slug='/free-website-check' if en else '/audit-site-web-gratuit',
+        alt='/audit-site-web-gratuit' if en else '/free-website-check',
+        kind='tool',
+        title=('Free Website Check for Businesses in Cameroon — Score in 1 Minute | AsghinLabs' if en else
+               'Audit gratuit de site web au Cameroun — votre score en 1 minute | AsghinLabs'),
+        desc=('Answer 8 quick questions and get a free score of your website and online presence, with the 3 fixes that will bring you the most customers in Cameroon.' if en else
+              'Répondez à 8 questions rapides et obtenez gratuitement le score de votre site et de votre présence en ligne, avec les 3 corrections qui vous apporteront le plus de clients au Cameroun.'),
+        crumb='Free website check' if en else 'Audit gratuit de site web',
+        tag='✦ Free tool · 1 minute ✦' if en else '✦ Outil gratuit · 1 minute ✦',
+        h1='Is your business easy to find online?' if en else 'Votre entreprise est-elle facile à trouver en ligne ?',
+        lead=('Answer 8 yes/no questions and get your score out of 100, with the 3 changes that will bring you the most customers. Free, no sign-up.' if en else
+              'Répondez à 8 questions par oui ou non et obtenez votre score sur 100, avec les 3 changements qui vous apporteront le plus de clients. Gratuit, sans inscription.'),
+        price=None, wa=q,
+        hero_list=(['8 questions, 1 minute', 'Score out of 100', 'Your top 3 priorities', 'Free personal check on WhatsApp', 'For shops, schools, restaurants, clinics…'] if en else
+                   ['8 questions, 1 minute', 'Score sur 100', 'Vos 3 priorités', 'Vérification personnelle gratuite sur WhatsApp', 'Boutiques, écoles, restaurants, cliniques…']),
+        body=[
+            section('Check your business now' if en else 'Vérifiez votre entreprise maintenant',
+                    'Be honest: the score is only for you.' if en else 'Soyez honnête : le score est seulement pour vous.',
+                    check_tool(lang), sid='check'),
+            section('What happens next?' if en else 'Et ensuite ?', '', steps([
+                ('Send your result' if en else 'Envoyez votre résultat', 'One tap sends your score to us on WhatsApp.' if en else 'Un clic envoie votre score sur WhatsApp.'),
+                ('Free personal check' if en else 'Vérification personnelle gratuite', 'We look at your Google profile, website and social pages and reply with clear advice.' if en else 'Nous regardons votre fiche Google, votre site et vos réseaux, puis répondons avec des conseils clairs.'),
+                ('You decide' if en else 'Vous décidez', 'Fix it yourself with our tips, or ask us for a quote. No obligation.' if en else 'Corrigez vous-même avec nos conseils, ou demandez-nous un devis. Sans engagement.'),
+            ]), alt=True),
+        ],
+        faq=([('Is the website check really free?', 'Yes. The score and the personal check on WhatsApp are free, with no obligation to buy anything.'),
+              ('I don’t have a website yet. Can I still do the check?', 'Yes. Answer "No" where it applies: the result shows what to set up first, starting with the free steps like Google Maps.'),
+              ('How long does the personal check take?', 'We usually reply on WhatsApp within 24 hours.')] if en else
+             [('L’audit est-il vraiment gratuit ?', 'Oui. Le score et la vérification personnelle sur WhatsApp sont gratuits, sans obligation d’achat.'),
+              ('Je n’ai pas encore de site. Puis-je faire l’audit ?', 'Oui. Répondez « Non » quand c’est le cas : le résultat montre quoi mettre en place d’abord, en commençant par les étapes gratuites comme Google Maps.'),
+              ('Combien de temps prend la vérification personnelle ?', 'Nous répondons en général sur WhatsApp sous 24 heures.')]),
+        related=['web', 'shop', 'school'],
     )
 
 
 PAGES = [page_web('en'), page_web('fr'), page_flyers('en'), page_flyers('fr'), page_logos('en'), page_logos('fr'),
-         page_ai('en'), page_ai('fr'), page_shop('en'), page_shop('fr'), page_school('en'), page_school('fr'), page_fr_home(), page_guide('en'), page_guide('fr')]
+         page_ai('en'), page_ai('fr'), page_shop('en'), page_shop('fr'), page_school('en'), page_school('fr'), page_fr_home(), page_guide('en'), page_guide('fr'), page_check('en'), page_check('fr')]
 
 
 # --------------------------------------------------------------- render
 def lang_of(p):
     return 'en' if p['slug'] in ('/website-design-douala', '/flyer-design-douala', '/logo-design-douala',
                                  '/ai-automation-cameroon', '/website-cost-cameroon',
-                                 '/online-shop-cameroon', '/school-management-software-cameroon') else 'fr'
+                                 '/online-shop-cameroon', '/school-management-software-cameroon', '/free-website-check') else 'fr'
 
 
 def jsonld(p, lang):
@@ -851,7 +1015,7 @@ def render(p):
 </section>'''
 
     body = '\n'.join(p.get('body', []))
-    if p.get('kind') not in ('home', 'article'):
+    if p.get('kind') not in ('home', 'article', 'tool'):
         body += '\n' + payment_block(lang)
     faq = ''
     if p.get('faq'):
