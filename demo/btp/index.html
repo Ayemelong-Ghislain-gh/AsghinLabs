@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horizon BTP — Démo de site institutionnel | AsghinLabs</title>
+<meta name="description" content="Site de démonstration réalisé par AsghinLabs : site institutionnel bilingue pour une entreprise de BTP (entreprise fictive).">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/images/logo-blue.jpeg">
+<style>
+:root{--navy:#0f1f33;--navy2:#16304d;--orange:#f39200;--orange2:#ffb347;--ink:#1d2733;--muted:#5d6b7a;--line:#e3e8ee;--bg:#f6f8fa;--white:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--white);line-height:1.6}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+.wrap{width:min(1140px,100% - 32px);margin-inline:auto}
+.demo-bar{background:#111;color:#ffd27a;font-size:.82rem;text-align:center;padding:7px 12px}
+.demo-bar a{color:#fff;font-weight:600}
+header{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;box-shadow:0 2px 12px rgba(0,0,0,.18)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;letter-spacing:.5px}
+.brand small{display:block;font-weight:500;font-size:.7rem;color:#9fb3c8;letter-spacing:1.5px}
+.menu{display:flex;gap:22px;list-style:none;font-size:.93rem}
+.menu a{text-decoration:none;color:#d7e2ee}
+.menu a:hover{color:var(--orange2)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.lang{display:flex;border:1px solid #3b5573;border-radius:8px;overflow:hidden}
+.lang button{background:none;border:0;color:#cbd8e6;padding:6px 10px;cursor:pointer;font-weight:700;font-size:.8rem}
+.lang button.on{background:var(--orange);color:#1b1200}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#1b1200;border:0;border-radius:10px;padding:12px 20px;font-weight:700;text-decoration:none;cursor:pointer;font-size:.95rem}
+.btn:hover{background:var(--orange2)}
+.btn.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
+.burger{display:none;background:none;border:0;color:#fff;font-size:1.6rem;cursor:pointer}
+.hero{background:linear-gradient(120deg,var(--navy) 0%,var(--navy2) 60%,#1f466b 100%);color:#fff;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:70px 0}
+.hero h1{font-size:2.6rem;line-height:1.15;margin:14px 0 16px}
+.hero p{color:#c9d6e3;font-size:1.08rem;max-width:560px}
+.tag{display:inline-block;background:rgba(243,146,0,.15);color:var(--orange2);border:1px solid rgba(243,146,0,.4);padding:5px 12px;border-radius:999px;font-size:.8rem;font-weight:700;letter-spacing:.5px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:-38px;position:relative}
+.stat{background:#fff;border-radius:14px;padding:20px;box-shadow:0 10px 30px rgba(15,31,51,.12);text-align:center}
+.stat strong{display:block;font-size:1.9rem;color:var(--navy)}
+.stat span{color:var(--muted);font-size:.88rem}
+section{padding:72px 0}
+section.alt{background:var(--bg)}
+h2{font-size:1.9rem;color:var(--navy);margin-bottom:10px}
+.lead{color:var(--muted);max-width:680px;margin-bottom:34px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.values div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:.9rem}
+.values b{display:block;color:var(--navy);margin-bottom:2px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;transition:.2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 26px rgba(15,31,51,.1)}
+.ico{width:48px;height:48px;border-radius:12px;background:#fff4e2;display:grid;place-items:center;font-size:1.5rem;margin-bottom:14px}
+.card h3{color:var(--navy);margin-bottom:6px;font-size:1.1rem}
+.card p{color:var(--muted);font-size:.93rem}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.filters button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;cursor:pointer;font-weight:600;color:var(--muted)}
+.filters button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.proj{background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.proj .art{height:170px}
+.proj .body{padding:18px}
+.proj .meta{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.proj .meta span{background:var(--bg);border-radius:6px;padding:3px 8px;font-size:.78rem;color:var(--muted)}
+.proj h3{font-size:1.02rem;color:var(--navy)}
+.proj p{font-size:.88rem;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:.92rem}
+th{background:var(--navy);color:#fff;font-weight:600}
+tr:last-child td{border-bottom:0}
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:34px}
+.team div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;text-align:center}
+.team strong{display:block;font-size:1.6rem;color:var(--orange)}
+.team span{font-size:.88rem;color:var(--muted)}
+.docs{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.doc{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.doc div b{display:block;color:var(--navy);font-size:.95rem}
+.doc div span{font-size:.8rem;color:var(--muted)}
+.doc button{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 12px;cursor:pointer;font-weight:600;color:var(--navy);white-space:nowrap}
+.contact{display:grid;grid-template-columns:1fr 1.2fr;gap:30px}
+.contact>*,form>*{min-width:0}
+.info p{overflow-wrap:anywhere}
+input,select,textarea{width:100%}
+.info{background:var(--navy);color:#dbe6f1;border-radius:16px;padding:28px}
+.info h3{color:#fff;margin-bottom:14px}
+.info p{margin-bottom:12px;font-size:.95rem}
+.map{margin-top:18px;height:170px;border-radius:12px;background:repeating-linear-gradient(45deg,#1d3a5a,#1d3a5a 12px,#203f61 12px,#203f61 24px);display:grid;place-items:center;color:#9fb3c8;font-size:.85rem}
+form{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+form label{display:grid;gap:6px;font-size:.85rem;font-weight:600;color:var(--navy)}
+form .full{grid-column:1/-1}
+input,select,textarea{font:inherit;padding:11px 12px;border:1px solid var(--line);border-radius:9px;background:#fbfcfd}
+.ok{grid-column:1/-1;color:#127a3c;font-weight:600;min-height:1.2em}
+footer{background:#0b1726;color:#8ea3b8;padding:36px 0;font-size:.88rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+footer a{color:#ffd27a}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#111;color:#fff;padding:12px 18px;border-radius:10px;font-size:.9rem;opacity:0;transition:.3s;pointer-events:none;z-index:99}
+.toast.show{opacity:1}
+.wa{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;color:#fff;font-size:1.6rem;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+@media (max-width:900px){
+ .menu{display:none;position:absolute;top:68px;left:0;right:0;background:var(--navy);flex-direction:column;padding:16px;gap:14px}
+ .menu.open{display:flex}
+ .burger{display:block}
+ .nav-right .btn{display:none}
+ .hero .wrap,.two,.contact{grid-template-columns:1fr}
+ .hero h1{font-size:2rem}
+ .stats,.team{grid-template-columns:repeat(2,1fr)}
+ .grid3,.values,.docs{grid-template-columns:1fr}
+ form{grid-template-columns:1fr}
+ .hide-sm{display:none}
+}
+</style>
+</head>
+<body>
+<div class="demo-bar"><span data-fr="Site de démonstration réalisé par AsghinLabs. Horizon BTP est une entreprise fictive." data-en="Demo website built by AsghinLabs. Horizon BTP is a fictional company.">Site de démonstration réalisé par AsghinLabs. Horizon BTP est une entreprise fictive.</span> <a href="https://www.asghinlabs.com" data-fr="Notre studio →" data-en="Our studio →">Notre studio →</a></div>
+
+<header>
+ <div class="wrap nav">
+  <a class="brand" href="#accueil">
+   <svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="9" fill="#f39200"/><path d="M8 30 L20 9 L32 30 Z" fill="none" stroke="#0f1f33" stroke-width="3.5" stroke-linejoin="round"/><path d="M14 30 V22 H26 V30" fill="none" stroke="#0f1f33" stroke-width="3"/></svg>
+   <span>HORIZON BTP<small data-fr="GÉNIE CIVIL · BÂTIMENT · ROUTES" data-en="CIVIL ENGINEERING · BUILDING · ROADS">GÉNIE CIVIL · BÂTIMENT · ROUTES</small></span>
+  </a>
+  <ul class="menu" id="menu">
+   <li><a href="#entreprise" data-fr="L'entreprise" data-en="Company">L'entreprise</a></li>
+   <li><a href="#activites" data-fr="Activités" data-en="Services">Activités</a></li>
+   <li><a href="#realisations" data-fr="Réalisations" data-en="Projects">Réalisations</a></li>
+   <li><a href="#moyens" data-fr="Moyens" data-en="Resources">Moyens</a></li>
+   <li><a href="#documents" data-fr="Documents" data-en="Documents">Documents</a></li>
+   <li><a href="#contact" data-fr="Contact" data-en="Contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+   <div class="lang" role="group" aria-label="Langue / Language"><button type="button" class="on" data-lang="fr">FR</button><button type="button" data-lang="en">EN</button></div>
+   <a class="btn" href="#contact" data-fr="Demander un devis" data-en="Request a quote">Demander un devis</a>
+   <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">☰</button>
+  </div>
+ </div>
+</header>
+
+<main>
+<section class="hero" id="accueil" style="padding:0">
+ <div class="wrap">
+  <div>
+   <span class="tag" data-fr="BTP · KRIBI · RÉGION DU SUD" data-en="CONSTRUCTION · KRIBI · SOUTH REGION">BTP · KRIBI · RÉGION DU SUD</span>
+   <h1 data-fr="Nous bâtissons les infrastructures qui font avancer le Cameroun" data-en="We build the infrastructure that moves Cameroon forward">Nous bâtissons les infrastructures qui font avancer le Cameroun</h1>
+   <p data-fr="Bâtiments, routes, ouvrages d'art et aménagements : depuis 2012, Horizon BTP réalise des chantiers publics et privés dans les délais, avec des équipes qualifiées et un parc d'engins moderne." data-en="Buildings, roads, bridges and site development: since 2012, Horizon BTP has delivered public and private projects on time, with qualified teams and modern equipment.">Bâtiments, routes, ouvrages d'art et aménagements : depuis 2012, Horizon BTP réalise des chantiers publics et privés dans les délais, avec des équipes qualifiées et un parc d'engins moderne.</p>
+   <div class="hero-actions">
+    <a class="btn" href="#contact" data-fr="Demander un devis" data-en="Request a quote">Demander un devis</a>
+    <a class="btn ghost" href="#realisations" data-fr="Voir nos réalisations" data-en="See our projects">Voir nos réalisations</a>
+   </div>
+  </div>
+  <svg class="hide-sm" viewBox="0 0 420 320" aria-hidden="true">
+   <rect x="0" y="270" width="420" height="50" fill="#0b1726"/>
+   <rect x="40" y="150" width="70" height="120" fill="#24496e"/><rect x="120" y="100" width="90" height="170" fill="#2b5784"/><rect x="220" y="170" width="60" height="100" fill="#24496e"/><rect x="290" y="130" width="80" height="140" fill="#1f3e60"/>
+   <g fill="#ffd27a" opacity=".85"><rect x="135" y="120" width="14" height="12"/><rect x="160" y="120" width="14" height="12"/><rect x="185" y="120" width="14" height="12"/><rect x="135" y="145" width="14" height="12"/><rect x="185" y="145" width="14" height="12"/><rect x="160" y="170" width="14" height="12"/><rect x="55" y="170" width="12" height="10"/><rect x="80" y="190" width="12" height="10"/><rect x="305" y="150" width="12" height="10"/><rect x="335" y="175" width="12" height="10"/></g>
+   <g stroke="#f39200" stroke-width="5" fill="none"><path d="M330 270 V40"/><path d="M250 40 H400"/><path d="M330 40 L300 70 M330 40 L360 70"/></g>
+   <path d="M385 40 V95" stroke="#ffd27a" stroke-width="2"/><rect x="372" y="95" width="26" height="18" fill="#f39200"/>
+   <circle cx="70" cy="60" r="26" fill="#f39200" opacity=".25"/>
+  </svg>
+ </div>
+</section>
+
+<div class="wrap stats">
+ <div class="stat"><strong>12</strong><span data-fr="années d'expérience" data-en="years of experience">années d'expérience</span></div>
+ <div class="stat"><strong>85+</strong><span data-fr="chantiers livrés" data-en="projects delivered">chantiers livrés</span></div>
+ <div class="stat"><strong>140</strong><span data-fr="collaborateurs" data-en="staff">collaborateurs</span></div>
+ <div class="stat"><strong>35</strong><span data-fr="engins et véhicules" data-en="machines and vehicles">engins et véhicules</span></div>
+</div>
+
+<section id="entreprise">
+ <div class="wrap two">
+  <div>
+   <h2 data-fr="L'entreprise" data-en="The company">L'entreprise</h2>
+   <p class="lead" data-fr="Basée à Kribi, Horizon BTP accompagne l'État, les collectivités et les investisseurs privés de l'étude à la livraison. Notre engagement : qualité, sécurité sur chantier et respect des délais." data-en="Based in Kribi, Horizon BTP supports government, local councils and private investors from design to handover. Our commitment: quality, site safety and on-time delivery.">Basée à Kribi, Horizon BTP accompagne l'État, les collectivités et les investisseurs privés de l'étude à la livraison. Notre engagement : qualité, sécurité sur chantier et respect des délais.</p>
+   <div class="values">
+    <div><b data-fr="Qualité" data-en="Quality">Qualité</b><span data-fr="Contrôle à chaque étape" data-en="Checked at every stage">Contrôle à chaque étape</span></div>
+    <div><b data-fr="Sécurité" data-en="Safety">Sécurité</b><span data-fr="Zéro compromis sur chantier" data-en="No compromise on site">Zéro compromis sur chantier</span></div>
+    <div><b data-fr="Délais" data-en="Deadlines">Délais</b><span data-fr="Planning suivi et partagé" data-en="Tracked, shared schedule">Planning suivi et partagé</span></div>
+   </div>
+  </div>
+  <svg viewBox="0 0 400 260" aria-hidden="true" style="border-radius:16px"><rect width="400" height="260" fill="#e9eef3"/><rect y="200" width="400" height="60" fill="#c8d2dc"/><path d="M0 200 L120 120 L240 200 Z" fill="#9fb3c8"/><path d="M160 200 L280 90 L400 200 Z" fill="#7d94ad"/><rect x="60" y="150" width="120" height="50" fill="#0f1f33"/><g fill="#f39200"><rect x="75" y="162" width="18" height="14"/><rect x="105" y="162" width="18" height="14"/><rect x="135" y="162" width="18" height="14"/></g><rect x="250" y="170" width="90" height="30" rx="6" fill="#f39200"/><circle cx="268" cy="204" r="9" fill="#0f1f33"/><circle cx="322" cy="204" r="9" fill="#0f1f33"/><path d="M340 175 L380 150 L388 158" stroke="#f39200" stroke-width="6" fill="none"/></svg>
+ </div>
+</section>
+
+<section class="alt" id="activites">
+ <div class="wrap">
+  <h2 data-fr="Nos domaines d'activité" data-en="Our services">Nos domaines d'activité</h2>
+  <p class="lead" data-fr="Une équipe pluridisciplinaire pour vos projets de toutes tailles." data-en="A multidisciplinary team for projects of every size.">Une équipe pluridisciplinaire pour vos projets de toutes tailles.</p>
+  <div class="grid3">
+   <div class="card"><div class="ico">🏢</div><h3 data-fr="Bâtiment" data-en="Building">Bâtiment</h3><p data-fr="Bâtiments administratifs, écoles, logements et locaux commerciaux, gros œuvre et second œuvre." data-en="Offices, schools, housing and commercial buildings, structural and finishing works.">Bâtiments administratifs, écoles, logements et locaux commerciaux, gros œuvre et second œuvre.</p></div>
+   <div class="card"><div class="ico">🛣️</div><h3 data-fr="Routes et VRD" data-en="Roads and utilities">Routes et VRD</h3><p data-fr="Terrassement, chaussées, pavage, assainissement et voiries urbaines." data-en="Earthworks, roads, paving, drainage and urban streets.">Terrassement, chaussées, pavage, assainissement et voiries urbaines.</p></div>
+   <div class="card"><div class="ico">🌉</div><h3 data-fr="Ouvrages d'art" data-en="Bridges and structures">Ouvrages d'art</h3><p data-fr="Ponts, dalots, buses et murs de soutènement en béton armé." data-en="Bridges, culverts and reinforced concrete retaining walls.">Ponts, dalots, buses et murs de soutènement en béton armé.</p></div>
+   <div class="card"><div class="ico">⚓</div><h3 data-fr="Aménagements portuaires" data-en="Port works">Aménagements portuaires</h3><p data-fr="Plateformes, aires de stockage et clôtures en zone industrialo-portuaire." data-en="Platforms, storage yards and fencing in port and industrial zones.">Plateformes, aires de stockage et clôtures en zone industrialo-portuaire.</p></div>
+   <div class="card"><div class="ico">💧</div><h3 data-fr="Hydraulique" data-en="Water supply">Hydraulique</h3><p data-fr="Forages, adduction d'eau potable et châteaux d'eau." data-en="Boreholes, drinking water networks and water towers.">Forages, adduction d'eau potable et châteaux d'eau.</p></div>
+   <div class="card"><div class="ico">📐</div><h3 data-fr="Études et suivi" data-en="Design and supervision">Études et suivi</h3><p data-fr="Études techniques, métrés, plans d'exécution et contrôle de chantier." data-en="Technical studies, quantity surveys, working drawings and site supervision.">Études techniques, métrés, plans d'exécution et contrôle de chantier.</p></div>
+  </div>
+ </div>
+</section>
+
+<section id="realisations">
+ <div class="wrap">
+  <h2 data-fr="Réalisations et références" data-en="Projects and references">Réalisations et références</h2>
+  <p class="lead" data-fr="Quelques chantiers récents. Projets fictifs pour la démonstration." data-en="A few recent projects. Fictional projects for this demo.">Quelques chantiers récents. Projets fictifs pour la démonstration.</p>
+  <div class="filters" id="filters">
+   <button type="button" class="on" data-f="all" data-fr="Tous" data-en="All">Tous</button>
+   <button type="button" data-f="bat" data-fr="Bâtiment" data-en="Building">Bâtiment</button>
+   <button type="button" data-f="route" data-fr="Routes" data-en="Roads">Routes</button>
+   <button type="button" data-f="oa" data-fr="Ouvrages d'art" data-en="Bridges">Ouvrages d'art</button>
+  </div>
+  <div class="grid3" id="projects"></div>
+ </div>
+</section>
+
+<section class="alt" id="moyens">
+ <div class="wrap">
+  <h2 data-fr="Moyens humains et matériels" data-en="Human and material resources">Moyens humains et matériels</h2>
+  <p class="lead" data-fr="Des équipes encadrées par des ingénieurs, et un parc d'engins entretenu dans notre propre atelier." data-en="Teams led by engineers, and machines maintained in our own workshop.">Des équipes encadrées par des ingénieurs, et un parc d'engins entretenu dans notre propre atelier.</p>
+  <div class="team">
+   <div><strong>8</strong><span data-fr="ingénieurs génie civil" data-en="civil engineers">ingénieurs génie civil</span></div>
+   <div><strong>14</strong><span data-fr="techniciens et conducteurs de travaux" data-en="technicians and site managers">techniciens et conducteurs de travaux</span></div>
+   <div><strong>6</strong><span data-fr="topographes et métreurs" data-en="surveyors and estimators">topographes et métreurs</span></div>
+   <div><strong>110+</strong><span data-fr="ouvriers qualifiés" data-en="skilled workers">ouvriers qualifiés</span></div>
+  </div>
+  <table>
+   <thead><tr><th data-fr="Matériel" data-en="Equipment">Matériel</th><th data-fr="Quantité" data-en="Quantity">Quantité</th><th class="hide-sm" data-fr="Utilisation" data-en="Use">Utilisation</th></tr></thead>
+   <tbody>
+    <tr><td data-fr="Pelles hydrauliques" data-en="Hydraulic excavators">Pelles hydrauliques</td><td>4</td><td class="hide-sm" data-fr="Terrassement, fondations" data-en="Earthworks, foundations">Terrassement, fondations</td></tr>
+    <tr><td data-fr="Niveleuses et compacteurs" data-en="Graders and rollers">Niveleuses et compacteurs</td><td>6</td><td class="hide-sm" data-fr="Chaussées, plateformes" data-en="Roads, platforms">Chaussées, plateformes</td></tr>
+    <tr><td data-fr="Camions bennes" data-en="Dump trucks">Camions bennes</td><td>12</td><td class="hide-sm" data-fr="Transport de matériaux" data-en="Material transport">Transport de matériaux</td></tr>
+    <tr><td data-fr="Centrale à béton et bétonnières" data-en="Concrete plant and mixers">Centrale à béton et bétonnières</td><td>5</td><td class="hide-sm" data-fr="Ouvrages en béton armé" data-en="Reinforced concrete works">Ouvrages en béton armé</td></tr>
+    <tr><td data-fr="Matériel topographique (station totale, GPS)" data-en="Survey equipment (total station, GPS)">Matériel topographique (station totale, GPS)</td><td>8</td><td class="hide-sm" data-fr="Implantation et contrôle" data-en="Setting out and checks">Implantation et contrôle</td></tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<section id="documents">
+ <div class="wrap">
+  <h2 data-fr="Documents à télécharger" data-en="Downloads">Documents à télécharger</h2>
+  <p class="lead" data-fr="Nos documents institutionnels, mis à jour par notre service informatique." data-en="Our company documents, kept up to date by our IT team.">Nos documents institutionnels, mis à jour par notre service informatique.</p>
+  <div class="docs">
+   <div class="doc"><div><b data-fr="Plaquette de présentation" data-en="Company brochure">Plaquette de présentation</b><span>PDF · 2,4 Mo</span></div><button type="button" class="dl" data-fr="Télécharger" data-en="Download">Télécharger</button></div>
+   <div class="doc"><div><b data-fr="Liste des références" data-en="Reference list">Liste des références</b><span>PDF · 640 Ko</span></div><button type="button" class="dl" data-fr="Télécharger" data-en="Download">Télécharger</button></div>
+   <div class="doc"><div><b data-fr="Attestations et agréments" data-en="Certificates and approvals">Attestations et agréments</b><span>PDF · 1,1 Mo</span></div><button type="button" class="dl" data-fr="Télécharger" data-en="Download">Télécharger</button></div>
+   <div class="doc"><div><b data-fr="Liste du matériel" data-en="Equipment list">Liste du matériel</b><span>PDF · 380 Ko</span></div><button type="button" class="dl" data-fr="Télécharger" data-en="Download">Télécharger</button></div>
+  </div>
+ </div>
+</section>
+
+<section class="alt" id="contact">
+ <div class="wrap">
+  <h2 data-fr="Contact et demande de devis" data-en="Contact and quote request">Contact et demande de devis</h2>
+  <p class="lead" data-fr="Décrivez votre projet : nous vous répondons sous 48 heures." data-en="Tell us about your project: we reply within 48 hours.">Décrivez votre projet : nous vous répondons sous 48 heures.</p>
+  <div class="contact">
+   <div class="info">
+    <h3>Horizon BTP</h3>
+    <p>📍 <span data-fr="Kribi, Région du Sud, Cameroun (adresse fictive)" data-en="Kribi, South Region, Cameroon (fictional address)">Kribi, Région du Sud, Cameroun (adresse fictive)</span></p>
+    <p>📞 +237 6XX XX XX XX</p>
+    <p>✉️ contact@horizon-btp.example</p>
+    <p>🕘 <span data-fr="Lundi – vendredi, 8h – 17h" data-en="Monday – Friday, 8am – 5pm">Lundi – vendredi, 8h – 17h</span></p>
+    <div class="map" data-fr="Carte Google Maps intégrée ici" data-en="Embedded Google Map here">Carte Google Maps intégrée ici</div>
+   </div>
+   <form id="quote" novalidate>
+    <label><span data-fr="Nom ou entreprise" data-en="Name or company">Nom ou entreprise</span><input required name="name"></label>
+    <label><span data-fr="Téléphone" data-en="Phone">Téléphone</span><input required name="phone" type="tel"></label>
+    <label><span data-fr="Type de projet" data-en="Project type">Type de projet</span>
+     <select name="type"><option data-fr="Bâtiment" data-en="Building">Bâtiment</option><option data-fr="Routes et VRD" data-en="Roads and utilities">Routes et VRD</option><option data-fr="Ouvrage d'art" data-en="Bridge or structure">Ouvrage d'art</option><option data-fr="Autre" data-en="Other">Autre</option></select></label>
+    <label><span data-fr="Localisation du projet" data-en="Project location">Localisation du projet</span><input name="place"></label>
+    <label class="full"><span data-fr="Description du projet" data-en="Project description">Description du projet</span><textarea name="msg" rows="4"></textarea></label>
+    <label class="full"><span data-fr="Pièce jointe (plans, cahier des charges)" data-en="Attachment (plans, specifications)">Pièce jointe (plans, cahier des charges)</span><input type="file"></label>
+    <div class="full"><button class="btn" type="submit" data-fr="Envoyer ma demande" data-en="Send my request">Envoyer ma demande</button></div>
+    <p class="ok" id="ok" aria-live="polite"></p>
+   </form>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <div>© 2026 Horizon BTP · <span data-fr="Entreprise fictive, site de démonstration" data-en="Fictional company, demo website">Entreprise fictive, site de démonstration</span></div>
+  <div><a href="admin.html" data-fr="Voir l'espace administrateur (démo) →" data-en="See the admin area (demo) →">Voir l'espace administrateur (démo) →</a> · <span data-fr="Conçu par" data-en="Built by">Conçu par</span> <a href="https://www.asghinlabs.com">AsghinLabs</a></div>
+ </div>
+</footer>
+
+<a class="wa" href="#contact" aria-label="WhatsApp">💬</a>
+<div class="toast" id="toast"></div>
+
+<script>
+const PROJECTS=[
+ {f:'bat',fr:'Lycée technique, 12 salles de classe',en:'Technical high school, 12 classrooms',owner_fr:'Ministère des Enseignements Secondaires',owner_en:'Ministry of Secondary Education',place:'Kribi',year:2025,c1:'#2b5784',c2:'#f39200'},
+ {f:'route',fr:'Réhabilitation de 8 km de voirie urbaine',en:'Rehabilitation of 8 km of city roads',owner_fr:'Commune de Kribi',owner_en:'Kribi City Council',place:'Kribi',year:2024,c1:'#3b4a5a',c2:'#ffd27a'},
+ {f:'oa',fr:'Pont en béton armé de 24 m',en:'24 m reinforced concrete bridge',owner_fr:'Ministère des Travaux Publics',owner_en:'Ministry of Public Works',place:'Lolodorf',year:2024,c1:'#1f466b',c2:'#9fb3c8'},
+ {f:'bat',fr:'Immeuble de bureaux R+4',en:'Five-storey office building',owner_fr:'Investisseur privé',owner_en:'Private investor',place:'Douala',year:2023,c1:'#24496e',c2:'#f39200'},
+ {f:'route',fr:'Plateforme logistique de 3 ha',en:'3-hectare logistics platform',owner_fr:'Opérateur portuaire',owner_en:'Port operator',place:'Kribi',year:2023,c1:'#4a5a6a',c2:'#ffb347'},
+ {f:'oa',fr:'Dalots et assainissement, 2,5 km',en:'Culverts and drainage, 2.5 km',owner_fr:'Fonds Routier',owner_en:'Road Fund',place:'Campo',year:2022,c1:'#16304d',c2:'#7d94ad'}
+];
+let lang='fr', filter='all';
+function art(p){return `<svg class="art" viewBox="0 0 300 170" preserveAspectRatio="none"><rect width="300" height="170" fill="${p.c1}"/><rect y="130" width="300" height="40" fill="rgba(0,0,0,.25)"/>${p.f==='bat'?`<rect x="90" y="40" width="120" height="90" fill="${p.c2}" opacity=".9"/><g fill="${p.c1}">${[0,1,2].map(r=>[0,1,2,3].map(c=>`<rect x="${102+c*27}" y="${52+r*25}" width="16" height="14"/>`).join('')).join('')}</g>`:p.f==='route'?`<path d="M0 170 L120 90 L180 90 L300 170 Z" fill="#20262d"/><path d="M150 95 L150 110 M150 122 L150 140 M150 152 L150 170" stroke="${p.c2}" stroke-width="5"/>`:`<path d="M0 120 Q150 30 300 120" stroke="${p.c2}" stroke-width="10" fill="none"/><rect x="0" y="112" width="300" height="10" fill="${p.c2}"/><g fill="${p.c2}"><rect x="70" y="80" width="8" height="40"/><rect x="146" y="60" width="8" height="60"/><rect x="222" y="80" width="8" height="40"/></g><rect y="135" width="300" height="35" fill="#2a6f97" opacity=".7"/>`}</svg>`}
+function renderProjects(){
+ const el=document.getElementById('projects');
+ el.innerHTML=PROJECTS.filter(p=>filter==='all'||p.f===filter).map(p=>`<article class="proj">${art(p)}<div class="body"><h3>${lang==='fr'?p.fr:p.en}</h3><div class="meta"><span>📍 ${p.place}</span><span>📅 ${p.year}</span></div><p>${lang==='fr'?'Maître d’ouvrage : '+p.owner_fr:'Client: '+p.owner_en}</p></div></article>`).join('');
+}
+function setLang(l){
+ lang=l; document.documentElement.lang=l;
+ document.querySelectorAll('[data-fr]').forEach(e=>{e.textContent=e.dataset[l]});
+ document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));
+ document.title=l==='fr'?'Horizon BTP — Démo de site institutionnel | AsghinLabs':'Horizon BTP — Corporate website demo | AsghinLabs';
+ renderProjects();
+ try{localStorage.setItem('hb-lang',l)}catch(e){}
+}
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+document.getElementById('filters').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;filter=b.dataset.f;document.querySelectorAll('#filters button').forEach(x=>x.classList.toggle('on',x===b));renderProjects()});
+const toast=document.getElementById('toast');
+function say(m){toast.textContent=m;toast.classList.add('show');clearTimeout(say.t);say.t=setTimeout(()=>toast.classList.remove('show'),2600)}
+document.querySelectorAll('.dl').forEach(b=>b.addEventListener('click',()=>say(lang==='fr'?'Démo : sur le vrai site, le PDF se télécharge ici.':'Demo: on the real site, the PDF downloads here.')));
+document.getElementById('quote').addEventListener('submit',e=>{e.preventDefault();const f=e.target;if(!f.name.value.trim()||!f.phone.value.trim()){say(lang==='fr'?'Indiquez votre nom et votre téléphone.':'Please add your name and phone.');return}
+ document.getElementById('ok').textContent=lang==='fr'?'✅ Démo : sur le vrai site, la demande arrive par e-mail et dans l’espace administrateur.':'✅ Demo: on the real site, the request arrives by email and in the admin area.';f.reset()});
+const burger=document.getElementById('burger'),menu=document.getElementById('menu');
+burger.addEventListener('click',()=>{const o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o)});
+menu.addEventListener('click',e=>{if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded','false')}});
+let saved='fr';try{saved=localStorage.getItem('hb-lang')||'fr'}catch(e){}
+setLang(saved==='en'?'en':'fr');
+</script>
+</body>
+</html>

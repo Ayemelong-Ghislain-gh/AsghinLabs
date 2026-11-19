@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waddle Construction · Espace administrateur (démo) | AsghinLabs</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/images/logo-blue.jpeg">
+<style>
+:root{--navy:#0f1f33;--orange:#f39200;--line:#e3e8ee;--bg:#f3f5f8;--muted:#5d6b7a;--ink:#1d2733}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+.demo-bar{background:#111;color:#ffd27a;font-size:.82rem;text-align:center;padding:7px 12px}
+.demo-bar a{color:#fff;font-weight:600}
+.app{display:grid;grid-template-columns:230px 1fr;min-height:calc(100vh - 34px)}
+aside{background:var(--navy);color:#cbd8e6;padding:20px 14px}
+aside h1{color:#fff;font-size:1.05rem;margin-bottom:22px;padding:0 8px}
+aside h1 small{display:block;color:var(--orange);font-size:.72rem;letter-spacing:1px}
+aside button{display:flex;gap:10px;width:100%;background:none;border:0;color:inherit;text-align:left;padding:10px 12px;border-radius:8px;cursor:pointer;font-size:.93rem}
+aside button.on,aside button:hover{background:#1c3756;color:#fff}
+main{padding:26px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.top h2{color:var(--navy)}
+.who{font-size:.85rem;color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+.kpi strong{display:block;font-size:1.6rem;color:var(--navy)}
+.kpi span{font-size:.82rem;color:var(--muted)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;margin-bottom:18px}
+.panel h3{color:var(--navy);font-size:1rem;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:600;font-size:.8rem;text-transform:uppercase}
+.badge{padding:3px 9px;border-radius:999px;font-size:.75rem;font-weight:700}
+.new{background:#fff1dc;color:#a35f00}.done{background:#e3f6ea;color:#127a3c}.pub{background:#e6eefb;color:#1f4f8f}
+.btn{background:var(--orange);color:#1b1200;border:0;border-radius:8px;padding:8px 14px;font-weight:700;cursor:pointer;font-size:.85rem}
+.tabs{display:flex;gap:6px;margin-bottom:12px}
+.tabs button{border:1px solid var(--line);background:#fff;border-radius:7px;padding:6px 12px;cursor:pointer;font-weight:700;font-size:.8rem}
+.tabs button.on{background:var(--navy);color:#fff}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form label{display:grid;gap:5px;font-size:.82rem;font-weight:600;color:var(--navy)}
+.form .full{grid-column:1/-1}
+input,textarea,select{font:inherit;padding:9px 10px;border:1px solid var(--line);border-radius:8px}
+.drop{border:2px dashed var(--line);border-radius:10px;padding:18px;text-align:center;color:var(--muted);font-size:.85rem}
+.view{display:none}.view.on{display:block}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#111;color:#fff;padding:12px 18px;border-radius:10px;font-size:.9rem;opacity:0;transition:.3s;pointer-events:none}
+.toast.show{opacity:1}
+@media (max-width:860px){.app{grid-template-columns:1fr}aside{display:flex;gap:4px;overflow-x:auto;padding:10px}aside h1{display:none}aside button{white-space:nowrap;width:auto}.kpis{grid-template-columns:repeat(2,1fr)}.form{grid-template-columns:1fr}.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<div class="demo-bar">Démo de l'espace administrateur préparée par AsghinLabs pour Waddle Construction (données d'exemple, rien n'est enregistré). <a href="index.html">← Retour au site</a></div>
+<div class="app">
+ <aside>
+  <h1>WADDLE<small>ADMINISTRATION</small></h1>
+  <button class="on" data-v="dash">📊 Tableau de bord</button>
+  <button data-v="proj">🏗️ Réalisations</button>
+  <button data-v="docs">📄 Documents</button>
+  <button data-v="quotes">✉️ Demandes de devis</button>
+  <button data-v="users">👥 Utilisateurs</button>
+ </aside>
+ <main>
+  <div class="top"><h2 id="title">Tableau de bord</h2><span class="who">Connecté : Waddle Construction · rôle Administrateur</span></div>
+
+  <section class="view on" id="dash">
+   <div class="kpis">
+    <div class="kpi"><strong>6</strong><span>réalisations publiées</span></div>
+    <div class="kpi"><strong>4</strong><span>documents en ligne</span></div>
+    <div class="kpi"><strong>3</strong><span>nouvelles demandes de devis</span></div>
+    <div class="kpi"><strong>1 284</strong><span>visites ce mois-ci</span></div>
+   </div>
+   <div class="panel"><h3>Dernières demandes de devis</h3><table><thead><tr><th>Date</th><th>Client</th><th class="hide-sm">Projet</th><th>Statut</th></tr></thead><tbody>
+    <tr><td>17/11</td><td>Mairie (exemple)</td><td class="hide-sm">Bâtiment R+1</td><td><span class="badge new">Nouveau</span></td></tr>
+    <tr><td>15/11</td><td>Investisseur privé</td><td class="hide-sm">Villa R+1</td><td><span class="badge new">Nouveau</span></td></tr>
+    <tr><td>12/11</td><td>École Les Palmiers</td><td class="hide-sm">Bloc de 4 salles</td><td><span class="badge done">Devis envoyé</span></td></tr>
+   </tbody></table></div>
+  </section>
+
+  <section class="view" id="proj">
+   <div class="panel"><h3>Ajouter une réalisation <button class="btn save">Publier</button></h3>
+    <div class="tabs"><button class="on" data-l="fr">Français</button><button data-l="en">English</button></div>
+    <div class="form">
+     <label class="full">Titre<input id="pt" value="Villa R+1 à Bonamoussadi"></label>
+     <label>Catégorie<select><option>Bâtiment</option><option>Rénovation</option><option>Gros œuvre</option></select></label>
+     <label>Année<input value="2026"></label>
+     <label>Lieu<input value="Douala"></label>
+     <label>Maître d'ouvrage<input id="po" value="Client particulier"></label>
+     <label class="full">Description<textarea id="pd" rows="3">Construction d'une villa de 4 chambres, du gros œuvre aux finitions.</textarea></label>
+     <div class="drop full">📷 Glissez les photos du chantier ici (avant / pendant / après)</div>
+    </div>
+   </div>
+   <div class="panel"><h3>Réalisations publiées</h3><table><thead><tr><th>Titre</th><th class="hide-sm">Année</th><th>État</th></tr></thead><tbody>
+    <tr><td>Rénovation de maison</td><td class="hide-sm">2025</td><td><span class="badge pub">Publié FR/EN</span></td></tr>
+    <tr><td>Immeuble R+3, fondations</td><td class="hide-sm">2024</td><td><span class="badge pub">Publié FR/EN</span></td></tr>
+    <tr><td>Boutiques et magasin</td><td class="hide-sm">2024</td><td><span class="badge pub">Publié FR/EN</span></td></tr>
+   </tbody></table></div>
+  </section>
+
+  <section class="view" id="docs">
+   <div class="panel"><h3>Documents à télécharger <button class="btn save">Ajouter un PDF</button></h3>
+    <div class="drop" style="margin-bottom:14px">📄 Glissez un fichier PDF ici pour le mettre en ligne</div>
+    <table><thead><tr><th>Document</th><th class="hide-sm">Taille</th><th>Mis à jour</th></tr></thead><tbody>
+     <tr><td>Plaquette de présentation</td><td class="hide-sm">2,4 Mo</td><td>02/11/2026</td></tr>
+     <tr><td>Liste des références</td><td class="hide-sm">640 Ko</td><td>28/10/2026</td></tr>
+     <tr><td>Attestations et agréments</td><td class="hide-sm">1,1 Mo</td><td>15/09/2026</td></tr>
+     <tr><td>Liste du matériel</td><td class="hide-sm">380 Ko</td><td>15/09/2026</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section class="view" id="quotes">
+   <div class="panel"><h3>Demandes de devis</h3><table><thead><tr><th>Date</th><th>Client</th><th class="hide-sm">Téléphone</th><th class="hide-sm">Projet</th><th>Statut</th></tr></thead><tbody>
+    <tr><td>17/11</td><td>Mairie (exemple)</td><td class="hide-sm">6XX XX XX XX</td><td class="hide-sm">Bâtiment R+1</td><td><span class="badge new">Nouveau</span></td></tr>
+    <tr><td>15/11</td><td>Investisseur privé</td><td class="hide-sm">6XX XX XX XX</td><td class="hide-sm">Villa R+1</td><td><span class="badge new">Nouveau</span></td></tr>
+    <tr><td>14/11</td><td>Société logistique</td><td class="hide-sm">6XX XX XX XX</td><td class="hide-sm">Clôture d'entrepôt</td><td><span class="badge new">Nouveau</span></td></tr>
+    <tr><td>12/11</td><td>École Les Palmiers</td><td class="hide-sm">6XX XX XX XX</td><td class="hide-sm">Bloc de 4 salles</td><td><span class="badge done">Devis envoyé</span></td></tr>
+   </tbody></table></div>
+  </section>
+
+  <section class="view" id="users">
+   <div class="panel"><h3>Comptes administrateurs <button class="btn save">Inviter</button></h3><table><thead><tr><th>Nom</th><th>Rôle</th><th class="hide-sm">Accès</th></tr></thead><tbody>
+    <tr><td>Service informatique</td><td>Administrateur</td><td class="hide-sm">Tout le site</td></tr>
+    <tr><td>Direction commerciale</td><td>Éditeur</td><td class="hide-sm">Réalisations, devis</td></tr>
+    <tr><td>Secrétariat</td><td>Lecteur</td><td class="hide-sm">Demandes de devis</td></tr>
+   </tbody></table></div>
+  </section>
+ </main>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const titles={dash:'Tableau de bord',proj:'Réalisations',docs:'Documents',quotes:'Demandes de devis',users:'Utilisateurs'};
+document.querySelectorAll('aside button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('aside button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id===b.dataset.v));document.getElementById('title').textContent=titles[b.dataset.v]}));
+const t=document.getElementById('toast');function say(m){t.textContent=m;t.classList.add('show');clearTimeout(say.x);say.x=setTimeout(()=>t.classList.remove('show'),2600)}
+document.querySelectorAll('.save').forEach(b=>b.addEventListener('click',()=>say('Démo : sur le vrai site, la modification est enregistrée et visible immédiatement.')));
+const EN={pt:'Two-storey villa in Bonamoussadi',po:'Private client',pd:'Construction of a 4-bedroom villa, from structure to finishing.'},FR={pt:'Villa R+1 à Bonamoussadi',po:'Client particulier',pd:"Construction d'une villa de 4 chambres, du gros œuvre aux finitions."};
+document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));const d=b.dataset.l==='en'?EN:FR;for(const k in d)document.getElementById(k).value=d[k]}));
+</script>
+</body>
+</html>

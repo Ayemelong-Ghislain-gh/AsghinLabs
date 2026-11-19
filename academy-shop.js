@@ -194,9 +194,10 @@
         </fieldset>
         <label for="orderNote">${t('Note (optional)', 'Remarque (facultatif)')}</label>
         <textarea id="orderNote" rows="2" placeholder="${t('Anything we should know', 'Une précision pour nous ?')}"></textarea>
-        <button type="submit" class="order-send">💬 ${t('Send order on WhatsApp', 'Envoyer la commande sur WhatsApp')}</button>
+        <button type="button" class="order-send order-pay" data-pay-now>💳 ${t('Pay now · MTN MoMo or Orange Money', 'Payer maintenant · MTN MoMo ou Orange Money')}</button>
+        <button type="submit" class="order-send order-send-wa">💬 ${t('Or order on WhatsApp, pay later', 'Ou commander sur WhatsApp, payer après')}</button>
         <p class="order-feedback" aria-live="polite"></p>
-        <p class="order-small">${t('No payment on this site. We confirm your order, the total and delivery with you on WhatsApp.', 'Aucun paiement sur ce site. Nous confirmons la commande, le total et la livraison avec vous sur WhatsApp.')}</p>
+        <p class="order-small">${t('Secure payment through Fapshi. You pay on Fapshi’s page and come back here with your order confirmed. We then deliver or send your notes on WhatsApp.', 'Paiement sécurisé via Fapshi. Vous payez sur la page Fapshi puis revenez ici avec votre commande confirmée. Nous livrons ou envoyons vos notes sur WhatsApp.')}</p>
       </form>
     </div>`;
   document.body.appendChild(panel);
@@ -253,6 +254,7 @@
     bar.querySelector('.ob-count').textContent = FR ? `${n} article${n === 1 ? '' : 's'}` : `${n} item${n === 1 ? '' : 's'}`;
     bar.querySelector('.ob-total').textContent = money(total()) + (hasUnpriced() ? ' +' : '');
     refreshCards();
+    if (typeof refreshPayBtn === 'function') refreshPayBtn();
     if (panel.classList.contains('open')) renderPanel();
   }
 
@@ -304,6 +306,52 @@
     feedback.style.color = '#2ee68b';
   });
 
+  // ---------- Pay online with Fapshi (MTN MoMo / Orange Money) ----------
+  const payBtn = panel.querySelector('[data-pay-now]');
+  if (!document.getElementById('payBtnStyle')) {
+    const st = document.createElement('style');
+    st.id = 'payBtnStyle';
+    st.textContent = '.order-send.order-pay{background:#ffcc00;color:#1a1300;margin-bottom:10px}.order-send.order-pay:disabled{opacity:.5;cursor:not-allowed}.order-send.order-send-wa{background:transparent;border:1px solid #25d366;color:#25d366}';
+    document.head.appendChild(st);
+  }
+  function refreshPayBtn() {
+    const off = !count() || hasUnpriced();
+    payBtn.disabled = off;
+    payBtn.title = hasUnpriced() ? t('Some items need a price confirmation: order on WhatsApp.', 'Certains articles n’ont pas de prix : commandez sur WhatsApp.') : '';
+  }
+  payBtn.addEventListener('click', async () => {
+    const name = panel.querySelector('#orderName').value.trim();
+    const phone = panel.querySelector('#orderPhone').value.trim();
+    const say = (msg, ok) => { feedback.textContent = msg; feedback.style.color = ok ? '#2ee68b' : '#ffaa66'; };
+    if (!count()) return say(t('Add at least one item first.', "Ajoutez d'abord au moins un article."));
+    if (hasUnpriced()) return say(t('Some items have no price yet: please order on WhatsApp.', 'Certains articles n’ont pas encore de prix : commandez sur WhatsApp.'));
+    const digits = phone.replace(/\D/g, '').replace(/^(00)?237(?=6\d{8}$)/, '');
+    if (!name || !/^6\d{8}$/.test(digits)) return say(t('✏️ Add your name and a valid Cameroon number (e.g. 6XX XXX XXX).', '✏️ Indiquez votre nom et un numéro camerounais valide (ex. 6XX XXX XXX).'));
+    payBtn.disabled = true;
+    say(t('⏳ Preparing your secure payment…', '⏳ Préparation du paiement sécurisé…'), true);
+    if (typeof gtag === 'function') gtag('event', 'begin_checkout', { currency: 'XAF', value: total(), items: Object.keys(cart).map(id => ({ item_id: id, quantity: cart[id] })) });
+    try {
+      const r = await fetch('/api/pay', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: cart, name, phone: digits, lang: FR ? 'fr' : 'en',
+          town: panel.querySelector('#orderTown').value.trim(),
+          note: panel.querySelector('#orderNote').value.trim(),
+          delivery: (panel.querySelector('input[name="orderDelivery"]:checked') || {}).value || 'Delivery',
+        }),
+      });
+      const data = await r.json().catch(() => ({}));
+      if (data.ok && data.link) { window.location.href = data.link; return; }
+      const why = data.error === 'too_many' ? t('Too many attempts. Please wait a little or order on WhatsApp.', 'Trop de tentatives. Patientez un peu ou commandez sur WhatsApp.')
+        : t('Online payment is not available right now. Please order on WhatsApp.', 'Le paiement en ligne est indisponible pour le moment. Commandez sur WhatsApp.');
+      say(why);
+    } catch (err) {
+      say(t('Connection problem. Check your internet and try again, or order on WhatsApp.', 'Problème de connexion. Vérifiez internet et réessayez, ou commandez sur WhatsApp.'));
+    }
+    payBtn.disabled = false;
+  });
+
   // "Order for a whole class or school" link can preselect a subject tab.
   document.querySelectorAll('[data-shop-subject]').forEach(a => a.addEventListener('click', () => {
     const btn = filterEl && filterEl.querySelector(`[data-subject="${a.dataset.shopSubject}"]`);
@@ -312,4 +360,72 @@
 
   renderGrid();
   refresh();
+})();
+
+
+/* ---------- Back from Fapshi: show the payment result ----------
+   Fapshi sends the student back to /academy?order=<id>. We ask our own
+   /api/pay (which checks with Fapshi) and never trust the address bar. */
+(function () {
+  const params = new URLSearchParams(location.search);
+  const orderId = params.get('order');
+  if (!orderId || !/^[A-Z0-9]{6,40}$/.test(orderId)) return;
+  const FR = document.documentElement.lang === 'fr';
+  const t = (en, fr) => (FR ? fr : en);
+  const PHONE = typeof ACADEMY_WHATSAPP !== 'undefined' ? ACADEMY_WHATSAPP : '237682402876';
+  const money = (n) => Number(n).toLocaleString('en-US').replace(/,/g, ' ') + ' FCFA';
+  const esc = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+  const box = document.createElement('div');
+  box.className = 'pay-result';
+  box.setAttribute('role', 'dialog');
+  box.setAttribute('aria-modal', 'true');
+  box.style.cssText = 'position:fixed;inset:0;z-index:2000;display:grid;place-items:center;padding:16px;background:rgba(3,6,18,.82)';
+  box.innerHTML = `<div style="max-width:440px;width:100%;background:#0d1326;border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:24px;color:#e8ecf5;line-height:1.6">
+    <div class="pay-body">⏳ ${t('Checking your payment…', 'Vérification de votre paiement…')}</div>
+    <button type="button" class="pay-close" style="margin-top:16px;width:100%;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;cursor:pointer">${t('Close', 'Fermer')}</button>
+  </div>`;
+  document.body.appendChild(box);
+  const body = box.querySelector('.pay-body');
+  const close = () => {
+    box.remove();
+    history.replaceState(null, '', location.pathname + location.hash);
+  };
+  box.querySelector('.pay-close').addEventListener('click', close);
+
+  let tries = 0;
+  async function check() {
+    tries++;
+    let data = {};
+    try { data = await fetch('/api/pay?order=' + encodeURIComponent(orderId), { cache: 'no-store' }).then(r => r.json()); } catch (e) {}
+    const o = data.order;
+    if (!o) {
+      body.innerHTML = `❓ ${t('We could not find this order. If you paid, send us your payment SMS on WhatsApp.', 'Commande introuvable. Si vous avez payé, envoyez-nous le SMS de paiement sur WhatsApp.')}`;
+      return;
+    }
+    if (o.status === 'pending' && tries < 8) {
+      body.innerHTML = `⏳ ${t('Waiting for the payment confirmation… (approve it on your phone if asked)', 'En attente de la confirmation… (validez sur votre téléphone si demandé)')}`;
+      setTimeout(check, 4000);
+      return;
+    }
+    const list = o.items.map(i => `• ${i.qty} × ${i.subject} — ${i.title}`).join('\n');
+    if (o.status === 'paid') {
+      try { localStorage.removeItem(FR ? 'asghin-cart-fr' : 'asghin-cart'); } catch (e) {}
+      if (typeof gtag === 'function') gtag('event', 'purchase', { transaction_id: o.id, currency: 'XAF', value: o.total });
+      const msg = t(`Hello AsghinLabs Academy 👋, I have paid online.\n\nOrder: ${o.id}\nAmount: ${money(o.total)}\n${list}\n\nName: ${o.name}\nReceive by: ${o.delivery}${o.town ? '\nTown/School: ' + o.town : ''}`,
+        `Bonjour AsghinLabs Academy 👋, j'ai payé en ligne.\n\nCommande : ${o.id}\nMontant : ${money(o.total)}\n${list}\n\nNom : ${o.name}\nRéception : ${o.delivery === 'Pickup' ? 'Retrait' : 'Livraison'}${o.town ? '\nVille/Établissement : ' + o.town : ''}`);
+      body.innerHTML = `<h3 style="margin:0 0 8px">✅ ${t('Payment received!', 'Paiement reçu !')}</h3>
+        <p style="margin:0 0 8px">${t('Order', 'Commande')} <strong>${esc(o.id)}</strong> · ${esc(money(o.total))}</p>
+        <p style="white-space:pre-line;color:#aab3c8;margin:0 0 14px">${esc(list)}</p>
+        <p style="margin:0 0 14px">${t('Last step: send this confirmation on WhatsApp so we deliver or send your notes right away.', 'Dernière étape : envoyez cette confirmation sur WhatsApp pour recevoir vos notes ou votre livraison rapidement.')}</p>
+        <a href="https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener" style="display:block;text-align:center;padding:13px;border-radius:12px;background:#25d366;color:#04140a;font-weight:700;text-decoration:none">💬 ${t('Send confirmation on WhatsApp', 'Envoyer la confirmation sur WhatsApp')}</a>`;
+    } else if (o.status === 'failed') {
+      body.innerHTML = `<h3 style="margin:0 0 8px">❌ ${t('Payment not completed', 'Paiement non effectué')}</h3>
+        <p style="margin:0">${t('No money was taken. Your basket is still saved: you can try again or order on WhatsApp.', 'Aucun montant prélevé. Votre panier est conservé : réessayez ou commandez sur WhatsApp.')}</p>`;
+    } else {
+      body.innerHTML = `<h3 style="margin:0 0 8px">⏳ ${t('Payment still pending', 'Paiement en attente')}</h3>
+        <p style="margin:0">${t('If you approved the payment, it may take a minute. Reload this page later, or send us your order number', 'Si vous avez validé, cela peut prendre une minute. Rechargez la page plus tard ou envoyez-nous le numéro')} <strong>${esc(o.id)}</strong> ${t('on WhatsApp.', 'sur WhatsApp.')}</p>`;
+    }
+  }
+  check();
 })();

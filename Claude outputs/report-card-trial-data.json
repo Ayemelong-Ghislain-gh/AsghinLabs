@@ -1,0 +1,246 @@
+{
+ "school": {
+  "name": "Collège Bilingue Les Étoiles",
+  "city": "Yaoundé",
+  "logo": ""
+ },
+ "term": {
+  "en": "1st Term 2026-2027",
+  "fr": "1er Trimestre 2026-2027"
+ },
+ "class": {
+  "en": "Form 4",
+  "fr": "3e"
+ },
+ "subjects": [
+  {
+   "name_en": "Mathematics",
+   "name_fr": "Mathématiques",
+   "coef": 4
+  },
+  {
+   "name_en": "English",
+   "name_fr": "Anglais",
+   "coef": 3
+  },
+  {
+   "name_en": "French",
+   "name_fr": "Français",
+   "coef": 3
+  },
+  {
+   "name_en": "Physics",
+   "name_fr": "Physique",
+   "coef": 2
+  },
+  {
+   "name_en": "Chemistry",
+   "name_fr": "Chimie",
+   "coef": 2
+  },
+  {
+   "name_en": "Biology",
+   "name_fr": "SVT",
+   "coef": 2
+  },
+  {
+   "name_en": "History-Geography",
+   "name_fr": "Histoire-Géographie",
+   "coef": 2
+  },
+  {
+   "name_en": "Computer Science",
+   "name_fr": "Informatique",
+   "coef": 2
+  },
+  {
+   "name_en": "Physical Education",
+   "name_fr": "EPS",
+   "coef": 1
+  }
+ ],
+ "students": [
+  {
+   "name": "NGONO Marie Claire",
+   "id": "CBE-2026-0142",
+   "marks": [
+    14.5,
+    12,
+    15.25,
+    9.5,
+    11,
+    13,
+    10.75,
+    17,
+    16
+   ]
+  },
+  {
+   "name": "ATANGANA Paul Junior",
+   "id": "CBE-2026-0143",
+   "marks": [
+    10.25,
+    12.5,
+    10.25,
+    10.0,
+    8.25,
+    10.25,
+    14.25,
+    12.25,
+    14.0
+   ]
+  },
+  {
+   "name": "MBARGA Christelle",
+   "id": "CBE-2026-0144",
+   "marks": [
+    11.75,
+    12.25,
+    11.5,
+    6.0,
+    13.5,
+    12.5,
+    12.5,
+    6.0,
+    5.75
+   ]
+  },
+  {
+   "name": "FOUDA Jean Bosco",
+   "id": "CBE-2026-0145",
+   "marks": [
+    8.25,
+    9.5,
+    12.0,
+    10.75,
+    12.5,
+    9.0,
+    12.0,
+    12.25,
+    9.0
+   ]
+  },
+  {
+   "name": "NJOYA Aminatou",
+   "id": "CBE-2026-0146",
+   "marks": [
+    16.25,
+    12.75,
+    14.5,
+    9.25,
+    8.75,
+    10.0,
+    10.75,
+    13.0,
+    11.75
+   ]
+  },
+  {
+   "name": "TCHOUPO Brice",
+   "id": "CBE-2026-0147",
+   "marks": [
+    9.75,
+    8.25,
+    9.5,
+    14.75,
+    8.5,
+    11.75,
+    12.25,
+    6.5,
+    11.25
+   ]
+  },
+  {
+   "name": "EYENGA Sandrine",
+   "id": "CBE-2026-0148",
+   "marks": [
+    15.0,
+    5.0,
+    10.0,
+    10.75,
+    8.5,
+    12.5,
+    10.75,
+    6.5,
+    13.5
+   ]
+  },
+  {
+   "name": "ABENA Yves Landry",
+   "id": "CBE-2026-0149",
+   "marks": [
+    13.0,
+    13.75,
+    15.25,
+    12.0,
+    11.25,
+    7.0,
+    12.75,
+    9.25,
+    9.75
+   ]
+  },
+  {
+   "name": "MENGUE Patricia",
+   "id": "CBE-2026-0150",
+   "marks": [
+    7.25,
+    8.0,
+    9.5,
+    14.75,
+    5.0,
+    6.75,
+    11.75,
+    15.25,
+    12.75
+   ]
+  },
+  {
+   "name": "KAMDEM Arnaud",
+   "id": "CBE-2026-0151",
+   "marks": [
+    5.25,
+    3.5,
+    12.0,
+    8.75,
+    7.75,
+    14.0,
+    14.25,
+    11.5,
+    11.75
+   ]
+  },
+  {
+   "name": "BELLA Rosine",
+   "id": "CBE-2026-0152",
+   "marks": [
+    12.25,
+    15.75,
+    12.75,
+    12.5,
+    12.75,
+    6.25,
+    14.75,
+    13.75,
+    12.5
+   ]
+  },
+  {
+   "name": "ESSOMBA Didier",
+   "id": "CBE-2026-0153",
+   "marks": [
+    5.0,
+    9.0,
+    13.5,
+    5.5,
+    10.5,
+    14.0,
+    7.0,
+    15.75,
+    12.75
+   ]
+  }
+ ],
+ "remark_rule": "remark per subject: >=18 Excellent / Excellent, >=15 Very good / Très bien, >=13 Good / Bien, >=11 Average / Assez bien, >=10 Fair / Passable, <10 Weak, work harder / Insuffisant",
+ "show_report_card_for": "CBE-2026-0145"
+}

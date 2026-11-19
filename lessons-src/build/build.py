@@ -135,7 +135,7 @@ def ld_for(title, desc, url, level, subject):
     return {"@context": "https://schema.org", "@type": "LearningResource", "name": title, "description": desc, "url": SITE + url,
             "learningResourceType": "Interactive lesson", "educationalLevel": level, "teaches": title, "about": subject,
             "isAccessibleForFree": True, "inLanguage": "en",
-            "provider": {"@type": "Organization", "name": "AsghinLabs Academy", "url": SITE + "/academy.html"},
+            "provider": {"@type": "Organization", "name": "AsghinLabs Academy", "url": SITE + "/academy"},
             "author": {"@type": "Person", "name": "Ayemelong Selobie Ghislain"}}
 
 
@@ -143,7 +143,7 @@ def wa_link(title):
     return 'https://wa.me/237682402876?text=' + ('Hi AsghinLabs Academy, I tried the lesson "' + title + '" and wanted to say...').replace(' ', '%20').replace('"', '%22').replace('&', '%26')
 
 
-CLEAN = re.compile(r'(https://www\.asghinlabs\.com/(?:academy|lessons|founder|portfolio))\.html')
+CLEAN = re.compile(r'((?:https://www\.asghinlabs\.com|href="|href=\')/(?:academy|academie|lessons|lecons|founder|portfolio|tutor|join))\.html')
 
 
 def write(url, text):
@@ -359,13 +359,27 @@ def build_hub(recs):
     a = s.index('<div class="hub-search"') if '<div class="hub-search"' in s else s.index('<div class="hub-filters')
     b = s.index('<div class="lesson-panel lesson-next">')
     s = s[:a] + search + '\n  ' + tabs + '\n' + secs + '\n\n  ' + s[b:]
-    s = re.sub(r'<p class="lead">.*?</p>', '<p class="lead">Choose your class, open a chapter and pick a lesson. Every lesson follows your school programme: short explanations, visuals and activities that correct you as you go.</p>', s, count=1, flags=re.S)
+    s = s.replace('\n  ' + LECONS_BANNER, '')   # avoid adding the banner twice on rebuilds
+    s = re.sub(r'<p class="lead">.*?</p>', '<p class="lead">Choose your class, open a chapter and pick a lesson. Every lesson follows your school programme: short explanations, visuals and activities that correct you as you go.</p>' + '\n  ' + LECONS_BANNER, s, count=1, flags=re.S)
     a = s.index('<script>\n(function () {\n  const buttons')
     b = s.index('</script>', a) + len('</script>')
     s = s[:a] + (BUILD / 'hub.js').read_text(encoding='utf-8') + s[b:]
     items = [{"@type": "ListItem", "position": i + 1, "url": SITE + x['url'], "name": x['title']} for i, x in enumerate([x for x in recs if x['kind'] == 'activities'] + [dict(url=practice_url(k), title=k) for k in PRACTICE_PAGES])]
     s = re.sub(r'"itemListElement":\s*\[.*?\]\s*(?=\})', '"itemListElement": ' + json.dumps(items, ensure_ascii=False) + '\n', s, flags=re.S)
     p.write_text(CLEAN.sub(r'\1', s), encoding='utf-8')
+
+
+LECONS_BANNER = '<p class="lead" style="background:#eef6ff;border-left:4px solid #2563eb;padding:12px 14px;border-radius:8px;">🆕 <b>All subjects for Form 1 and Form 2</b>: Biology, Chemistry, Physics, Mathematics, English, French, History, Geography, Citizenship, Literature and Computer Science. <a class="inline-link" href="/lecons/form1/">Open Form 1 lessons →</a> · <a class="inline-link" href="/lecons/form2/">Open Form 2 lessons →</a></p>'
+
+
+def static_lecons_urls():
+    """Hand-made lesson folders (lecons/6eme, 5eme, form1, form2): every page goes in the sitemap."""
+    out = []
+    for top in ('6eme', '5eme', 'form1', 'form2'):
+        for p in sorted((ROOT / 'lecons' / top).rglob('*.html')):
+            rel = p.relative_to(ROOT).as_posix()
+            out.append('/' + (rel[:-len('index.html')] if p.name == 'index.html' else rel[:-5]))
+    return out
 
 
 # ---------------------------------------------------------------- sitemap + redirects
@@ -464,7 +478,7 @@ def main():
     import build_academy_pages           # /past-papers, /epreuves, /skills, /formations
     import build_papers                  # /papers/...: answers for each past paper
     build_academy_pages.main()
-    build_sitemap(urls + build_fr.main() + build_papers.main())
+    build_sitemap(urls + build_fr.main() + build_papers.main() + static_lecons_urls())
     build_redirects()
     act = sum(r['kind'] == 'activities' for r in recs)
     print(f'Built {act} activity lessons + {len(PRACTICE_PAGES)} practice lessons · '
