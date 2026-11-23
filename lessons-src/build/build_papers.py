@@ -199,7 +199,7 @@ def build_paper(e, sol):
           "isAccessibleForFree": True, "provider": {"@type": "Organization", "name": "AsghinLabs Academy", "url": SITE + L['academy']}}
     if sol:
         ld["hasPart"] = [{"@type": "Question", "name": f"{q['n']}. {q['topic']}",
-                          "acceptedAnswer": {"@type": "Answer", "text": f"{q['answer']}. {q['why']}"}}
+                          "acceptedAnswer": {"@type": "Answer", "text": f"{q['answer'].rstrip('.')}. {q['why']}"}}
                          for q in sol['questions'] if not q.get('check')]
 
     pages = ''.join(
